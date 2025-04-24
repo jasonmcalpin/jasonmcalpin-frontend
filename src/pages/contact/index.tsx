@@ -2,32 +2,11 @@ import { motion } from 'framer-motion';
 import { SocialLink } from '../../types';
 import { fadeInUp, staggerContainer } from '../../utils/animations';
 import './styles.scss';
+import socialLinkData from '../../data/social.json';
 
 const Contact = () => {
   // Social media links
-  const socialLinks: SocialLink[] = [
-    {
-      platform: 'linkedin',
-      url: 'http://www.linkedin.com/in/jasondennismcalpin',
-      linkText: '@jasondennismcalpin',
-      icon: '/assets/images/contact/linkedin.svg',
-      label: 'LinkedIn'
-    },
-    {
-      platform: 'github',
-      url: 'http://www.github.com/jasonmcalpin',
-      linkText: '@jasonmcalpin',
-      icon: '/assets/images/contact/github.svg',
-      label: 'GitHub'
-    },
-    {
-      platform: 'twitter',
-      url: 'http://www.twitter.com/jasonmcalpin',
-      linkText: '@jasonmcalpin',
-      icon: '/assets/images/contact/x.png',
-      label: 'Twitter'
-    }
-  ];
+  const socialLinks: SocialLink[] = socialLinkData as SocialLink[];
 
   return (
     <div className="contact">

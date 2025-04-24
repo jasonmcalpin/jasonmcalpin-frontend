@@ -2,30 +2,9 @@ import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { SocialLink } from '../../types';
 import './styles.scss';
+import socialLinkData from '../../data/social.json';
 
-const socialLinks: SocialLink[] = [
-  {
-    platform: 'linkedin',
-    url: 'http://www.linkedin.com/in/jasonmcalpin',
-    icon: 'linkedin',
-    label: 'LinkedIn',
-    linkText: '@jasondennismcalpin'
-  },
-  {
-    platform: 'github',
-    url: 'http://www.github.com/jasonmcalpin',
-    icon: 'github',
-    label: 'GitHub',
-    linkText: '@jasonmcalpin'
-  },
-  {
-    platform: 'twitter',
-    url: 'http://www.twitter.com/jasonmcalpin',
-    icon: 'twitter',
-    label: 'Twitter',
-    linkText: '@jasonmcalpin'
-  }
-];
+const socialLinks: SocialLink[] = socialLinkData as SocialLink[];
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
