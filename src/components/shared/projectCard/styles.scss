@@ -1,0 +1,87 @@
+.project-card {
+  @apply bg-background-light rounded-lg overflow-hidden transition-all duration-300;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  
+  &__image-container {
+    @apply relative w-full h-48 overflow-hidden;
+  }
+  
+  &__image {
+    @apply w-full h-full object-cover transition-transform duration-500;
+  }
+  
+  &:hover &__image {
+    @apply transform scale-110;
+  }
+  
+  &__featured {
+    @apply absolute top-3 right-3 bg-secondary text-white text-xs font-bold py-1 px-2 rounded;
+    box-shadow: 0 0 10px rgba(255, 126, 0, 0.5);
+    
+    span {
+      @apply relative z-10;
+    }
+    
+    &::before {
+      content: '';
+      @apply absolute inset-0 bg-secondary opacity-50 blur-sm;
+      z-index: 1;
+    }
+  }
+  
+  &__content {
+    @apply p-6;
+  }
+  
+  &__title {
+    @apply text-xl font-heading font-bold mb-2 text-white;
+  }
+  
+  &__description {
+    @apply text-gray-300 mb-4 line-clamp-3;
+  }
+  
+  &__technologies {
+    @apply flex flex-wrap gap-2 mb-4;
+  }
+  
+  &__tech-tag {
+    @apply bg-primary-dark text-white text-xs py-1 px-2 rounded-full;
+  }
+  
+  &__links {
+    @apply flex flex-wrap gap-3 mt-auto;
+  }
+  
+  &__link {
+    @apply inline-flex items-center justify-center px-3 py-1 text-sm font-medium rounded transition-all duration-300;
+    
+    &--github {
+      @apply bg-gray-800 text-white hover:bg-gray-700;
+      
+      &::before {
+        content: '\f09b'; // GitHub icon (would be replaced with actual implementation)
+        @apply mr-1;
+      }
+    }
+    
+    &--live {
+      @apply bg-neon-blue text-white hover:bg-blue-600;
+      box-shadow: 0 0 5px theme('colors.neon.blue');
+      
+      &::before {
+        content: '\f0c1'; // Link icon (would be replaced with actual implementation)
+        @apply mr-1;
+      }
+    }
+    
+    &--details {
+      @apply bg-secondary text-white hover:bg-secondary-light;
+      
+      &::after {
+        content: '\f054'; // Arrow icon (would be replaced with actual implementation)
+        @apply ml-1;
+      }
+    }
+  }
+}

@@ -1,0 +1,94 @@
+.footer {
+  @apply bg-background-dark text-white py-12 mt-16;
+  
+  &__container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-3 gap-8;
+  }
+  
+  &__logo {
+    @apply flex flex-col;
+  }
+  
+  &__logo-link {
+    @apply inline-flex no-underline mb-4;
+  }
+  
+  &__logo-text {
+    @apply text-2xl font-heading font-bold;
+    
+    span {
+      @apply mr-1;
+    }
+  }
+  
+  &__heading {
+    @apply text-lg font-heading font-semibold mb-4 text-neon-blue;
+    text-shadow: 0 0 5px theme('colors.neon.blue');
+  }
+  
+  &__social {
+    @apply flex flex-col;
+  }
+  
+  &__social-list {
+    @apply list-none p-0 m-0 space-y-3;
+  }
+  
+  &__social-item {
+    @apply flex items-center;
+  }
+  
+  &__social-link {
+    @apply flex items-center text-white hover:text-neon-blue transition-colors duration-300;
+  }
+  
+  &__social-icon {
+    @apply mr-2 text-lg;
+  }
+  
+  &__nav {
+    @apply flex flex-col;
+  }
+  
+  &__nav-list {
+    @apply list-none p-0 m-0 space-y-3;
+  }
+  
+  &__nav-item {
+    @apply flex items-center;
+  }
+  
+  &__nav-link {
+    @apply text-white hover:text-neon-blue transition-colors duration-300;
+    
+    &::before {
+      content: '>';
+      @apply mr-2 text-secondary;
+    }
+  }
+  
+  &__bottom {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 mt-8 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center;
+  }
+  
+  &__copyright {
+    @apply text-sm text-gray-400 mb-2 md:mb-0;
+  }
+  
+  &__credits {
+    @apply text-sm text-gray-400;
+  }
+}
+
+// Social media icons
+.icon-linkedin::before {
+  content: '\f08c'; // This would be replaced with actual icon implementation
+}
+
+.icon-github::before {
+  content: '\f09b'; // This would be replaced with actual icon implementation
+}
+
+.icon-twitter::before {
+  content: '\f099'; // This would be replaced with actual icon implementation
+}

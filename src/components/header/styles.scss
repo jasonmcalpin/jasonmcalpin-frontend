@@ -1,0 +1,114 @@
+.header {
+  @apply fixed top-0 left-0 w-full z-50 transition-all duration-300;
+  background: rgba(18, 18, 18, 0.8);
+  backdrop-filter: blur(10px);
+  
+  &--scrolled {
+    @apply shadow-md;
+    background: rgba(18, 18, 18, 0.95);
+  }
+
+  &__container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center;
+  }
+
+  &__logo {
+    @apply flex items-center;
+  }
+
+  &__logo-link {
+    @apply flex items-center no-underline;
+  }
+
+  &__logo-text {
+    @apply text-xl sm:text-2xl font-heading font-bold;
+
+    span {
+      @apply mr-1;
+    }
+  }
+
+  &__nav {
+    @apply hidden md:block;
+  }
+
+  &__nav-list {
+    @apply flex space-x-8 list-none p-0 m-0;
+  }
+
+  &__nav-item {
+    @apply relative;
+  }
+
+  &__nav-link {
+    @apply text-white hover:text-neon-blue transition-colors duration-300 text-base font-medium;
+
+    &--active {
+      @apply text-neon-blue;
+      
+      &::after {
+        content: '';
+        @apply absolute bottom-[-5px] left-0 w-full h-[2px] bg-neon-blue;
+        box-shadow: 0 0 5px theme('colors.neon.blue'), 0 0 10px theme('colors.neon.blue');
+      }
+    }
+  }
+
+  &__mobile-menu-button {
+    @apply block md:hidden;
+  }
+}
+
+// Hamburger menu
+.hamburger {
+  @apply w-8 h-8 flex flex-col justify-center items-center bg-transparent border-0 cursor-pointer relative;
+  
+  &__line {
+    @apply w-6 h-[2px] bg-white block transition-all duration-300;
+    
+    &:nth-child(1) {
+      @apply mb-[6px];
+    }
+    
+    &:nth-child(3) {
+      @apply mt-[6px];
+    }
+  }
+  
+  &--active {
+    .hamburger__line {
+      &:nth-child(1) {
+        @apply transform rotate-45 translate-y-[8px];
+      }
+      
+      &:nth-child(2) {
+        @apply opacity-0;
+      }
+      
+      &:nth-child(3) {
+        @apply transform -rotate-45 -translate-y-[8px];
+      }
+    }
+  }
+}
+
+// Mobile menu
+.mobile-menu {
+  @apply w-full bg-background-light overflow-hidden md:hidden;
+  
+  &__list {
+    @apply list-none p-0 m-0;
+  }
+  
+  &__item {
+    @apply border-b border-gray-800;
+  }
+  
+  &__link {
+    @apply block py-4 px-6 text-white hover:text-neon-blue transition-colors duration-300;
+    
+    &--active {
+      @apply text-neon-blue;
+    }
+  }
+}
