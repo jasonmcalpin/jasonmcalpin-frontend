@@ -37,6 +37,10 @@ export const fetchArticles = createAsyncThunk(
     try {
       // for future API call to wordpress.
       // const response = await fetch('https://your-wordpress-site.com/wp-json/wp/v2/posts');
+      // const data = await response.json();
+      // return data as Article[];
+      
+      // For now, directly return the imported JSON data
       return articlesData as Article[];
     } catch (error) {
       return rejectWithValue(error as string);

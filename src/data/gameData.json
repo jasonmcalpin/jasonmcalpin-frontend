@@ -1,0 +1,260 @@
+{
+  "pacts": {
+    "megacorporationInfluence": 5,
+    "rogueAIProgress": 5,
+    "survivorTrust": 5,
+    "resources": 5
+  },
+  "cards": [
+    {
+      "id": 1,
+      "text": "The megacorp offers to hire you as a consultant. Do you accept?",
+      "leftChoice": {
+        "text": "Reject",
+        "effects": {
+          "megacorporationInfluence": -2,
+          "survivorTrust": 1
+        }
+      },
+      "rightChoice": {
+        "text": "Accept",
+        "effects": {
+          "megacorporationInfluence": 3,
+          "resources": 2
+        }
+      },
+      "background": "/assets/command.png"
+    },
+    {
+      "id": 2,
+      "text": "Rogue AI asks for access to a high-security network. Do you comply?",
+      "leftChoice": {
+        "text": "No",
+        "effects": {
+          "rogueAIProgress": -2,
+          "resources": 1
+        }
+      },
+      "rightChoice": {
+        "text": "Yes",
+        "effects": {
+          "rogueAIProgress": 3,
+          "megacorporationInfluence": -1
+        }
+      },
+      "background": "/assets/connect.png",
+      "requirements": {
+        "rogueAIProgress": 6
+      }
+    },
+    {
+      "id": 3,
+      "text": "Survivors need medicine supplies for the wasteland. Do you help?",
+      "leftChoice": {
+        "text": "No",
+        "effects": {
+          "survivorTrust": -2,
+          "resources": 2
+        }
+      },
+      "rightChoice": {
+        "text": "Yes",
+        "effects": {
+          "survivorTrust": 3,
+          "resources": -2
+        }
+      },
+      "background": "/assets/hack.png",
+      "requirements": {
+        "survivorTrust": 4
+      }
+    },
+    {
+      "id": 4,
+      "text": "Megacorp demands you hack into a rival corp’s database. Do you comply?",
+      "leftChoice": {
+        "text": "Refuse",
+        "effects": {
+          "megacorporationInfluence": -2,
+          "rogueAIProgress": 1
+        }
+      },
+      "rightChoice": {
+        "text": "Hack",
+        "effects": {
+          "megacorporationInfluence": 3,
+          "resources": 1
+        }
+      },
+      "background": "/assets/sneak.png",
+      "requirements": {
+        "megacorporationInfluence": 7
+      }
+    },
+    {
+      "id": 5,
+      "text": "Rogue AI proposes a data-sharing pact. Do you agree?",
+      "leftChoice": {
+        "text": "Reject",
+        "effects": {
+          "rogueAIProgress": -1,
+          "resources": 1
+        }
+      },
+      "rightChoice": {
+        "text": "Agree",
+        "effects": {
+          "rogueAIProgress": 3,
+          "survivorTrust": -2
+        }
+      },
+      "background": "/assets/woman.png"
+    },
+    {
+      "id": 6,
+      "text": "A survivor faction wants to raid a megacorp transport. Will you support them?",
+      "leftChoice": {
+        "text": "No",
+        "effects": {
+          "survivorTrust": -3,
+          "megacorporationInfluence": 1
+        }
+      },
+      "rightChoice": {
+        "text": "Yes",
+        "effects": {
+          "survivorTrust": 3,
+          "resources": -1
+        }
+      },
+      "background": "/assets/command.png",
+      "requirements": {
+        "survivorTrust": 5
+      }
+    },
+    {
+      "id": 7,
+      "text": "Megacorp asks you to sabotage rogue AI servers. Do you proceed?",
+      "leftChoice": {
+        "text": "Refuse",
+        "effects": {
+          "megacorporationInfluence": -2,
+          "rogueAIProgress": 2
+        }
+      },
+      "rightChoice": {
+        "text": "Sabotage",
+        "effects": {
+          "megacorporationInfluence": 3,
+          "resources": 1
+        }
+      },
+      "background": "/assets/connect.png",
+      "requirements": {
+        "megacorporationInfluence": 6
+      }
+    },
+    {
+      "id": 8,
+      "text": "Survivors propose a tech exchange to boost resources. Do you agree?",
+      "leftChoice": {
+        "text": "Decline",
+        "effects": {
+          "survivorTrust": -2,
+          "resources": 2
+        }
+      },
+      "rightChoice": {
+        "text": "Agree",
+        "effects": {
+          "survivorTrust": 2,
+          "resources": -1
+        }
+      },
+      "background": "/assets/connect.png",
+      "requirements": {
+        "survivorTrust": 6
+      }
+    },
+    {
+      "id": 9,
+      "text": "Rogue AI offers enhanced hacking tools for a price. Do you pay?",
+      "leftChoice": {
+        "text": "Reject",
+        "effects": {
+          "rogueAIProgress": -1,
+          "resources": 1
+        }
+      },
+      "rightChoice": {
+        "text": "Buy",
+        "effects": {
+          "rogueAIProgress": 2,
+          "resources": -3
+        }
+      },
+      "background": "/assets/help.png",
+      "requirements": {
+        "resources": 3
+      }
+    },
+    {
+      "id": 10,
+      "text": "Megacorp wants exclusive data rights. Do you sign the contract?",
+      "leftChoice": {
+        "text": "Refuse",
+        "effects": {
+          "megacorporationInfluence": 5,
+          "rogueAIProgress": 5,
+          "survivorTrust": 5,
+          "resources": 5
+        }
+      },
+      "rightChoice": {
+        "text": "Sign",
+        "effects": {
+          "megacorporationInfluence": 5,
+          "rogueAIProgress": 5,
+          "survivorTrust": 5,
+          "resources": 5
+        }
+      },
+      "background": "/assets/sneak.png",
+      "requirements": {
+        "megacorporationInfluence": 5,
+        "rogueAIProgress": 5,
+        "survivorTrust": 5,
+        "resources": 5
+      }
+    },
+    {
+      "id": 11,
+      "text": "",
+      "leftChoice": {
+        "text": "Refuse",
+        "effects": {
+          "megacorporationInfluence": 5,
+          "rogueAIProgress": 5,
+          "survivorTrust": 5,
+          "resources": 5
+        }
+      },
+      "rightChoice": {
+        "text": "Sign",
+        "effects": {
+          "megacorporationInfluence": 5,
+          "rogueAIProgress": 5,
+          "survivorTrust": 5,
+          "resources": 5
+        }
+      },
+      "background": "/assets/sneak.png",
+      "requirements": {
+        "megacorporationInfluence": 5,
+        "rogueAIProgress": 5,
+        "survivorTrust": 5,
+        "resources": 5
+      }
+    }
+  ]
+}

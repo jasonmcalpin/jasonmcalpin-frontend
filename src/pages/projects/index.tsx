@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useAppDispatch, useAppSelector } from '../../hooks/useAppStore';
-import { filterProjects } from '../../store/slices/projectsSlice';
+import { filterProjects, fetchProjects } from '../../store/slices/projectsSlice';
 import ProjectCard from '../../components/shared/projectCard';
 import { fadeInUp, staggerContainer } from '../../utils/animations';
 import './styles.scss';
@@ -20,9 +20,12 @@ const Projects = () => {
     setTechnologies(Array.from(techSet).sort());
   }, [projects]);
   
-  // Initialize with all projects
+  // Fetch projects and initialize with all projects
   useEffect(() => {
-    dispatch(filterProjects(null));
+    dispatch(fetchProjects())
+      .then(() => {
+        dispatch(filterProjects(null));
+      });
   }, [dispatch]);
   
   // Handle filter change
@@ -32,7 +35,6 @@ const Projects = () => {
 
   return (
     <div className="projects">
-      {/* Hero Section */}
       <section className="projects-hero">
         <div className="projects-hero__container">
           <h1 className="projects-hero__title">My Projects</h1>
@@ -42,7 +44,6 @@ const Projects = () => {
         </div>
       </section>
       
-      {/* Projects Content */}
       <section className="projects-content">
         <div className="section-container">
           {/* Filters */}
@@ -80,7 +81,6 @@ const Projects = () => {
             </div>
           </motion.div>
           
-          {/* Projects Grid */}
           <motion.div 
             className="projects-grid"
             variants={staggerContainer}

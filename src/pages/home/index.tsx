@@ -2,8 +2,8 @@ import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useAppDispatch, useAppSelector } from '../../hooks/useAppStore';
-import { filterProjects } from '../../store/slices/projectsSlice';
-import { filterArticles } from '../../store/slices/articlesSlice';
+import { filterProjects, fetchProjects } from '../../store/slices/projectsSlice';
+import { filterArticles, fetchArticles } from '../../store/slices/articlesSlice';
 import ProjectCard from '../../components/shared/projectCard';
 import ArticleCard from '../../components/shared/articleCard';
 import { useScrollAnimation } from '../../hooks/useScrollAnimation';
@@ -21,9 +21,13 @@ const Home = () => {
   const [articlesRef, articlesControls] = useScrollAnimation();
   
   useEffect(() => {
-    dispatch(filterProjects('featured'));
-    dispatch(filterArticles('recent'));
+    // First fetch the data
+    dispatch(fetchProjects());
+    dispatch(fetchArticles());
     
+    // Then apply filters
+    dispatch(filterProjects('featured'));
+    dispatch(filterArticles(null));
   }, [dispatch]);
   
   const featuredProjects = projects.filter(project => project.featured).slice(0, 3);

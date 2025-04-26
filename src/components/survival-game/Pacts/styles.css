@@ -1,0 +1,13 @@
+.pactTitle {
+  font-family: "Pixelify Sans", sans-serif;
+  font-size: 1em;
+  font-weight: normal;
+  margin-bottom: 0.5em;
+}
+
+.pactScore {
+  font-family: "Rubik Distressed", system-ui;
+  font-size: 3em;
+  font-weight: normal;
+  text-align: center;
+}

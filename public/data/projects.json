@@ -1,11 +1,11 @@
 [
   {
     "id": "1",
-    "title": "Route 66 a survival game",
-    "description": "A React-based survival game where players must escape a post-apocalyptic world by making strategic decisions.",
+    "title": "Survival Card Game",
+    "description": "A React-based card game where players must survive in a post-apocalyptic world by making strategic decisions.",
     "imageUrl": "/assets/images/projects/survival-game.jpg",
     "technologies": ["React", "TypeScript", "Redux", "SCSS"],
-    "liveUrl": "/projects/route-66",
+    "githubUrl": "https://github.com/jasonmcalpin/survival-card-game",
     "featured": true
   },
   {

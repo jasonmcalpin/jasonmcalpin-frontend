@@ -34,6 +34,10 @@ export const fetchProjects = createAsyncThunk(
     try {
       // placeholder for for wordpress api call.
       // const response = await fetch('https://api.example.com/projects');
+      // const data = await response.json();
+      // return data as Project[];
+      
+      // For now, directly return the imported JSON data
       return projectsData as Project[];
     } catch (error) {
       return rejectWithValue(error as string);

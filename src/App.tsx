@@ -13,6 +13,12 @@ import Contact from './pages/contact';
 import Projects from './pages/projects';
 import Articles from './pages/articles';
 
+import IntroScreen from './components/survival-game/IntroScreen';
+import GameScreen from './components/survival-game/GameScreen';
+import LoseScreen from './components/survival-game/LoseScreen';
+import FactionWinScreen from './components/survival-game/FactionWinScreen';
+import WinScreen from './components/survival-game/WinScreen';
+
 // Scroll to top on route change
 const ScrollToTop = () => {
   const { pathname } = useLocation();
@@ -40,6 +46,11 @@ function App() {
                   <Route path="/contact" element={<Contact />} />
                   <Route path="/projects" element={<Projects />} />
                   <Route path="/articles" element={<Articles />} />
+                  <Route path="/projects/route-66/" element={<IntroScreen />} />
+                  <Route path="/projects/route-66/game" element={<GameScreen />} />
+                  <Route path="/projects/route-66/lose" element={<LoseScreen />} />
+                  <Route path="/projects/route-66/faction-win" element={<FactionWinScreen />} />
+                  <Route path="/projects/route-66/win" element={<WinScreen />} />
                   {/* Add more routes as needed */}
                 </Routes>
               </AnimatePresence>

@@ -5,7 +5,6 @@ import './styles.scss';
 import socialLinkData from '../../data/social.json';
 
 const Contact = () => {
-  // Social media links
   const socialLinks: SocialLink[] = socialLinkData as SocialLink[];
 
   return (

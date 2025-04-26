@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useAppDispatch, useAppSelector } from '../../hooks/useAppStore';
-import { filterArticles } from '../../store/slices/articlesSlice';
+import { filterArticles, fetchArticles } from '../../store/slices/articlesSlice';
 import ArticleCard from '../../components/shared/articleCard';
 import { fadeInUp, staggerContainer } from '../../utils/animations';
 import './styles.scss';
@@ -12,7 +12,6 @@ const Articles = () => {
   const [tags, setTags] = useState<string[]>([]);
   const [searchTerm, setSearchTerm] = useState('');
   
-  // Extract unique tags from articles
   useEffect(() => {
     const tagSet = new Set<string>();
     articles.forEach(article => {
@@ -21,9 +20,12 @@ const Articles = () => {
     setTags(Array.from(tagSet).sort());
   }, [articles]);
   
-  // Initialize with all articles
+  // Fetch articles and initialize with all articles
   useEffect(() => {
-    dispatch(filterArticles(null));
+    dispatch(fetchArticles())
+      .then(() => {
+        dispatch(filterArticles(null));
+      });
   }, [dispatch]);
   
   // Handle tag filter change
@@ -52,7 +54,6 @@ const Articles = () => {
 
   return (
     <div className="articles">
-      {/* Hero Section */}
       <section className="articles-hero">
         <div className="articles-hero__container">
           <h1 className="articles-hero__title">Articles</h1>

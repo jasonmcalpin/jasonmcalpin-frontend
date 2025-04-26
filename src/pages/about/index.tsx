@@ -15,28 +15,60 @@ const About = () => {
   const skills: Skill[] = [
     { name: 'React', level: 90, category: 'frontend' },
     { name: 'TypeScript', level: 85, category: 'frontend' },
-    { name: 'JavaScript', level: 95, category: 'frontend' },
+    { name: 'React-Native', level: 80, category: 'frontend' },
     { name: 'HTML/CSS', level: 90, category: 'frontend' },
     { name: 'Redux', level: 85, category: 'frontend' },
     { name: 'Tailwind CSS', level: 80, category: 'frontend' },
+    { name: 'Sass', level: 75, category: 'frontend' },
+    { name: 'JavaScript', level: 90, category: 'frontend' },
+    { name: 'jQuery', level: 70, category: 'frontend' },
+
     { name: 'Node.js', level: 80, category: 'backend' },
-    { name: 'Express', level: 75, category: 'backend' },
-    { name: 'MongoDB', level: 70, category: 'backend' },
+    { name: 'Next.js', level: 75, category: 'backend' },
+    { name: 'MySQL', level: 70, category: 'backend' },
     { name: 'GraphQL', level: 65, category: 'backend' },
+    { name: 'REST APIs', level: 85, category: 'backend' },
+    { name: 'PostgreSQL', level: 70, category: 'backend' },
+    { name: 'JWT', level: 75, category: 'backend' },
+    { name: 'Wordpress', level: 80, category: 'backend' },
+    { name: 'Drupal', level: 75, category: 'backend' },
+    { name: 'MongoDB', level: 80, category: 'backend' },
+    { name: 'Docker', level: 85, category: 'backend' },
+    { name: 'Kubernetes', level: 70, category: 'backend' },
+    { name: 'Cloudflare', level: 65, category: 'backend' },
+    { name: 'Git', level: 90, category: 'design' },
+ 
+    { name: 'Agile Methodologies', level: 80, category: 'design' },
+    { name: 'Responsive Design', level: 85, category: 'design' },
     { name: 'UI/UX Design', level: 75, category: 'design' },
     { name: 'Figma', level: 70, category: 'design' },
+
   ];
   
   // Experience data
   const experiences: Experience[] = [
     {
-      title: 'Senior Frontend Developer',
-      company: 'Tech Innovations Inc.',
+      title: 'Senior Mobile Developer',
+      company: 'Subvrsive',
       location: 'San Francisco, CA',
+      startDate: '2024-10',
+      endDate: '2024-12',
+      description: 'Optimized React Native components and implemented authentication and security features. Reduced development timeline by a week, allowing for additional features',
+      technologies: ['React Native', 'TypeScript', 'SCSS', 'JWT', 'GraphQL']
+    },
+    {
+      title: 'Senior Software Developer',
+      company: 'IBM',
+      location: 'New York, NA',
       startDate: '2022-01',
-      endDate: null,
-      description: 'Leading the frontend development team in building modern web applications using React, TypeScript, and Redux. Implementing responsive designs and optimizing performance for a better user experience.',
-      technologies: ['React', 'TypeScript', 'Redux', 'Tailwind CSS', 'GraphQL']
+      endDate: '2024-10',
+      description: `Led the migration of IBM's blogs to a unified platform, building security plugins and data
+import tools. Developed an AI-driven sales tool using Watson, Python, and REST APIs, optimizing
+service recommendations. Modernized a proprietary database, converting over 1M records to a structured SQL
+system with RESTful access.
+
+`,
+      technologies: ['React', 'TypeScript', 'Next.js', 'MySQL', 'Watson AI', 'Python', 'REST APIs', 'Wordpress'] 
     },
     {
       title: 'Full Stack Developer',
