@@ -100,7 +100,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, index }) => {
           )}
           
           <Link 
-            to={`/projects/${project.id}`} 
+            to={`/projects/${project.slug}`} 
             className="project-card__link project-card__link--details"
           >
             Details

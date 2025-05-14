@@ -89,7 +89,7 @@ const Projects = () => {
           >
             {filteredProjects.length > 0 ? (
               filteredProjects.map((project, index) => (
-                <ProjectCard key={project.id} project={project} index={index} />
+                <ProjectCard key={project.slug} project={project} index={index} />
               ))
             ) : (
               <motion.div 

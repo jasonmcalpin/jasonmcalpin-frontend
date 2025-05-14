@@ -1,12 +1,12 @@
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
-import articlesData from '../../data/articles.json';
 
 
 export interface Article {
   id: string;
+  slug: string;
   title: string;
   excerpt: string;
-  content: string;
+  content: string | string[]; // Updated to support both string and array of strings
   imageUrl: string;
   author: string;
   date: string;
@@ -35,14 +35,16 @@ export const fetchArticles = createAsyncThunk(
   'articles/fetchArticles',
   async (_, { rejectWithValue }) => {
     try {
-      // for future API call to wordpress.
-      // const response = await fetch('https://your-wordpress-site.com/wp-json/wp/v2/posts');
-      // const data = await response.json();
-      // return data as Article[];
-      
-      // For now, directly return the imported JSON data
-      return articlesData as Article[];
+      // Fetch articles from the public data folder
+      const response = await fetch('/data/articles.json');
+      if (!response.ok) {
+        throw new Error('Failed to fetch articles');
+      }
+      const data = await response.json();
+      console.log('Fetched articles:', data);
+      return data as Article[];
     } catch (error) {
+      console.error('Error fetching articles:', error);
       return rejectWithValue(error as string);
     }
   }

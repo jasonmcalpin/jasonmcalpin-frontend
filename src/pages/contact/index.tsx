@@ -1,11 +1,28 @@
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { SocialLink } from '../../types';
 import { fadeInUp, staggerContainer } from '../../utils/animations';
 import './styles.scss';
-import socialLinkData from '../../data/social.json';
 
 const Contact = () => {
-  const socialLinks: SocialLink[] = socialLinkData as SocialLink[];
+  const [socialLinks, setSocialLinks] = useState<SocialLink[]>([]);
+  
+  useEffect(() => {
+    const fetchSocialLinks = async () => {
+      try {
+        const response = await fetch('/data/social.json');
+        if (!response.ok) {
+          throw new Error('Failed to fetch social links');
+        }
+        const data = await response.json();
+        setSocialLinks(data as SocialLink[]);
+      } catch (error) {
+        console.error('Error fetching social links:', error);
+      }
+    };
+    
+    fetchSocialLinks();
+  }, []);
 
   return (
     <div className="contact">

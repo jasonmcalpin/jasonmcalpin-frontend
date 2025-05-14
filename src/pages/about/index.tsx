@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { useScrollAnimation } from '../../hooks/useScrollAnimation';
 import { fadeInUp, staggerContainer } from '../../utils/animations';
-import { Skill, Experience, Education } from '../../types';
+import { Skill, Experience, Education, Awards } from '../../types';
 import './styles.scss';
 
 const About = () => {
@@ -10,42 +10,48 @@ const About = () => {
   const [skillsRef, skillsControls] = useScrollAnimation();
   const [experienceRef, experienceControls] = useScrollAnimation();
   const [educationRef, educationControls] = useScrollAnimation();
-  
-  // Skills data
+  const [awardRef, awardControls] = useScrollAnimation();
   const skills: Skill[] = [
-    { name: 'React', level: 90, category: 'frontend' },
-    { name: 'TypeScript', level: 85, category: 'frontend' },
-    { name: 'React-Native', level: 80, category: 'frontend' },
-    { name: 'HTML/CSS', level: 90, category: 'frontend' },
-    { name: 'Redux', level: 85, category: 'frontend' },
-    { name: 'Tailwind CSS', level: 80, category: 'frontend' },
-    { name: 'Sass', level: 75, category: 'frontend' },
-    { name: 'JavaScript', level: 90, category: 'frontend' },
-    { name: 'jQuery', level: 70, category: 'frontend' },
+    { name: 'React', level: 8, category: 'frontend' },
+    { name: 'TypeScript', level: 4, category: 'frontend' },
+    { name: 'React-Native', level: 2, category: 'frontend' },
+    { name: 'HTML/CSS', level: 15, category: 'frontend' },
+    { name: 'Redux', level: 6, category: 'frontend' },
+    { name: 'Tailwind CSS', level: 4, category: 'frontend' },
+    { name: 'SASS', level: 6, category: 'frontend' },
+    { name: 'JavaScript', level: 10, category: 'frontend' },
+    { name: 'jQuery', level: 4, category: 'frontend' },
+    { name: 'Responsive Design', level: 10, category: 'frontend' },
+    { name: 'UI/UX Design', level: 10, category: 'frontend' },
+    { name: 'Figma', level: 5, category: 'frontend' },
 
-    { name: 'Node.js', level: 80, category: 'backend' },
-    { name: 'Next.js', level: 75, category: 'backend' },
-    { name: 'MySQL', level: 70, category: 'backend' },
-    { name: 'GraphQL', level: 65, category: 'backend' },
-    { name: 'REST APIs', level: 85, category: 'backend' },
-    { name: 'PostgreSQL', level: 70, category: 'backend' },
-    { name: 'JWT', level: 75, category: 'backend' },
-    { name: 'Wordpress', level: 80, category: 'backend' },
-    { name: 'Drupal', level: 75, category: 'backend' },
-    { name: 'MongoDB', level: 80, category: 'backend' },
-    { name: 'Docker', level: 85, category: 'backend' },
-    { name: 'Kubernetes', level: 70, category: 'backend' },
-    { name: 'Cloudflare', level: 65, category: 'backend' },
-    { name: 'Git', level: 90, category: 'design' },
+    { name: 'Node.js', level: 6, category: 'backend' },
+    { name: 'Next.js', level: 4, category: 'backend' },
+    { name: 'Node-RED', level: 2, category: 'backend' },
+    { name: 'MySQL', level: 6, category: 'backend' },
+    { name: 'REST APIs', level: 8, category: 'backend' },
+    { name: 'PostgreSQL', level: 8, category: 'backend' },
+    { name: 'JWT', level: 4, category: 'backend' },
+    { name: 'Wordpress', level: 8, category: 'backend' },
+    { name: 'Drupal', level: 3, category: 'backend' },
+    { name: 'MongoDB', level: 2, category: 'backend' },
+
+
  
-    { name: 'Agile Methodologies', level: 80, category: 'design' },
-    { name: 'Responsive Design', level: 85, category: 'design' },
-    { name: 'UI/UX Design', level: 75, category: 'design' },
-    { name: 'Figma', level: 70, category: 'design' },
+    { name: 'Agile Methodologies', level: 10, category: 'DevOps' },
+    { name: 'Kubernetes', level: 2, category: 'DevOps' },
+    { name: 'Cloudflare', level: 3, category: 'DevOps' },
+    { name: 'Git', level: 10, category: 'DevOps' },
+    { name: 'Docker', level: 6, category: 'DevOps' },
+    { name: 'AWS', level: 4, category: 'DevOps' },
+    { name: 'Vite', level: 2, category: 'DevOps' },
+    { name: 'Webpack', level: 8, category: 'DevOps' },
+    { name: 'Jenkins', level: 4, category: 'DevOps' },
+
+ 
 
   ];
   
-  // Experience data
   const experiences: Experience[] = [
     {
       title: 'Senior Mobile Developer',
@@ -53,8 +59,10 @@ const About = () => {
       location: 'San Francisco, CA',
       startDate: '2024-10',
       endDate: '2024-12',
-      description: 'Optimized React Native components and implemented authentication and security features. Reduced development timeline by a week, allowing for additional features',
-      technologies: ['React Native', 'TypeScript', 'SCSS', 'JWT', 'GraphQL']
+      description: `Worked with team to develop a cross-platform mobile app. My job consisted in refining the styles and react-Native components to match the Figma designs, and also fo leverage my API and Security experience to build the login and user profile system.
+\n
+I cut the time to complete the work down by a week which left us time to implement additional backlog items to really make the app shine.`,
+      technologies: ['React Native', 'TypeScript', 'SCSS', 'JWT', 'EXPO', 'Figma', 'REST APIs']
     },
     {
       title: 'Senior Software Developer',
@@ -90,27 +98,35 @@ system with RESTful access.
     }
   ];
   
-  // Education data
   const education: Education[] = [
     {
-      degree: 'Master of Science in Computer Science',
-      institution: 'Stanford University',
-      location: 'Stanford, CA',
-      startYear: 2015,
-      endYear: 2017,
-      description: 'Specialized in Web Technologies and Human-Computer Interaction'
+      degree: "Associate's Degree in Computer Science",
+      institution: 'Albert Merrill',
+      location: 'New York, NY',
+      startYear: 1986,
+      endYear: 1987,
+      description: 'Pascal, COBOL, RPGII, C, C++, IBM Mainframes'
     },
     {
-      degree: 'Bachelor of Science in Computer Science',
-      institution: 'University of Illinois',
-      location: 'Urbana-Champaign, IL',
-      startYear: 2011,
-      endYear: 2015,
-      description: 'Minor in Mathematics'
+      degree: 'Commercial Photography',
+      institution: 'School of Visual Arts',
+      location: 'New York, NY',
+      startYear: 1988,
+      endYear: 1988,
+      description: 'Commercial Photography'
     }
   ];
   
-  // Format date for experience items
+  const awards: Awards[] = [
+    {
+      awardTitle: 'The Sammy Sales and Marketing Technology Award 2023',
+      institution: 'Business Intelligence Group',
+      awardYear: 2023,
+      description: 'Award for the IBM SlackBot for Sales Intelligence in the Large Company category. I acted as a consultant helping the developers connect the bot to Watson AI and define the models and API needed to pass the results back to slack.'
+    },
+  ];
+  
+
   const formatDate = (dateString: string | null): string => {
     if (!dateString) return 'Present';
     
@@ -130,7 +146,7 @@ system with RESTful access.
         </div>
       </section>
       
-      {/* Introduction Section */}
+
       <motion.section 
         className="about-intro"
         ref={introRef as unknown as React.RefObject<HTMLElement>}
@@ -171,7 +187,6 @@ system with RESTful access.
         </div>
       </motion.section>
       
-      {/* Skills Section */}
       <motion.section 
         className="about-skills"
         ref={skillsRef as unknown as React.RefObject<HTMLElement>}
@@ -194,13 +209,13 @@ system with RESTful access.
                     <div key={index} className="about-skills__item">
                       <div className="about-skills__info">
                         <span className="about-skills__name">{skill.name}</span>
-                        <span className="about-skills__level">{skill.level}%</span>
+                        <span className="about-skills__level">{skill.level} Years</span>
                       </div>
                       <div className="about-skills__bar">
                         <motion.div 
                           className="about-skills__progress"
                           initial={{ width: 0 }}
-                          whileInView={{ width: `${skill.level}%` }}
+                          whileInView={{ width: `${skill.level*6.5}%` }}
                           viewport={{ once: true }}
                           transition={{ duration: 1, delay: index * 0.1 }}
                         ></motion.div>
@@ -220,13 +235,13 @@ system with RESTful access.
                     <div key={index} className="about-skills__item">
                       <div className="about-skills__info">
                         <span className="about-skills__name">{skill.name}</span>
-                        <span className="about-skills__level">{skill.level}%</span>
+                        <span className="about-skills__level">{skill.level} Years</span>
                       </div>
                       <div className="about-skills__bar">
                         <motion.div 
                           className="about-skills__progress"
                           initial={{ width: 0 }}
-                          whileInView={{ width: `${skill.level}%` }}
+                          whileInView={{ width: `${skill.level*6.5}%` }}
                           viewport={{ once: true }}
                           transition={{ duration: 1, delay: index * 0.1 }}
                         ></motion.div>
@@ -238,21 +253,21 @@ system with RESTful access.
             </div>
             
             <div className="about-skills__category">
-              <h3 className="about-skills__category-title">Design</h3>
+              <h3 className="about-skills__category-title">DevOps & Tooling</h3>
               <div className="about-skills__list">
                 {skills
-                  .filter(skill => skill.category === 'design')
+                  .filter(skill => skill.category === 'DevOps')
                   .map((skill, index) => (
                     <div key={index} className="about-skills__item">
                       <div className="about-skills__info">
                         <span className="about-skills__name">{skill.name}</span>
-                        <span className="about-skills__level">{skill.level}%</span>
+                        <span className="about-skills__level">{skill.level} Years</span>
                       </div>
                       <div className="about-skills__bar">
                         <motion.div 
                           className="about-skills__progress"
                           initial={{ width: 0 }}
-                          whileInView={{ width: `${skill.level}%` }}
+                          whileInView={{ width: `${skill.level*6.5}%` }}
                           viewport={{ once: true }}
                           transition={{ duration: 1, delay: index * 0.1 }}
                         ></motion.div>
@@ -266,7 +281,7 @@ system with RESTful access.
         </div>
       </motion.section>
       
-      {/* Experience Section */}
+
       <motion.section 
         className="about-experience"
         ref={experienceRef as unknown as React.RefObject<HTMLElement>}
@@ -319,7 +334,6 @@ system with RESTful access.
         </div>
       </motion.section>
       
-      {/* Education Section */}
       <motion.section 
         className="about-education"
         ref={educationRef as unknown as React.RefObject<HTMLElement>}
@@ -359,7 +373,45 @@ system with RESTful access.
           </div>
         </div>
       </motion.section>
-      
+
+      <motion.section 
+        className="about-education"
+        ref={awardRef as unknown as React.RefObject<HTMLElement>}
+        initial="hidden"
+        animate={awardControls}
+        variants={staggerContainer}
+      >
+        <div className="section-container">
+          <motion.h2 className="section-title" variants={fadeInUp}>
+            Awards
+          </motion.h2>
+          
+          <div className="about-awards__list">
+            {awards.map((award, index) => (
+              <motion.div 
+                key={index} 
+                className="about-awards__item"
+                variants={fadeInUp}
+                custom={index}
+              >
+                <div className="about-awards__year">
+                  <span>{award.awardYear}</span>
+                </div>
+                
+                <div className="about-awards__content">
+                  <h3 className="about-awards__title">{award.awardTitle}</h3>
+                  <div className="about-awards__institution">
+                    <span>{award.institution}</span>
+                  </div>
+                  {award.description && (
+                    <p className="about-awards__description">{award.description}</p>
+                  )}
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </motion.section>
       {/* Contact CTA Section */}
       <section className="about-contact">
         <div className="section-container">

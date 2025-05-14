@@ -1,7 +1,7 @@
 import { Variants } from 'framer-motion';
 
 /**
- * Animation variants for page transitions
+ * Animation for page transitions
  */
 export const pageTransition: Variants = {
   initial: {
@@ -24,7 +24,7 @@ export const pageTransition: Variants = {
 };
 
 /**
- * Animation variants for staggered children
+ * Animation for staggered children
  */
 export const staggerContainer: Variants = {
   hidden: { opacity: 0 },
@@ -38,7 +38,7 @@ export const staggerContainer: Variants = {
 };
 
 /**
- * Animation variants for fading in from bottom
+ * Animation for fading in from bottom
  */
 export const fadeInUp: Variants = {
   hidden: { 
@@ -56,7 +56,7 @@ export const fadeInUp: Variants = {
 };
 
 /**
- * Animation variants for fading in
+ * Animation for fading in
  */
 export const fadeIn: Variants = {
   hidden: { 
@@ -71,7 +71,7 @@ export const fadeIn: Variants = {
 };
 
 /**
- * Animation variants for scaling in
+ * Animation for scaling in
  */
 export const scaleIn: Variants = {
   hidden: { 
@@ -89,7 +89,7 @@ export const scaleIn: Variants = {
 };
 
 /**
- * Animation variants for sliding in from left
+ * Animation for sliding in from left
  */
 export const slideInLeft: Variants = {
   hidden: { 
@@ -107,7 +107,7 @@ export const slideInLeft: Variants = {
 };
 
 /**
- * Animation variants for sliding in from right
+ * Animation for sliding in from right
  */
 export const slideInRight: Variants = {
   hidden: { 
@@ -125,7 +125,7 @@ export const slideInRight: Variants = {
 };
 
 /**
- * Animation variants for neon text flicker
+ * Animation for neon text flicker
  */
 export const neonFlicker: Variants = {
   hidden: { 
@@ -149,7 +149,7 @@ export const neonFlicker: Variants = {
 };
 
 /**
- * Animation variants for hover effects on cards
+ * Animation for hover effects on cards
  */
 export const cardHover = {
   rest: { 
@@ -171,7 +171,7 @@ export const cardHover = {
 };
 
 /**
- * Animation variants for button hover effects
+ * Animation for button hover effects
  */
 export const buttonHover = {
   rest: { 

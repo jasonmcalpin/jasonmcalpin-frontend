@@ -1,8 +1,8 @@
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
-import projectsData from '../../data/projects.json';
 
 export interface Project {
   id: string;
+  slug: string;
   title: string;
   description: string;
   imageUrl: string;
@@ -32,14 +32,16 @@ export const fetchProjects = createAsyncThunk(
   'projects/fetchProjects',
   async (_, { rejectWithValue }) => {
     try {
-      // placeholder for for wordpress api call.
-      // const response = await fetch('https://api.example.com/projects');
-      // const data = await response.json();
-      // return data as Project[];
-      
-      // For now, directly return the imported JSON data
-      return projectsData as Project[];
+      // Fetch projects from the public data folder
+      const response = await fetch('/data/projects.json');
+      if (!response.ok) {
+        throw new Error('Failed to fetch projects');
+      }
+      const data = await response.json();
+      console.log('Fetched projects:', data);
+      return data as Project[];
     } catch (error) {
+      console.error('Error fetching projects:', error);
       return rejectWithValue(error as string);
     }
   }

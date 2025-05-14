@@ -11,7 +11,6 @@ interface ArticleCardProps {
 const ArticleCard: React.FC<ArticleCardProps> = ({ article, index }) => {
   const delay = index * 0.1;
   
-  // Format date
   const formatDate = (dateString: string) => {
     const options: Intl.DateTimeFormatOptions = { year: 'numeric', month: 'long', day: 'numeric' };
     return new Date(dateString).toLocaleDateString(undefined, options);
@@ -81,7 +80,7 @@ const ArticleCard: React.FC<ArticleCardProps> = ({ article, index }) => {
         </div>
         
         <Link 
-          to={`/articles/${article.id}`} 
+          to={`/articles/${article.slug}`} 
           className="article-card__link"
           aria-label={`Read ${article.title}`}
         >

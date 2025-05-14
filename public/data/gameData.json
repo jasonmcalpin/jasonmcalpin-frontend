@@ -23,7 +23,7 @@
           "resources": 2
         }
       },
-      "background": "/assets/command.png"
+      "background": "/command.png"
     },
     {
       "id": 2,
@@ -42,7 +42,7 @@
           "megacorporationInfluence": -1
         }
       },
-      "background": "/assets/connect.png",
+      "background": "/connect.png",
       "requirements": {
         "rogueAIProgress": 6
       }
@@ -64,14 +64,14 @@
           "resources": -2
         }
       },
-      "background": "/assets/hack.png",
+      "background": "/hack.png",
       "requirements": {
         "survivorTrust": 4
       }
     },
     {
       "id": 4,
-      "text": "Megacorp demands you hack into a rival corp’s database. Do you comply?",
+      "text": "Megacorp demands you hack into a rival corp's database. Do you comply?",
       "leftChoice": {
         "text": "Refuse",
         "effects": {
@@ -86,7 +86,7 @@
           "resources": 1
         }
       },
-      "background": "/assets/sneak.png",
+      "background": "/sneak.png",
       "requirements": {
         "megacorporationInfluence": 7
       }
@@ -108,7 +108,7 @@
           "survivorTrust": -2
         }
       },
-      "background": "/assets/woman.png"
+      "background": "/woman.png"
     },
     {
       "id": 6,
@@ -127,7 +127,7 @@
           "resources": -1
         }
       },
-      "background": "/assets/command.png",
+      "background": "/command.png",
       "requirements": {
         "survivorTrust": 5
       }
@@ -149,7 +149,7 @@
           "resources": 1
         }
       },
-      "background": "/assets/connect.png",
+      "background": "/connect.png",
       "requirements": {
         "megacorporationInfluence": 6
       }
@@ -171,7 +171,7 @@
           "resources": -1
         }
       },
-      "background": "/assets/connect.png",
+      "background": "/connect.png",
       "requirements": {
         "survivorTrust": 6
       }
@@ -193,7 +193,7 @@
           "resources": -3
         }
       },
-      "background": "/assets/help.png",
+      "background": "/help.png",
       "requirements": {
         "resources": 3
       }
@@ -219,7 +219,7 @@
           "resources": 5
         }
       },
-      "background": "/assets/sneak.png",
+      "background": "/sneak.png",
       "requirements": {
         "megacorporationInfluence": 5,
         "rogueAIProgress": 5,
@@ -248,7 +248,7 @@
           "resources": 5
         }
       },
-      "background": "/assets/sneak.png",
+      "background": "/sneak.png",
       "requirements": {
         "megacorporationInfluence": 5,
         "rogueAIProgress": 5,

@@ -122,8 +122,7 @@ const Header = () => {
         >
           <Link to="/" className="header__logo-link">
             <div className="header__logo-text">
-              <span className="neon-text">Jason</span>
-              <span className="neon-purple-text">McAlpin</span>
+              <span className="neon-text">Jason McAlpin</span>
             </div>
           </Link>
         </motion.div>

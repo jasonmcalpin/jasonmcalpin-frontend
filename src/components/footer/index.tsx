@@ -1,12 +1,29 @@
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { SocialLink } from '../../types';
 import './styles.scss';
-import socialLinkData from '../../data/social.json';
-
-const socialLinks: SocialLink[] = socialLinkData as SocialLink[];
 
 const Footer = () => {
+  const [socialLinks, setSocialLinks] = useState<SocialLink[]>([]);
+  
+  useEffect(() => {
+    const fetchSocialLinks = async () => {
+      try {
+        const response = await fetch('/data/social.json');
+        if (!response.ok) {
+          throw new Error('Failed to fetch social links');
+        }
+        const data = await response.json();
+        setSocialLinks(data as SocialLink[]);
+      } catch (error) {
+        console.error('Error fetching social links:', error);
+      }
+    };
+    
+    fetchSocialLinks();
+  }, []);
+
   const currentYear = new Date().getFullYear();
 
   // Animation variants
@@ -44,8 +61,7 @@ const Footer = () => {
         <motion.div className="footer__logo" variants={itemVariants}>
           <Link to="/" className="footer__logo-link">
             <div className="footer__logo-text">
-              <span className="neon-text">Jason</span>
-              <span className="neon-purple-text">McAlpin</span>
+              <span className="neon-text">Jason McAlpin</span>
             </div>
           </Link>
         </motion.div>

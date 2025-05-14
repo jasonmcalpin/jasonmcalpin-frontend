@@ -12,6 +12,8 @@ import About from './pages/about';
 import Contact from './pages/contact';
 import Projects from './pages/projects';
 import Articles from './pages/articles';
+import ArticlePage from './pages/articles/article';
+import ProjectPage from './pages/projects/project';
 
 import IntroScreen from './components/survival-game/IntroScreen';
 import GameScreen from './components/survival-game/GameScreen';
@@ -46,6 +48,8 @@ function App() {
                   <Route path="/contact" element={<Contact />} />
                   <Route path="/projects" element={<Projects />} />
                   <Route path="/articles" element={<Articles />} />
+                  <Route path="/articles/:slug" element={<ArticlePage key={window.location.pathname} />} />
+                  <Route path="/projects/:slug" element={<ProjectPage key={window.location.pathname} />} />
                   <Route path="/projects/route-66/" element={<IntroScreen />} />
                   <Route path="/projects/route-66/game" element={<GameScreen />} />
                   <Route path="/projects/route-66/lose" element={<LoseScreen />} />

@@ -2,6 +2,209 @@
   @apply pt-16; // Space for the fixed header
 }
 
+// Article Page Styles
+.article-page {
+  @apply pt-16; // Space for the fixed header
+  
+  // Hero section
+  &__hero {
+    @apply py-16 bg-primary-dark relative overflow-hidden;
+    background-image: linear-gradient(to right, rgba(42, 59, 76, 0.9), rgba(26, 42, 60, 0.9));
+    
+    &-container {
+      @apply max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center;
+    }
+  }
+  
+  &__title {
+    @apply text-3xl md:text-4xl lg:text-5xl font-heading font-bold mb-6 text-white;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  }
+  
+  &__meta {
+    @apply flex flex-col sm:flex-row justify-center items-center gap-4 mb-6 text-gray-300;
+  }
+  
+  &__author-date {
+    @apply flex items-center gap-2;
+  }
+  
+  &__author {
+    @apply font-medium text-neon-blue;
+  }
+  
+  &__date {
+    @apply text-sm;
+    &::before {
+      content: '•';
+      @apply mx-2;
+    }
+  }
+  
+  &__reading-time {
+    @apply text-sm bg-background-light px-3 py-1 rounded-full;
+  }
+  
+  &__tags {
+    @apply flex flex-wrap justify-center gap-2 mb-6;
+  }
+  
+  &__tag {
+    @apply px-3 py-1 rounded-full text-xs font-medium bg-neon-purple/20 text-neon-purple;
+  }
+  
+  // Content section
+  &__content {
+    @apply py-12;
+    
+    .section-container {
+      @apply max-w-4xl mx-auto px-4 sm:px-6 lg:px-8;
+    }
+  }
+  
+  &__image-container {
+    @apply mb-8 rounded-lg overflow-hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  }
+  
+  &__image {
+    @apply w-full h-auto;
+  }
+  
+  &__body {
+    @apply prose prose-invert prose-lg max-w-none;
+  }
+  
+  // Footer section
+  &__footer {
+    @apply py-12 border-t border-gray-800;
+  }
+  
+  &__navigation {
+    @apply flex justify-center;
+  }
+  
+  // Loading state
+  &__loading {
+    @apply py-24 text-center text-gray-400;
+  }
+  
+  // Not found state
+  &__not-found {
+    @apply py-24 text-center;
+    
+    h1 {
+      @apply text-3xl font-heading font-bold mb-4 text-white;
+    }
+    
+    p {
+      @apply text-gray-400 mb-6;
+    }
+  }
+}
+
+// Markdown content styles
+.markdown-content {
+  // Headings
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading font-bold text-white mt-8 mb-4;
+  }
+  
+  h1 {
+    @apply text-3xl border-b border-gray-800 pb-2;
+  }
+  
+  h2 {
+    @apply text-2xl border-b border-gray-800 pb-2;
+  }
+  
+  h3 {
+    @apply text-xl;
+  }
+  
+  h4 {
+    @apply text-lg;
+  }
+  
+  // Paragraphs and spacing
+  p {
+    @apply mb-6 text-gray-300 leading-relaxed;
+  }
+  
+  // Lists
+  ul, ol {
+    @apply mb-6 pl-6 text-gray-300;
+  }
+  
+  ul {
+    @apply list-disc;
+  }
+  
+  ol {
+    @apply list-decimal;
+  }
+  
+  li {
+    @apply mb-2;
+  }
+  
+  // Links
+  a {
+    @apply text-neon-blue hover:text-neon-purple transition-colors duration-200;
+    text-decoration: underline;
+  }
+  
+  // Blockquotes
+  blockquote {
+    @apply border-l-4 border-neon-purple pl-4 italic my-6 text-gray-400;
+  }
+  
+  // Code blocks
+  pre {
+    @apply bg-background-light p-4 rounded-lg overflow-x-auto mb-6;
+  }
+  
+  code {
+    @apply font-mono text-sm bg-background-light px-1 py-0.5 rounded;
+  }
+  
+  pre code {
+    @apply bg-transparent p-0;
+  }
+  
+  // Tables
+  table {
+    @apply w-full mb-6 border-collapse;
+  }
+  
+  th {
+    @apply bg-background-light text-left p-2 font-medium text-white;
+  }
+  
+  td {
+    @apply border-t border-gray-800 p-2 text-gray-300;
+  }
+  
+  // Images
+  img {
+    @apply max-w-full h-auto rounded-lg my-6;
+  }
+  
+  // Horizontal rule
+  hr {
+    @apply my-8 border-gray-800;
+  }
+  
+  // Strong and emphasis
+  strong {
+    @apply font-bold text-white;
+  }
+  
+  em {
+    @apply italic;
+  }
+}
+
 // Hero section
 .articles-hero {
   @apply py-24 bg-primary-dark relative overflow-hidden;

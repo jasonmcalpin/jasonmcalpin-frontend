@@ -25,6 +25,8 @@ export default {
         neon: {
           blue: '#00F0FF',
           purple: '#9D00FF',
+          white: '#FFFFFF',
+          text: '#FFFFFF',
         },
       },
       fontFamily: {
@@ -33,5 +35,7 @@ export default {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/typography'),
+  ],
 }

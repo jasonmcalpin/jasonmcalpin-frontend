@@ -1,13 +1,11 @@
 // Common types used throughout the application
 
-// Navigation link type
 export interface NavLink {
   path: string;
   label: string;
   subLinks?: NavLink[];
 }
 
-// Social media link type
 export interface SocialLink {
   platform: 'linkedin' | 'github' | 'twitter' | 'facebook' | 'instagram';
   url: string;
@@ -16,35 +14,38 @@ export interface SocialLink {
   label: string;
 }
 
-// Skill type for About page
 export interface Skill {
   name: string;
   level: number; // 0-100
-  category: 'frontend' | 'backend' | 'design' | 'other';
+  category: 'frontend' | 'backend' | 'DevOps' | 'other';
 }
 
-// Experience type for About page
 export interface Experience {
   title: string;
   company: string;
   location: string;
   startDate: string;
-  endDate: string | null; // null means "Present"
+  endDate: string | null; 
   description: string;
   technologies: string[];
 }
 
-// Education type for About page
 export interface Education {
   degree: string;
   institution: string;
   location: string;
   startYear: number;
-  endYear: number | null; // null means "Present"
+  endYear: number | null; 
   description?: string;
 }
 
-// Contact form data type
+export interface Awards {
+  awardTitle: string,
+  institution: string,
+  awardYear: number,
+  description: string
+}
+
 export interface ContactFormData {
   name: string;
   email: string;
@@ -52,12 +53,10 @@ export interface ContactFormData {
   message: string;
 }
 
-// Theme type
 export interface Theme {
   isDark: boolean;
 }
 
-// SEO metadata type
 export interface SEOMetadata {
   title: string;
   description: string;
@@ -67,8 +66,47 @@ export interface SEOMetadata {
   twitterCard?: string;
 }
 
-// Route type
 export interface Route {
   path: string;
   element: React.ReactNode;
+}
+
+// Panic 66 Game Types
+
+
+export interface Effects {
+  megacorporationInfluence?: number;
+  rogueAIProgress?: number;
+  survivorTrust?: number;
+  resources?: number;
+  [key: string]: number | undefined;
+}
+
+export interface Choice {
+  text: string;
+  effects: Effects;
+}
+
+export interface Card {
+  id: number;
+  text: string;
+  leftChoice: Choice;
+  rightChoice: Choice;
+  background?: string;
+  requirements?: {
+    [key: string]: number | undefined;
+  };
+}
+
+export interface Pacts {
+  megacorporationInfluence: number;
+  rogueAIProgress: number;
+  survivorTrust: number;
+  resources: number;
+  [key: string]: number;
+}
+
+export interface GameData {
+  cards: Card[];
+  pacts: Pacts;
 }

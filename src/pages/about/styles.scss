@@ -164,6 +164,7 @@
   
   &__description {
     @apply text-gray-300 mb-4;
+    white-space: pre-wrap;
   }
   
   &__technologies {
@@ -211,6 +212,47 @@
   
   &__description {
     @apply text-gray-400 text-sm italic;
+    white-space: pre-wrap;
+  }
+}
+
+// Awards section
+.about-awards {
+  @apply py-16 bg-background-light;
+  
+  &__list {
+    @apply space-y-8;
+  }
+  
+  &__item {
+    @apply flex flex-col md:flex-row gap-6;
+  }
+  
+  &__year {
+    @apply md:w-1/4 text-xl font-heading font-bold text-neon-purple;
+    text-shadow: 0 0 5px theme('colors.neon.purple');
+  }
+  
+  &__content {
+    @apply md:w-3/4 bg-background p-6 rounded-lg;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  &__title {
+    @apply text-xl font-heading font-bold text-white mb-2;
+  }
+  
+  &__institution {
+    @apply flex flex-wrap justify-between text-gray-300 mb-2;
+  }
+  
+  &__location {
+    @apply text-gray-400 text-sm;
+  }
+  
+  &__description {
+    @apply text-gray-400 text-sm italic;
+    white-space: pre-wrap;
   }
 }
 
