@@ -9,8 +9,9 @@
   // Hero section
   &__hero {
     @apply py-16 bg-primary-dark relative overflow-hidden;
-    background-image: linear-gradient(to right, rgba(42, 59, 76, 0.9), rgba(26, 42, 60, 0.9));
-    
+    background-image: linear-gradient(to right, rgba(42, 59, 76, 0.9), rgba(26, 42, 60, 0.9)), url('/assets/images/projects-bg.jpg');
+    background-size: cover;
+    background-position: center;
     &-container {
       @apply max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center;
     }

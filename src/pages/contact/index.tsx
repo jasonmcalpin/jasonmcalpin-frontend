@@ -104,8 +104,7 @@ const Contact = () => {
                   <div className="contact-info__card-inner">
                     <div className="contact-info__card-front">
                       <div className="contact-info__logo">
-                        <span className="neon-text">Jason</span>
-                        <span className="neon-purple-text">McAlpin</span>
+                        <span className="neon-text">Jason McAlpin</span>
                       </div>
                       <div className="contact-info__title">Full Stack Developer</div>
                       <div className="contact-info__pattern"></div>

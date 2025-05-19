@@ -1,0 +1,7 @@
+/assets/images/code.jpg referenced in /assets/images/code.jpg
+/assets/images/design.jpg referenced in /assets/images/design.jpg
+/assets/images/mobile.jpg referenced in /assets/images/mobile.jpg
+/assets/images/web.jpg referenced in /assets/images/web.jpg
+/assets/images/contact-bg.jpg referenced in /assets/images/contact-bg.jpg
+/assets/images/code-bg.jpg referenced in /assets/images/code-bg.jpg
+/assets/images/articles-bg.jpg referenced in /assets/images/articles-bg.jpg
