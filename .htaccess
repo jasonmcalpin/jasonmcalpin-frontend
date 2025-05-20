@@ -1,26 +1,20 @@
-# Enable rewriting
 RewriteEngine On
 
-# Force HTTPS
 <IfModule mod_rewrite.c>
   RewriteCond %{HTTPS} off
   RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 </IfModule>
 
-# If the request is not for a file or directory
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 
-# Rewrite all requests to the root index.html
 RewriteRule ^ index.html [L]
 
-# Set proper MIME types
 <IfModule mod_mime.c>
   AddType application/javascript .js
   AddType text/css .css
 </IfModule>
 
-# Security headers
 <IfModule mod_headers.c>
   # Prevent clickjacking
   Header set X-Frame-Options "SAMEORIGIN"
@@ -35,7 +29,7 @@ RewriteRule ^ index.html [L]
   Header set Strict-Transport-Security "max-age=31536000; includeSubDomains"
   
   # Content Security Policy
-  Header set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'"
+  Header set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data:; font-src 'self' https://fonts.gstatic.com; connect-src 'self'"
   
   # Restricted CORS - replace with your domain when in production
   SetEnvIf Origin "^(https://(www\.)?jasonmcalpin\.com)$" ALLOWED_ORIGIN=$1
@@ -44,7 +38,6 @@ RewriteRule ^ index.html [L]
   Header set Access-Control-Allow-Headers "Origin, X-Requested-With, Content-Type, Accept"
 </IfModule>
 
-# Cache control
 <IfModule mod_expires.c>
   ExpiresActive On
   ExpiresByType image/jpg "access plus 1 year"
@@ -56,11 +49,8 @@ RewriteRule ^ index.html [L]
   ExpiresByType application/javascript "access plus 1 month"
 </IfModule>
 
-# Prevent directory listing
 Options -Indexes
 
-# Protect against common vulnerabilities
 <IfModule mod_rewrite.c>
-  # Protect .htaccess and other sensitive files
   RewriteRule ^(.*/)?\.([^/]+)$ - [F]
 </IfModule>

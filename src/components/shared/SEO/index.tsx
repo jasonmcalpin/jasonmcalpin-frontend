@@ -31,12 +31,10 @@ const SEO = ({
 
   return (
     <Helmet>
-      {/* Basic Meta Tags */}
       <title>{fullTitle}</title>
       <meta name="description" content={description} />
       <link rel="canonical" href={url} />
 
-      {/* Open Graph / Facebook */}
       <meta property="og:type" content={type} />
       <meta property="og:url" content={url} />
       <meta property="og:title" content={fullTitle} />
@@ -44,14 +42,12 @@ const SEO = ({
       <meta property="og:image" content={imageUrl} />
       <meta property="og:site_name" content="Jason McAlpin" />
 
-      {/* Twitter */}
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:url" content={url} />
       <meta name="twitter:title" content={fullTitle} />
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={imageUrl} />
 
-      {/* Article Specific Meta Tags */}
       {type === 'article' && article && (
         <>
           {article.publishedTime && (

@@ -20,14 +20,12 @@ const ArticlePage = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Find the article with the matching slug
     const foundArticle = articles.find((a) => a.slug === slug);
     
     if (foundArticle) {
       setArticle(foundArticle);
       setIsLoading(false);
     } else {
-      // If no article is found, redirect to the articles page
       if (articles.length > 0) {
         navigate('/articles');
         
@@ -79,7 +77,6 @@ const ArticlePage = () => {
     );
   }
 
-  // Create article schema for SEO
   const articleSchema = getArticleSchema({
     title: article.title,
     description: article.excerpt || article.title,
@@ -104,7 +101,6 @@ const ArticlePage = () => {
         }}
         schema={articleSchema}
       />
-      {/* Article Hero */}
       <section className="article-page__hero">
         <div className="article-page__hero-container">
           <motion.h1 
@@ -144,7 +140,6 @@ const ArticlePage = () => {
         </div>
       </section>
       
-      {/* Article Content */}
       <section className="article-page__content">
         <div className="section-container">
           {article.imageUrl && (
@@ -203,7 +198,6 @@ const ArticlePage = () => {
         </div>
       </section>
       
-      {/* Related Articles Section - This could be implemented in the future */}
       
       {/* Back to Articles Button */}
       <section className="article-page__footer">

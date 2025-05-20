@@ -31,30 +31,25 @@ const OptimizedImage = ({
   const [isLoaded, setIsLoaded] = useState(false);
   const [error, setError] = useState(false);
 
-  // Generate WebP version path
   const getWebPPath = (path: string) => {
     const lastDotIndex = path.lastIndexOf('.');
     if (lastDotIndex === -1) return `${path}.webp`;
     return `${path.substring(0, lastDotIndex)}.webp`;
   };
 
-  // Handle image load
   const handleLoad = () => {
     setIsLoaded(true);
   };
 
-  // Handle image error
   const handleError = () => {
     setError(true);
   };
 
-  // Reset states when src changes
   useEffect(() => {
     setIsLoaded(false);
     setError(false);
   }, [src]);
 
-  // If there's an error loading the image, show a placeholder
   if (error) {
     return (
       <div 
@@ -69,18 +64,14 @@ const OptimizedImage = ({
     );
   }
 
-  // Generate WebP version path
   const webpSrc = getWebPPath(src);
 
-  // Determine if image should be lazy loaded
   const loadingAttribute = priority ? 'eager' : 'lazy';
 
   return (
     <picture className={`optimized-image ${isLoaded ? 'optimized-image--loaded' : ''} ${className}`}>
-      {/* WebP source */}
       <source srcSet={webpSrc} type="image/webp" />
       
-      {/* Original image source */}
       <img
         src={src}
         alt={alt}
@@ -94,7 +85,6 @@ const OptimizedImage = ({
         {...props}
       />
       
-      {/* Loading indicator */}
       {!isLoaded && (
         <div className="optimized-image__loading">
           <div className="loading-spinner"></div>

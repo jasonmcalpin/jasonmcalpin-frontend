@@ -26,7 +26,6 @@ const Contact = () => {
 
   return (
     <div className="contact">
-      {/* Hero Section */}
       <section className="contact-hero">
         <div className="contact-hero__container">
           <h1 className="contact-hero__title">Get In Touch</h1>
@@ -36,11 +35,9 @@ const Contact = () => {
         </div>
       </section>
       
-      {/* Contact Card */}
       <section className="contact-content">
         <div className="section-container">
           <div className="contact-content__grid">
-            {/* Social Media Links */}
             <motion.div 
               className="contact-social"
               initial="hidden"
@@ -139,7 +136,6 @@ const Contact = () => {
         </div>
       </section>
       
-      {/* FAQ Section */}
       <section className="contact-faq">
         <div className="section-container">
           <motion.h2 

@@ -6,7 +6,7 @@ export interface Article {
   slug: string;
   title: string;
   excerpt: string;
-  content: string | string[]; // Updated to support both string and array of strings
+  content: string | string[];
   imageUrl: string;
   author: string;
   date: string;
@@ -35,7 +35,6 @@ export const fetchArticles = createAsyncThunk(
   'articles/fetchArticles',
   async (_, { rejectWithValue }) => {
     try {
-      // Fetch articles from the public data folder
       const response = await fetch('/data/articles.json');
       if (!response.ok) {
         throw new Error('Failed to fetch articles');

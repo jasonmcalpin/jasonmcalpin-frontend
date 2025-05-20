@@ -20,12 +20,10 @@ const Header = () => {
   const { isMobileMenuOpen, isScrolled } = useAppSelector((state) => state.ui);
   const [mounted, setMounted] = useState(false);
 
-  // Close mobile menu when route changes
   useEffect(() => {
     dispatch(closeMobileMenu());
   }, [location.pathname, dispatch]);
 
-  // Handle scroll events
   useEffect(() => {
     const handleScroll = () => {
       const scrollPosition = window.scrollY;
@@ -36,17 +34,14 @@ const Header = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [dispatch]);
 
-  // Set mounted state after initial render
   useEffect(() => {
     setMounted(true);
   }, []);
 
-  // Handle mobile menu toggle
   const handleMenuToggle = () => {
     dispatch(toggleMobileMenu());
   };
 
-  // Animation variants
   const logoVariants = {
     hidden: { opacity: 0, x: -20 },
     visible: { 
@@ -127,7 +122,6 @@ const Header = () => {
           </Link>
         </motion.div>
 
-        {/* Desktop Navigation */}
         <motion.nav 
           className="header__nav"
           initial="hidden"
@@ -148,7 +142,6 @@ const Header = () => {
           </ul>
         </motion.nav>
 
-        {/* Mobile Menu Button */}
         <div className="header__mobile-menu-button">
           <button 
             className={`hamburger ${isMobileMenuOpen ? 'hamburger--active' : ''}`}
@@ -162,7 +155,6 @@ const Header = () => {
         </div>
       </div>
 
-      {/* Mobile Menu */}
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div 

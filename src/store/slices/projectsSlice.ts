@@ -32,7 +32,6 @@ export const fetchProjects = createAsyncThunk(
   'projects/fetchProjects',
   async (_, { rejectWithValue }) => {
     try {
-      // Fetch projects from the public data folder
       const response = await fetch('/data/projects.json');
       if (!response.ok) {
         throw new Error('Failed to fetch projects');

@@ -8,7 +8,6 @@ import { getPersonSchema } from '../../utils/schema';
 import './styles.scss';
 
 const About = () => {
-  // SEO data
   const seoDescription = "Learn more about Jason McAlpin, a Full Stack Developer with expertise in React, TypeScript, Node.js, and modern web technologies. View my skills, experience, and background.";
   const personSchema = getPersonSchema();
   const [introRef, introControls] = useScrollAnimation();

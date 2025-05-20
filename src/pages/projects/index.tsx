@@ -111,7 +111,6 @@ const Projects = () => {
         </div>
       </section>
       
-      {/* Project Process Section */}
       <section className="projects-process">
         <div className="section-container">
           <motion.h2 
@@ -188,7 +187,6 @@ const Projects = () => {
         </div>
       </section>
       
-      {/* CTA Section */}
       <section className="projects-cta">
         <div className="section-container">
           <motion.div 

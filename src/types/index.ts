@@ -16,7 +16,7 @@ export interface SocialLink {
 
 export interface Skill {
   name: string;
-  level: number; // 0-100
+  level: number; // 0-15 YEARS
   category: 'frontend' | 'backend' | 'DevOps' | 'other';
 }
 

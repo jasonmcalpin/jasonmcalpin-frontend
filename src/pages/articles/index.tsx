@@ -20,7 +20,6 @@ const Articles = () => {
     setTags(Array.from(tagSet).sort());
   }, [articles]);
   
-  // Fetch articles and initialize with all articles
   useEffect(() => {
     dispatch(fetchArticles())
       .then(() => {
@@ -43,7 +42,6 @@ const Articles = () => {
     }
   };
   
-  // Filter articles by search term
   const searchFilteredArticles = searchTerm 
     ? filteredArticles.filter(article => 
         article.title.toLowerCase().includes(searchTerm.toLowerCase()) || 
@@ -63,7 +61,6 @@ const Articles = () => {
         </div>
       </section>
       
-      {/* Articles Content */}
       <section className="articles-content">
         <div className="section-container">
           {/* Search and Filters */}

@@ -8,7 +8,7 @@ import { store } from './store';
 import Header from './components/header';
 import Footer from './components/footer';
 
-// Lazy load page components
+
 const Home = lazy(() => import('./pages/home'));
 const About = lazy(() => import('./pages/about'));
 const Contact = lazy(() => import('./pages/contact'));
@@ -17,7 +17,7 @@ const Articles = lazy(() => import('./pages/articles'));
 const ArticlePage = lazy(() => import('./pages/articles/article'));
 const ProjectPage = lazy(() => import('./pages/projects/project'));
 
-// Lazy load game components
+// Game components
 const IntroScreen = lazy(() => import('./components/survival-game/IntroScreen'));
 const GameScreen = lazy(() => import('./components/survival-game/GameScreen'));
 const LoseScreen = lazy(() => import('./components/survival-game/LoseScreen'));
@@ -67,7 +67,6 @@ function App() {
                   <Route path="/projects/route-66/lose" element={<LoseScreen />} />
                   <Route path="/projects/route-66/faction-win" element={<FactionWinScreen />} />
                   <Route path="/projects/route-66/win" element={<WinScreen />} />
-                  {/* Add more routes as needed */}
                 </Routes>
               </Suspense>
               </AnimatePresence>

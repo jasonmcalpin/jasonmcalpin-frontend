@@ -14,15 +14,8 @@ const ProjectPage = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Find the project with the matching slug
     console.log('Projects:', projects);
     console.log('Current slug:', slug);
-    
-    // Log each project's slug to see if there's a match
-    projects.forEach((project, index) => {
-      console.log(`Project ${index} slug:`, project.slug);
-      console.log(`Slug match?`, project.slug === slug);
-    });
     
     const foundProject = projects.find((p) => p.slug === slug);
     console.log('Found project:', foundProject);
@@ -32,7 +25,6 @@ const ProjectPage = () => {
       setProject(foundProject);
       setIsLoading(false);
     } else {
-      // If no project is found, redirect to the projects page
       if (projects.length > 0) {
         console.log('No project found with slug:', slug);
         console.log('Available slugs:', projects.map(p => p.slug).join(', '));
@@ -46,8 +38,6 @@ const ProjectPage = () => {
           setProject(closeMatch);
           setIsLoading(false);
         } else {
-          // Don't navigate away for debugging purposes
-          // navigate('/projects');
           setIsLoading(false);
         }
       }

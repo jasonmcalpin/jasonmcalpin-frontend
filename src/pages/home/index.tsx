@@ -96,7 +96,6 @@ const Home = () => {
         </motion.div>
       </motion.section>
       
-      {/* About Section Preview */}
       <motion.section 
         className="home-about"
         ref={aboutRef as unknown as React.RefObject<HTMLElement>}
@@ -151,7 +150,6 @@ const Home = () => {
         </div>
       </motion.section>
       
-      {/* Featured Projects Section */}
       <motion.section 
         className="home-projects"
         ref={projectsRef as unknown as React.RefObject<HTMLElement>}
@@ -175,7 +173,6 @@ const Home = () => {
         </div>
       </motion.section>
       
-      {/* Recent Articles Section */}
       <motion.section 
         className="home-articles"
         ref={articlesRef as unknown as React.RefObject<HTMLElement>}
@@ -199,7 +196,6 @@ const Home = () => {
         </div>
       </motion.section>
       
-      {/* Contact CTA Section */}
       <section className="home-contact">
         <div className="section-container">
           <motion.div 
