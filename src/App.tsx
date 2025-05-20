@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, lazy, Suspense } from 'react';
 import './App.css';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { Provider } from 'react-redux';
@@ -7,19 +7,30 @@ import { AnimatePresence } from 'framer-motion';
 import { store } from './store';
 import Header from './components/header';
 import Footer from './components/footer';
-import Home from './pages/home';
-import About from './pages/about';
-import Contact from './pages/contact';
-import Projects from './pages/projects';
-import Articles from './pages/articles';
-import ArticlePage from './pages/articles/article';
-import ProjectPage from './pages/projects/project';
 
-import IntroScreen from './components/survival-game/IntroScreen';
-import GameScreen from './components/survival-game/GameScreen';
-import LoseScreen from './components/survival-game/LoseScreen';
-import FactionWinScreen from './components/survival-game/FactionWinScreen';
-import WinScreen from './components/survival-game/WinScreen';
+// Lazy load page components
+const Home = lazy(() => import('./pages/home'));
+const About = lazy(() => import('./pages/about'));
+const Contact = lazy(() => import('./pages/contact'));
+const Projects = lazy(() => import('./pages/projects'));
+const Articles = lazy(() => import('./pages/articles'));
+const ArticlePage = lazy(() => import('./pages/articles/article'));
+const ProjectPage = lazy(() => import('./pages/projects/project'));
+
+// Lazy load game components
+const IntroScreen = lazy(() => import('./components/survival-game/IntroScreen'));
+const GameScreen = lazy(() => import('./components/survival-game/GameScreen'));
+const LoseScreen = lazy(() => import('./components/survival-game/LoseScreen'));
+const FactionWinScreen = lazy(() => import('./components/survival-game/FactionWinScreen'));
+const WinScreen = lazy(() => import('./components/survival-game/WinScreen'));
+
+// Loading component
+const LoadingFallback = () => (
+  <div className="loading-fallback">
+    <div className="loading-spinner"></div>
+    <p>Loading...</p>
+  </div>
+);
 
 // Scroll to top on route change
 const ScrollToTop = () => {
@@ -42,6 +53,7 @@ function App() {
             <Header />
             <main className="main">
               <AnimatePresence mode="wait">
+              <Suspense fallback={<LoadingFallback />}>
                 <Routes>
                   <Route path="/" element={<Home />} />
                   <Route path="/about" element={<About />} />
@@ -57,6 +69,7 @@ function App() {
                   <Route path="/projects/route-66/win" element={<WinScreen />} />
                   {/* Add more routes as needed */}
                 </Routes>
+              </Suspense>
               </AnimatePresence>
             </main>
             <Footer />

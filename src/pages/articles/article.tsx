@@ -7,6 +7,8 @@ import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { atomDark } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import { useAppSelector } from '../../hooks/useAppStore';
 import { Article } from '../../store/slices/articlesSlice';
+import SEO from '../../components/shared/SEO';
+import { getArticleSchema } from '../../utils/schema';
 import { fadeInUp } from '../../utils/animations';
 import './styles.scss';
 
@@ -77,8 +79,31 @@ const ArticlePage = () => {
     );
   }
 
+  // Create article schema for SEO
+  const articleSchema = getArticleSchema({
+    title: article.title,
+    description: article.excerpt || article.title,
+    slug: article.slug,
+    date: article.date,
+    author: article.author,
+    imageUrl: article.imageUrl || '/assets/images/placeholder.svg'
+  });
+
   return (
     <div className="article-page">
+      <SEO 
+        title={article.title}
+        description={article.excerpt || `${article.title} - Read this article by ${article.author}`}
+        canonical={`/articles/${article.slug}`}
+        type="article"
+        image={article.imageUrl}
+        article={{
+          publishedTime: article.date,
+          author: article.author,
+          tags: article.tags
+        }}
+        schema={articleSchema}
+      />
       {/* Article Hero */}
       <section className="article-page__hero">
         <div className="article-page__hero-container">

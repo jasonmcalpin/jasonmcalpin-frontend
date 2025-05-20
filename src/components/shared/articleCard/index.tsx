@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { Article } from '../../../store/slices/articlesSlice';
+import OptimizedImage from '../OptimizedImage';
 import './styles.scss';
 
 interface ArticleCardProps {
@@ -35,30 +36,11 @@ const ArticleCard: React.FC<ArticleCardProps> = ({ article, index }) => {
       }}
     >
       <div className="article-card__image-container">
-        <img 
+        <OptimizedImage 
           src={article.imageUrl} 
           alt={article.title} 
           className="article-card__image"
-          onError={(e) => {
-            const target = e.target as HTMLImageElement;
-            target.style.display = 'none';
-            const container = target.parentElement;
-            if (container) {
-              container.style.backgroundColor = '#1E1E1E';
-              container.style.display = 'flex';
-              container.style.alignItems = 'center';
-              container.style.justifyContent = 'center';
-              
-              const placeholder = document.createElement('div');
-              placeholder.textContent = article.title;
-              placeholder.style.color = '#9D00FF';
-              placeholder.style.fontWeight = 'bold';
-              placeholder.style.textAlign = 'center';
-              placeholder.style.padding = '2rem';
-              
-              container.appendChild(placeholder);
-            }
-          }}
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         />
       </div>
       

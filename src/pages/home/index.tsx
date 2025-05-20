@@ -6,11 +6,16 @@ import { filterProjects, fetchProjects } from '../../store/slices/projectsSlice'
 import { filterArticles, fetchArticles } from '../../store/slices/articlesSlice';
 import ProjectCard from '../../components/shared/projectCard';
 import ArticleCard from '../../components/shared/articleCard';
+import SEO from '../../components/shared/SEO';
 import { useScrollAnimation } from '../../hooks/useScrollAnimation';
 import { fadeInUp, staggerContainer } from '../../utils/animations';
+import { getWebsiteSchema } from '../../utils/schema';
 import './styles.scss';
 
 const Home = () => {
+  // SEO data
+  const seoDescription = "Jason McAlpin is a Full Stack Developer specializing in React, TypeScript, and modern web technologies. Explore my portfolio of projects and articles.";
+  const websiteSchema = getWebsiteSchema();
   const dispatch = useAppDispatch();
   const { projects } = useAppSelector((state) => state.projects);
   const { articles } = useAppSelector((state) => state.articles);
@@ -38,6 +43,12 @@ const Home = () => {
 
   return (
     <div className="home">
+      <SEO 
+        title="Home"
+        description={seoDescription}
+        canonical="/"
+        schema={websiteSchema}
+      />
       {/* Hero Section */}
       <motion.section 
         className="hero"

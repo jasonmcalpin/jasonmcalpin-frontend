@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { Project } from '../../../store/slices/projectsSlice';
+import OptimizedImage from '../OptimizedImage';
 import './styles.scss';
 
 interface ProjectCardProps {
@@ -30,30 +31,11 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, index }) => {
       }}
     >
       <div className="project-card__image-container">
-        <img 
+        <OptimizedImage 
           src={project.imageUrl} 
           alt={project.title} 
           className="project-card__image"
-          onError={(e) => {
-            const target = e.target as HTMLImageElement;
-            target.style.display = 'none';
-            const container = target.parentElement;
-            if (container) {
-              container.style.backgroundColor = '#1E1E1E';
-              container.style.display = 'flex';
-              container.style.alignItems = 'center';
-              container.style.justifyContent = 'center';
-              
-              const placeholder = document.createElement('div');
-              placeholder.textContent = project.title;
-              placeholder.style.color = '#00F0FF';
-              placeholder.style.fontWeight = 'bold';
-              placeholder.style.textAlign = 'center';
-              placeholder.style.padding = '2rem';
-              
-              container.appendChild(placeholder);
-            }
-          }}
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         />
         {project.featured && (
           <div className="project-card__featured">

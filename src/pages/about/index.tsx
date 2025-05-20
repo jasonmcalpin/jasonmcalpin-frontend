@@ -3,9 +3,14 @@ import { Link } from 'react-router-dom';
 import { useScrollAnimation } from '../../hooks/useScrollAnimation';
 import { fadeInUp, staggerContainer } from '../../utils/animations';
 import { Skill, Experience, Education, Awards } from '../../types';
+import SEO from '../../components/shared/SEO';
+import { getPersonSchema } from '../../utils/schema';
 import './styles.scss';
 
 const About = () => {
+  // SEO data
+  const seoDescription = "Learn more about Jason McAlpin, a Full Stack Developer with expertise in React, TypeScript, Node.js, and modern web technologies. View my skills, experience, and background.";
+  const personSchema = getPersonSchema();
   const [introRef, introControls] = useScrollAnimation();
   const [skillsRef, skillsControls] = useScrollAnimation();
   const [experienceRef, experienceControls] = useScrollAnimation();
@@ -136,6 +141,13 @@ system with RESTful access.
 
   return (
     <div className="about">
+      <SEO 
+        title="About Me"
+        description={seoDescription}
+        canonical="/about"
+        type="profile"
+        schema={personSchema}
+      />
       {/* Hero Section */}
       <section className="about-hero">
         <div className="about-hero__container">
