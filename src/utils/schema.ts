@@ -50,8 +50,8 @@ export const getPersonSchema = () => {
   };
 };
 
-// Article schema for blog posts
-export const getArticleSchema = (article: {
+// Byte schema for blog posts
+export const getByteSchema = (byte: {
   title: string;
   description: string;
   slug: string;
@@ -61,14 +61,14 @@ export const getArticleSchema = (article: {
 }) => {
   return {
     '@context': 'https://schema.org',
-    '@type': 'Article',
-    headline: article.title,
-    description: article.description,
-    image: `https://jasonmcalpin.com${article.imageUrl}`,
-    datePublished: article.date,
+    '@type': 'Byte',
+    headline: byte.title,
+    description: byte.description,
+    image: `https://jasonmcalpin.com${byte.imageUrl}`,
+    datePublished: byte.date,
     author: {
       '@type': 'Person',
-      name: article.author,
+      name: byte.author,
       url: 'https://jasonmcalpin.com/about'
     },
     publisher: {
@@ -82,7 +82,7 @@ export const getArticleSchema = (article: {
     },
     mainEntityOfPage: {
       '@type': 'WebPage',
-      '@id': `https://jasonmcalpin.com/articles/${article.slug}`
+      '@id': `https://jasonmcalpin.com/bytes/${byte.slug}`
     }
   };
 };

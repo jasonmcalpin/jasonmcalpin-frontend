@@ -22,7 +22,7 @@ Structured data helps search engines understand your content and can result in r
 
 - **Website Schema**: Basic information about the website
 - **Person Schema**: Information about Jason McAlpin
-- **Article Schema**: Details about blog posts
+- **Byte Schema**: Details about blog posts
 - **Project Schema**: Information about portfolio projects
 - **BreadcrumbList Schema**: Navigation paths
 
@@ -65,7 +65,7 @@ Implementation: `.htaccess` and `index.html`
 ### Regular Tasks
 
 1. **Update Content Regularly**
-   - Add new articles and projects
+   - Add new bytes and projects
    - Update existing content to keep it fresh
    - Remove outdated content
 
@@ -107,7 +107,7 @@ Implementation: `.htaccess` and `index.html`
 
 1. **Create High-Quality Content**
    - Focus on providing value to users
-   - Write comprehensive, in-depth articles
+   - Write comprehensive, in-depth bytes
    - Use proper heading structure (H1, H2, H3)
    - Include relevant keywords naturally
 

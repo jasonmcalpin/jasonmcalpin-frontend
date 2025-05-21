@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 
 export interface Project {
   id: string;
-  slug: string;
+  slug?: string;
   title: string;
   description: string;
   imageUrl: string;

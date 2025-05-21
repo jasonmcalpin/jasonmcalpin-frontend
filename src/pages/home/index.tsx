@@ -3,9 +3,9 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useAppDispatch, useAppSelector } from '../../hooks/useAppStore';
 import { filterProjects, fetchProjects } from '../../store/slices/projectsSlice';
-import { filterArticles, fetchArticles } from '../../store/slices/articlesSlice';
+import { filterBytes, fetchBytes } from '../../store/slices/bytesSlice';
 import ProjectCard from '../../components/shared/projectCard';
-import ArticleCard from '../../components/shared/articleCard';
+import ByteCard from '../../components/shared/byteCard';
 import SEO from '../../components/shared/SEO';
 import { useScrollAnimation } from '../../hooks/useScrollAnimation';
 import { fadeInUp, staggerContainer } from '../../utils/animations';
@@ -14,30 +14,30 @@ import './styles.scss';
 
 const Home = () => {
   // SEO data
-  const seoDescription = "Jason McAlpin is a Full Stack Developer specializing in React, TypeScript, and modern web technologies. Explore my portfolio of projects and articles.";
+  const seoDescription = "Jason McAlpin is a Full Stack Developer specializing in React, TypeScript, and modern web technologies. Explore my portfolio of projects and bytes.";
   const websiteSchema = getWebsiteSchema();
   const dispatch = useAppDispatch();
   const { projects } = useAppSelector((state) => state.projects);
-  const { articles } = useAppSelector((state) => state.articles);
+  const { bytes } = useAppSelector((state) => state.bytes);
   
   const [heroRef, heroControls] = useScrollAnimation();
   const [aboutRef, aboutControls] = useScrollAnimation({ delay: 200 });
   const [projectsRef, projectsControls] = useScrollAnimation();
-  const [articlesRef, articlesControls] = useScrollAnimation();
+  const [bytesRef, bytesControls] = useScrollAnimation();
   
   useEffect(() => {
     // First fetch the data
     dispatch(fetchProjects());
-    dispatch(fetchArticles());
+    dispatch(fetchBytes());
     
     // Then apply filters
     dispatch(filterProjects('featured'));
-    dispatch(filterArticles(null));
+    dispatch(filterBytes(null));
   }, [dispatch]);
   
   const featuredProjects = projects.filter(project => project.featured).slice(0, 3);
   
-  const recentArticles = [...articles].sort((a, b) => 
+  const recentBytes = [...bytes].sort((a, b) => 
     new Date(b.date).getTime() - new Date(a.date).getTime()
   ).slice(0, 2);
 
@@ -174,23 +174,23 @@ const Home = () => {
       </motion.section>
       
       <motion.section 
-        className="home-articles"
-        ref={articlesRef as unknown as React.RefObject<HTMLElement>}
+        className="home-bytes"
+        ref={bytesRef as unknown as React.RefObject<HTMLElement>}
         initial="hidden"
-        animate={articlesControls}
+        animate={bytesControls}
         variants={staggerContainer}
       >
         <div className="section-container">
           <motion.div className="section-header" variants={fadeInUp}>
-            <h2 className="section-title">Recent Articles</h2>
-            <Link to="/articles" className="section-link">
-              View All Articles
+            <h2 className="section-title">Recent Bytes</h2>
+            <Link to="/bytes" className="section-link">
+              View All Bytes
             </Link>
           </motion.div>
           
-          <div className="home-articles__grid">
-            {recentArticles.map((article, index) => (
-              <ArticleCard key={article.id} article={article} index={index} />
+          <div className="home-bytes__grid">
+            {recentBytes.map((byte, index) => (
+              <ByteCard key={byte.id} byte={byte} index={index} />
             ))}
           </div>
         </div>

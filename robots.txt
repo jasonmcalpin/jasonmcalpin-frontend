@@ -5,7 +5,7 @@ User-agent: *
 Allow: /
 Allow: /about
 Allow: /projects
-Allow: /articles
+Allow: /bytes
 Allow: /contact
 
 # Disallow access to data files and other sensitive directories

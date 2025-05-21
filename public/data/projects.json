@@ -1,15 +1,17 @@
 [
   {
     "id": "1",
+    "slug": "rustpunk-panic-66",
     "title": "Rustpunk Panic 66 a survival game",
     "description": "A React-based survival game where players must escape a post-apocalyptic world by making strategic decisions.",
-    "imageUrl": "/assets/images/projects/survival-game.jpg",
+    "imageUrl": "/assets/games/images/woman.png",
     "technologies": ["React", "TypeScript", "Redux", "SCSS"],
     "liveUrl": "/projects/route-66",
     "featured": true
   },
   {
     "id": "2",
+    "slug": "my-prostate-cancer-website",
     "title": "My Prostate Cancer Website",
     "description": "An informational website providing resources and support for those affected by prostate cancer.",
     "imageUrl": "/assets/images/projects/my-prostate-cancer.png",
@@ -19,6 +21,7 @@
   },
   {
     "id": "3",
+    "slug": "us-open-watson-project",
     "title": "US Open Watson Project",
     "description": "A data analysis project using IBM Watson to analyze US Open tennis data and provide insights.",
     "imageUrl": "/assets/images/projects/us-open.jpg",
@@ -28,6 +31,7 @@
   },
   {
     "id": "4",
+    "slug": "ford-website",
     "title": "Ford Website",
     "description": "A redesigned website for Ford showcasing their vehicles and services with modern UI/UX principles.",
     "imageUrl": "/assets/images/projects/ford-home.png",
@@ -37,15 +41,17 @@
   },
   {
     "id": "5",
+    "slug": "ibm-one-blog",
     "title": "IBM-One Blog",
-    "description": "IBM Blog, IBM consolidated all of its blogs into one unified offering. I created python, and Bash scripted tools to import articles from blog platforms that didn't work with WordPress. I built security plugins and worked with the front-end and back-end developers to understand how to get Kubernetes, Cloudflare, and Akamai to work smoothly with WordPress. The plugins and solutions were used in international versions of the site. Tools included: PHP, Python, SQL, Kubernetes, and Docker.",
+    "description": "IBM Blog, IBM consolidated all of its blogs into one unified offering. I created python, and Bash scripted tools to import bytes from blog platforms that didn't work with WordPress. I built security plugins and worked with the front-end and back-end developers to understand how to get Kubernetes, Cloudflare, and Akamai to work smoothly with WordPress. The plugins and solutions were used in international versions of the site. Tools included: PHP, Python, SQL, Kubernetes, and Docker.",
     "imageUrl": "/assets/images/projects/IBM-Blog.png",
     "technologies": ["WordPress","PHP","SQL","JWT","SSO","Docker","Git","SASS","Cloudflare"],
-    "liveUrl": "www.ibm.com/blogs",
+    "liveUrl": "https://www.ibm.com/blogs",
     "featured": true
   },
   {
     "id": "6",
+    "slug": "fm-global-resilience",
     "title": "FM Global - Resilience is a choice",
     "description": "A campaign website for FM Global focusing on business resilience and risk management.",
     "imageUrl": "/assets/images/projects/fm-global.png",
@@ -55,38 +61,42 @@
   },
   {
     "id": "7",
+    "slug": "ibm-research-tool",
     "title": "IBM Research Tool",
     "description": "IBM Research Tool. This project involved converting over a million records from an old obfuscated data collection into a modern SQL database. \n I scoped the database requirements, docker repos and built up the infrastructure then created a REST-API for other services to reach the database. I then created commandline tools using node.js to import all of the records from their proprietary javascript format to SQL. Once the data was available in SQL I created a frontend that the teams could use to access and verify the data and ultimately use it going forward with much more ease and speed than the previous locally run application.",
-    "imageUrl": "/assets/images/projects/fm-global.png",
+    "imageUrl": "/assets/images/projects/ibm.jpg",
     "technologies": ["SQL","REST-API","Node.js (REST-API Backend)","Next.js (Frontend)","Python","Carbon Framework","Docker","Git"],
     "liveUrl": "https://www.ibm.com/watson",
     "featured": false
   },
   {
     "id": "8",
+    "slug": "watson-sales-assistant",
     "title": "Watson Based Sales Assistant for IBM",
     "description": "Watson based internal sales tool. I took internal data to train a Watson business model that could create an optimized list of services for clients. This involved building Python tools to import records, classifying the data and training the sales team in organizing the data so they could continue to update the model in the long term. I also built out an API so that the tool could be connected to other systems and a dedicated frontend that let users do searches or upload the latest data.",
-    "imageUrl": "/assets/images/projects/fm-global.png",
+    "imageUrl": "/assets/images/projects/ibm.jpg",
     "technologies": ["Python", "Next.js", "SQL", "REST-API", "IBM Watson", "JWT", "Git"],
     "liveUrl": "https://www.ibm.com/watson",
     "featured": false
   },
   {
     "id": "9",
+    "slug": "ogilvy",
     "title": "Ogilvy",
     "description": "I was the senior developer on various websites, tools, databases, and apps for our clients. The Clients included IBM, Ford, AMEX, The Weather Channel, US Open, Corteva, Janssen, MPCR, among others. The Projects are listed above under each client. AMEX, I build multinational promotional sites.",
-    "imageUrl": "/assets/images/projects/fm-global.png",
+    "imageUrl": "/assets/images/projects/ogilvy.jpg",
     "technologies": ["Python", "SQL", "IBM Watson", "REST-API"],
     "liveUrl": "https://www.ogilvy.com",
     "featured": false
   },
   {
     "id": "10",
+    "slug": "ibm-watson-chatbot",
     "title": "IBM Watson - Chatbot",
     "description": "Ford Site. I built out A/B tests on the main site along with coding new car releases and implementing Adobe Target for tracking. I customized the Brightcove video players to save Ford money by preventing excessive replays. This dramatically drop the cost of the service.",
-    "imageUrl": "/assets/images/projects/fm-global.png",
+    "imageUrl": "/assets/images/projects/ibm.jpg",
     "technologies": [ "React", "JQuery", "BrightCove", "Adobe Experience Manager", "Adobe Target" ],
-    "liveUrl": "https://www.fm.com",
+    "liveUrl": "https://www.ibm.com/watson",
     "featured": false
   }
 ]

@@ -1,13 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit';
 import uiReducer from './slices/uiSlice';
 import projectsReducer from './slices/projectsSlice';
-import articlesReducer from './slices/articlesSlice';
+import bytesReducer from './slices/bytesSlice';
 
 export const store = configureStore({
   reducer: {
     ui: uiReducer,
     projects: projectsReducer,
-    articles: articlesReducer,
+    bytes: bytesReducer,
   },
 });
 

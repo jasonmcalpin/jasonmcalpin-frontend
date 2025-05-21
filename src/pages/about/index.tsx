@@ -16,91 +16,162 @@ const About = () => {
   const [educationRef, educationControls] = useScrollAnimation();
   const [awardRef, awardControls] = useScrollAnimation();
   const skills: Skill[] = [
-    { name: 'React', level: 8, category: 'frontend' },
-    { name: 'TypeScript', level: 4, category: 'frontend' },
-    { name: 'React-Native', level: 2, category: 'frontend' },
-    { name: 'HTML/CSS', level: 15, category: 'frontend' },
-    { name: 'Redux', level: 6, category: 'frontend' },
-    { name: 'Tailwind CSS', level: 4, category: 'frontend' },
-    { name: 'SASS', level: 6, category: 'frontend' },
-    { name: 'JavaScript', level: 10, category: 'frontend' },
-    { name: 'jQuery', level: 4, category: 'frontend' },
-    { name: 'Responsive Design', level: 10, category: 'frontend' },
-    { name: 'UI/UX Design', level: 10, category: 'frontend' },
-    { name: 'Figma', level: 5, category: 'frontend' },
+  // Frontend
+  { name: 'React', level: 8, category: 'frontend' },
+  { name: 'TypeScript', level: 4, category: 'frontend' },
+  { name: 'React-Native', level: 2, category: 'frontend' },
+  { name: 'HTML/CSS', level: 15, category: 'frontend' },
+  { name: 'Redux', level: 6, category: 'frontend' },
+  { name: 'Tailwind CSS', level: 4, category: 'frontend' },
+  { name: 'SASS', level: 6, category: 'frontend' },
+  { name: 'JavaScript', level: 10, category: 'frontend' },
+  { name: 'jQuery', level: 4, category: 'frontend' },
+  { name: 'Responsive Design', level: 10, category: 'frontend' },
+  { name: 'UI/UX Design', level: 10, category: 'frontend' },
+  { name: 'Figma', level: 5, category: 'frontend' },
+  { name: 'Angular', level: 1, category: 'frontend' },
+  { name: 'ActionScript', level: 2, category: 'frontend' },
+  { name: 'SVG Animation', level: 1, category: 'frontend' },
+  { name: 'Flash', level: 3, category: 'frontend' },
 
-    { name: 'Node.js', level: 6, category: 'backend' },
-    { name: 'Next.js', level: 4, category: 'backend' },
-    { name: 'Node-RED', level: 2, category: 'backend' },
-    { name: 'MySQL', level: 6, category: 'backend' },
-    { name: 'REST APIs', level: 8, category: 'backend' },
-    { name: 'PostgreSQL', level: 8, category: 'backend' },
-    { name: 'JWT', level: 4, category: 'backend' },
-    { name: 'Wordpress', level: 8, category: 'backend' },
-    { name: 'Drupal', level: 3, category: 'backend' },
-    { name: 'MongoDB', level: 2, category: 'backend' },
+  // Backend
+  { name: 'Node.js', level: 6, category: 'backend' },
+  { name: 'Next.js', level: 4, category: 'backend' },
+  { name: 'Node-RED', level: 2, category: 'backend' },
+  { name: 'MySQL', level: 6, category: 'backend' },
+  { name: 'REST APIs', level: 8, category: 'backend' },
+  { name: 'PostgreSQL', level: 8, category: 'backend' },
+  { name: 'JWT', level: 4, category: 'backend' },
+  { name: 'Wordpress', level: 8, category: 'backend' },
+  { name: 'Drupal', level: 3, category: 'backend' },
+  { name: 'MongoDB', level: 2, category: 'backend' },
+  { name: 'PHP', level: 10, category: 'backend' },
+  { name: 'Python', level: 5, category: 'backend' },
+  { name: 'SQL', level: 10, category: 'backend' },
+  { name: 'Carbon Framework', level: 1, category: 'backend' },
+  { name: 'Bash', level: 2, category: 'backend' },
+  { name: 'Apache', level: 2, category: 'backend' },
+  { name: 'Objective-C', level: 2, category: 'backend' },
 
-
- 
-    { name: 'Agile Methodologies', level: 10, category: 'DevOps' },
-    { name: 'Kubernetes', level: 2, category: 'DevOps' },
-    { name: 'Cloudflare', level: 3, category: 'DevOps' },
-    { name: 'Git', level: 10, category: 'DevOps' },
-    { name: 'Docker', level: 6, category: 'DevOps' },
-    { name: 'AWS', level: 4, category: 'DevOps' },
-    { name: 'Vite', level: 2, category: 'DevOps' },
-    { name: 'Webpack', level: 8, category: 'DevOps' },
-    { name: 'Jenkins', level: 4, category: 'DevOps' },
-
- 
-
-  ];
+  // DevOps
+  { name: 'Agile Methodologies', level: 10, category: 'DevOps' },
+  { name: 'Kubernetes', level: 2, category: 'DevOps' },
+  { name: 'Cloudflare', level: 3, category: 'DevOps' },
+  { name: 'Git', level: 10, category: 'DevOps' },
+  { name: 'Docker', level: 6, category: 'DevOps' },
+  { name: 'AWS', level: 4, category: 'DevOps' },
+  { name: 'Vite', level: 2, category: 'DevOps' },
+  { name: 'Webpack', level: 8, category: 'DevOps' },
+  { name: 'Jenkins', level: 4, category: 'DevOps' },
+  { name: 'Akamai', level: 2, category: 'DevOps' },
+  { name: 'Amazon EC2', level: 2, category: 'DevOps' },
+  { name: 'Ubuntu Server', level: 2, category: 'DevOps' },
+  { name: 'SSO', level: 3, category: 'DevOps' },
+  { name: 'IBM Watson', level: 3, category: 'DevOps' }
+];
   
   const experiences: Experience[] = [
-    {
-      title: 'Senior Mobile Developer',
-      company: 'Subvrsive',
-      location: 'San Francisco, CA',
-      startDate: '2024-10',
-      endDate: '2024-12',
-      description: `Worked with team to develop a cross-platform mobile app. My job consisted in refining the styles and react-Native components to match the Figma designs, and also fo leverage my API and Security experience to build the login and user profile system.
-\n
-I cut the time to complete the work down by a week which left us time to implement additional backlog items to really make the app shine.`,
-      technologies: ['React Native', 'TypeScript', 'SCSS', 'JWT', 'EXPO', 'Figma', 'REST APIs']
-    },
-    {
-      title: 'Senior Software Developer',
-      company: 'IBM',
-      location: 'New York, NA',
-      startDate: '2022-01',
-      endDate: '2024-10',
-      description: `Led the migration of IBM's blogs to a unified platform, building security plugins and data
-import tools. Developed an AI-driven sales tool using Watson, Python, and REST APIs, optimizing
-service recommendations. Modernized a proprietary database, converting over 1M records to a structured SQL
-system with RESTful access.
-
-`,
-      technologies: ['React', 'TypeScript', 'Next.js', 'MySQL', 'Watson AI', 'Python', 'REST APIs', 'Wordpress'] 
-    },
-    {
-      title: 'Full Stack Developer',
-      company: 'Digital Solutions LLC',
-      location: 'Austin, TX',
-      startDate: '2019-03',
-      endDate: '2021-12',
-      description: 'Developed and maintained web applications using React on the frontend and Node.js with Express on the backend. Worked with MongoDB for data storage and implemented RESTful APIs.',
-      technologies: ['React', 'JavaScript', 'Node.js', 'Express', 'MongoDB']
-    },
-    {
-      title: 'Web Developer',
-      company: 'Creative Web Agency',
-      location: 'Chicago, IL',
-      startDate: '2017-06',
-      endDate: '2019-02',
-      description: 'Created responsive websites for clients across various industries. Collaborated with designers to implement pixel-perfect designs and ensure cross-browser compatibility.',
-      technologies: ['HTML', 'CSS', 'JavaScript', 'jQuery', 'PHP']
-    }
-  ];
+  {
+    company: "Freelance",
+    title: "Full Stack Engineer",
+    description: "Created a Discord LLM Bot, involving a Node.js backend interacting with a Deepseek-r1 model running on Python.",
+    startDate: "2025-01",
+    endDate: "2025-05",
+    location: "Georgia, United States",
+    technologies: ["Node.js", "Python"]
+  },
+  {
+    company: "Subvrsive",
+    title: "Mobile Developer",
+    description: "Developed a cross-platform mobile app, refined styles and React-Native components to match Figma designs, and leveraged API and security experience to build the login and user profile system.",
+    startDate: "2024-10",
+    endDate: "2024-12",
+    location: "Placeholder",
+    technologies: ["React-Native", "Expo", "JWT", "REST-API", "TypeScript", "SASS"]
+  },
+  {
+    company: "IBM",
+    title: "Senior Software Developer",
+    description: "Consolidated IBM's blogs into a unified platform, created scripted tools to import bytes, built security plugins, and integrated Kubernetes, Cloudflare, and Akamai with WordPress.",
+    startDate: "2022-01",
+    endDate: "2024-10",
+    location: "New York, New York, United States",
+    technologies: ["WordPress", "PHP", "SQL", "JWT", "Docker", "Git", "SASS"]
+  },
+  {
+    company: "IBM",
+    title: "Senior Software Engineer",
+    description: "Developed a Watson-based internal sales tool, built Python tools for data import, and created APIs and front-end applications.",
+    startDate: "2022-10",
+    endDate: "2024-09",
+    location: "New York, New York, United States",
+    technologies: ["Next.js", "JWT", "REST-API", "Python", "SASS"]
+  },
+  {
+    company: "IBM",
+    title: "Senior Software Developer",
+    description: "Converted over a million records from proprietary format to SQL, built Docker infrastructure, created REST APIs and command-line tools, and developed a front-end for data access.",
+    startDate: "2023-06",
+    endDate: "2024-08",
+    location: "New York, New York, United States",
+    technologies: ["SQL", "REST-API", "Node.js", "Next.js", "Python", "Carbon Framework", "Docker", "Git"]
+  },
+  {
+    company: "Ogilvy",
+    title: "Full Stack Developer",
+    description: "Led development of various websites, tools, databases, and apps for major clients including IBM, Ford, AMEX, and others.",
+    startDate: "2014-02",
+    endDate: "2024-10",
+    location: "New York, New York, United States",
+    technologies: ["WordPress", "PHP", "JavaScript", "SQL", "Docker", "Akamai"]
+  },
+  {
+    company: "Ford Motor Company",
+    title: "Senior Software Developer",
+    description: "Implemented A/B tests, developed new car release pages, integrated Adobe Target, and optimized Brightcove video players.",
+    startDate: "2020-01",
+    endDate: "2022-10",
+    location: "New York, New York, United States",
+    technologies: ["Adobe Experience", "Adobe Target", "SASS", "Brightcove", "JavaScript"]
+  },
+  {
+    company: "The Weather Channel",
+    title: "Senior Software Developer",
+    description: "Created a natural language weather query module using IBM Watson, integrating with weather channel APIs.",
+    startDate: "2020-02",
+    endDate: "2020-04",
+    location: "New York, New York, United States",
+    technologies: ["Node.js", "IBM Watson", "JavaScript", "REST-API"]
+  },
+  {
+    company: "Avrett Free Ginsberg",
+    title: "Full Stack Developer",
+    description: "Developed websites, banners, animated promotional sites, and modernized iPhone apps using Objective-C.",
+    startDate: "2009-08",
+    endDate: "2014-01",
+    location: "New York, United States",
+    technologies: ["WordPress", "Objective-C", "Flash"]
+  },
+  {
+    company: "Artisan",
+    title: "Interactive Developer",
+    description: "Worked on front-end and back-end web development using PHP, JavaScript, ActionScript, CSS, Smarty, JQuery, and GAIA frameworks.",
+    startDate: "2009-08",
+    endDate: "2009-10",
+    location: "New York, New York, United States",
+    technologies: ["PHP", "JavaScript", "ActionScript", "CSS", "Smarty", "JQuery", "GAIA"]
+  },
+  {
+    company: "American Movie Company",
+    title: "Senior Software Engineer",
+    description: "Built websites hosted on Amazon EC2, created Ubuntu server images, and developed flash assets and WordPress environments.",
+    startDate: "2009-01",
+    endDate: "2009-02",
+    location: "New York, New York, United States",
+    technologies: ["PHP", "WordPress", "SCSS", "MySQL", "JavaScript", "Bash", "Apache"]
+  }
+];
+;
   
   const education: Education[] = [
     {
@@ -182,7 +253,7 @@ system with RESTful access.
               </p>
               <p className="about-intro__paragraph">
                 When I'm not coding, you can find me exploring new technologies, contributing to open 
-                source projects, or sharing my knowledge through writing technical articles.
+                source projects, or sharing my knowledge through writing technical bytes.
               </p>
             </motion.div>
             

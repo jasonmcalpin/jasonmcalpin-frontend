@@ -1,9 +1,9 @@
-.articles {
+.bytes {
   @apply pt-16; // Space for the fixed header
 }
 
-// Article Page Styles
-.article-page {
+// Byte Page Styles
+.byte-page {
   @apply pt-16; // Space for the fixed header
   
   // Hero section
@@ -207,9 +207,9 @@
 }
 
 // Hero section
-.articles-hero {
+.bytes-hero {
   @apply py-24 bg-primary-dark relative overflow-hidden;
-  background-image: linear-gradient(to right, rgba(42, 59, 76, 0.9), rgba(26, 42, 60, 0.9)), url('/assets/images/articles-bg.jpg');
+  background-image: linear-gradient(to right, rgba(42, 59, 76, 0.9), rgba(26, 42, 60, 0.9)), url('/assets/images/bytes-bg.jpg');
   background-size: cover;
   background-position: center;
   
@@ -227,13 +227,13 @@
   }
 }
 
-// Articles content section
-.articles-content {
+// Bytes content section
+.bytes-content {
   @apply py-16;
 }
 
 // Filters
-.articles-filters {
+.bytes-filters {
   @apply mb-12;
   
   &__search {
@@ -278,13 +278,13 @@
   }
 }
 
-// Articles grid
-.articles-grid {
+// Bytes grid
+.bytes-grid {
   @apply grid grid-cols-1 md:grid-cols-2 gap-8;
 }
 
 // Empty state
-.articles-empty {
+.bytes-empty {
   @apply col-span-full py-12 text-center;
   
   &__message {
@@ -293,7 +293,7 @@
 }
 
 // Newsletter section
-.articles-newsletter {
+.bytes-newsletter {
   @apply py-16 bg-primary-dark relative overflow-hidden;
   
   &::before {
@@ -344,7 +344,7 @@
 }
 
 // Topics section
-.articles-topics {
+.bytes-topics {
   @apply py-16 bg-background-light;
   
   &__grid {

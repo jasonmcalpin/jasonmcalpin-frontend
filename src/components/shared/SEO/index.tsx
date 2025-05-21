@@ -5,8 +5,8 @@ interface SEOProps {
   description: string;
   canonical?: string;
   image?: string;
-  type?: 'website' | 'article' | 'profile';
-  article?: {
+  type?: 'website' | 'byte' | 'profile';
+  byte?: {
     publishedTime?: string;
     modifiedTime?: string;
     author?: string;
@@ -21,7 +21,7 @@ const SEO = ({
   canonical,
   image = '/assets/images/placeholder.svg',
   type = 'website',
-  article,
+  byte,
   schema,
 }: SEOProps) => {
   const siteUrl = 'https://jasonmcalpin.com';
@@ -48,18 +48,18 @@ const SEO = ({
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={imageUrl} />
 
-      {type === 'article' && article && (
+      {type === 'byte' && byte && (
         <>
-          {article.publishedTime && (
-            <meta property="article:published_time" content={article.publishedTime} />
+          {byte.publishedTime && (
+            <meta property="byte:published_time" content={byte.publishedTime} />
           )}
-          {article.modifiedTime && (
-            <meta property="article:modified_time" content={article.modifiedTime} />
+          {byte.modifiedTime && (
+            <meta property="byte:modified_time" content={byte.modifiedTime} />
           )}
-          {article.author && <meta property="article:author" content={article.author} />}
-          {article.tags &&
-            article.tags.map((tag, i) => (
-              <meta key={i} property="article:tag" content={tag} />
+          {byte.author && <meta property="byte:author" content={byte.author} />}
+          {byte.tags &&
+            byte.tags.map((tag, i) => (
+              <meta key={i} property="byte:tag" content={tag} />
             ))}
         </>
       )}

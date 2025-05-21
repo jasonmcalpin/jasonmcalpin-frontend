@@ -6,40 +6,40 @@ import remarkGfm from 'remark-gfm';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { atomDark } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import { useAppSelector } from '../../hooks/useAppStore';
-import { Article } from '../../store/slices/articlesSlice';
+import { Byte } from '../../store/slices/bytesSlice';
 import SEO from '../../components/shared/SEO';
-import { getArticleSchema } from '../../utils/schema';
+import { getByteSchema } from '../../utils/schema';
 import { fadeInUp } from '../../utils/animations';
 import './styles.scss';
 
-const ArticlePage = () => {
+const BytePage = () => {
   const { slug } = useParams<{ slug: string }>();
   const navigate = useNavigate();
-  const { articles } = useAppSelector((state) => state.articles);
-  const [article, setArticle] = useState<Article | null>(null);
+  const { bytes } = useAppSelector((state) => state.bytes);
+  const [byte, setByte] = useState<Byte | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    const foundArticle = articles.find((a) => a.slug === slug);
+    const foundByte = bytes.find((a) => a.slug === slug);
     
-    if (foundArticle) {
-      setArticle(foundArticle);
+    if (foundByte) {
+      setByte(foundByte);
       setIsLoading(false);
     } else {
-      if (articles.length > 0) {
-        navigate('/articles');
+      if (bytes.length > 0) {
+        navigate('/bytes');
         
         // Try to find a close match
-        const closeMatch = articles.find(a => 
+        const closeMatch = bytes.find(a => 
           a.slug.includes(slug || '') || (slug || '').includes(a.slug)
         );
         if (closeMatch) {
-          setArticle(closeMatch);
+          setByte(closeMatch);
           setIsLoading(false);
         }
       }
     }
-  }, [articles, slug, navigate]);
+  }, [bytes, slug, navigate]);
 
   const formatDate = (dateString: string) => {
     const options: Intl.DateTimeFormatOptions = { year: 'numeric', month: 'long', day: 'numeric' };
@@ -48,28 +48,28 @@ const ArticlePage = () => {
 
   if (isLoading) {
     return (
-      <div className="article-page">
+      <div className="byte-page">
         <div className="section-container">
-          <div className="article-page__loading">
-            <p>Loading article...</p>
+          <div className="byte-page__loading">
+            <p>Loading byte...</p>
           </div>
         </div>
       </div>
     );
   }
 
-  if (!article) {
+  if (!byte) {
     return (
-      <div className="article-page">
+      <div className="byte-page">
         <div className="section-container">
-          <div className="article-page__not-found">
-            <h1>Article Not Found</h1>
-            <p>The article you're looking for doesn't exist or has been removed.</p>
+          <div className="byte-page__not-found">
+            <h1>Byte Not Found</h1>
+            <p>The byte you're looking for doesn't exist or has been removed.</p>
             <button 
               className="btn btn-primary"
-              onClick={() => navigate('/articles')}
+              onClick={() => navigate('/bytes')}
             >
-              Back to Articles
+              Back to Bytes
             </button>
           </div>
         </div>
@@ -77,62 +77,62 @@ const ArticlePage = () => {
     );
   }
 
-  const articleSchema = getArticleSchema({
-    title: article.title,
-    description: article.excerpt || article.title,
-    slug: article.slug,
-    date: article.date,
-    author: article.author,
-    imageUrl: article.imageUrl || '/assets/images/placeholder.svg'
+  const byteSchema = getByteSchema({
+    title: byte.title,
+    description: byte.excerpt || byte.title,
+    slug: byte.slug,
+    date: byte.date,
+    author: byte.author,
+    imageUrl: byte.imageUrl || '/assets/images/placeholder.svg'
   });
 
   return (
-    <div className="article-page">
+    <div className="byte-page">
       <SEO 
-        title={article.title}
-        description={article.excerpt || `${article.title} - Read this article by ${article.author}`}
-        canonical={`/articles/${article.slug}`}
-        type="article"
-        image={article.imageUrl}
-        article={{
-          publishedTime: article.date,
-          author: article.author,
-          tags: article.tags
+        title={byte.title}
+        description={byte.excerpt || `${byte.title} - Read this byte by ${byte.author}`}
+        canonical={`/bytes/${byte.slug}`}
+        type="byte"
+        image={byte.imageUrl}
+        byte={{
+          publishedTime: byte.date,
+          author: byte.author,
+          tags: byte.tags
         }}
-        schema={articleSchema}
+        schema={byteSchema}
       />
-      <section className="article-page__hero">
-        <div className="article-page__hero-container">
+      <section className="byte-page__hero">
+        <div className="byte-page__hero-container">
           <motion.h1 
-            className="article-page__title"
+            className="byte-page__title"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            {article.title}
+            {byte.title}
           </motion.h1>
           
           <motion.div 
-            className="article-page__meta"
+            className="byte-page__meta"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
           >
-            <div className="article-page__author-date">
-              <span className="article-page__author">{article.author}</span>
-              <span className="article-page__date">{formatDate(article.date)}</span>
+            <div className="byte-page__author-date">
+              <span className="byte-page__author">{byte.author}</span>
+              <span className="byte-page__date">{formatDate(byte.date)}</span>
             </div>
-            <span className="article-page__reading-time">{article.readingTime} min read</span>
+            <span className="byte-page__reading-time">{byte.readingTime} min read</span>
           </motion.div>
           
           <motion.div 
-            className="article-page__tags"
+            className="byte-page__tags"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            {article.tags.map((tag, i) => (
-              <span key={i} className="article-page__tag">
+            {byte.tags.map((tag, i) => (
+              <span key={i} className="byte-page__tag">
                 {tag}
               </span>
             ))}
@@ -140,19 +140,19 @@ const ArticlePage = () => {
         </div>
       </section>
       
-      <section className="article-page__content">
+      <section className="byte-page__content">
         <div className="section-container">
-          {article.imageUrl && (
+          {byte.imageUrl && (
             <motion.div 
-              className="article-page__image-container"
+              className="byte-page__image-container"
               variants={fadeInUp}
               initial="hidden"
               animate="visible"
             >
               <img 
-                src={article.imageUrl} 
-                alt={article.title} 
-                className="article-page__image"
+                src={byte.imageUrl} 
+                alt={byte.title} 
+                className="byte-page__image"
                 onError={(e) => {
                   const target = e.target as HTMLImageElement;
                   target.style.display = 'none';
@@ -162,7 +162,7 @@ const ArticlePage = () => {
           )}
           
           <motion.div 
-            className="article-page__body markdown-content prose prose-invert max-w-none"
+            className="byte-page__body markdown-content prose prose-invert max-w-none"
             variants={fadeInUp}
             initial="hidden"
             animate="visible"
@@ -192,27 +192,27 @@ const ArticlePage = () => {
                 }
               }}
             >
-              {Array.isArray(article.content) ? article.content.join('\n') : article.content}
+              {Array.isArray(byte.content) ? byte.content.join('\n') : byte.content}
             </ReactMarkdown>
           </motion.div>
         </div>
       </section>
       
       
-      {/* Back to Articles Button */}
-      <section className="article-page__footer">
+      {/* Back to Bytes Button */}
+      <section className="byte-page__footer">
         <div className="section-container">
           <motion.div 
-            className="article-page__navigation"
+            className="byte-page__navigation"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
             <button 
               className="btn btn-primary"
-              onClick={() => navigate('/articles')}
+              onClick={() => navigate('/bytes')}
             >
-              Back to Articles
+              Back to Bytes
             </button>
           </motion.div>
         </div>
@@ -221,4 +221,4 @@ const ArticlePage = () => {
   );
 };
 
-export default ArticlePage;
+export default BytePage;

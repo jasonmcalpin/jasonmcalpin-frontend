@@ -31,7 +31,7 @@ const ProjectPage = () => {
         
         // Try to find a close match
         const closeMatch = projects.find(p => 
-          p.slug.includes(slug || '') || (slug || '').includes(p.slug)
+          p.slug?.includes(slug || '') || (slug || '').includes(p.slug || '')
         );
         if (closeMatch) {
           console.log('Found close match:', closeMatch);
