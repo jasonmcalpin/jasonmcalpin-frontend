@@ -1,26 +1,26 @@
 [
   {
     "id": "1",
-    "title": "Building a Website with React and Redux",
-    "slug": "building-a-website-with-react-and-redux",
-    "excerpt": "Learn how to build a modern website using React and Redux for state management.",
-    "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam euismod, nisl eget aliquam ultricies, nunc nisl aliquet nunc, quis aliquam nisl nunc quis nisl. Nullam euismod, nisl eget aliquam ultricies, nunc nisl aliquet nunc, quis aliquam nisl nunc quis nisl.",
+    "title": "Champion your team",
+    "slug": "champion-your-team",
+    "excerpt": "The importance of having pride in your teams accomplishments.",
+    "content": "# Champion your team\n\n## The importance of having pride in your teams accomplishments.\n\n### Why Team Pride Matters\n\nIn the fast-paced world of software development, it's easy to get caught up in the day-to-day grind and forget to celebrate the wins. However, taking the time to acknowledge and appreciate your team's accomplishments is crucial for maintaining morale and motivation. When team members feel valued and recognized for their hard work, they are more likely to stay engaged and committed to the project.\n\n### Building a Culture of Recognition\n\nCreating a culture of recognition within your team involves regularly acknowledging individual and collective achievements. This can be done through team meetings, shout-outs in group chats, or even small rewards for reaching milestones. By fostering an environment where everyone feels appreciated, you can boost team morale and encourage continued success.",
     "imageUrl": "/assets/images/bytes/react-redux.jpg",
     "author": "Jason McAlpin",
     "date": "2025-03-15",
-    "tags": ["React", "Redux", "Web Development"],
+    "tags": ["Teamwork", "Leadership", "Motivation"],
     "readingTime": 8
   },
   {
     "id": "2",
-    "title": "Creating a Game with React",
-    "slug": "creating-a-game-with-react",
-    "excerpt": "A step-by-step guide to creating an interactive game using React and modern web technologies.",
-    "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam euismod, nisl eget aliquam ultricies, nunc nisl aliquet nunc, quis aliquam nisl nunc quis nisl. Nullam euismod, nisl eget aliquam ultricies, nunc nisl aliquet nunc, quis aliquam nisl nunc quis nisl.",
+    "title": "Don't rush",
+    "slug": "dont-rush",
+    "excerpt": "There is a saying that slow is steady and steady is fast.",
+    "content": "# Don't rush\n\n## There is a saying that slow is steady and steady is fast.\n\n### The Importance of Taking Your Time\n\nIn the world of software development, it's easy to get caught up in the rush to meet deadlines and deliver results. However, taking the time to do things right is crucial for long-term success. Rushing through tasks can lead to mistakes, technical debt, and ultimately, a lower quality product.\n\n### Embracing a Steady Approach\n\nInstead of rushing, focus on a steady and methodical approach to your work. This means prioritizing quality over speed and ensuring that each task is completed thoroughly before moving on to the next. By doing so, you can reduce the likelihood of errors and create a more robust and maintainable codebase.",
     "imageUrl": "/assets/images/bytes/react-game.jpg",
     "author": "Jason McAlpin",
     "date": "2025-02-28",
-    "tags": ["React", "Game Development", "JavaScript"],
+    "tags": ["Productivity", "Quality", "Development"],
     "readingTime": 12
   },
   {
@@ -187,5 +187,65 @@
     "date": "2025-04-05",
     "tags": ["JavaScript", "Programming", "Web Development"],
     "readingTime": 5
+  },
+  {
+    "id": "6",
+    "title": "Be Micro Ambitious",
+    "slug": "be-micro-ambitious",
+    "excerpt": "Its not about dreams but puttng your head down and working with pride on whats in front of you.",
+    "content": "# Be Micro Ambitious\n\n## Its not about dreams but puttng your head down and working with pride on whats in front of you.\n\n### The Power of Micro Ambition\n\nYou never want to be so focused on the work that you miss the next worthy persuit appearing on the periphery.",
+    "imageUrl": "/assets/images/bytes/react-hooks.jpg",
+    "author": "Jason McAlpin",
+    "date": "2025-05-10",
+    "tags": ["Goals", "Hooks", "Development"],
+    "readingTime": 7
+  },
+  {
+    "id": "7",
+    "title": "Always Be Learning",
+    "slug": "always-be-learning",
+    "excerpt": "The importance of continuous learning in the tech industry.",
+    "content": "# Always Be Learning\n\n## The importance of continuous learning in the tech industry.\n\n### Why Learning is Key\n\nIn the fast-paced world of technology, staying updated with the latest trends and tools is crucial for success. Continuous learning not only enhances your skills but also keeps you relevant in a competitive job market.",
+    "imageUrl": "/assets/images/bytes/react-hooks.jpg",
+    "author": "Jason McAlpin",
+    "date": "2025-06-15",
+    "tags": ["Learning", "Development", "Career"],
+    "readingTime": 6
+  },
+  {
+    "id": "8",
+    "title":"Senior Software Engineering and the team",
+    "slug":"senior-software-engineering-and-the-team",
+    "excerpt":"The importance of backing your team in software engineering.",
+    "content":"# Senior Software Engineering and the team\n\n## The importance of backing your team in software engineering.\n\n### Why Team Support Matters\n\nIn software engineering, collaboration and support within a team are essential for success. A strong team dynamic fosters innovation, improves problem-solving, and enhances overall productivity. As the lead it's important to back your team and provide the necessary resources and support to help them succeed.\n\n### Building a Supportive Environment\n\nCreating a culture of support within your team involves open communication, trust, and shared goals. Encourage team members to share their ideas, ask questions, and seek help when needed. This collaborative environment not only boosts morale but also leads to better outcomes for projects. Always always always listen to your team and their ideas. I never let pride get in the way of a good idea. Sometimes that junior dev has a solution that is better than yours. Don't be afraid to listen to them and give them the credit they deserve.\n\n### Conclusion\n\nIn conclusion, being a senior software engineer is not just about technical skills; it's also about fostering a supportive team environment. By backing your team and promoting collaboration, you can achieve greater success in your projects and create a positive work culture.",
+    "imageUrl": "/assets/images/bytes/react-hooks.jpg",
+    "author": "Jason McAlpin",
+    "date": "2025-07-20",
+    "tags": ["Teamwork", "Software Engineering", "Leadership"],
+    "readingTime": 8
+  },
+  {
+    "id": "9",
+    "title": "The Importance of Code Reviews",
+    "slug": "the-importance-of-code-reviews",
+    "excerpt": "Why code reviews are essential for software quality.",
+    "content": "# The Importance of Code Reviews\n\n## Why code reviews are essential for software quality.\n\n### Benefits of Code Reviews\n\nCode reviews are a critical part of the software development process. They help identify bugs, improve code quality, and ensure that best practices are followed. By having another set of eyes on your code, you can catch potential issues before they become problems.",
+    "imageUrl": "/assets/images/bytes/react-hooks.jpg",
+    "author": "Jason McAlpin",
+    "date": "2025-08-25",
+    "tags": ["Code Review", "Quality Assurance", "Development"],
+    "readingTime": 7
+  },
+  {
+    "id": "10",
+    "title": "Don't skip the foundation",
+    "slug": "dont-skip-the-foundations",
+    "excerpt": "The importance of understanding root languages before jumping into frameworks.",
+    "content": "# Don't skip the foundation\n\n## The importance of understanding root languages before jumping into frameworks.\n\n### Why Foundations Matter\n\nIn the world of web development, it's easy to get caught up in the latest frameworks and libraries. However, having a solid understanding of the foundational languages—HTML, CSS, and JavaScript—is crucial for long-term success. These languages form the backbone of web development, and without a strong grasp of them, you may struggle to fully utilize frameworks like React or Angular.\n\n### Building a Strong Foundation\n\nInvesting time in learning the fundamentals will pay off in the long run. You'll find it easier to troubleshoot issues, understand how frameworks work under the hood, and create more efficient code. So before diving headfirst into the latest trends, take a step back and ensure you have a solid foundation in place.",
+    "imageUrl": "/assets/images/bytes/react-hooks.jpg",
+    "author": "Jason McAlpin",
+    "date": "2025-09-30",
+    "tags": ["Foundations", "Development", "JavaScript"],
+    "readingTime": 9
   }
-]
+  ]

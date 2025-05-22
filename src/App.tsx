@@ -18,6 +18,7 @@ const Projects = lazy(() => import('./pages/projects'));
 const Bytes = lazy(() => import('./pages/bytes'));
 const BytePage = lazy(() => import('./pages/bytes/byte'));
 const ProjectPage = lazy(() => import('./pages/projects/project'));
+const NotFound = lazy(() => import('./pages/notFound'));
 
 // Game components
 const IntroScreen = lazy(() => import('./components/survival-game/IntroScreen'));
@@ -78,6 +79,7 @@ function App() {
                   <Route path="/projects/route-66/faction-win" element={<FactionWinScreen />} />
                   <Route path="/projects/route-66/win" element={<WinScreen />} />
                   <Route path="/privacy-policy" element={<Privacy />} />
+                  <Route path="*" element={<NotFound />} />
                 </Routes>
               </Suspense>
               </AnimatePresence>

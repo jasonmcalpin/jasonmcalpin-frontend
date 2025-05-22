@@ -11,14 +11,10 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "security-check": "npm audit --audit-level=moderate",
-    "security-fix": "npm audit fix",
-    "preinstall": "npx npm-force-resolutions"
-  },
-  "resolutions": {
-    "minimist": ">=1.2.6",
-    "glob-parent": ">=5.1.2"
+    "security-fix": "npm audit fix"
   },
   "dependencies": {
+    "@iarna/toml": "^2.2.5",
     "@reduxjs/toolkit": "^2.7.0",
     "@tailwindcss/vite": "^4.1.4",
     "framer-motion": "^12.7.4",
@@ -32,7 +28,8 @@
     "react-swipeable": "^7.0.2",
     "react-syntax-highlighter": "^15.6.1",
     "remark-gfm": "^4.0.1",
-    "sass": "^1.87.0"
+    "sass": "^1.87.0",
+    "toml-j0.4": "^1.1.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.22.0",
@@ -40,6 +37,7 @@
     "@tailwindcss/typography": "^0.5.16",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.3.0",
+    "@types/iarna__toml": "^2.0.5",
     "@types/jest": "^29.5.14",
     "@types/react": "^19.0.10",
     "@types/react-dom": "^19.0.4",
@@ -61,7 +59,6 @@
     "typescript": "~5.7.2",
     "typescript-eslint": "^8.26.1",
     "vite": "^6.3.1",
-    "vite-plugin-compression": "^0.5.1",
-    "vite-plugin-imagemin": "^0.6.1"
+    "vite-plugin-compression": "^0.5.1"
   }
 }
