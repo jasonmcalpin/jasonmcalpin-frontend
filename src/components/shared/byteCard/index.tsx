@@ -34,6 +34,8 @@ const ByteCard: React.FC<ByteCardProps> = ({ byte, index }) => {
         y: -10,
         transition: { duration: 0.3 }
       }}
+      role="article"
+      aria-labelledby={`byte-title-${byte.id}`}
     >
       <div className="byte-card__image-container">
         <OptimizedImage 
@@ -45,17 +47,17 @@ const ByteCard: React.FC<ByteCardProps> = ({ byte, index }) => {
       </div>
       
       <div className="byte-card__content">
-        <div className="byte-card__meta">
-          <span className="byte-card__date">{formatDate(byte.date)}</span>
-          <span className="byte-card__reading-time">{byte.readingTime} min read</span>
+        <div className="byte-card__meta" aria-label="Article metadata">
+          <span className="byte-card__date" aria-label="Publication date">{formatDate(byte.date)}</span>
+          <span className="byte-card__reading-time" aria-label="Reading time">{byte.readingTime} min read</span>
         </div>
         
-        <h3 className="byte-card__title">{byte.title}</h3>
+        <h3 id={`byte-title-${byte.id}`} className="byte-card__title">{byte.title}</h3>
         <p className="byte-card__excerpt">{byte.excerpt}</p>
         
-        <div className="byte-card__tags">
+        <div className="byte-card__tags" role="list" aria-label="Article tags">
           {byte.tags.map((tag, i) => (
-            <span key={i} className="byte-card__tag">
+            <span key={i} className="byte-card__tag" role="listitem">
               {tag}
             </span>
           ))}
@@ -66,7 +68,7 @@ const ByteCard: React.FC<ByteCardProps> = ({ byte, index }) => {
           className="byte-card__link"
           aria-label={`Read ${byte.title}`}
         >
-          Read Byte
+          Take A Byte
         </Link>
       </div>
     </motion.div>

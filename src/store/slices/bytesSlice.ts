@@ -32,6 +32,22 @@ const initialState: BytesState = {
 };
 
 
+// Define a type for the parsed TOML data structure
+interface TomlData {
+  articles: Array<{
+    id: string;
+    title: string;
+    slug: string;
+    excerpt: string;
+    date: string;
+    imageUrl: string;
+    author: string;
+    tags: string[];
+    readingTime: number;
+    content: string;
+  }>;
+}
+
 export const fetchBytes = createAsyncThunk(
   'bytes/fetchBytes',
   async (_, { rejectWithValue }) => {
@@ -46,9 +62,10 @@ export const fetchBytes = createAsyncThunk(
         const text = await response.text();
         console.log('TOML content preview:', text.substring(0, 200) + '...');
         
-        let parsedData;
+        let parsedData: TomlData;
         try {
-          parsedData = toml.parse(text) as { articles: Array<Omit<Byte, 'date'> & { date: string }> };
+          // Cast the parsed result to our TomlData type
+          parsedData = toml.parse(text) as unknown as TomlData;
         } catch (parseError) {
           console.error('TOML parse error details:', parseError);
           throw parseError;
@@ -60,26 +77,54 @@ export const fetchBytes = createAsyncThunk(
           throw new Error('Invalid TOML structure: articles is not an array');
         }
         
-        const bytes = parsedData.articles.map(article => ({
-          ...article,
-          // Ensure date is in the correct string format
-          date: String(article.date),
-        }));
+        const bytes = parsedData.articles.map(article => {
+          // Handle content field - ensure it's properly formatted
+          let content = article.content;
+          
+          // If content is a multiline string with triple quotes in TOML,
+          // it will be parsed as a string with newlines
+          if (typeof content === 'string' && content.includes('\n')) {
+            // For consistency with JSON format, we could either:
+            // 1. Keep it as a string (current behavior)
+            // 2. Split it into an array of lines for article #5 compatibility
+            // We'll keep it as a string for most articles
+            content = content.trim();
+          }
+          
+          return {
+            id: article.id,
+            title: article.title,
+            slug: article.slug,
+            excerpt: article.excerpt,
+            content: content,
+            imageUrl: article.imageUrl,
+            author: article.author,
+            date: String(article.date),
+            tags: Array.isArray(article.tags) ? article.tags : [],
+            readingTime: Number(article.readingTime)
+          };
+        });
         
         console.log('Fetched bytes from TOML:', bytes);
         return bytes as Byte[];
       } catch (tomlError) {
+        // Log detailed error for debugging but don't expose in UI
         console.error('Error fetching bytes from TOML:', tomlError);
         
         // Fall back to JSON if TOML parsing fails
         console.log('Falling back to JSON...');
-        const jsonResponse = await fetch('/data/bytes.json');
-        if (!jsonResponse.ok) {
-          throw new Error('Failed to fetch bytes from both TOML and JSON');
+        try {
+          const jsonResponse = await fetch('/data/bytes.json');
+          if (!jsonResponse.ok) {
+            throw new Error(`Failed to fetch JSON: ${jsonResponse.status} ${jsonResponse.statusText}`);
+          }
+          const data = await jsonResponse.json();
+          console.log('Fetched bytes from JSON fallback:', data);
+          return data as Byte[];
+        } catch (jsonError) {
+          console.error('Error fetching bytes from JSON fallback:', jsonError);
+          throw new Error('Unable to load content. Please try again later.');
         }
-        const data = await jsonResponse.json();
-        console.log('Fetched bytes from JSON fallback:', data);
-        return data as Byte[];
       }
     } catch (error) {
       console.error('Error fetching bytes:', error);

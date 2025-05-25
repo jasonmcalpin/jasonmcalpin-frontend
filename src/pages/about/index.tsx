@@ -259,9 +259,9 @@ const About = () => {
             
             <motion.div className="about-intro__image-container" variants={fadeInUp}>
               <div className="about-intro__image">
-                {/* Placeholder for profile image */}
+                
                 <div className="about-intro__image-placeholder">
-                  <span>JM</span>
+                  
                 </div>
               </div>
             </motion.div>

@@ -24,8 +24,8 @@ SyntaxHighlighter.registerLanguage('scss', scss);
 SyntaxHighlighter.registerLanguage('bash', bash);
 SyntaxHighlighter.registerLanguage('shell', bash);
 SyntaxHighlighter.registerLanguage('json', json);
-import { useAppSelector } from '../../hooks/useAppStore';
-import { Byte } from '../../store/slices/bytesSlice';
+import { useAppSelector, useAppDispatch } from '../../hooks/useAppStore';
+import { Byte, fetchBytes } from '../../store/slices/bytesSlice';
 import SEO from '../../components/shared/SEO';
 import { getByteSchema } from '../../utils/schema';
 import { fadeInUp } from '../../utils/animations';
@@ -34,31 +34,44 @@ import './styles.scss';
 const BytePage = () => {
   const { slug } = useParams<{ slug: string }>();
   const navigate = useNavigate();
-  const { bytes } = useAppSelector((state) => state.bytes);
+  const dispatch = useAppDispatch();
+  const { bytes, isLoading: isBytesLoading } = useAppSelector((state) => state.bytes);
   const [byte, setByte] = useState<Byte | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
+  // Fetch bytes if they're not already loaded
   useEffect(() => {
-    const foundByte = bytes.find((a) => a.slug === slug);
-    
-    if (foundByte) {
-      setByte(foundByte);
-      setIsLoading(false);
-    } else {
-      if (bytes.length > 0) {
-        navigate('/bytes');
-        
-        // Try to find a close match
-        const closeMatch = bytes.find(a => 
-          a.slug.includes(slug || '') || (slug || '').includes(a.slug)
-        );
-        if (closeMatch) {
-          setByte(closeMatch);
-          setIsLoading(false);
+    if (bytes.length === 0) {
+      dispatch(fetchBytes());
+    }
+  }, [dispatch, bytes.length]);
+
+  useEffect(() => {
+    // Only proceed if bytes are loaded or loading has completed
+    if (bytes.length > 0 || !isBytesLoading) {
+      const foundByte = bytes.find((a) => a.slug === slug);
+      
+      if (foundByte) {
+        setByte(foundByte);
+        setIsLoading(false);
+      } else {
+        if (bytes.length > 0) {
+          // Try to find a close match
+          const closeMatch = bytes.find(a => 
+            a.slug.includes(slug || '') || (slug || '').includes(a.slug)
+          );
+          
+          if (closeMatch) {
+            setByte(closeMatch);
+            setIsLoading(false);
+          } else {
+            // No match found, navigate back to bytes list
+            navigate('/bytes');
+          }
         }
       }
     }
-  }, [bytes, slug, navigate]);
+  }, [bytes, slug, navigate, isBytesLoading]);
 
   const formatDate = (dateString: string) => {
     const options: Intl.DateTimeFormatOptions = { year: 'numeric', month: 'long', day: 'numeric' };
@@ -67,10 +80,11 @@ const BytePage = () => {
 
   if (isLoading) {
     return (
-      <div className="byte-page">
+      <div className="byte-page" role="region" aria-label="Loading byte content">
         <div className="section-container">
           <div className="byte-page__loading">
-            <p>Loading byte...</p>
+            <p aria-live="polite">Loading byte...</p>
+            <div className="loading-spinner" aria-hidden="true"></div>
           </div>
         </div>
       </div>
@@ -79,7 +93,7 @@ const BytePage = () => {
 
   if (!byte) {
     return (
-      <div className="byte-page">
+      <div className="byte-page" role="region" aria-label="Byte not found">
         <div className="section-container">
           <div className="byte-page__not-found">
             <h1>Byte Not Found</h1>
@@ -87,6 +101,7 @@ const BytePage = () => {
             <button 
               className="btn btn-primary"
               onClick={() => navigate('/bytes')}
+              aria-label="Return to bytes listing page"
             >
               Back to Bytes
             </button>
@@ -123,6 +138,7 @@ const BytePage = () => {
       <section className="byte-page__hero">
         <div className="byte-page__hero-container">
           <motion.h1 
+            id="byte-title"
             className="byte-page__title"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -136,12 +152,13 @@ const BytePage = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
+            aria-label="Article metadata"
           >
             <div className="byte-page__author-date">
-              <span className="byte-page__author">{byte.author}</span>
-              <span className="byte-page__date">{formatDate(byte.date)}</span>
+              <span className="byte-page__author" aria-label="Author">{byte.author}</span>
+              <span className="byte-page__date" aria-label="Publication date">{formatDate(byte.date)}</span>
             </div>
-            <span className="byte-page__reading-time">{byte.readingTime} min read</span>
+            <span className="byte-page__reading-time" aria-label="Estimated reading time">{byte.readingTime} min read</span>
           </motion.div>
           
           <motion.div 
@@ -149,9 +166,15 @@ const BytePage = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
+            role="list"
+            aria-label="Article tags"
           >
             {byte.tags.map((tag, i) => (
-              <span key={i} className="byte-page__tag">
+              <span 
+                key={i} 
+                className="byte-page__tag"
+                role="listitem"
+              >
                 {tag}
               </span>
             ))}
@@ -159,7 +182,7 @@ const BytePage = () => {
         </div>
       </section>
       
-      <section className="byte-page__content">
+      <section className="byte-page__content" role="article" aria-labelledby="byte-title">
         <div className="section-container">
           {byte.imageUrl && (
             <motion.div 
@@ -170,11 +193,20 @@ const BytePage = () => {
             >
               <img 
                 src={byte.imageUrl} 
-                alt={byte.title} 
+                alt={`Featured image for article: ${byte.title}`} 
                 className="byte-page__image"
                 onError={(e) => {
                   const target = e.target as HTMLImageElement;
                   target.style.display = 'none';
+                  // Add an aria-hidden element to indicate the image failed to load
+                  const parent = target.parentElement;
+                  if (parent) {
+                    const errorMessage = document.createElement('p');
+                    errorMessage.textContent = 'Image failed to load';
+                    errorMessage.className = 'image-error';
+                    errorMessage.setAttribute('aria-live', 'polite');
+                    parent.appendChild(errorMessage);
+                  }
                 }}
               />
             </motion.div>
@@ -189,6 +221,9 @@ const BytePage = () => {
           >
             <ReactMarkdown 
               remarkPlugins={[remarkGfm]}
+              // Security: Disable HTML to prevent XSS attacks
+              disallowedElements={['script']}
+              unwrapDisallowed={true}
               components={{
                 code({className, children, ...props}) {
                   const match = /language-(\w+)/.exec(className || '');
@@ -208,7 +243,15 @@ const BytePage = () => {
                       {children}
                     </code>
                   );
-                }
+                },
+                // Security: Ensure links open in new tab with security attributes
+                a: ({...props}) => (
+                  <a 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    {...props}
+                  />
+                )
               }}
             >
               {Array.isArray(byte.content) ? byte.content.join('\n') : byte.content}
@@ -219,7 +262,7 @@ const BytePage = () => {
       
       
       {/* Back to Bytes Button */}
-      <section className="byte-page__footer">
+      <section className="byte-page__footer" role="navigation" aria-label="Byte navigation">
         <div className="section-container">
           <motion.div 
             className="byte-page__navigation"
@@ -230,6 +273,7 @@ const BytePage = () => {
             <button 
               className="btn btn-primary"
               onClick={() => navigate('/bytes')}
+              aria-label="Return to bytes listing page"
             >
               Back to Bytes
             </button>

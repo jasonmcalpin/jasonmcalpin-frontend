@@ -54,11 +54,13 @@ const OptimizedImage = ({
     return (
       <div 
         className={`optimized-image optimized-image--error ${className}`}
-        style={{ width: width ? `${width}px` : '100%', height: height ? `${height}px` : 'auto' }}
+        style={{ width: '100%', height: '100%' }}
+        role="img"
+        aria-label={`Image failed to load: ${alt}`}
         {...props}
       >
         <div className="optimized-image__placeholder">
-          <span>{alt.charAt(0) || '?'}</span>
+          
         </div>
       </div>
     );
@@ -86,8 +88,13 @@ const OptimizedImage = ({
       />
       
       {!isLoaded && (
-        <div className="optimized-image__loading">
-          <div className="loading-spinner"></div>
+        <div 
+          className="optimized-image__loading" 
+          role="status" 
+          aria-label="Image loading"
+        >
+          <div className="loading-spinner" aria-hidden="true"></div>
+          <span className="sr-only">Loading image</span>
         </div>
       )}
     </picture>

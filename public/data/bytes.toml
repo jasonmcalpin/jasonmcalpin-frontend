@@ -4,7 +4,7 @@ title = "Champion your team"
 slug = "champion-your-team"
 excerpt = "The importance of having pride in your teams accomplishments."
 date = "2025-03-15"
-imageUrl = "/assets/images/bytes/react-redux.jpg"
+imageUrl = "/assets/images/bytes/byte5.jpg"
 author = "Jason McAlpin"
 tags = ["Teamwork", "Leadership", "Motivation"]
 readingTime = 8
@@ -28,7 +28,7 @@ title = "Don't rush"
 slug = "dont-rush"
 excerpt = "There is a saying that slow is steady and steady is fast."
 date = "2025-02-28"
-imageUrl = "/assets/images/bytes/react-game.jpg"
+imageUrl = "/assets/images/bytes/byte8.jpg"
 author = "Jason McAlpin"
 tags = ["Productivity", "Quality", "Development"]
 readingTime = 12
@@ -52,7 +52,7 @@ title = "The Power of TypeScript in Modern Web Development"
 slug = "the-power-of-typescript-in-modern-web-development"
 excerpt = "Discover how TypeScript can improve your development workflow and reduce bugs in your applications."
 date = "2025-01-20"
-imageUrl = "/assets/images/bytes/typescript.jpg"
+imageUrl = "/assets/images/bytes/byte9.jpg"
 author = "Jason McAlpin"
 tags = ["TypeScript", "JavaScript", "Web Development"]
 readingTime = 6
@@ -111,7 +111,7 @@ title = "Optimizing Performance in Next.js Applications"
 slug = "optimizing-performance-in-nextjs-applications"
 excerpt = "Techniques to improve the performance of your Next applications for a better user experience."
 date = "2024-12-10"
-imageUrl = "/assets/images/bytes/react-performance.jpg"
+imageUrl = "/assets/images/bytes/byte10.jpg"
 author = "Jason McAlpin"
 tags = ["Next.js", "Performance", "Optimization"]
 readingTime = 10
@@ -173,7 +173,7 @@ title = "Basic JavaScript Code Examples to Get You Started"
 slug = "basic-javascript-code-examples-to-get-you-started"
 excerpt = "Learn JavaScript with these practical code examples."
 date = "2025-04-05"
-imageUrl = "/assets/images/bytes/javascript.jpg"
+imageUrl = "/assets/images/bytes/byte11.jpg"
 author = "Jason McAlpin"
 tags = ["JavaScript", "Programming", "Web Development"]
 readingTime = 5
@@ -314,7 +314,7 @@ title = "Be Micro Ambitious"
 slug = "be-micro-ambitious"
 excerpt = "Its not about dreams but puttng your head down and working with pride on whats in front of you."
 date = "2025-05-10"
-imageUrl = "/assets/images/bytes/react-hooks.jpg"
+imageUrl = "/assets/images/bytes/byte2.jpg"
 author = "Jason McAlpin"
 tags = ["Goals", "Hooks", "Development"]
 readingTime = 7
@@ -334,7 +334,7 @@ title = "Always Be Learning"
 slug = "always-be-learning"
 excerpt = "The importance of continuous learning in the tech industry."
 date = "2025-06-15"
-imageUrl = "/assets/images/bytes/react-hooks.jpg"
+imageUrl = "/assets/images/bytes/byte3.jpg"
 author = "Jason McAlpin"
 tags = ["Learning", "Development", "Career"]
 readingTime = 6
@@ -354,7 +354,7 @@ title = "Senior Software Engineering and the team"
 slug = "senior-software-engineering-and-the-team"
 excerpt = "The importance of backing your team in software engineering."
 date = "2025-07-20"
-imageUrl = "/assets/images/bytes/react-hooks.jpg"
+imageUrl = "/assets/images/bytes/byte4.jpg"
 author = "Jason McAlpin"
 tags = ["Teamwork", "Software Engineering", "Leadership"]
 readingTime = 8
@@ -382,7 +382,7 @@ title = "The Importance of Code Reviews"
 slug = "the-importance-of-code-reviews"
 excerpt = "Why code reviews are essential for software quality."
 date = "2025-08-25"
-imageUrl = "/assets/images/bytes/react-hooks.jpg"
+imageUrl = "/assets/images/bytes/byte6.jpg"
 author = "Jason McAlpin"
 tags = ["Code Review", "Quality Assurance", "Development"]
 readingTime = 7
@@ -402,7 +402,7 @@ title = "Don't skip the foundation"
 slug = "dont-skip-the-foundations"
 excerpt = "The importance of understanding root languages before jumping into frameworks."
 date = "2025-09-30"
-imageUrl = "/assets/images/bytes/react-hooks.jpg"
+imageUrl = "/assets/images/bytes/byte7.jpg"
 author = "Jason McAlpin"
 tags = ["Foundations", "Development", "JavaScript"]
 readingTime = 9
@@ -419,3 +419,439 @@ In the world of web development, it's easy to get caught up in the latest framew
 
 Investing time in learning the fundamentals will pay off in the long run. You'll find it easier to troubleshoot issues, understand how frameworks work under the hood, and create more efficient code. So before diving headfirst into the latest trends, take a step back and ensure you have a solid foundation in place.
 """
+
+
+[[articles]]
+id = "11"
+title = "Service Oriented Architecture"
+slug = "service-oriented-architecture"
+excerpt = "Understanding the principles of service-oriented architecture."
+date = "2025-10-15"
+imageUrl = "/assets/images/bytes/byte12.jpg"
+author = "Jason McAlpin"
+tags = ["Architecture", "Development", "Microservices"]
+readingTime = 10
+content = """
+# Service Oriented Architecture (SOA)
+
+Service Oriented Architecture (SOA) is a software design approach that structures applications as collections of loosely coupled, independently deployable services that communicate with each other through standardized protocols and interfaces.
+
+## Key Characteristics of SOA
+
+- **Service Independence**: Services are self-contained units that encapsulate specific business functionality
+- **Loose Coupling**: Services interact through well-defined interfaces with minimal dependencies
+- **Reusability**: Services can be reused across different applications
+- **Standardized Communication**: Services typically communicate via protocols like SOAP, REST, or message queues
+- **Business-Aligned**: Services are designed around business capabilities rather than technical functions
+
+## Benefits of SOA
+
+- Improved flexibility and scalability
+- Easier maintenance as services can be updated independently
+- Better alignment between IT and business needs
+- Enhanced reuse of software components
+- Simplified integration with legacy systems and external partners
+
+## Common Patterns in SOA
+
+- Service registry/discovery mechanisms
+- Enterprise Service Bus (ESB) for message routing
+- Orchestration and choreography for service coordination
+- API gateways for managing service access
+
+SOA laid important groundwork for modern architectural approaches like microservices, though microservices generally promote even greater decoupling and independence than traditional SOA implementations.
+"""
+
+[[articles]]
+id = "12"
+title = "Microservices Architecture"
+slug = "microservices-architecture"
+excerpt = "Exploring the principles and benefits of microservices architecture."
+date = "2025-4-01"
+imageUrl = "/assets/images/bytes/byte3.jpg"
+author = "Jason McAlpin"
+tags = ["Microservices", "Architecture", "Development"]
+readingTime = 11
+content = """
+# Microservices Architecture
+
+Microservices is an architectural approach that builds applications as a suite of small, independent services that communicate over well-defined APIs. Each microservice is focused on a single business capability and can be developed, deployed, and scaled independently.
+
+## Key Characteristics of Microservices
+
+- **Single Responsibility**: Each service handles one specific business function
+- **Independent Deployment**: Services can be deployed without affecting others
+- **Decentralized**: Each service manages its own data and business logic
+- **Technology Agnostic**: Different services can use different programming languages and databases
+- **Fault Isolation**: Failure in one service doesn't bring down the entire system
+- **Team Ownership**: Small teams can own and manage individual services
+
+## Benefits of Microservices
+
+- **Scalability**: Scale individual services based on demand
+- **Development Speed**: Teams can work independently and deploy faster
+- **Technology Flexibility**: Choose the best tools for each service
+- **Resilience**: Better fault tolerance and system reliability
+- **Easier Testing**: Smaller codebases are easier to test and understand
+
+## Example: E-commerce Platform
+
+Consider an e-commerce application broken down into microservices:
+
+### User Service
+- **Purpose**: Manages user accounts, authentication, and profiles
+- **Responsibilities**: User registration, login, profile updates, password management
+- **Database**: User database with tables for accounts, preferences, authentication tokens
+- **API Endpoints**: 
+  - `POST /users/register`
+  - `POST /users/login`
+  - `GET /users/{id}/profile`
+  - `PUT /users/{id}/profile`
+
+### Product Catalog Service
+- **Purpose**: Manages product information and inventory
+- **Responsibilities**: Product listings, search, categories, inventory tracking
+- **Database**: Product database with items, categories, stock levels
+- **API Endpoints**:
+  - `GET /products`
+  - `GET /products/{id}`
+  - `POST /products/search`
+  - `PUT /products/{id}/inventory`
+
+### Order Service
+- **Purpose**: Handles order processing and management
+- **Responsibilities**: Order creation, status tracking, order history
+- **Database**: Orders database with order details, line items, status
+- **API Endpoints**:
+  - `POST /orders`
+  - `GET /orders/{id}`
+  - `GET /users/{userId}/orders`
+  - `PUT /orders/{id}/status`
+
+### Payment Service
+- **Purpose**: Processes payments and manages payment methods
+- **Responsibilities**: Payment processing, refunds, payment method storage
+- **Database**: Payment transactions, saved payment methods
+- **API Endpoints**:
+  - `POST /payments/process`
+  - `POST /payments/refund`
+  - `GET /users/{userId}/payment-methods`
+
+## How They Work Together
+
+When a customer places an order:
+
+1. **Order Service** receives the order request
+2. **Order Service** calls **Product Catalog Service** to verify product availability
+3. **Order Service** calls **Payment Service** to process payment
+4. **Order Service** updates order status and calls **User Service** to send confirmation
+5. Each service operates independently and can scale based on demand
+
+## Challenges of Microservices
+
+- **Complexity**: Managing distributed systems is more complex
+- **Network Latency**: Service-to-service communication overhead
+- **Data Consistency**: Managing transactions across multiple services
+- **Monitoring**: Need sophisticated monitoring and logging
+- **Testing**: Integration testing becomes more challenging
+
+Microservices work best for complex applications with multiple teams, while simpler applications might benefit more from monolithic architectures.
+"""
+
+[[articles]]
+id = "13"
+title = "Sockets in software development"
+slug = "sockets-in-software-development"
+excerpt = "Understanding the role of sockets in software development."
+date = "2025-5-01"
+imageUrl = "/assets/images/bytes/byte4.jpg"
+author = "Jason McAlpin"
+tags = ["Sockets", "Networking", "Development"]
+readingTime = 8
+content = """
+# Sockets in Software Development
+
+A socket is a communication endpoint that allows two programs to exchange data over a network or within the same machine. Think of it as a virtual "plug" that connects two applications so they can send and receive information in real-time.
+
+## How Sockets Work
+
+Sockets enable bidirectional communication between a client and server through a network protocol, most commonly TCP (Transmission Control Protocol) or UDP (User Datagram Protocol). The socket acts as an interface between the application and the network layer.
+
+## Types of Sockets
+
+**TCP Sockets (Stream Sockets)**
+- Reliable, connection-oriented communication
+- Guarantees data delivery and order
+- Used when data integrity is critical
+
+**UDP Sockets (Datagram Sockets)**
+- Faster, connectionless communication
+- No guarantee of delivery or order
+- Used when speed is more important than reliability
+
+**WebSockets**
+- Full-duplex communication over HTTP
+- Maintains persistent connection between client and server
+- Ideal for real-time web applications
+
+## Common Example: WebSockets in Chat Applications
+
+WebSockets are widely used for real-time communication in web applications. Here's how they work in a chat application:
+
+### Server-Side (Node.js with Socket.io)
+```javascript
+const io = require('socket.io')(server);
+
+io.on('connection', (socket) => {
+  console.log('User connected:', socket.id);
+  
+  // Listen for incoming messages
+  socket.on('chat message', (msg) => {
+    // Broadcast message to all connected clients
+    io.emit('chat message', {
+      id: socket.id,
+      message: msg,
+      timestamp: new Date()
+    });
+  });
+  
+  // Handle user disconnect
+  socket.on('disconnect', () => {
+    console.log('User disconnected:', socket.id);
+  });
+});
+```
+
+### Client-Side (JavaScript)
+```javascript
+const socket = io();
+
+// Send message when user submits
+document.getElementById('send-btn').onclick = () => {
+  const message = document.getElementById('message-input').value;
+  socket.emit('chat message', message);
+};
+
+// Listen for incoming messages
+socket.on('chat message', (data) => {
+  const messageElement = document.createElement('div');
+  messageElement.textContent = `${data.id}: ${data.message}`;
+  document.getElementById('messages').appendChild(messageElement);
+});
+```
+
+## Real-World Applications of Sockets
+
+**Chat Applications**
+- WhatsApp, Slack, Discord use WebSockets for instant messaging
+- Real-time message delivery without page refreshes
+
+**Online Gaming**
+- Multiplayer games use UDP sockets for fast, real-time updates
+- Player positions, actions, and game state synchronization
+
+**Live Sports/Financial Data**
+- Stock trading platforms use WebSockets for real-time price updates
+- Sports apps for live score updates
+
+**Collaborative Tools**
+- Google Docs uses WebSockets for real-time collaborative editing
+- Multiple users can edit simultaneously and see changes instantly
+
+**Live Streaming**
+- Video streaming platforms use sockets for chat features
+- Real-time viewer count and interaction
+
+## Benefits of Using Sockets
+
+- **Real-time Communication**: Instant data exchange without polling
+- **Persistent Connection**: Maintains connection for continuous communication
+- **Bidirectional**: Both client and server can initiate communication
+- **Efficient**: Lower overhead compared to traditional HTTP requests for real-time data
+
+## Socket vs HTTP Requests
+
+**Traditional HTTP**: Client requests → Server responds → Connection closes
+**Sockets**: Persistent connection → Continuous bidirectional communication
+
+Sockets are essential for any application requiring real-time, interactive communication between users or systems.
+"""
+
+[[articles]]
+id = "14"
+title = "WebSockets vs Traditional Sockets"
+slug = "websockets-vs-traditional-sockets"
+excerpt = "Understanding the differences between WebSockets and traditional sockets."
+date = "2025-6-01"
+imageUrl = "/assets/images/bytes/byte2.jpg"
+author = "Jason McAlpin"
+tags = ["WebSockets", "Sockets", "Development"]
+readingTime = 9
+content = """
+# WebSockets vs Traditional Sockets
+
+The main difference is that **WebSockets are a specific type of socket designed for web applications**, while **sockets** is the broader category that includes many different types of network communication endpoints.
+
+## Traditional Sockets (Network Sockets)
+
+**What they are:**
+- Low-level network programming interfaces
+- Direct connection between applications over TCP/UDP protocols
+- Operating system-level communication endpoints
+
+**Characteristics:**
+- Work at the transport layer (TCP/UDP)
+- Require specific ports and IP addresses
+- Need socket libraries in programming languages (like Python's `socket` module)
+- Can be blocked by firewalls and proxies
+- No built-in web browser support
+
+**Example use cases:**
+- Server-to-server communication
+- Database connections
+- File transfers (FTP)
+- Email protocols (SMTP, POP3)
+- Custom network applications
+
+## WebSockets
+
+**What they are:**
+- A specific protocol built on top of HTTP
+- Designed specifically for real-time web applications
+- Start as HTTP requests then "upgrade" to persistent connections
+
+**Characteristics:**
+- Work over HTTP (ports 80/443)
+- Native browser support through JavaScript
+- Can pass through firewalls and proxies more easily
+- Include built-in features like ping/pong for connection health
+- Support subprotocols and extensions
+
+**Example use cases:**
+- Web-based chat applications
+- Real-time dashboards
+- Online gaming in browsers
+- Live collaborative editing
+- Push notifications to web apps
+
+## Key Differences
+
+| Aspect | Traditional Sockets | WebSockets |
+|--------|-------------------|------------|
+| **Protocol** | Raw TCP/UDP | HTTP-based protocol |
+| **Browser Support** | No native support | Built into all modern browsers |
+| **Firewall/Proxy** | Often blocked | Usually passes through |
+| **Setup Complexity** | More complex | Simpler for web apps |
+| **Use Case** | Any network app | Web applications specifically |
+| **Data Format** | Raw bytes | Text/Binary with frames |
+
+## Code Comparison
+
+### Traditional Socket (Python)
+```python
+import socket
+
+# Server
+server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+server_socket.bind(('localhost', 8080))
+server_socket.listen(5)
+
+while True:
+   client_socket, address = server_socket.accept()
+   data = client_socket.recv(1024)
+   client_socket.send(b"Hello from server")
+   client_socket.close()
+```
+
+### WebSocket (JavaScript)
+
+```javascript
+// Client-side in browser
+const ws = new WebSocket('ws://localhost:8080');
+
+ws.onopen = () => {
+    ws.send('Hello from client');
+};
+
+ws.onmessage = (event) => {
+    console.log('Received:', event.data);
+};
+```
+
+### When to Use Which
+**Use Traditional Sockets when:**
+
+- Building server-to-server communication
+- Need maximum performance and control
+- Working outside of web browsers
+- Building custom network protocols
+
+**Use WebSockets when:**
+
+- Building real-time web applications
+- Need browser compatibility
+- Want easier firewall traversal
+- Building user-facing web features
+
+WebSockets are ideal for applications that require real-time communication, such as chat applications, live notifications, and collaborative tools. They provide a more efficient way to maintain a persistent connection between the client and server compared to traditional HTTP requests.
+
+## Conclusion
+Think of it this way: Traditional sockets are like direct phone lines between applications, while WebSockets are like phone calls that start by going through a web-based operator (HTTP) but then become direct connections. WebSockets are essentially traditional sockets made web-friendly with additional features for browser-based applications.
+"""
+
+[[articles]]
+id = "15"
+title = "Supervised vs. Unsupervised Learning: Two paths to AI Intelligence"
+slug = "supervised-vs-unsupervised-learning"
+excerpt = "Understanding the differences between supervised and unsupervised learning in AI."
+date = "2025-7-01"
+imageUrl = "/assets/images/bytes/byte5.jpg"
+author = "Jason McAlpin"
+tags = ["AI", "Machine Learning", "Data Science"]
+readingTime = 10
+content = """
+# Supervised vs. Unsupervised Learning: Two Paths to AI Intelligence
+
+Machine learning models learn patterns from data, but they don't all learn the same way. The two primary approaches—supervised and unsupervised learning—represent fundamentally different philosophies about how artificial intelligence should discover knowledge.
+
+## Supervised Learning: Learning with a Teacher
+
+Supervised learning resembles traditional education. Just as a student learns math by working through problems with known answers, supervised learning algorithms train on datasets where both the input and the correct output are provided. The algorithm studies these input-output pairs, gradually learning to map new inputs to accurate predictions.
+
+This approach excels at classification and prediction tasks. The algorithm can learn to recognize patterns because it receives constant feedback about whether its guesses are right or wrong. Over time, it develops the ability to make accurate predictions on new, unseen data.
+
+However, supervised learning has a significant limitation: it requires massive amounts of labeled data. Someone must manually tag thousands or millions of examples, which can be expensive and time-consuming. The model is also constrained by the quality and scope of its training labels—it cannot learn patterns that weren't represented in the labeled dataset.
+
+## Unsupervised Learning: Finding Hidden Patterns
+
+Unsupervised learning takes a more exploratory approach. These algorithms receive only input data without any labels or "correct answers." Instead of learning to predict specific outcomes, they search for hidden structures, patterns, and relationships within the data itself.
+
+This approach mirrors how humans often learn about the world—through observation and pattern recognition rather than explicit instruction. Unsupervised algorithms might discover that customers naturally group into distinct segments, or that certain features in data tend to cluster together, without being told what to look for.
+
+The strength of unsupervised learning lies in its ability to uncover unexpected insights and work with unlabeled data. Since most real-world data lacks labels, this approach can be more practical for many applications. However, it's harder to evaluate whether the discovered patterns are meaningful or useful without human interpretation.
+
+## Real-World Examples
+
+### Supervised Learning in Action:
+
+**GPT-4** and other large language models primarily use supervised learning during their initial training phase. They learn from billions of text examples where the "input" is a partial sentence and the "output" is the next word. This allows them to generate coherent text by predicting what should come next.
+
+**Netflix's recommendation algorithm** employs supervised learning by training on user ratings and viewing history. The system learns to predict which movies a user might enjoy based on their past preferences and the preferences of similar users.
+
+**Medical AI systems** like those used for radiology often rely on supervised learning. Researchers train these models on thousands of medical images that have been labeled by expert physicians, teaching the AI to identify signs of disease or abnormalities.
+
+### Unsupervised Learning Applications:
+
+**Spotify's music recommendation system** uses unsupervised learning to discover musical genres and group similar songs together. The algorithm analyzes audio features like tempo, rhythm, and melody to create clusters of similar music, even for songs that haven't been explicitly categorized.
+
+**Fraud detection systems** at banks frequently employ unsupervised learning to identify suspicious transaction patterns. Rather than relying on labeled examples of fraud (which are rare and constantly evolving), these systems learn normal spending patterns and flag transactions that deviate significantly from typical behavior.
+
+**Google's PageRank algorithm**, which powers search results, uses unsupervised learning principles to analyze the link structure of the web and determine which pages are most authoritative, without anyone manually rating the quality of billions of web pages.
+
+## The Hybrid Reality
+
+In practice, many modern AI systems combine both approaches. Large language models like GPT-4 begin with supervised learning but are then fine-tuned using reinforcement learning from human feedback—a hybrid technique. Similarly, recommendation systems might use unsupervised learning to discover user segments and then apply supervised learning to predict preferences within those segments.
+
+The choice between supervised and unsupervised learning depends on the available data, the specific problem, and the desired outcomes. As AI continues to evolve, the line between these approaches continues to blur, with new techniques that leverage the strengths of both methodologies to create more powerful and flexible intelligent systems.
+"""
+

@@ -44,7 +44,7 @@
   width: 100%;
   height: 100%;
   min-height: 100px;
-  background-color: var(--color-background-light);
+  background-image: linear-gradient(145deg, rgb(21, 102, 134) 0%, rgb(3, 42, 58) 100%);
   color: var(--color-text);
   font-size: 2rem;
   font-weight: bold;
@@ -52,4 +52,17 @@
 
 .optimized-image__placeholder span {
   opacity: 0.5;
+}
+
+/* Screen reader only class */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
 }

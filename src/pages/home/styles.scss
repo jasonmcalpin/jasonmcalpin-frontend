@@ -9,6 +9,15 @@
   
   &__content {
     @apply w-full md:w-1/2 mb-12 md:mb-0 md:pr-8;
+
+  }
+
+
+  @media (min-width: 768px) {
+    &__content {
+      margin: 0px 0px 0px auto;
+      max-width: 40rem;
+    }
   }
   
   &__title {

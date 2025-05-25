@@ -50,6 +50,9 @@
   
   &__image-placeholder {
     @apply w-full h-full bg-primary flex items-center justify-center text-6xl font-heading font-bold text-white;
+    background-image: url('/assets/images/about/sammy-2023.png');
+  background-size: cover;
+  background-position: center;
   }
 }
 
