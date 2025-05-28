@@ -1,4 +1,5 @@
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
+import { dataService } from '../../services/dataService';
 
 export interface Project {
   id: string;
@@ -32,16 +33,12 @@ export const fetchProjects = createAsyncThunk(
   'projects/fetchProjects',
   async (_, { rejectWithValue }) => {
     try {
-      const response = await fetch('/data/projects.json');
-      if (!response.ok) {
-        throw new Error('Failed to fetch projects');
-      }
-      const data = await response.json();
+      const data = await dataService.fetchJson<Project[]>('/data/projects.json');
       console.log('Fetched projects:', data);
-      return data as Project[];
+      return data;
     } catch (error) {
       console.error('Error fetching projects:', error);
-      return rejectWithValue(error as string);
+      return rejectWithValue((error as Error).message || 'Unknown error');
     }
   }
 );

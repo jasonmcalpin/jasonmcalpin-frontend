@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
-import toml from 'toml-j0.4';
+import { dataService } from '../../services/dataService';
 
 
 export interface Byte {
@@ -52,52 +52,34 @@ export const fetchBytes = createAsyncThunk(
   'bytes/fetchBytes',
   async (_, { rejectWithValue }) => {
     try {
-      try {
-        const response = await fetch('/data/bytes.toml');
-        if (!response.ok) {
-          throw new Error('Failed to fetch bytes from TOML');
-        }
-        
-        const text = await response.text();
-        console.log('TOML content preview:', text.substring(0, 200) + '...');
-        
-        let parsedData: TomlData;
-        try {
-          parsedData = toml.parse(text) as unknown as TomlData;
-        } catch (parseError) {
-          console.error('TOML parse error details:', parseError);
-          throw parseError;
-        }
-        
-        if (!Array.isArray(parsedData.articles)) {
-          throw new Error('Invalid TOML structure: articles is not an array');
-        }
-        
-        const bytes = parsedData.articles.map(article => {
-          let content = article.content;
-          if (typeof content === 'string' && content.includes('\n')) {
-            content = content.trim();
-          }
-          
-          return {
-            id: article.id,
-            title: article.title,
-            slug: article.slug,
-            excerpt: article.excerpt,
-            content: content,
-            imageUrl: article.imageUrl,
-            author: article.author,
-            date: String(article.date),
-            tags: Array.isArray(article.tags) ? article.tags : [],
-            readingTime: Number(article.readingTime)
-          };
-        });
-        
-        console.log('Fetched bytes from TOML:', bytes);
-        return bytes as Byte[];
-      } catch (tomlError) {
-        console.error('Error fetching bytes from TOML:', tomlError);
+      const parsedData = await dataService.fetchToml<TomlData>('/data/bytes.toml');
+      
+      if (!Array.isArray(parsedData.articles)) {
+        throw new Error('Invalid TOML structure: articles is not an array');
       }
+      
+      const bytes = parsedData.articles.map(article => {
+        let content = article.content;
+        if (typeof content === 'string' && content.includes('\n')) {
+          content = content.trim();
+        }
+        
+        return {
+          id: article.id,
+          title: article.title,
+          slug: article.slug,
+          excerpt: article.excerpt,
+          content: content,
+          imageUrl: article.imageUrl,
+          author: article.author,
+          date: String(article.date),
+          tags: Array.isArray(article.tags) ? article.tags : [],
+          readingTime: Number(article.readingTime)
+        };
+      });
+      
+      console.log('Fetched bytes from TOML:', bytes);
+      return bytes as Byte[];
     } catch (error) {
       console.error('Error fetching bytes:', error);
       return rejectWithValue((error as Error).message || 'Unknown error');
