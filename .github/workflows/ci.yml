@@ -54,7 +54,8 @@ jobs:
           overwrite: true
       
       - name: Create PR identifier file
-        run: echo "PR #${{ github.event.number }} deployed at $(date)" > dist/PR_INFO.txt
+        run: |
+          echo "PR #${{ github.event.number }} deployed at $(date)" > dist/PR_INFO.txt
           
       - name: Deploy to staging site
         uses: appleboy/scp-action@v0.1.7
@@ -115,7 +116,8 @@ jobs:
           overwrite: true
       
       - name: Create main branch identifier file
-        run: echo "Main branch deployed at $(date)" > dist/BRANCH_INFO.txt
+        run: |
+          echo "Main branch deployed at $(date)" > dist/BRANCH_INFO.txt
           
       - name: Deploy main branch to staging
         uses: appleboy/scp-action@v0.1.7
@@ -149,7 +151,8 @@ jobs:
         run: npm run build
       
       - name: Create reset identifier file
-        run: echo "Reset to main branch after PR #${{ github.event.number }} was closed without merging at $(date)" > dist/RESET_INFO.txt
+        run: |
+          echo "Reset to main branch after PR #${{ github.event.number }} was closed without merging at $(date)" > dist/RESET_INFO.txt
           
       - name: Deploy main branch to staging
         uses: appleboy/scp-action@v0.1.7
