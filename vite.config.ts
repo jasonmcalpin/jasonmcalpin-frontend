@@ -30,20 +30,16 @@ export default defineConfig({
       },
       mangle: true,
     },
-    // Configure code splitting
+    // Code splitting
     rollupOptions: {
       output: {
         manualChunks: {
           // Split React and related packages into a separate chunk
           'vendor-react': ['react', 'react-dom', 'react-router-dom'],
-          // Split Redux and related packages into a separate chunk
           'vendor-redux': ['@reduxjs/toolkit', 'react-redux'],
-          // Split UI libraries into a separate chunk
           'vendor-ui': ['framer-motion', 'react-intersection-observer'],
-          // Split markdown related packages into a separate chunk
-          'vendor-markdown': ['react-markdown', 'remark-gfm', 'react-syntax-highlighter'],
+
         },
-        // Limit chunk size
         chunkFileNames: 'assets/js/[name]-[hash].js',
         entryFileNames: 'assets/js/[name]-[hash].js',
         assetFileNames: 'assets/[ext]/[name]-[hash].[ext]',
@@ -52,6 +48,6 @@ export default defineConfig({
     // Reduce chunk size warnings threshold
     chunkSizeWarningLimit: 500,
     // Enable source maps for production
-    sourcemap: false,
+    sourcemap: true,
   },
 })
