@@ -60,15 +60,18 @@ This is the source code for Jason McAlpin's personal website, built with React, 
 
 The site uses a sophisticated deployment strategy:
 
-### Preview Deployments
+### Staging Deployments
 
 When you create a pull request to the `main` branch:
-- A preview build is automatically deployed to a temporary URL
-- The PR will be updated with a comment containing the preview URL
-- Preview URL format: `https://jasonmcalpin.com/preview/pr-{PR_NUMBER}`
-- When the PR is closed (merged or declined), the preview is automatically deleted
+- The PR build is automatically deployed to the staging site (staged.jasonmcalpin.com)
+- The PR will be updated with a comment containing the staging URL
+- A PR_INFO.txt file is added to the deployment to track which PR is currently on staging
 
-This allows you to review changes before merging to main, while keeping the preview folder clean.
+After a PR is merged to the main branch:
+- The main branch is automatically deployed to the staging site
+- A BRANCH_INFO.txt file is added to the deployment to indicate it's the main branch
+
+This allows you to review changes before merging to main. The staging site uses the root path to ensure `.htaccess` rules work correctly.
 
 ### Production Deployments
 

@@ -52,32 +52,32 @@ jobs:
           name: build-artifacts
           path: dist
           overwrite: true
+      
+      - name: Create PR identifier file
+        run: echo "PR #${{ github.event.number }} deployed at $(date)" > dist/PR_INFO.txt
           
-      - name: Deploy to preview environment
+      - name: Deploy to staging site
         uses: appleboy/scp-action@v0.1.7
         with:
-          host: ${{ secrets.FTP_HOST }}
+          host: ${{ secrets.FTP_HOST_PREVIEW }}
           username: ${{ secrets.FTP_USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          port: ${{ secrets.SSH_PORT }}
+          port: ${{ secrets.SSH_PORT || '22' }}
           source: "dist/*"
-          target: "${{ secrets.FTP_TARGET }}/preview/pr-${{ github.event.number }}"
-          
-      - name: Comment on PR with preview URL
+          target: "${{ secrets.FTP_TARGET_PREVIEW }}"
+           
+      - name: Comment on PR with staging URL
         uses: actions/github-script@v6
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            const domain = process.env.DOMAIN || 'jasonmcalpin.com';
-            const previewUrl = `https://${domain}/preview/pr-${context.issue.number}`;
+            const stagingUrl = '${{ secrets.FTP_HOST_PREVIEW }}';
             github.rest.issues.createComment({
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              body: `🚀 Preview deployment is ready! \n\n[View Preview](${previewUrl})`
+              body: `🚀 Deployed to staging! \n\n[View on Staging](${stagingUrl})`
             });
-        env:
-          DOMAIN: 'jasonmcalpin.com'  # Replace with your actual domain
 
   deploy-production:
     if: startsWith(github.ref, 'refs/tags/v')
@@ -101,16 +101,62 @@ jobs:
           source: "dist/*"
           target: ${{ secrets.FTP_TARGET }}
           
-  cleanup-preview:
-    if: github.event_name == 'pull_request' && github.event.action == 'closed'
+  # Deploy main branch to staging after PR is merged or when main is pushed
+  deploy-staging-after-merge:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    needs: build
     runs-on: ubuntu-latest
     steps:
-      - name: Remove preview deployment
-        uses: appleboy/ssh-action@v0.1.7
+      - name: Download build artifacts
+        uses: actions/download-artifact@v4
         with:
-          host: ${{ secrets.FTP_HOST }}
+          name: build-artifacts
+          path: dist
+          overwrite: true
+      
+      - name: Create main branch identifier file
+        run: echo "Main branch deployed at $(date)" > dist/BRANCH_INFO.txt
+          
+      - name: Deploy main branch to staging
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.FTP_HOST_PREVIEW }}
           username: ${{ secrets.FTP_USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          port: ${{ secrets.SSH_PORT }}
-          script: |
-            rm -rf ${{ secrets.FTP_TARGET }}/preview/pr-${{ github.event.number }}
+          port: ${{ secrets.SSH_PORT || '22' }}
+          source: "dist/*"
+          target: "${{ secrets.FTP_TARGET_PREVIEW }}"
+          
+  # Reset staging to main branch when PR is closed without merging
+  reset-staging-on-pr-close:
+    if: github.event_name == 'pull_request' && github.event.action == 'closed' && github.event.pull_request.merged == false
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout main branch
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Install dependencies
+        run: npm install --force
+        
+      - name: Build project
+        run: npm run build
+      
+      - name: Create reset identifier file
+        run: echo "Reset to main branch after PR #${{ github.event.number }} was closed without merging at $(date)" > dist/RESET_INFO.txt
+          
+      - name: Deploy main branch to staging
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.FTP_HOST_PREVIEW }}
+          username: ${{ secrets.FTP_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: ${{ secrets.SSH_PORT || '22' }}
+          source: "dist/*"
+          target: "${{ secrets.FTP_TARGET_PREVIEW }}"
