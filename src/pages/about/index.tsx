@@ -1,6 +1,9 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import { useEffect } from 'react';
 import { useScrollAnimation } from '../../hooks/useScrollAnimation';
+import { useAppDispatch, useAppSelector } from '../../hooks/useAppStore';
+import { fetchExperiences } from '../../store/slices/experienceSlice';
 import { fadeInUp, staggerContainer } from '../../utils/animations';
 import { Skill, Experience, Education, Awards } from '../../types';
 import SEO from '../../components/shared/SEO';
@@ -8,6 +11,13 @@ import { getPersonSchema } from '../../utils/schema';
 import './styles.scss';
 
 const About = () => {
+  const dispatch = useAppDispatch();
+  const { experiences }: { experiences: Experience[] } = useAppSelector((state) => state.experience);
+  
+  // Fetch experiences
+  useEffect(() => {
+    dispatch(fetchExperiences());
+  }, [dispatch]);
   const seoDescription = "Learn more about Jason McAlpin, a Full Stack Developer with expertise in React, TypeScript, Node.js, and modern web technologies. View my skills, experience, and background.";
   const personSchema = getPersonSchema();
   const [introRef, introControls] = useScrollAnimation();
@@ -70,108 +80,6 @@ const About = () => {
   { name: 'IBM Watson', level: 3, category: 'DevOps' }
 ];
   
-  const experiences: Experience[] = [
-  {
-    company: "Freelance",
-    title: "Full Stack Engineer",
-    description: "Created a Discord LLM Bot, involving a Node.js backend interacting with a Deepseek-r1 model running on Python.",
-    startDate: "2025-01",
-    endDate: "2025-05",
-    location: "Georgia, United States",
-    technologies: ["Node.js", "Python"]
-  },
-  {
-    company: "Subvrsive",
-    title: "Mobile Developer",
-    description: "Developed a cross-platform mobile app, refined styles and React-Native components to match Figma designs, and leveraged API and security experience to build the login and user profile system.",
-    startDate: "2024-10",
-    endDate: "2024-12",
-    location: "Placeholder",
-    technologies: ["React-Native", "Expo", "JWT", "REST-API", "TypeScript", "SASS"]
-  },
-  {
-    company: "IBM",
-    title: "Senior Software Developer",
-    description: "Consolidated IBM's blogs into a unified platform, created scripted tools to import bytes, built security plugins, and integrated Kubernetes, Cloudflare, and Akamai with WordPress.",
-    startDate: "2022-01",
-    endDate: "2024-10",
-    location: "New York, New York, United States",
-    technologies: ["WordPress", "PHP", "SQL", "JWT", "Docker", "Git", "SASS"]
-  },
-  {
-    company: "IBM",
-    title: "Senior Software Engineer",
-    description: "Developed a Watson-based internal sales tool, built Python tools for data import, and created APIs and front-end applications.",
-    startDate: "2022-10",
-    endDate: "2024-09",
-    location: "New York, New York, United States",
-    technologies: ["Next.js", "JWT", "REST-API", "Python", "SASS"]
-  },
-  {
-    company: "IBM",
-    title: "Senior Software Developer",
-    description: "Converted over a million records from proprietary format to SQL, built Docker infrastructure, created REST APIs and command-line tools, and developed a front-end for data access.",
-    startDate: "2023-06",
-    endDate: "2024-08",
-    location: "New York, New York, United States",
-    technologies: ["SQL", "REST-API", "Node.js", "Next.js", "Python", "Carbon Framework", "Docker", "Git"]
-  },
-  {
-    company: "Ogilvy",
-    title: "Full Stack Developer",
-    description: "Led development of various websites, tools, databases, and apps for major clients including IBM, Ford, AMEX, and others.",
-    startDate: "2014-02",
-    endDate: "2024-10",
-    location: "New York, New York, United States",
-    technologies: ["WordPress", "PHP", "JavaScript", "SQL", "Docker", "Akamai"]
-  },
-  {
-    company: "Ford Motor Company",
-    title: "Senior Software Developer",
-    description: "Implemented A/B tests, developed new car release pages, integrated Adobe Target, and optimized Brightcove video players.",
-    startDate: "2020-01",
-    endDate: "2022-10",
-    location: "New York, New York, United States",
-    technologies: ["Adobe Experience", "Adobe Target", "SASS", "Brightcove", "JavaScript"]
-  },
-  {
-    company: "The Weather Channel",
-    title: "Senior Software Developer",
-    description: "Created a natural language weather query module using IBM Watson, integrating with weather channel APIs.",
-    startDate: "2020-02",
-    endDate: "2020-04",
-    location: "New York, New York, United States",
-    technologies: ["Node.js", "IBM Watson", "JavaScript", "REST-API"]
-  },
-  {
-    company: "Avrett Free Ginsberg",
-    title: "Full Stack Developer",
-    description: "Developed websites, banners, animated promotional sites, and modernized iPhone apps using Objective-C.",
-    startDate: "2009-08",
-    endDate: "2014-01",
-    location: "New York, United States",
-    technologies: ["WordPress", "Objective-C", "Flash"]
-  },
-  {
-    company: "Artisan",
-    title: "Interactive Developer",
-    description: "Worked on front-end and back-end web development using PHP, JavaScript, ActionScript, CSS, Smarty, JQuery, and GAIA frameworks.",
-    startDate: "2009-08",
-    endDate: "2009-10",
-    location: "New York, New York, United States",
-    technologies: ["PHP", "JavaScript", "ActionScript", "CSS", "Smarty", "JQuery", "GAIA"]
-  },
-  {
-    company: "American Movie Company",
-    title: "Senior Software Engineer",
-    description: "Built websites hosted on Amazon EC2, created Ubuntu server images, and developed flash assets and WordPress environments.",
-    startDate: "2009-01",
-    endDate: "2009-02",
-    location: "New York, New York, United States",
-    technologies: ["PHP", "WordPress", "SCSS", "MySQL", "JavaScript", "Bash", "Apache"]
-  }
-];
-;
   
   const education: Education[] = [
     {
@@ -403,7 +311,7 @@ const About = () => {
                   </p>
                   
                   <div className="about-experience__technologies">
-                    {experience.technologies.map((tech, i) => (
+                    {experience.technologies.map((tech: string, i: number) => (
                       <span key={i} className="about-experience__tech-tag">
                         {tech}
                       </span>

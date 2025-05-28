@@ -1,0 +1,179 @@
+[
+  {
+    "company": "Independent Research",
+    "title": "Self-Directed Sabbatical | AI, LLMs, and Creative Coding",
+    "description": "Took a planned sabbatical to deepen my understanding of AI, large language models (LLMs), and emerging dev workflows. Engineered and deployed LLM-driven tools using LangChain, Ollama, and OpenAI APIs. Prototyped creative apps using modern stacks (Next.js, React, TypeScript, Tailwind). Explored concepts in local model hosting, prompt engineering, and dev automation. Focused on 'vibe coding' — fast iteration and experimental building to refine creativity and technical instincts.",
+    "startDate": "2025-01",
+    "endDate": "Present",
+    "location": "Georgia, United States",
+    "technologies": [
+      "LangChain",
+      "OpenAI APIs",
+      "Ollama",
+      "Next.js",
+      "React",
+      "TypeScript",
+      "Tailwind",
+      "Python",
+      "Local Model Hosting"
+    ]
+  },
+  {
+    "company": "Subvrsive",
+    "title": "Mobile Developer",
+    "description": "Developed a cross-platform mobile app, refined styles and React-Native components to match Figma designs, and leveraged API and security experience to build the login and user profile system.",
+    "startDate": "2024-10",
+    "endDate": "2024-12",
+    "location": "Placeholder",
+    "technologies": [
+      "React-Native",
+      "Expo",
+      "JWT",
+      "REST-API",
+      "TypeScript",
+      "SASS"
+    ]
+  },
+  {
+    "company": "IBM",
+    "title": "Senior Software Developer",
+    "description": "Consolidated IBM's blogs into a unified platform, created scripted tools to import bytes, built security plugins, and integrated Kubernetes, Cloudflare, and Akamai with WordPress.",
+    "startDate": "2022-01",
+    "endDate": "2024-10",
+    "location": "New York, New York, United States",
+    "technologies": [
+      "WordPress",
+      "PHP",
+      "SQL",
+      "JWT",
+      "Docker",
+      "Git",
+      "SASS"
+    ]
+  },
+  {
+    "company": "IBM",
+    "title": "Senior Software Engineer",
+    "description": "Developed a Watson-based internal sales tool, built Python tools for data import, and created APIs and front-end applications.",
+    "startDate": "2022-10",
+    "endDate": "2024-09",
+    "location": "New York, New York, United States",
+    "technologies": [
+      "Next.js",
+      "JWT",
+      "REST-API",
+      "Python",
+      "SASS"
+    ]
+  },
+  {
+    "company": "IBM",
+    "title": "Senior Software Developer",
+    "description": "Converted over a million records from proprietary format to SQL, built Docker infrastructure, created REST APIs and command-line tools, and developed a front-end for data access.",
+    "startDate": "2023-06",
+    "endDate": "2024-08",
+    "location": "New York, New York, United States",
+    "technologies": [
+      "SQL",
+      "REST-API",
+      "Node.js",
+      "Next.js",
+      "Python",
+      "Carbon Framework",
+      "Docker",
+      "Git"
+    ]
+  },
+  {
+    "company": "Ogilvy",
+    "title": "Full Stack Developer",
+    "description": "Led development of various websites, tools, databases, and apps for major clients including IBM, Ford, AMEX, and others.",
+    "startDate": "2014-02",
+    "endDate": "2024-10",
+    "location": "New York, New York, United States",
+    "technologies": [
+      "WordPress",
+      "PHP",
+      "JavaScript",
+      "SQL",
+      "Docker",
+      "Akamai"
+    ]
+  },
+  {
+    "company": "Ford Motor Company",
+    "title": "Senior Software Developer",
+    "description": "Implemented A/B tests, developed new car release pages, integrated Adobe Target, and optimized Brightcove video players.",
+    "startDate": "2020-01",
+    "endDate": "2022-10",
+    "location": "New York, New York, United States",
+    "technologies": [
+      "Adobe Experience",
+      "Adobe Target",
+      "SASS",
+      "Brightcove",
+      "JavaScript"
+    ]
+  },
+  {
+    "company": "The Weather Channel",
+    "title": "Senior Software Developer",
+    "description": "Created a natural language weather query module using IBM Watson, integrating with weather channel APIs.",
+    "startDate": "2020-02",
+    "endDate": "2020-04",
+    "location": "New York, New York, United States",
+    "technologies": [
+      "Node.js",
+      "IBM Watson",
+      "JavaScript",
+      "REST-API"
+    ]
+  },
+  {
+    "company": "Avrett Free Ginsberg",
+    "title": "Full Stack Developer",
+    "description": "Developed websites, banners, animated promotional sites, and modernized iPhone apps using Objective-C.",
+    "startDate": "2009-08",
+    "endDate": "2014-01",
+    "location": "New York, United States",
+    "technologies": [
+      "WordPress",
+      "Objective-C",
+      "Flash"
+    ]
+  },
+  {
+    "company": "Artisan",
+    "title": "Interactive Developer",
+    "description": "Worked on front-end and back-end web development using PHP, JavaScript, ActionScript, CSS, Smarty, JQuery, and GAIA frameworks.",
+    "startDate": "2009-08",
+    "endDate": "2009-10",
+    "location": "New York, New York, United States",
+    "technologies": [
+      "PHP",
+      "JavaScript",
+      "ActionScript",
+      "CSS",
+      "Smarty",
+      "JQuery",
+      "GAIA"
+    ]
+  },
+  {
+    "company": "American Movie Company",
+    "title": "Senior Software Engineer",
+    "description": "Built websites hosted on Amazon EC2, created Ubuntu server images, and developed flash assets and WordPress environments.",
+    "startDate": "2009-01",
+    "endDate": "2009-02",
+    "location": "New York, New York, United States",
+    "technologies": [
+      "PHP",
+      "WordPress",
+      "SCSS",
+      "MySQL",
+      "JavaScript",
+      "Bash",
+      "Apache"
+    ]
+  }
+]

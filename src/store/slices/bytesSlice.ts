@@ -52,7 +52,6 @@ export const fetchBytes = createAsyncThunk(
   'bytes/fetchBytes',
   async (_, { rejectWithValue }) => {
     try {
-      // Try to fetch and parse TOML first
       try {
         const response = await fetch('/data/bytes.toml');
         if (!response.ok) {
@@ -64,30 +63,19 @@ export const fetchBytes = createAsyncThunk(
         
         let parsedData: TomlData;
         try {
-          // Cast the parsed result to our TomlData type
           parsedData = toml.parse(text) as unknown as TomlData;
         } catch (parseError) {
           console.error('TOML parse error details:', parseError);
           throw parseError;
         }
         
-        // Transform the data structure to match what the app expects
-        // In TOML, the articles are in an array under the "articles" key
         if (!Array.isArray(parsedData.articles)) {
           throw new Error('Invalid TOML structure: articles is not an array');
         }
         
         const bytes = parsedData.articles.map(article => {
-          // Handle content field - ensure it's properly formatted
           let content = article.content;
-          
-          // If content is a multiline string with triple quotes in TOML,
-          // it will be parsed as a string with newlines
           if (typeof content === 'string' && content.includes('\n')) {
-            // For consistency with JSON format, we could either:
-            // 1. Keep it as a string (current behavior)
-            // 2. Split it into an array of lines for article #5 compatibility
-            // We'll keep it as a string for most articles
             content = content.trim();
           }
           
@@ -108,23 +96,7 @@ export const fetchBytes = createAsyncThunk(
         console.log('Fetched bytes from TOML:', bytes);
         return bytes as Byte[];
       } catch (tomlError) {
-        // Log detailed error for debugging but don't expose in UI
         console.error('Error fetching bytes from TOML:', tomlError);
-        
-        // Fall back to JSON if TOML parsing fails
-        console.log('Falling back to JSON...');
-        try {
-          const jsonResponse = await fetch('/data/bytes.json');
-          if (!jsonResponse.ok) {
-            throw new Error(`Failed to fetch JSON: ${jsonResponse.status} ${jsonResponse.statusText}`);
-          }
-          const data = await jsonResponse.json();
-          console.log('Fetched bytes from JSON fallback:', data);
-          return data as Byte[];
-        } catch (jsonError) {
-          console.error('Error fetching bytes from JSON fallback:', jsonError);
-          throw new Error('Unable to load content. Please try again later.');
-        }
       }
     } catch (error) {
       console.error('Error fetching bytes:', error);
@@ -157,8 +129,8 @@ export const bytesSlice = createSlice({
       })
       .addCase(fetchBytes.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.bytes = action.payload;
-        state.filteredBytes = action.payload;
+        state.bytes = action.payload ?? [];
+        state.filteredBytes = action.payload ?? [];
       })
       .addCase(fetchBytes.rejected, (state, action) => {
         state.isLoading = false;
