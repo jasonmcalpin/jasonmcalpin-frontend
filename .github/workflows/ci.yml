@@ -1,9 +1,10 @@
 # .github/workflows/ci.yml
 name: Build and Deploy to DreamHost
 
-
 on:
   push:
+    branches: [main]
+  pull_request:
     branches: [main]
 
 jobs:
@@ -19,8 +20,10 @@ jobs:
         with:
           node-version: 18
 
-      - name: Install dependencies
-        run: npm ci
+      - name: Clean install to fix Rollup native bindings
+        run: |
+          rm -rf node_modules package-lock.json
+          npm install
 
       - name: Build project
         run: npm run build
