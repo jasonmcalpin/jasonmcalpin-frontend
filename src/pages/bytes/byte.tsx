@@ -3,27 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
-import { PrismLight as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { atomDark } from 'react-syntax-highlighter/dist/esm/styles/prism';
-import jsx from 'react-syntax-highlighter/dist/esm/languages/prism/jsx';
-import javascript from 'react-syntax-highlighter/dist/esm/languages/prism/javascript';
-import typescript from 'react-syntax-highlighter/dist/esm/languages/prism/typescript';
-import css from 'react-syntax-highlighter/dist/esm/languages/prism/css';
-import scss from 'react-syntax-highlighter/dist/esm/languages/prism/scss';
-import bash from 'react-syntax-highlighter/dist/esm/languages/prism/bash';
-import json from 'react-syntax-highlighter/dist/esm/languages/prism/json';
-
-// Register languages
-SyntaxHighlighter.registerLanguage('jsx', jsx);
-SyntaxHighlighter.registerLanguage('javascript', javascript);
-SyntaxHighlighter.registerLanguage('js', javascript);
-SyntaxHighlighter.registerLanguage('typescript', typescript);
-SyntaxHighlighter.registerLanguage('ts', typescript);
-SyntaxHighlighter.registerLanguage('css', css);
-SyntaxHighlighter.registerLanguage('scss', scss);
-SyntaxHighlighter.registerLanguage('bash', bash);
-SyntaxHighlighter.registerLanguage('shell', bash);
-SyntaxHighlighter.registerLanguage('json', json);
+import { Highlight, themes } from 'prism-react-renderer';
 import { useAppSelector, useAppDispatch } from '../../hooks/useAppStore';
 import { Byte, fetchBytes } from '../../store/slices/bytesSlice';
 import SEO from '../../components/shared/SEO';
@@ -228,20 +208,36 @@ const BytePage = () => {
                 code({className, children, ...props}) {
                   const match = /language-(\w+)/.exec(className || '');
                   const isInline = !match;
-                  return !isInline ? (
-                    <SyntaxHighlighter
-                      // @ts-expect-error - Known issue with type definitions
-                      style={atomDark}
-                      language={match[1]}
-                      PreTag="div"
-                      {...props}
+                  
+                  if (isInline) {
+                    return (
+                      <code className={className} {...props}>
+                        {children}
+                      </code>
+                    );
+                  }
+                  
+                  const language = match ? match[1] : '';
+                  const code = String(children).replace(/\n$/, '');
+                  
+                  return (
+                    <Highlight
+                      theme={themes.nightOwl}
+                      code={code}
+                      language={language || 'typescript'}
                     >
-                      {String(children).replace(/\n$/, '')}
-                    </SyntaxHighlighter>
-                  ) : (
-                    <code className={className} {...props}>
-                      {children}
-                    </code>
+                      {({className, style, tokens, getLineProps, getTokenProps}) => (
+                        <pre className={className} style={{...style, padding: '1em', borderRadius: '0.5em', overflow: 'auto'}}>
+                          {tokens.map((line, i) => (
+                            <div key={i} {...getLineProps({line, key: i})}>
+                              {line.map((token, key) => (
+                                <span key={key} {...getTokenProps({token, key})} />
+                              ))}
+                            </div>
+                          ))}
+                        </pre>
+                      )}
+                    </Highlight>
                   );
                 },
                 // Security: Ensure links open in new tab with security attributes

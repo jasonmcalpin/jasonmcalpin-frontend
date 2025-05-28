@@ -20,10 +20,43 @@ updates:
     labels:
       - "security"
       - "dependencies"
-    # Set versioning strategy
-    versioning-strategy: auto
-    # Group all minor and patch updates together
+    # Set versioning strategy to maintain compatibility
+    versioning-strategy: "widen"
+    # Limit updates to minor and patch versions
+    commit-message:
+      prefix: "deps"
+      include: "scope"
+    # Specify update constraints
+    allow:
+      - dependency-type: "direct"
+    # Prevent updates to versions with known compatibility issues
+    ignore:
+      # Prevent react-helmet-async from updating to versions incompatible with React
+      - dependency-name: "react-helmet-async"
+        versions: [">=3.0.0"]
+      # Keep React versions compatible with other dependencies
+      - dependency-name: "react"
+        versions: [">=19.0.0"]
+      - dependency-name: "react-dom"
+        versions: [">=19.0.0"]
+      # Prevent major version updates for all packages (only allow minor and patch)
+      - dependency-name: "*"
+        update-types: ["version-update:semver-major"]
+    # Group related packages to ensure they're updated together
     groups:
+      react-ecosystem:
+        patterns:
+          - "react"
+          - "react-dom"
+          - "react-helmet-async"
+          - "react-router*"
+          - "react-redux"
+          - "@reduxjs/*"
+      syntax-highlighting:
+        patterns:
+          - "prism-react-renderer"
+          - "prismjs"
+          - "refractor"
       development-dependencies:
         patterns:
           - "@types/*"
@@ -31,8 +64,8 @@ updates:
           - "*eslint*"
           - "jest*"
           - "@testing-library/*"
-      production-dependencies:
+      ui-libraries:
         patterns:
-          - "react*"
-          - "@reduxjs/*"
           - "framer-motion"
+          - "@tailwindcss/*"
+          - "tailwindcss"
