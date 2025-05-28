@@ -23,7 +23,7 @@ jobs:
       - name: Clean install to fix Rollup native bindings
         run: |
           rm -rf node_modules package-lock.json
-          npm install
+          npm install --force
 
       - name: Build project
         run: npm run build
