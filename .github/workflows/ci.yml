@@ -29,11 +29,12 @@ jobs:
         run: npm run build
         
       - name: Upload build artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: build-artifacts
           path: dist/
           retention-days: 1
+          overwrite: true
 
   deploy-preview:
     if: github.event_name == 'pull_request'
@@ -41,10 +42,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Download build artifacts
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: build-artifacts
           path: dist
+          overwrite: true
           
       - name: Deploy to preview environment
         uses: appleboy/scp-action@v0.1.7
@@ -78,10 +80,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Download build artifacts
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: build-artifacts
           path: dist
+          overwrite: true
           
       - name: Deploy to production
         uses: appleboy/scp-action@v0.1.7
