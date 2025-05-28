@@ -1,6 +1,6 @@
-import { useEffect, lazy, Suspense } from 'react';
+import { lazy, Suspense } from 'react';
 import './App.css';
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { HelmetProvider } from 'react-helmet-async';
 import { AnimatePresence } from 'framer-motion';
@@ -8,7 +8,7 @@ import { store } from './store';
 import Header from './components/header';
 import Footer from './components/footer';
 import CookieConsent, { ConsentOptions } from './components/shared/CookieConsent';
-
+import ScrollToTop from './components/scrollToTop';
 
 const Home = lazy(() => import('./pages/home'));
 const Privacy = lazy(() => import('./pages/privacy'));
@@ -27,7 +27,7 @@ const LoseScreen = lazy(() => import('./components/survival-game/LoseScreen'));
 const FactionWinScreen = lazy(() => import('./components/survival-game/FactionWinScreen'));
 const WinScreen = lazy(() => import('./components/survival-game/WinScreen'));
 
-// Loading component
+
 const LoadingFallback = () => (
   <div className="loading-fallback">
     <div className="loading-spinner"></div>
@@ -35,16 +35,16 @@ const LoadingFallback = () => (
   </div>
 );
 
-// Scroll to top on route change
-const ScrollToTop = () => {
-  const { pathname } = useLocation();
+// // Scroll to top on route change
+// const ScrollToTop = () => {
+//   const { pathname } = useLocation();
   
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [pathname]);
+//   useEffect(() => {
+//     window.scrollTo(0, 0);
+//   }, [pathname]);
   
-  return null;
-};
+//   return null;
+// };
 
 function App() {
   const handleAcceptConsent = (options: ConsentOptions) => {
