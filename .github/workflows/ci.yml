@@ -31,6 +31,9 @@ jobs:
           npm install --force
 
       - name: Build project
+        env:
+          # Only set GTM_ID for production builds (when triggered by a version tag)
+          VITE_GTM_ID: ${{ startsWith(github.ref, 'refs/tags/v') && secrets.GTM_ID || '' }}
         run: npm run build
         
       - name: Upload build artifacts
@@ -93,9 +96,7 @@ jobs:
           path: dist/
           overwrite: true
       
-      - name: Inject GTM ID for production
-        run: |
-          find dist -type f -name "*.js" -exec sed -i 's/__GTM_ID_PLACEHOLDER__/${{ secrets.GTM_ID }}/g' {} \;
+      # GTM ID is now injected during build via environment variables
           
       - name: Deploy to production
         uses: appleboy/scp-action@v0.1.7
@@ -155,6 +156,9 @@ jobs:
         run: npm install --force
         
       - name: Build project
+        env:
+          # No GTM ID for staging builds
+          VITE_GTM_ID: ''
         run: npm run build
       
       - name: Create reset identifier file
