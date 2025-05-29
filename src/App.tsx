@@ -49,6 +49,20 @@ const LoadingFallback = () => (
 function App() {
   const handleAcceptConsent = (options: ConsentOptions) => {
     console.log('User has provided consent with options:', options);
+    
+    // Initialize GTM if analytics consent is given
+    if (options.analytics) {
+      import('react-gtm-module').then((TagManager) => {
+        const tagManagerArgs = {
+          gtmId: '__GTM_ID_PLACEHOLDER__'
+        }
+        
+        // Only initialize if GTM ID is not the placeholder (i.e., in production)
+        if (tagManagerArgs.gtmId !== '__GTM_ID_PLACEHOLDER__') {
+          TagManager.default.initialize(tagManagerArgs)
+        }
+      });
+    }
   };
   
   const handleDeclineConsent = () => {

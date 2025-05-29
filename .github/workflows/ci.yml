@@ -92,6 +92,10 @@ jobs:
           name: build-artifacts
           path: dist/
           overwrite: true
+      
+      - name: Inject GTM ID for production
+        run: |
+          find dist -type f -name "*.js" -exec sed -i 's/__GTM_ID_PLACEHOLDER__/${{ secrets.GTM_ID }}/g' {} \;
           
       - name: Deploy to production
         uses: appleboy/scp-action@v0.1.7
