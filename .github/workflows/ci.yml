@@ -66,6 +66,7 @@ jobs:
           port: ${{ secrets.SSH_PORT || '22' }}
           source: "dist/"
           target: "${{ secrets.FTP_TARGET_PREVIEW }}"
+          strip_components: 1
            
       - name: Comment on PR with staging URL
         uses: actions/github-script@v6
@@ -101,6 +102,7 @@ jobs:
           port: ${{ secrets.SSH_PORT || '22' }}
           source: "dist/"
           target: ${{ secrets.FTP_TARGET }}
+          strip_components: 1
           
   # Deploy main branch to staging after PR is merged or when main is pushed
   deploy-staging-after-merge:
@@ -128,6 +130,7 @@ jobs:
           port: ${{ secrets.SSH_PORT || '22' }}
           source: "dist/"
           target: "${{ secrets.FTP_TARGET_PREVIEW }}"
+          strip_components: 1
           
   # Reset staging to main branch when PR is closed without merging
   reset-staging-on-pr-close:
@@ -163,3 +166,4 @@ jobs:
           port: ${{ secrets.SSH_PORT || '22' }}
           source: "dist/"
           target: "${{ secrets.FTP_TARGET_PREVIEW }}"
+          strip_components: 1
