@@ -58,7 +58,49 @@ This is the source code for Jason McAlpin's personal website, built with React, 
 
 ## Deployment
 
-The site is automatically deployed when changes are pushed to the main branch, using GitHub Actions.
+The site uses a sophisticated deployment strategy:
+
+### Staging Deployments
+
+When you create a pull request to the `main` branch:
+- The PR build is automatically deployed to the staging site (staged.jasonmcalpin.com)
+- The PR will be updated with a comment containing the staging URL
+- A PR_INFO.txt file is added to the deployment to track which PR is currently on staging
+
+After a PR is merged to the main branch:
+- The main branch is automatically deployed to the staging site
+- A BRANCH_INFO.txt file is added to the deployment to indicate it's the main branch
+
+This allows you to review changes before merging to main. The staging site uses the root path to ensure `.htaccess` rules work correctly.
+
+### Production Deployments
+
+The site is deployed to production only when a version tag is pushed:
+
+1. Ensure your changes are merged to the `main` branch
+2. Create and push a version tag following semantic versioning:
+
+   ```bash
+   # Make sure you're on the main branch
+   git checkout main
+   git pull
+
+   # Create a new version tag
+   git tag v1.0.0  # Use semantic versioning (v{major}.{minor}.{patch})
+
+   # Push the tag to trigger deployment
+   git push origin v1.0.0
+   ```
+
+3. The GitHub Actions workflow will automatically build and deploy to production
+
+#### Semantic Versioning Guidelines
+
+- `v1.0.0` - Major release with significant changes
+- `v1.1.0` - Minor release with new features
+- `v1.0.1` - Patch release with bug fixes
+
+For more information on semantic versioning, visit [semver.org](https://semver.org/).
 
 ## License
 
