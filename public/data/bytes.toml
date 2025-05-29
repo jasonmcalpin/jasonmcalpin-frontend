@@ -886,3 +886,149 @@ To avoid the pitfalls of vibe coding, developers should focus on the following b
 By following these practices, developers can create code that is not only functional but also maintainable and easy to understand. Avoiding vibe coding helps ensure that software projects remain sustainable and adaptable over time.
 """
 
+[[articles]]
+id = "17"
+title = "Setting up CI and CD with GitHub Actions"
+slug = "setting-up-ci-and-cd-with-github-actions"
+excerpt = "A guide to setting up Continuous Integration and Continuous Deployment using GitHub Actions."
+date = "2025-9-01"
+imageUrl = "/assets/images/bytes/byte9.jpg"
+author = "Jason McAlpin"
+tags = ["CI/CD", "GitHub Actions", "DevOps"]
+readingTime = 9
+content = """
+# Setting up CI and CD with GitHub Actions
+## A guide to setting up Continuous Integration and Continuous Deployment using GitHub Actions.
+GitHub Actions is a powerful tool for automating workflows, including Continuous Integration (CI) and Continuous Deployment (CD). It allows you to define custom workflows that can run on various events, such as code pushes, pull requests, or scheduled intervals.
+## What is CI/CD?
+Continuous Integration (CI) is the practice of automatically building and testing code changes to ensure that they integrate well with the existing codebase. Continuous Deployment (CD) extends this by automatically deploying code changes to production after passing tests.
+## Setting Up GitHub Actions for CI/CD
+To set up CI/CD with GitHub Actions, follow these steps:
+1. **Create a Workflow File**: In your GitHub repository, create a directory called `.github/workflows` and add a YAML file (e.g., `ci-cd.yml`) to define your workflow.
+2. **Define the Workflow**: In the YAML file, specify the events that trigger the workflow, the jobs to run, and the steps within each job. Here's a basic example:
+```yaml
+name: CI/CD Pipeline
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+      
+      - name: Install dependencies
+        run: npm install
+      
+      - name: Run tests
+        run: npm test
+      
+      - name: Build project
+        run: npm run build
+      
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    if: github.ref == 'refs/heads/main'
+    steps:
+      - name: Deploy to production
+        run: echo "Deploying to production server..."
+        # Add your deployment commands here
+```
+3. **Configure Secrets**: If your deployment requires sensitive information (like API keys or server credentials), store them as secrets in your GitHub repository settings. You can access these secrets in your workflow using `${{ secrets.YOUR_SECRET_NAME }}`.
+4. **Test the Workflow**: Push changes to your repository or create a pull request to trigger the workflow. You can monitor the progress and results in the "Actions" tab of your GitHub repository.
+5. **Monitor and Debug**: If the workflow fails, GitHub Actions provides detailed logs for each step. Use these logs to identify and fix issues in your workflow.
+6. **Iterate and Improve**: As your project evolves, update your workflow to include additional steps, such as linting, code coverage checks, or notifications.
+## Benefits of Using GitHub Actions for CI/CD
+- **Integration with GitHub**: Seamlessly integrates with your GitHub repository, making it easy to set up and manage.
+- **Flexibility**: Supports a wide range of programming languages and frameworks, allowing you to customize your workflows to fit your project's needs.
+- **Scalability**: Can handle complex workflows with multiple jobs and dependencies, making it suitable for both small and large projects.
+- **Community Support**: A large ecosystem of pre-built actions and workflows available in the GitHub Marketplace, allowing you to leverage existing solutions.
+- **Cost-Effective**: GitHub Actions offers free usage for public repositories and generous limits for private repositories, making it accessible for many projects.
+By setting up CI/CD with GitHub Actions, you can automate your development workflow, catch issues early, and deploy code changes with confidence. This not only improves code quality but also accelerates the development process, allowing you to focus on building great software.
+"""
+
+[[articles]]
+id = "18"
+title = "Using Husky for Pre-commit linting and Pre-push Testing"
+slug = "using-husky-for-pre-commit-linting-and-pre-push-testing"
+excerpt = "A guide to using Husky for pre-commit linting and pre-push testing in your development workflow."
+date = "2025-10-01"
+imageUrl = "/assets/images/bytes/byte10.jpg"
+author = "Jason McAlpin"
+tags = ["Husky", "Linting", "Testing", "Development"]
+readingTime = 8
+content = """
+# Using Husky for Pre-commit Linting and Pre-push Testing
+## A guide to using Husky for pre-commit linting and pre-push testing in your development workflow.
+Husky is a popular tool that allows you to easily manage Git hooks in your project. It helps enforce code quality by running scripts at various stages of the Git workflow, such as pre-commit and pre-push. This ensures that your code meets certain standards before it gets committed or pushed to the repository.
+## Why Use Husky?
+Using Husky for pre-commit linting and pre-push testing offers several benefits:
+- **Enforces Code Quality**: Automatically runs linting and testing scripts to catch issues early in the development process.
+- **Prevents Bad Commits**: Ensures that only code that passes linting and tests can be committed or pushed, reducing the chances of introducing bugs.
+- **Improves Collaboration**: Helps maintain a consistent code style across the team, making it easier for everyone to read and understand the code.
+- **Customizable**: Allows you to define your own scripts and workflows, tailoring the process to fit your project's needs.
+## Setting Up Husky
+To set up Husky for pre-commit linting and pre-push testing, follow these steps:
+1. **Install Husky**: First, install Husky as a development dependency in your project:
+```bash
+npm install husky --save-dev
+```
+2. **Enable Git Hooks**: Run the following command to enable Git hooks in your project:
+```bash
+npx husky install
+```
+3. **Add Husky Scripts**: Create a `.husky` directory in your project root and add scripts for pre-commit and pre-push hooks. For example:
+```bash
+mkdir .husky
+cd .husky
+npx husky add pre-commit "npm run lint"
+npx husky add pre-push "npm test"
+```
+4. **Define Linting and Testing Scripts**: In your `package.json`, define the linting and testing scripts that Husky will run:
+```json
+{
+  "scripts": {
+    "lint": "eslint .",
+    "test": "jest"
+  }
+}
+```
+5. **Test the Setup**: Make a code change and try to commit it. Husky will run the linting script first. If there are any linting errors, the commit will be blocked until they are fixed. Similarly, when you push changes, Husky will run the testing script.
+If the tests fail, the push will be blocked until the issues are resolved.
+6. **Customize Further**: You can add additional hooks or customize the existing ones based on your project's requirements. For example, you might want to add a `pre-push` hook to run additional tests or a `commit-msg` hook to enforce commit message conventions.
+## Example: Pre-commit Linting and Pre-push Testing
+Here's a complete example of how your Husky setup might look:
+```bash
+# .husky/pre-commit
+
+npm run lint
+```
+```bash
+# .husky/pre-push
+
+npm test
+```
+```json
+{
+  "scripts": {
+    "lint": "eslint .",
+    "test": "jest"
+  }
+}
+```
+By using Husky for pre-commit linting and pre-push testing, you can significantly improve the quality of your codebase and streamline your development workflow. It helps catch issues early, ensures consistent code style, and fosters a culture of quality within your team.
+"""
+
+
+
