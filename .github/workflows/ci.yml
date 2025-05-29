@@ -50,7 +50,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: build-artifacts
-          path: dist
+          path: dist/
           overwrite: true
       
       - name: Create PR identifier file
@@ -64,7 +64,7 @@ jobs:
           username: ${{ secrets.FTP_USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: ${{ secrets.SSH_PORT || '22' }}
-          source: "dist/*"
+          source: "dist/"
           target: "${{ secrets.FTP_TARGET_PREVIEW }}"
            
       - name: Comment on PR with staging URL
@@ -72,7 +72,7 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            const stagingUrl = '${{ secrets.FTP_HOST_PREVIEW }}';
+            const stagingUrl = 'https://${{ secrets.FTP_HOST_PREVIEW }}';
             github.rest.issues.createComment({
               issue_number: context.issue.number,
               owner: context.repo.owner,
@@ -89,7 +89,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: build-artifacts
-          path: dist
+          path: dist/
           overwrite: true
           
       - name: Deploy to production
@@ -98,8 +98,8 @@ jobs:
           host: ${{ secrets.FTP_HOST }}
           username: ${{ secrets.FTP_USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          port: ${{ secrets.SSH_PORT }}
-          source: "dist/*"
+          port: ${{ secrets.SSH_PORT || '22' }}
+          source: "dist/"
           target: ${{ secrets.FTP_TARGET }}
           
   # Deploy main branch to staging after PR is merged or when main is pushed
@@ -126,7 +126,7 @@ jobs:
           username: ${{ secrets.FTP_USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: ${{ secrets.SSH_PORT || '22' }}
-          source: "dist/*"
+          source: "dist/"
           target: "${{ secrets.FTP_TARGET_PREVIEW }}"
           
   # Reset staging to main branch when PR is closed without merging
@@ -161,5 +161,5 @@ jobs:
           username: ${{ secrets.FTP_USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: ${{ secrets.SSH_PORT || '22' }}
-          source: "dist/*"
+          source: "dist/"
           target: "${{ secrets.FTP_TARGET_PREVIEW }}"
