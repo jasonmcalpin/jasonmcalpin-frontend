@@ -31,17 +31,20 @@ This is the source code for Jason McAlpin's personal website, built with React, 
 ### Getting Started
 
 1. Clone the repository
+
    ```bash
    git clone https://github.com/jasonmcalpin/jasonmcalpin-frontend.git
    cd jasonmcalpin-frontend
    ```
 
 2. Install dependencies
+
    ```bash
    npm install
    ```
 
 3. Start the development server
+
    ```bash
    npm run dev
    ```
@@ -55,6 +58,51 @@ This is the source code for Jason McAlpin's personal website, built with React, 
 - `npm run optimize-images` - Optimize images using Sharp
 - `npm run lint` - Run ESLint
 - `npm run preview` - Preview the production build locally
+- `npm run type-check` - Run TypeScript type checking
+
+### Code Quality Tools
+
+This project uses several tools to ensure code quality and consistency:
+
+#### Husky
+
+Husky is used to enforce code quality checks before commits and pushes:
+
+- **Pre-commit Hook**: Runs lint-staged to ensure code quality before committing
+- **Commit Message Hook**: Validates commit messages follow conventional commit format
+- **Pre-push Hook**: Runs TypeScript type checking before pushing to remote
+
+#### Lint-staged
+
+Lint-staged runs linters on staged files to catch issues before they're committed:
+
+- TypeScript/React files: ESLint and Prettier
+- CSS/SCSS files: Prettier
+- JSON/Markdown files: Prettier
+
+#### Commitlint
+
+Commitlint ensures commit messages follow the [Conventional Commits](https://www.conventionalcommits.org/) specification:
+
+```
+<type>[optional scope]: <description>
+
+[optional body]
+
+[optional footer(s)]
+```
+
+Common types include:
+
+- `feat`: A new feature
+- `fix`: A bug fix
+- `docs`: Documentation changes
+- `style`: Changes that don't affect code meaning (formatting, etc.)
+- `refactor`: Code changes that neither fix bugs nor add features
+- `test`: Adding or correcting tests
+- `chore`: Changes to build process or auxiliary tools
+
+Example: `feat(auth): add login functionality`
 
 ## Deployment
 
@@ -63,11 +111,13 @@ The site uses a sophisticated deployment strategy:
 ### Staging Deployments
 
 When you create a pull request to the `main` branch:
+
 - The PR build is automatically deployed to the staging site (staged.jasonmcalpin.com)
 - The PR will be updated with a comment containing the staging URL
 - A PR_INFO.txt file is added to the deployment to track which PR is currently on staging
 
 After a PR is merged to the main branch:
+
 - The main branch is automatically deployed to the staging site
 - A BRANCH_INFO.txt file is added to the deployment to indicate it's the main branch
 
