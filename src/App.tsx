@@ -43,11 +43,7 @@ const QueryParamDetector = ({ children }: { children: React.ReactNode }) => {
   useEffect(() => {
     // Check for debug parameter
     const params = new URLSearchParams(location.search);
-    setShowGTMTester(
-      import.meta.env.DEV || // Always show in development
-        params.has('debug') || // Show if debug parameter is present
-        params.has('gtm_debug') // Show if gtm_debug parameter is present
-    );
+    setShowGTMTester(import.meta.env.DEV || params.has('debug') || params.has('gtm_debug'));
   }, [location]);
 
   return (
