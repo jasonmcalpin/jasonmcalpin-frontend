@@ -31,17 +31,20 @@ This is the source code for Jason McAlpin's personal website, built with React, 
 ### Getting Started
 
 1. Clone the repository
+
    ```bash
    git clone https://github.com/jasonmcalpin/jasonmcalpin-frontend.git
    cd jasonmcalpin-frontend
    ```
 
 2. Install dependencies
+
    ```bash
    npm install
    ```
 
 3. Start the development server
+
    ```bash
    npm run dev
    ```
@@ -55,6 +58,160 @@ This is the source code for Jason McAlpin's personal website, built with React, 
 - `npm run optimize-images` - Optimize images using Sharp
 - `npm run lint` - Run ESLint
 - `npm run preview` - Preview the production build locally
+- `npm run type-check` - Run TypeScript type checking
+
+### Code Quality Tools
+
+This project uses several tools to ensure code quality and consistency:
+
+#### Husky
+
+Husky is used to enforce code quality checks before commits and pushes:
+
+- **Pre-commit Hook**: Runs lint-staged to ensure code quality before committing
+- **Commit Message Hook**: Validates commit messages follow conventional commit format
+- **Pre-push Hook**: Runs TypeScript type checking before pushing to remote
+
+#### Lint-staged
+
+Lint-staged runs linters on staged files to catch issues before they're committed:
+
+- TypeScript/React files: ESLint and Prettier
+- CSS/SCSS files: Prettier
+- JSON/Markdown files: Prettier
+
+#### Commitlint
+
+Commitlint ensures commit messages follow the [Conventional Commits](https://www.conventionalcommits.org/) specification:
+
+```
+<type>[optional scope]: <description>
+
+[optional body]
+
+[optional footer(s)]
+```
+
+##### Commit Message Format
+
+1. **Type (required)**: Describes the kind of change:
+
+   - `feat`: A new feature
+   - `fix`: A bug fix
+   - `docs`: Documentation changes
+   - `style`: Changes that don't affect code meaning (formatting, whitespace)
+   - `refactor`: Code changes that neither fix bugs nor add features
+   - `perf`: Performance improvements
+   - `test`: Adding or correcting tests
+   - `build`: Changes to build system or dependencies
+   - `ci`: Changes to CI configuration files and scripts
+   - `chore`: Other changes that don't modify src or test files
+   - `revert`: Reverts a previous commit
+
+2. **Scope (optional)**: Describes what part of the codebase is affected:
+
+   - `auth`: Authentication related changes
+   - `ui`: User interface components
+   - `api`: API-related changes
+   - `data`: Data models or services
+   - `nav`: Navigation components
+   - `deps`: Dependency updates
+   - `config`: Configuration changes
+
+3. **Description (required)**: A short, imperative description of the change
+
+   - Use present tense: "add" not "added" or "adds"
+   - Don't capitalize the first letter
+   - No period at the end
+
+4. **Body (optional)**: Provides detailed explanation
+
+   - Use to explain the motivation for the change
+   - Can include "BREAKING CHANGE:" to indicate breaking changes
+
+5. **Footer (optional)**: References to issues or other metadata
+   - Can include "Closes #123" to close issues
+   - Can include "BREAKING CHANGE:" if not in body
+
+##### Examples
+
+Simple feature:
+
+```
+feat(auth): add login functionality
+```
+
+Bug fix with issue reference:
+
+```
+fix(ui): resolve button alignment in mobile view
+
+Closes #123
+```
+
+Breaking change:
+
+```
+feat(api): update user authentication endpoints
+
+BREAKING CHANGE: The auth API now requires a token in the header instead of using cookies.
+```
+
+Documentation update:
+
+```
+docs(readme): update installation instructions
+```
+
+Style changes:
+
+```
+style(components): format according to new prettier rules
+```
+
+Refactoring:
+
+```
+refactor(utils): simplify date formatting functions
+```
+
+Performance improvement:
+
+```
+perf(images): optimize image loading process
+```
+
+Test addition:
+
+```
+test(auth): add unit tests for login process
+```
+
+Dependency updates:
+
+```
+build(deps): update React to v18.3.1
+```
+
+CI configuration:
+
+```
+ci(workflow): update GitHub Actions workflow
+```
+
+Chore:
+
+```
+chore(release): prepare for v1.2.0 release
+```
+
+Revert:
+
+```
+revert: feat(auth): add login functionality
+
+This reverts commit abc1234.
+```
 
 ## Deployment
 
@@ -63,11 +220,13 @@ The site uses a sophisticated deployment strategy:
 ### Staging Deployments
 
 When you create a pull request to the `main` branch:
+
 - The PR build is automatically deployed to the staging site (staged.jasonmcalpin.com)
 - The PR will be updated with a comment containing the staging URL
 - A PR_INFO.txt file is added to the deployment to track which PR is currently on staging
 
 After a PR is merged to the main branch:
+
 - The main branch is automatically deployed to the staging site
 - A BRANCH_INFO.txt file is added to the deployment to indicate it's the main branch
 
