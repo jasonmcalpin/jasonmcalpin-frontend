@@ -92,17 +92,126 @@ Commitlint ensures commit messages follow the [Conventional Commits](https://www
 [optional footer(s)]
 ```
 
-Common types include:
+##### Commit Message Format
 
-- `feat`: A new feature
-- `fix`: A bug fix
-- `docs`: Documentation changes
-- `style`: Changes that don't affect code meaning (formatting, etc.)
-- `refactor`: Code changes that neither fix bugs nor add features
-- `test`: Adding or correcting tests
-- `chore`: Changes to build process or auxiliary tools
+1. **Type (required)**: Describes the kind of change:
 
-Example: `feat(auth): add login functionality`
+   - `feat`: A new feature
+   - `fix`: A bug fix
+   - `docs`: Documentation changes
+   - `style`: Changes that don't affect code meaning (formatting, whitespace)
+   - `refactor`: Code changes that neither fix bugs nor add features
+   - `perf`: Performance improvements
+   - `test`: Adding or correcting tests
+   - `build`: Changes to build system or dependencies
+   - `ci`: Changes to CI configuration files and scripts
+   - `chore`: Other changes that don't modify src or test files
+   - `revert`: Reverts a previous commit
+
+2. **Scope (optional)**: Describes what part of the codebase is affected:
+
+   - `auth`: Authentication related changes
+   - `ui`: User interface components
+   - `api`: API-related changes
+   - `data`: Data models or services
+   - `nav`: Navigation components
+   - `deps`: Dependency updates
+   - `config`: Configuration changes
+
+3. **Description (required)**: A short, imperative description of the change
+
+   - Use present tense: "add" not "added" or "adds"
+   - Don't capitalize the first letter
+   - No period at the end
+
+4. **Body (optional)**: Provides detailed explanation
+
+   - Use to explain the motivation for the change
+   - Can include "BREAKING CHANGE:" to indicate breaking changes
+
+5. **Footer (optional)**: References to issues or other metadata
+   - Can include "Closes #123" to close issues
+   - Can include "BREAKING CHANGE:" if not in body
+
+##### Examples
+
+Simple feature:
+
+```
+feat(auth): add login functionality
+```
+
+Bug fix with issue reference:
+
+```
+fix(ui): resolve button alignment in mobile view
+
+Closes #123
+```
+
+Breaking change:
+
+```
+feat(api): update user authentication endpoints
+
+BREAKING CHANGE: The auth API now requires a token in the header instead of using cookies.
+```
+
+Documentation update:
+
+```
+docs(readme): update installation instructions
+```
+
+Style changes:
+
+```
+style(components): format according to new prettier rules
+```
+
+Refactoring:
+
+```
+refactor(utils): simplify date formatting functions
+```
+
+Performance improvement:
+
+```
+perf(images): optimize image loading process
+```
+
+Test addition:
+
+```
+test(auth): add unit tests for login process
+```
+
+Dependency updates:
+
+```
+build(deps): update React to v18.3.1
+```
+
+CI configuration:
+
+```
+ci(workflow): update GitHub Actions workflow
+```
+
+Chore:
+
+```
+chore(release): prepare for v1.2.0 release
+```
+
+Revert:
+
+```
+revert: feat(auth): add login functionality
+
+This reverts commit abc1234.
+```
 
 ## Deployment
 
