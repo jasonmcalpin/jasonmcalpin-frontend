@@ -346,6 +346,14 @@ content = """
 ### Why Learning is Key
 
 In the fast-paced world of technology, staying updated with the latest trends and tools is crucial for success. Continuous learning not only enhances your skills but also keeps you relevant in a competitive job market.
+
+### How to Cultivate a Learning Mindset
+Embrace a growth mindset by seeking out new challenges and opportunities to learn. This can include taking online courses, attending workshops, or simply experimenting with new technologies in your spare time. Surround yourself with like-minded individuals who share your passion for learning, and don't be afraid to ask questions or seek mentorship.
+### Great Resources for Learning on your own
+- **Online Courses**: Platforms like Coursera, Udemy, and edX offer a wide range of courses on various tech topics. 
+- **Books**: Reading books by industry experts can provide in-depth knowledge and insights. For javaScript, consider titles like "You Don’t Know JS" by Kyle Simpson or "Eloquent JavaScript" by Marijn Haverbeke. There are a lot of features of javascript that are used in modern frameworks like React, Angular and Next that are not covered in the documentation. These books can help you understand the underlying concepts and best practices.
+- **Podcasts**: Listening to tech podcasts can keep you informed about the latest trends and developments in the industry. Some good ones include "JavaScript Jabber," "The Changelog," and "Software Engineering Daily."
+- **Blogs and Articles**: Follow reputable tech blogs and websites to stay updated on the latest news and best practices. Some popular ones include Smashing Magazine, CSS-Tricks, and the Mozilla Developer Network (MDN).
 """
 
 [[articles]]
@@ -869,20 +877,172 @@ content = """
 # Vibe Coding and Avoiding its Pitfalls
 ## Understanding vibe coding and how to avoid its pitfalls in software development.
 Vibe coding is a term used to describe a coding style that prioritizes aesthetics and personal preference over best practices and maintainability. While it can lead to creative solutions, it often results in code that is difficult to read, understand, and maintain.
-## The Dangers of Vibe Coding
-Vibe coding can lead to several pitfalls, including:
-- **Poor Readability**: Code that is overly complex or uses unconventional patterns can be hard for others (or even the original author) to understand later.
-- **Lack of Consistency**: When developers prioritize personal style over team conventions, it can create a fragmented codebase that is inconsistent and hard to navigate.
-- **Difficult Maintenance**: Code that is not written with maintainability in mind can become a burden when it needs to be updated or extended.
-- **Increased Technical Debt**: Vibe coding often leads to shortcuts and hacks that accumulate over time, making the codebase more fragile and harder to work with.
-## How to Avoid Vibe Coding
-To avoid the pitfalls of vibe coding, developers should focus on the following best practices:
-- **Follow Established Conventions**: Adhere to coding standards and style guides that promote consistency and readability. This helps ensure that code is understandable by all team members.
-- **Prioritize Clarity**: Write code that is clear and self-explanatory. Use meaningful variable names, comments, and documentation to make the code easy to follow.
-- **Embrace Simplicity**: Avoid unnecessary complexity. Strive for simple, straightforward solutions that are easy to understand and maintain.
-- **Conduct Code Reviews**: Regularly review code with peers to catch potential issues early and ensure adherence to best practices. This collaborative approach helps maintain code quality and consistency.
-- **Refactor When Necessary**: Don't be afraid to refactor code that has become difficult to maintain. Regularly revisiting and improving code helps keep the codebase healthy and manageable.
-- **Test Thoroughly**: Implement automated tests to ensure that code behaves as expected. This not only helps catch bugs early but also provides a safety net for future changes.
-By following these practices, developers can create code that is not only functional but also maintainable and easy to understand. Avoiding vibe coding helps ensure that software projects remain sustainable and adaptable over time.
+## The Inherent Risks of Vibe Coding
+For short term goals such as making a quick prototype or a function it can seem god like. it is really good at knocking out code quickly. But the biggest problem is that it is has a habit of following stable diffusion like trends. if you ever play with the image agents and ask for a simple change like "make the hair blond" it will often give you a different style and in older models redo the entire image. This also happens in vibe coding. You ask for a function to parse an array and it decides to mess with your import function and change some lint rules and then in the process of all these changes it breaks other functions. Then it has to go fix those changing those or adding debug code that isn't needed. This can easily lead to your code base becoming a tangled mess of dependencies and inconsistencies, making it hard to maintain and scale.
+
+## How to Avoid Vibe Coding Issues
+Here are a few of the tips I follow when I have used it.
+- Use Git. It is the holy water to driving out the worst issues. Any time you go to start a new feature or fix add a branch.
+
+```bash
+git checkout -b feature/new-feature
+```
+This allows you to go back to a previous state if it really goes wild with changes. Or just grab the file you need from the branch. This can save you a lot of time and money from having to undo all the other changes. 
+- Ensure it understands the codebase and requirements. The first thing I create is a readme with the tech stack and requirements for the project. Update it constantly as you nail down additional requirements. This applies to any language you are using. And if it suggests a language or framework you dont know take time to grill it for best practices, best stacks and enshrine it in that readme. Then include that readme in the prompts.
+- When setting up the project, use a linter and formatter. This will help ensure that the code is consistent and follows best practices. It will also help catch any potential issues early on. For web projects I will setup [Husky]( https://typicode.github.io/husky/#/) to run the linter and formatter on pre-commit and pre-push hooks. This will help ensure that the code is always in a good state before it is pushed to the repository. 
+- Use a consistent coding style. This will help ensure that the code is easy to read and understand. It will also help prevent any potential issues that may arise from inconsistent coding styles. I like to use [Prettier](https://prettier.io/) for formatting and [ESLint](https://eslint.org/) for linting in JavaScript projects. For Python projects I use [Black](https://black.readthedocs.io/en/stable/) for formatting and [Flake8](https://flake8.pycqa.org/en/latest/) for linting.
+- Break down the features into smaller tasks. This will help keep any vibe code contained to what it actually needs to fix and not randomly change other parts of the codebase.
+- Even thought the AI agent will swear it is using industry standard practices in many case you will find it is like a little kid. it will say yes every time. But when called out will go "you are correct this is the actual best practice." So take time to cover every aspect in your prompt. Is the function going to be asyncous? Are inputs properly validated and sanitized? Are there try catch blocks to handle edge cases and errors? Is the code modular and follow SOLID principles? As you go through the actual code review process it can help to ask these kinds of questions instead of just best practices. 
+- AI isnt. AI Agents are sampling and working with huges amounts of reference data to generate responses. So its important to be very clear about what you need to narrow down the samples it is pulling the responses from. For a small prototype just say "I need a function that parses an array of objects and returns the values of a specific key." But for a larger project you will want to be more specific. "I need a function that parses an array of objects and returns the values of a specific key. The function should handle edge cases such as empty arrays, missing keys, and invalid input types. It should also be modular and follow SOLID principles. The function should be asyncous and use try catch blocks to handle errors.".
+- Use languages you are familiar with. If I am going to use an AI agent to build a desktop application I will have it use react and electron. That way I can review the code. I can tweak and replace parts with what I know. And if you don't know the language get an actual developer versed in the language involved with the project early before the spaghetti takes over.
+- You don't have to use the AI agent for everything. Its a great tool for knocking out repetitive code or generating boilerplate code, but its not a good replacement for a compentent developer. It can also be great for converting data from one format to another. I used it to change the json formatted data to toml for easier editing. Its also great for documentation. It reads through everything so why not have it generate documentation. What about tests. we all hate writing them, or is that me. Have it generate tests especially ones that hit the inputs to make sure it sanitizes them. 
+- Finally, always review the code before committing it. This will help ensure that the code is in a good state and follows best practices. It will also help catch any potential issues early on. Husky and Github Actions can help with this. 
+Vibe coding can be a great tool for quickly generating code, but it is important to be aware of its pitfalls. I hope this byte helped you understand some ways to navigate vibe coding to make it a useful tool and not a crutch that tends to break if you put any weight on it.  
 """
+
+[[articles]]
+id = "17"
+title = "Setting up CI and CD with GitHub Actions"
+slug = "setting-up-ci-and-cd-with-github-actions"
+excerpt = "A guide to setting up Continuous Integration and Continuous Deployment using GitHub Actions."
+date = "2025-9-01"
+imageUrl = "/assets/images/bytes/byte9.jpg"
+author = "Jason McAlpin"
+tags = ["CI/CD", "GitHub Actions", "DevOps"]
+readingTime = 9
+content = """
+# Setting up CI and CD with GitHub Actions
+## A guide to setting up Continuous Integration and Continuous Deployment using GitHub Actions.
+GitHub Actions is a powerful tool for automating workflows, including Continuous Integration (CI) and Continuous Deployment (CD). It allows you to define custom workflows that can run on various events, such as code pushes, pull requests, or scheduled intervals.
+## What is CI/CD?
+Continuous Integration (CI) is the practice of automatically building and testing code changes to ensure that they integrate well with the existing codebase. Continuous Deployment (CD) extends this by automatically deploying code changes to production after passing tests.
+## Setting Up GitHub Actions for CI/CD
+To set up CI/CD with GitHub Actions, follow these steps:
+1. **Create a Workflow File**: In your GitHub repository, create a directory called `.github/workflows` and add a YAML file (e.g., `ci-cd.yml`) to define your workflow.
+2. **Define the Workflow**: In the YAML file, specify the events that trigger the workflow, the jobs to run, and the steps within each job. Here's a basic example:
+```yaml
+name: CI/CD Pipeline
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+      
+      - name: Install dependencies
+        run: npm install
+      
+      - name: Run tests
+        run: npm test
+      
+      - name: Build project
+        run: npm run build
+      
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    if: github.ref == 'refs/heads/main'
+    steps:
+      - name: Deploy to production
+        run: echo "Deploying to production server..."
+        # Add your deployment commands here
+```
+3. **Configure Secrets**: If your deployment requires sensitive information (like API keys or server credentials), store them as secrets in your GitHub repository settings. You can access these secrets in your workflow using `${{ secrets.YOUR_SECRET_NAME }}`.
+4. **Test the Workflow**: Push changes to your repository or create a pull request to trigger the workflow. You can monitor the progress and results in the "Actions" tab of your GitHub repository.
+5. **Monitor and Debug**: If the workflow fails, GitHub Actions provides detailed logs for each step. Use these logs to identify and fix issues in your workflow.
+6. **Iterate and Improve**: As your project evolves, update your workflow to include additional steps, such as linting, code coverage checks, or notifications.
+## Benefits of Using GitHub Actions for CI/CD
+- **Integration with GitHub**: Seamlessly integrates with your GitHub repository, making it easy to set up and manage.
+- **Flexibility**: Supports a wide range of programming languages and frameworks, allowing you to customize your workflows to fit your project's needs.
+- **Scalability**: Can handle complex workflows with multiple jobs and dependencies, making it suitable for both small and large projects.
+- **Community Support**: A large ecosystem of pre-built actions and workflows available in the GitHub Marketplace, allowing you to leverage existing solutions.
+- **Cost-Effective**: GitHub Actions offers free usage for public repositories and generous limits for private repositories, making it accessible for many projects.
+By setting up CI/CD with GitHub Actions, you can automate your development workflow, catch issues early, and deploy code changes with confidence. This not only improves code quality but also accelerates the development process, allowing you to focus on building great software.
+"""
+
+[[articles]]
+id = "18"
+title = "Using Husky for Pre-commit linting and Pre-push Testing"
+slug = "using-husky-for-pre-commit-linting-and-pre-push-testing"
+excerpt = "A guide to using Husky for pre-commit linting and pre-push testing in your development workflow."
+date = "2025-10-01"
+imageUrl = "/assets/images/bytes/byte10.jpg"
+author = "Jason McAlpin"
+tags = ["Husky", "Linting", "Testing", "Development"]
+readingTime = 8
+content = """
+# Using Husky for Pre-commit Linting and Pre-push Testing
+## A guide to using Husky for pre-commit linting and pre-push testing in your development workflow.
+Husky is a popular tool that allows you to easily manage Git hooks in your project. It helps enforce code quality by running scripts at various stages of the Git workflow, such as pre-commit and pre-push. This ensures that your code meets certain standards before it gets committed or pushed to the repository.
+## Why Use Husky?
+Using Husky for pre-commit linting and pre-push testing offers several benefits:
+- **Enforces Code Quality**: Automatically runs linting and testing scripts to catch issues early in the development process.
+- **Prevents Bad Commits**: Ensures that only code that passes linting and tests can be committed or pushed, reducing the chances of introducing bugs.
+- **Improves Collaboration**: Helps maintain a consistent code style across the team, making it easier for everyone to read and understand the code.
+- **Customizable**: Allows you to define your own scripts and workflows, tailoring the process to fit your project's needs.
+## Setting Up Husky
+To set up Husky for pre-commit linting and pre-push testing, follow these steps:
+1. **Install Husky**: First, install Husky as a development dependency in your project:
+```bash
+npm install husky --save-dev
+```
+2. **Enable Git Hooks**: Run the following command to enable Git hooks in your project:
+```bash
+npx husky install
+```
+3. **Add Husky Scripts**: Create a `.husky` directory in your project root and add scripts for pre-commit and pre-push hooks. For example:
+```bash
+mkdir .husky
+cd .husky
+npx husky add pre-commit "npm run lint"
+npx husky add pre-push "npm test"
+```
+4. **Define Linting and Testing Scripts**: In your `package.json`, define the linting and testing scripts that Husky will run:
+```json
+{
+  "scripts": {
+    "lint": "eslint .",
+    "test": "jest"
+  }
+}
+```
+5. **Test the Setup**: Make a code change and try to commit it. Husky will run the linting script first. If there are any linting errors, the commit will be blocked until they are fixed. Similarly, when you push changes, Husky will run the testing script.
+If the tests fail, the push will be blocked until the issues are resolved.
+6. **Customize Further**: You can add additional hooks or customize the existing ones based on your project's requirements. For example, you might want to add a `pre-push` hook to run additional tests or a `commit-msg` hook to enforce commit message conventions.
+## Example: Pre-commit Linting and Pre-push Testing
+Here's a complete example of how your Husky setup might look:
+```bash
+# .husky/pre-commit
+
+npm run lint
+```
+```bash
+# .husky/pre-push
+
+npm test
+```
+```json
+{
+  "scripts": {
+    "lint": "eslint .",
+    "test": "jest"
+  }
+}
+```
+By using Husky for pre-commit linting and pre-push testing, you can significantly improve the quality of your codebase and streamline your development workflow. It helps catch issues early, ensures consistent code style, and fosters a culture of quality within your team.
+"""
+
+
 
