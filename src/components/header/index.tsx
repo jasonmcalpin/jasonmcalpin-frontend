@@ -12,7 +12,7 @@ const navLinks: NavLink[] = [
   { path: '/contact', label: 'Contact' },
   { path: '/projects', label: 'Projects' },
   { path: '/bytes', label: 'Bytes' },
-  { path: '/lessons', label: 'Lessons' },
+  // { path: '/lessons', label: 'Lessons' },
 ];
 
 const Header = () => {
