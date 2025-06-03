@@ -12,12 +12,13 @@ const navLinks: NavLink[] = [
   { path: '/contact', label: 'Contact' },
   { path: '/projects', label: 'Projects' },
   { path: '/bytes', label: 'Bytes' },
+  // { path: '/lessons', label: 'Lessons' },
 ];
 
 const Header = () => {
   const dispatch = useAppDispatch();
   const location = useLocation();
-  const { isMobileMenuOpen, isScrolled } = useAppSelector((state) => state.ui);
+  const { isMobileMenuOpen, isScrolled } = useAppSelector(state => state.ui);
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -44,75 +45,75 @@ const Header = () => {
 
   const logoVariants = {
     hidden: { opacity: 0, x: -20 },
-    visible: { 
-      opacity: 1, 
+    visible: {
+      opacity: 1,
       x: 0,
-      transition: { 
+      transition: {
         duration: 0.5,
-        ease: 'easeInOut'
-      }
-    }
+        ease: 'easeInOut',
+      },
+    },
   };
 
   const navVariants = {
     hidden: { opacity: 0, y: -20 },
-    visible: { 
-      opacity: 1, 
+    visible: {
+      opacity: 1,
       y: 0,
-      transition: { 
+      transition: {
         duration: 0.5,
         ease: 'easeInOut',
         staggerChildren: 0.1,
-        delayChildren: 0.2
-      }
-    }
+        delayChildren: 0.2,
+      },
+    },
   };
 
   const linkVariants = {
     hidden: { opacity: 0, y: -20 },
-    visible: { 
-      opacity: 1, 
+    visible: {
+      opacity: 1,
       y: 0,
-      transition: { 
+      transition: {
         duration: 0.3,
-        ease: 'easeInOut'
-      }
-    }
+        ease: 'easeInOut',
+      },
+    },
   };
 
   const mobileMenuVariants = {
-    hidden: { 
+    hidden: {
       opacity: 0,
       y: -20,
-      height: 0
+      height: 0,
     },
-    visible: { 
+    visible: {
       opacity: 1,
       y: 0,
       height: 'auto',
-      transition: { 
+      transition: {
         duration: 0.3,
-        ease: 'easeInOut'
-      }
+        ease: 'easeInOut',
+      },
     },
     exit: {
       opacity: 0,
       y: -20,
       height: 0,
-      transition: { 
+      transition: {
         duration: 0.2,
-        ease: 'easeInOut'
-      }
-    }
+        ease: 'easeInOut',
+      },
+    },
   };
 
   return (
     <header className={`header ${isScrolled ? 'header--scrolled' : ''}`}>
       <div className="header__container">
-        <motion.div 
+        <motion.div
           className="header__logo"
           initial="hidden"
-          animate={mounted ? "visible" : "hidden"}
+          animate={mounted ? 'visible' : 'hidden'}
           variants={logoVariants}
         >
           <Link to="/" className="header__logo-link">
@@ -122,17 +123,17 @@ const Header = () => {
           </Link>
         </motion.div>
 
-        <motion.nav 
+        <motion.nav
           className="header__nav"
           initial="hidden"
-          animate={mounted ? "visible" : "hidden"}
+          animate={mounted ? 'visible' : 'hidden'}
           variants={navVariants}
         >
           <ul className="header__nav-list">
-            {navLinks.map((link) => (
+            {navLinks.map(link => (
               <motion.li key={link.path} className="header__nav-item" variants={linkVariants}>
-                <Link 
-                  to={link.path} 
+                <Link
+                  to={link.path}
                   className={`header__nav-link ${location.pathname === link.path ? 'header__nav-link--active' : ''}`}
                 >
                   {link.label}
@@ -143,7 +144,7 @@ const Header = () => {
         </motion.nav>
 
         <div className="header__mobile-menu-button">
-          <button 
+          <button
             className={`hamburger ${isMobileMenuOpen ? 'hamburger--active' : ''}`}
             onClick={handleMenuToggle}
             aria-label="Toggle menu"
@@ -157,7 +158,7 @@ const Header = () => {
 
       <AnimatePresence>
         {isMobileMenuOpen && (
-          <motion.div 
+          <motion.div
             className="mobile-menu"
             initial="hidden"
             animate="visible"
@@ -165,15 +166,15 @@ const Header = () => {
             variants={mobileMenuVariants}
           >
             <ul className="mobile-menu__list">
-              {navLinks.map((link) => (
-                <motion.li 
-                  key={link.path} 
+              {navLinks.map(link => (
+                <motion.li
+                  key={link.path}
                   className="mobile-menu__item"
                   variants={linkVariants}
                   whileHover={{ x: 10 }}
                 >
-                  <Link 
-                    to={link.path} 
+                  <Link
+                    to={link.path}
                     className={`mobile-menu__link ${location.pathname === link.path ? 'mobile-menu__link--active' : ''}`}
                   >
                     {link.label}

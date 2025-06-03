@@ -28,6 +28,11 @@ const LoseScreen = lazy(() => import('./components/survival-game/LoseScreen'));
 const FactionWinScreen = lazy(() => import('./components/survival-game/FactionWinScreen'));
 const WinScreen = lazy(() => import('./components/survival-game/WinScreen'));
 
+// Lessons and training
+const Lessons = lazy(() => import('./pages/lessons'));
+const EDALesson = lazy(() => import('./pages/lessons/eda'));
+const LLMBuildingLesson = lazy(() => import('./pages/lessons/llm-building'));
+
 const LoadingFallback = () => (
   <div className="loading-fallback">
     <div className="loading-spinner"></div>
@@ -96,6 +101,12 @@ function App() {
                       <Route path="/projects/route-66/win" element={<WinScreen />} />
                       <Route path="/privacy-policy" element={<Privacy />} />
                       <Route path="*" element={<NotFound />} />
+
+                      <Route path="/lessons" element={<Lessons />} />
+                      <Route path="/lessons/eda" element={<EDALesson />} />
+                      <Route path="/lessons/llm-building" element={<LLMBuildingLesson />} />
+
+                      <Route path="/privacy" element={<Privacy />} />
                     </Routes>
                   </Suspense>
                 </AnimatePresence>
