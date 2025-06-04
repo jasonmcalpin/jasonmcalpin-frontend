@@ -871,7 +871,7 @@ excerpt = "Understanding vibe coding and how to avoid its pitfalls in software d
 date = "2025-05-19"
 imageUrl = "/assets/images/bytes/byte8.jpg"
 author = "Jason McAlpin"
-tags = ["Coding", "Development", "Software Engineering"]
+tags = ["AI", "Vibe Coding", "Development", "Software Engineering"]
 readingTime = 8
 content = """
 # Vibe Coding and Avoiding its Pitfalls
@@ -980,7 +980,7 @@ excerpt = "A guide to using Husky for pre-commit linting and pre-push testing in
 date = "2025-05-23"
 imageUrl = "/assets/images/bytes/byte10.jpg"
 author = "Jason McAlpin"
-tags = ["Husky", "Linting", "Testing", "Development"]
+tags = ["CI/CD", "Husky", "Linting", "Testing", "Development"]
 readingTime = 8
 content = """
 # Using Husky for Pre-commit Linting and Pre-push Testing
