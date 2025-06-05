@@ -117,6 +117,7 @@ Commitlint ensures commit messages follow the [Conventional Commits](https://www
    - `nav`: Navigation components
    - `deps`: Dependency updates
    - `config`: Configuration changes
+   - `copy`: Copy changes (e.g., text, labels)
 
 3. **Description (required)**: A short, imperative description of the change
 
