@@ -23,7 +23,7 @@
     "id": "3",
     "slug": "us-open-watson-project",
     "title": "US Open Watson Project",
-    "description": "A data analysis project using IBM Watson to analyze US Open tennis data and provide insights.",
+    "description": "Developed AI-powered interactive web application using IBM Watson's tone analyzer to create personalized tennis portraits for fans. Built system that processed open-ended user responses to generate personality trait percentages and match users with professional tennis players based on data analysis. Implemented both on-site booth integration nodejs systems and remote microsite functionality, showcasing AI capabilities to mainstream audiences.",
     "imageUrl": "/assets/images/projects/us-open.jpg",
     "technologies": ["IBM Watson", "Python", "MySQL", "Angular", "Machine Learning"],
     "githubUrl": "https://github.com/jasonmcalpin/us-open-watson",
@@ -45,7 +45,17 @@
     "title": "IBM-One Blog",
     "description": "IBM Blog, IBM consolidated all of its blogs into one unified offering. I created python, and Bash scripted tools to import bytes from blog platforms that didn't work with WordPress. I built security plugins and worked with the front-end and back-end developers to understand how to get Kubernetes, Cloudflare, and Akamai to work smoothly with WordPress. The plugins and solutions were used in international versions of the site. Tools included: PHP, Python, SQL, Kubernetes, and Docker.",
     "imageUrl": "/assets/images/projects/IBM-Blog.png",
-    "technologies": ["WordPress","PHP","SQL","JWT","SSO","Docker","Git","SASS","Cloudflare"],
+    "technologies": [
+      "WordPress",
+      "PHP",
+      "SQL",
+      "JWT",
+      "SSO",
+      "Docker",
+      "Git",
+      "SASS",
+      "Cloudflare"
+    ],
     "liveUrl": "https://www.ibm.com/blogs",
     "featured": true
   },
@@ -65,7 +75,16 @@
     "title": "IBM Research Tool",
     "description": "IBM Research Tool. This project involved converting over a million records from an old obfuscated data collection into a modern SQL database. \n I scoped the database requirements, docker repos and built up the infrastructure then created a REST-API for other services to reach the database. I then created commandline tools using node.js to import all of the records from their proprietary javascript format to SQL. Once the data was available in SQL I created a frontend that the teams could use to access and verify the data and ultimately use it going forward with much more ease and speed than the previous locally run application.",
     "imageUrl": "/assets/images/projects/ibm.jpg",
-    "technologies": ["SQL","REST-API","Node.js (REST-API Backend)","Next.js (Frontend)","Python","Carbon Framework","Docker","Git"],
+    "technologies": [
+      "SQL",
+      "REST-API",
+      "Node.js (REST-API Backend)",
+      "Next.js (Frontend)",
+      "Python",
+      "Carbon Framework",
+      "Docker",
+      "Git"
+    ],
     "liveUrl": "https://www.ibm.com/watson",
     "featured": false
   },
@@ -95,7 +114,7 @@
     "title": "IBM Watson - Chatbot",
     "description": "Ford Site. I built out A/B tests on the main site along with coding new car releases and implementing Adobe Target for tracking. I customized the Brightcove video players to save Ford money by preventing excessive replays. This dramatically drop the cost of the service.",
     "imageUrl": "/assets/images/projects/ibm.jpg",
-    "technologies": [ "React", "JQuery", "BrightCove", "Adobe Experience Manager", "Adobe Target" ],
+    "technologies": ["React", "JQuery", "BrightCove", "Adobe Experience Manager", "Adobe Target"],
     "liveUrl": "https://www.ibm.com/watson",
     "featured": false
   }

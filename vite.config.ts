@@ -9,7 +9,7 @@ export default defineConfig({
     react(),
     viteCompression({
       algorithm: 'brotliCompress',
-      threshold: 10240, // Only compress files larger than 10KB
+      threshold: 10240, // Only compress files larger than 10KBvitecom
     }),
     visualizer({
       open: false,
@@ -18,14 +18,12 @@ export default defineConfig({
       filename: 'dist/stats.html',
     }),
   ],
-  // Use root path for assets when using BrowserRouter
   base: '/',
   build: {
-    // Enable minification
     minify: 'terser',
     terserOptions: {
       compress: {
-        drop_console: false, // Temporarily keep console logs for GTM debugging
+        drop_console: true,
         drop_debugger: true,
       },
       mangle: true,
@@ -34,13 +32,12 @@ export default defineConfig({
     rollupOptions: {
       output: {
         manualChunks: {
-          // Split React and related packages into a separate chunk
           'vendor-react': ['react', 'react-dom', 'react-router-dom'],
           'vendor-redux': ['@reduxjs/toolkit', 'react-redux'],
           'vendor-ui': ['framer-motion', 'react-intersection-observer'],
         },
-        chunkFileNames: 'assets/js/[name]-[hash].js',
-        entryFileNames: 'assets/js/[name]-[hash].js',
+        chunkFileNames: 'assets/js/c-[name]-[hash].js',
+        entryFileNames: 'assets/js/e-[name]-[hash].js',
         assetFileNames: 'assets/[ext]/[name]-[hash].[ext]',
       },
     },
