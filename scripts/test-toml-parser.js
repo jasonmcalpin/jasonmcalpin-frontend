@@ -1,5 +1,5 @@
 // Test script to parse the TOML file
-import toml from 'toml-j0.4';
+import toml from '@iarna/toml'; 
 import fs from 'fs';
 import path from 'path';
 

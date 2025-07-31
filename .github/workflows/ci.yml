@@ -42,7 +42,6 @@ jobs:
           name: build-artifacts
           path: dist/
           retention-days: 1
-          overwrite: true
 
   deploy-preview:
     if: github.event_name == 'pull_request'
@@ -54,7 +53,6 @@ jobs:
         with:
           name: build-artifacts
           path: dist/
-          overwrite: true
       
       - name: Create PR identifier file
         run: |
@@ -94,7 +92,6 @@ jobs:
         with:
           name: build-artifacts
           path: dist/
-          overwrite: true
       
       # GTM ID is now injected during build via environment variables
           
@@ -120,7 +117,6 @@ jobs:
         with:
           name: build-artifacts
           path: dist
-          overwrite: true
       
       - name: Create main branch identifier file
         run: |
