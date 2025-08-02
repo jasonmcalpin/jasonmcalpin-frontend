@@ -19,22 +19,22 @@ h1, h2, h3, h4, h5, h6 {
 /* Cyberpunk-inspired styles */
 .neon-text {
   @apply text-neon-white;
-  text-shadow: 0 0 5px theme('colors.neon-blue'), 0 0 10px theme('colors.neon-blue');
+  text-shadow: 0 0 5px theme('colors.neon.blue'), 0 0 10px theme('colors.neon.blue');
 }
 
 .neon-border {
   @apply border border-neon-blue;
-  box-shadow: 0 0 5px theme('colors.neon-blue'), 0 0 10px theme('colors.neon-blue');
+  box-shadow: 0 0 5px theme('colors.neon.blue'), 0 0 10px theme('colors.neon.blue');
 }
 
 .neon-purple-text {
   @apply text-neon-purple;
-  text-shadow: 0 0 5px theme('colors.neon-blue'), 0 0 10px theme('colors.neon-blue');
+  text-shadow: 0 0 5px theme('colors.neon.blue'), 0 0 10px theme('colors.neon.blue');
 }
 
 .neon-purple-border {
   @apply border border-neon-purple;
-  box-shadow: 0 0 5px theme('colors.neon-purple'), 0 0 10px theme('colors.neon-purple');
+  box-shadow: 0 0 5px theme('colors.neon.purple'), 0 0 10px theme('colors.neon.purple');
 }
 
 .highlight-outline {
@@ -61,7 +61,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .btn-outline {
   @apply border border-neon-blue text-neon-blue hover:bg-neon-blue/10;
-  box-shadow: 0 0 5px theme('colors.neon-blue');
+  box-shadow: 0 0 5px theme('colors.neon.blue');
 }
 
 /* Card styles */
