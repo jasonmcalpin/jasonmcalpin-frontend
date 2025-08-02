@@ -18,32 +18,27 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Cyberpunk-inspired styles */
 .neon-text {
-  @apply text-neon-white;
-  text-shadow: 0 0 5px theme('colors.neon.blue'), 0 0 10px theme('colors.neon.blue');
+  @apply text-neon-white shadow-neon-blue;
 }
 
 .neon-border {
-  @apply border border-neon-blue;
-  box-shadow: 0 0 5px theme('colors.neon.blue'), 0 0 10px theme('colors.neon.blue');
+  @apply border border-neon-blue shadow-neon-blue;
 }
 
 .neon-purple-text {
-  @apply text-neon-purple;
-  text-shadow: 0 0 5px theme('colors.neon.blue'), 0 0 10px theme('colors.neon.blue');
+  @apply text-neon-purple shadow-neon-blue;
 }
 
 .neon-purple-border {
-  @apply border border-neon-purple;
-  box-shadow: 0 0 5px theme('colors.neon.purple'), 0 0 10px theme('colors.neon.purple');
+  @apply border border-neon-purple shadow-neon-blue;
 }
 
 .highlight-outline {
-  @apply transition-all duration-300;
-  box-shadow: 0 0 0 0 theme('colors.secondary.DEFAULT');
+  @apply transition-all duration-300 shadow-secondary;
 }
 
 .highlight-outline:hover {
-  box-shadow: 0 0 0 2px theme('colors.secondary.DEFAULT'), 0 0 10px 0 theme('colors.secondary.DEFAULT');
+  box-shadow: 0 0 0 2px var(--color-secondary), 0 0 10px 0 var(--color-secondary);
 }
 
 /* Button styles */
@@ -60,8 +55,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .btn-outline {
-  @apply border border-neon-blue text-neon-blue hover:bg-neon-blue/10;
-  box-shadow: 0 0 5px theme('colors.neon.blue');
+  @apply border border-neon-blue text-neon-blue hover:bg-neon-blue/10 shadow-neon-blue;
 }
 
 /* Card styles */
