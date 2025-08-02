@@ -49,7 +49,7 @@
       &::after {
         content: '';
         @apply absolute bottom-[-5px] left-0 w-full h-[2px] bg-neon-blue;
-        box-shadow: 0 0 5px theme('colors.neon.blue'), 0 0 10px theme('colors.neon.blue');
+        box-shadow: 0 0 5px theme('colors.neon_blue'), 0 0 10px theme('colors.neon_blue');
       }
     }
   }

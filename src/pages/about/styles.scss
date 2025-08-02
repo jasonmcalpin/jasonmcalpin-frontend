@@ -45,7 +45,7 @@
   
   &__image {
     @apply w-64 h-64 rounded-full overflow-hidden border-4 border-neon-blue;
-    box-shadow: 0 0 15px theme('colors.neon.blue');
+    box-shadow: 0 0 15px theme('colors.neon_blue');
   }
   
   &__image-placeholder {
@@ -71,7 +71,7 @@
   
   &__category-title {
     @apply text-xl font-heading font-semibold mb-6 text-neon-blue;
-    text-shadow: 0 0 5px theme('colors.neon.blue');
+    text-shadow: 0 0 5px theme('colors.neon_blue');
   }
   
   &__list {
@@ -100,8 +100,8 @@
   
   &__progress {
     @apply h-full rounded-full;
-    background: linear-gradient(to right, theme('colors.neon.blue'), theme('colors.neon.purple'));
-    box-shadow: 0 0 5px theme('colors.neon.blue');
+    background: linear-gradient(to right, theme('colors.neon_blue'), theme('colors.neon_purple'));
+    box-shadow: 0 0 5px theme('colors.neon_blue');
   }
 }
 
@@ -113,7 +113,7 @@
     @apply relative space-y-8 pl-8 before:absolute before:left-0 before:top-2 before:h-full before:w-0.5 before:bg-neon-blue;
     
     &::before {
-      box-shadow: 0 0 5px theme('colors.neon.blue');
+      box-shadow: 0 0 5px theme('colors.neon_blue');
     }
   }
   
@@ -123,7 +123,7 @@
   
   &__marker {
     @apply absolute -left-10 top-2 w-4 h-4 rounded-full bg-neon-blue;
-    box-shadow: 0 0 10px theme('colors.neon.blue');
+    box-shadow: 0 0 10px theme('colors.neon_blue');
   }
   
   &__content {
@@ -193,7 +193,7 @@
   
   &__year {
     @apply md:w-1/4 text-xl font-heading font-bold text-neon-purple;
-    text-shadow: 0 0 5px theme('colors.neon.purple');
+    text-shadow: 0 0 5px theme('colors.neon_purple');
   }
   
   &__content {
@@ -233,7 +233,7 @@
   
   &__year {
     @apply md:w-1/4 text-xl font-heading font-bold text-neon-purple;
-    text-shadow: 0 0 5px theme('colors.neon.purple');
+    text-shadow: 0 0 5px theme('colors.neon_purple');
   }
   
   &__content {

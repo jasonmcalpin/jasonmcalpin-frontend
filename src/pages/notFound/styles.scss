@@ -13,7 +13,7 @@
   
   &__title {
     @apply text-8xl sm:text-9xl font-heading font-bold mb-4 text-neon-blue;
-    text-shadow: 0 0 10px theme('colors.neon.blue'), 0 0 20px theme('colors.neon.blue');
+    text-shadow: 0 0 10px theme('colors.neon_blue'), 0 0 20px theme('colors.neon_blue');
   }
   
   &__subtitle {

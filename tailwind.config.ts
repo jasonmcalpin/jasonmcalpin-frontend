@@ -24,12 +24,10 @@ const config: Config = {
           DEFAULT: '#121212',
           dark: '#0A0A0A',
         },
-        neon: {
-          blue: '#00F0FF',
-          purple: '#9D00FF',
-          white: '#FFFFFF',
-          text: '#FFFFFF',
-        },
+        neon_blue: '#00F0FF',
+        neon_purple: '#9D00FF',
+        neon_white: '#FFFFFF',
+        neon_text: '#FFFFFF',
       },
       fontFamily: {
         heading: ['Orbitron', 'sans-serif'],

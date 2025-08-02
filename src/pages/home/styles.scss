@@ -138,7 +138,7 @@
   
   &__skill-title {
     @apply text-xl font-heading font-semibold mb-4 text-neon-blue;
-    text-shadow: 0 0 5px theme('colors.neon.blue');
+    text-shadow: 0 0 5px theme('colors.neon_blue');
   }
   
   &__skill-tags {

@@ -31,17 +31,15 @@ const CookieConsent: React.FC<CookieConsentProps> = ({
 }) => {
   const [visible, setVisible] = useState(false);
   const [options, setOptions] = useState<ConsentOptions>({
-    essential: true, // Essential cookies are always required
+    essential: true, 
     preferences: true,
     analytics: true
   });
 
   useEffect(() => {
-    // Check if user has already made a choice
     const storedConsent = localStorage.getItem(CONSENT_STORAGE_KEY);
     
     if (!storedConsent) {
-      // No previous consent found, show the banner
       setVisible(true);
       return;
     }
@@ -49,21 +47,17 @@ const CookieConsent: React.FC<CookieConsentProps> = ({
     try {
       const consentData: ConsentStatus = JSON.parse(storedConsent);
       
-      // If policy version has changed, ask for consent again
       if (consentData.policyVersion !== policyVersion) {
         setVisible(true);
         return;
       }
       
-      // User has already consented, no need to show banner
       if (consentData.consented) {
         onAccept(consentData.options);
       } else {
         onDecline();
       }
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (error) {
-      // Invalid stored consent, show the banner
       setVisible(true);
     }
   }, [policyVersion, onAccept, onDecline]);
@@ -121,7 +115,7 @@ const CookieConsent: React.FC<CookieConsentProps> = ({
                 type="checkbox" 
                 id="consent-essential" 
                 checked={options.essential} 
-                disabled={true} // Essential cookies cannot be disabled
+                disabled={true}
                 onChange={() => {}} 
               />
               <label htmlFor="consent-essential">
@@ -182,14 +176,12 @@ const CookieConsent: React.FC<CookieConsentProps> = ({
 
 export default CookieConsent;
 
-// Helper functions for external use
 export const getUserConsent = (): ConsentStatus | null => {
   const storedConsent = localStorage.getItem(CONSENT_STORAGE_KEY);
   if (!storedConsent) return null;
   
   try {
     return JSON.parse(storedConsent) as ConsentStatus;
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   } catch (error) {
     return null;
   }

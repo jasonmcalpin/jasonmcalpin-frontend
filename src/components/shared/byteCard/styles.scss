@@ -58,7 +58,7 @@
   
   &__link {
     @apply inline-flex items-center justify-center px-4 py-2 text-sm font-medium rounded transition-all duration-300 bg-neon-purple text-white hover:bg-purple-700 mt-2;
-    box-shadow: 0 0 5px theme('colors.neon.purple');
+    box-shadow: 0 0 5px theme('colors.neon_purple');
     
     &::after {
       content: '\f054'; // Arrow icon (would be replaced with actual implementation)

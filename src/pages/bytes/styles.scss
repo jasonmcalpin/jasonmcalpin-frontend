@@ -273,7 +273,7 @@
     
     &--active {
       @apply bg-neon-purple text-white;
-      box-shadow: 0 0 10px theme('colors.neon.purple');
+      box-shadow: 0 0 10px theme('colors.neon_purple');
     }
   }
 }
