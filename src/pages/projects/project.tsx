@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import { useAppSelector } from '../../hooks/useAppStore';
 import { Project } from '../../store/slices/projectsSlice';
 import { fadeInUp } from '../../utils/animations';
-import './styles.scss';
+import './styles.css';
 
 const ProjectPage = () => {
   const { slug } = useParams<{ slug: string }>();

@@ -9,7 +9,7 @@ import { Byte, fetchBytes } from '../../store/slices/bytesSlice';
 import SEO from '../../components/global/SEO';
 import { getByteSchema } from '../../utils/schema';
 import { fadeInUp } from '../../utils/animations';
-import './styles.scss';
+import './styles.css';
 
 const BytePage = () => {
   const { slug } = useParams<{ slug: string }>();

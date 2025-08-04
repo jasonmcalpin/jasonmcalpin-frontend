@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { SocialLink } from '../../types';
 import { fadeInUp, staggerContainer } from '../../utils/animations';
-import './styles.scss';
+import './styles.css';
 
 const Contact = () => {
   const [socialLinks, setSocialLinks] = useState<SocialLink[]>([]);

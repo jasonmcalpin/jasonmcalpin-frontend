@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import SEO from '../../components/global/SEO';
 import { useScrollAnimation } from '../../hooks/useScrollAnimation';
 import { fadeInUp, staggerContainer, neonFlicker } from '../../utils/animations';
-import './styles.scss';
+import './styles.css';
 
 const NotFound = () => {
   const [contentRef, contentControls] = useScrollAnimation();

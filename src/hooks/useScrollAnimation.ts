@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useAnimation, AnimationControls } from 'framer-motion';
+import { useAnimationControls } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 
 interface ScrollAnimationOptions {
@@ -10,14 +10,14 @@ interface ScrollAnimationOptions {
 
 export const useScrollAnimation = (
   options: ScrollAnimationOptions = {}
-): [(node?: Element | null) => void, AnimationControls] => {
+) => {
   const {
     threshold = 0.1,
     triggerOnce = true,
     delay = 0
   } = options;
 
-  const controls = useAnimation();
+  const controls = useAnimationControls();
   const [ref, inView] = useInView({ threshold, triggerOnce });
 
   useEffect(() => {
@@ -30,7 +30,7 @@ export const useScrollAnimation = (
     }
   }, [controls, inView, delay]);
 
-  return [ref, controls];
+  return [ref, controls] as const;
 };
 
 // Common animation variants

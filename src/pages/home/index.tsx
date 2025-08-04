@@ -10,7 +10,7 @@ import SEO from '../../components/global/SEO';
 import { useScrollAnimation } from '../../hooks/useScrollAnimation';
 import { fadeInUp, staggerContainer } from '../../utils/animations';
 import { getWebsiteSchema } from '../../utils/schema';
-import './styles.scss';
+import './styles.css';
 
 const Home = () => {
   // SEO data

@@ -4,7 +4,7 @@ import { useAppDispatch, useAppSelector } from '../../hooks/useAppStore';
 import { filterProjects, fetchProjects } from '../../store/slices/projectsSlice';
 import ProjectCard from '../../components/global/projectCard';
 import { fadeInUp, staggerContainer } from '../../utils/animations';
-import './styles.scss';
+import './styles.css';
 
 const Projects = () => {
   const dispatch = useAppDispatch();

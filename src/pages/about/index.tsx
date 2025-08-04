@@ -8,13 +8,12 @@ import { fadeInUp, staggerContainer } from '../../utils/animations';
 import { Skill, Experience, Education, Awards } from '../../types';
 import SEO from '../../components/global/SEO';
 import { getPersonSchema } from '../../utils/schema';
-import './styles.scss';
+import './styles.css';
 
 const About = () => {
   const dispatch = useAppDispatch();
-  const { experiences }: { experiences: Experience[] } = useAppSelector((state) => state.experience);
-  
-  // Fetch experiences
+  const { experiences }: { experiences: Experience[] } = useAppSelector((state) => state.experience);  
+
   useEffect(() => {
     dispatch(fetchExperiences());
   }, [dispatch]);
@@ -126,7 +125,6 @@ const About = () => {
         type="profile"
         schema={personSchema}
       />
-      {/* Hero Section */}
       <section className="about-hero">
         <div className="about-hero__container">
           <h1 className="about-hero__title">About Me</h1>

@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { fadeInUp } from '../../utils/animations';
-import './styles.scss';
+import './styles.css';
 
 const Privacy = () => {
   return (
