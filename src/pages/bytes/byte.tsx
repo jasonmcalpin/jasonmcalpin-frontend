@@ -6,7 +6,7 @@ import remarkGfm from 'remark-gfm';
 import { Highlight, themes } from 'prism-react-renderer';
 import { useAppSelector, useAppDispatch } from '../../hooks/useAppStore';
 import { Byte, fetchBytes } from '../../store/slices/bytesSlice';
-import SEO from '../../components/shared/SEO';
+import SEO from '../../components/global/SEO';
 import { getByteSchema } from '../../utils/schema';
 import { fadeInUp } from '../../utils/animations';
 import './styles.scss';

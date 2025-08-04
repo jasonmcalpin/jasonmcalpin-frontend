@@ -1,0 +1,31 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@400;500;600;700&display=swap');
+
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@theme {
+  --color-background: #121212;
+  --color-background-light: #1E1E1E;
+  --color-background-dark: #0A0A0A;
+
+  --color-primary: #2A3B4C;
+  --color-primary-light: #3D5A73;
+  --color-primary-dark: #1A2A3C;
+
+  --color-secondary: #FF7E00;
+  --color-secondary-light: #FF9E2A;
+  --color-secondary-dark: #E06E00;
+
+  --color-neon-blue: #00F0FF;
+  --color-neon-purple: #9D00FF;
+  --color-neon-white: #FFFFFF;
+  --color-neon-text: #FFFFFF;
+
+  --shadow-neon-blue: 0 0 5px var(--color-neon-blue), 0 0 10px var(--color-neon-blue);
+  --shadow-neon-purple: 0 0 5px var(--color-neon-purple), 0 0 10px var(--color-neon-purple);
+  --text-shadow-neon-blue: 0 0 5px var(--color-neon-blue), 0 0 10px var(--color-neon-blue);
+  --text-shadow-neon-purple: 0 0 5px var(--color-neon-purple), 0 0 10px var(--color-neon-purple);
+
+  --font-heading: 'Orbitron', sans-serif;
+  --font-body: 'Inter', sans-serif;
+}

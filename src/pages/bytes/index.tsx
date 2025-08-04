@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useAppDispatch, useAppSelector } from '../../hooks/useAppStore';
 import { filterBytes, fetchBytes } from '../../store/slices/bytesSlice';
-import ByteCard from '../../components/shared/byteCard';
+import ByteCard from '../../components/global/byteCard';
 import { fadeInUp, staggerContainer } from '../../utils/animations';
 import './styles.scss';
 

@@ -1,10 +1,14 @@
+import { createHead, UnheadProvider } from '@unhead/react/client';
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
-import './index.css';
+import './styles/index.css';
 import App from './App.tsx';
 import TagManager from 'react-gtm-module';
-import { hasConsentedTo } from './components/shared/CookieConsent';
+import { hasConsentedTo } from './components/global/CookieConsent';
 import { checkGTMInitialization } from './utils/gtmDebugger';
+
+const head = createHead();
+
 
 // Initialize GTM if user has consented to analytics and GTM ID is available
 if (hasConsentedTo('analytics')) {
@@ -26,6 +30,8 @@ if (hasConsentedTo('analytics')) {
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <App />
+    <UnheadProvider head={head} >
+      <App />
+    </UnheadProvider>
   </StrictMode>
 );

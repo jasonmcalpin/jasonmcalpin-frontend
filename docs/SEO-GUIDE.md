@@ -14,7 +14,7 @@ The site uses `react-helmet-async` to dynamically manage meta tags for each page
 - **Open Graph Tags**: Optimize social media sharing
 - **Twitter Card Tags**: Enhance Twitter sharing appearance
 
-Implementation: `src/components/shared/SEO/index.tsx`
+Implementation: `src/components/global/SEO/index.tsx`
 
 ### 2. Structured Data (JSON-LD)
 

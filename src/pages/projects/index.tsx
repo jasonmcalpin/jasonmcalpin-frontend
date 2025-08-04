@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useAppDispatch, useAppSelector } from '../../hooks/useAppStore';
 import { filterProjects, fetchProjects } from '../../store/slices/projectsSlice';
-import ProjectCard from '../../components/shared/projectCard';
+import ProjectCard from '../../components/global/projectCard';
 import { fadeInUp, staggerContainer } from '../../utils/animations';
 import './styles.scss';
 

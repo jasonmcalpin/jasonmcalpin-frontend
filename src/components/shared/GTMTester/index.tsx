@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { triggerGTMEvent, checkGTMInitialization } from '../../../utils/gtmDebugger';
-import './styles.scss';
+import './styles.css';
 
 interface GTMTesterProps {
   isVisible?: boolean;

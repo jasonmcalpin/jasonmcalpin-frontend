@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { Byte } from '../../../store/slices/bytesSlice';
 import OptimizedImage from '../OptimizedImage';
-import './styles.scss';
+import './styles.css';
 
 interface ByteCardProps {
   byte: Byte;

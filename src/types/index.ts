@@ -6,6 +6,13 @@ export interface NavLink {
   subLinks?: NavLink[];
 }
 
+export interface ChoiceButton {
+  path: string;
+  children: string;
+  additionalClasses?: string;
+  type: 'flat' | 'primary' | 'secondary' | 'outline';
+}
+
 export interface SocialLink {
   platform: 'linkedin' | 'github' | 'twitter' | 'facebook' | 'instagram';
   url: string;

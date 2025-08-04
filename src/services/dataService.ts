@@ -1,4 +1,4 @@
-import toml from '@iarna/toml';
+import toml from 'toml';
 
 export class DataService {
   async fetchJson<T>(path: string): Promise<T> {

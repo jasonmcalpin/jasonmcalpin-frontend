@@ -1,4 +1,4 @@
-import { Helmet } from 'react-helmet-async';
+import { Head } from '@unhead/react';
 
 interface SEOProps {
   title: string;
@@ -30,7 +30,7 @@ const SEO = ({
   const imageUrl = image.startsWith('http') ? image : `${siteUrl}${image}`;
 
   return (
-    <Helmet>
+    <Head>
       <title>{fullTitle}</title>
       <meta name="description" content={description} />
       <link rel="canonical" href={url} />
@@ -70,7 +70,7 @@ const SEO = ({
           {JSON.stringify(schema)}
         </script>
       )}
-    </Helmet>
+    </Head>
   );
 };
 

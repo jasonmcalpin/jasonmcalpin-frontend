@@ -6,7 +6,7 @@ import { useAppDispatch, useAppSelector } from '../../hooks/useAppStore';
 import { fetchExperiences } from '../../store/slices/experienceSlice';
 import { fadeInUp, staggerContainer } from '../../utils/animations';
 import { Skill, Experience, Education, Awards } from '../../types';
-import SEO from '../../components/shared/SEO';
+import SEO from '../../components/global/SEO';
 import { getPersonSchema } from '../../utils/schema';
 import './styles.scss';
 

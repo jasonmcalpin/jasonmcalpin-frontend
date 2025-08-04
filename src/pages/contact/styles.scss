@@ -78,7 +78,7 @@
   }
   
   &__icon {
-    @apply w-10 h-10 flex items-center justify-center rounded-full bg-white bg-opacity-20 mr-4;
+    @apply w-10 h-10 flex items-center justify-center rounded-full bg-white/20 mr-4;
     
     &::before {
       @apply text-xl;
@@ -94,7 +94,7 @@
   }
   
   &__username {
-    @apply text-sm opacity-80;
+    @apply text-sm/80;
   }
 }
 
@@ -111,24 +111,17 @@
   }
   
   &__card-inner {
-    @apply relative w-full h-full transition-transform duration-700 transform-style-3d;
-    transform-style: preserve-3d;
-    
-    &:hover {
-      transform: rotateY(180deg);
-    }
+    @apply relative w-full h-full transition-transform duration-700 transform-3d :hover:rotate-y-180;
   }
   
   &__card-front,
   &__card-back {
-    @apply absolute w-full h-full rounded-lg p-6 backface-hidden;
+    @apply absolute w-full h-full rounded-lg p-6 backface-hidden shadow-[ 0 4px 10px rgba(0, 0, 0, 0.2)];
     backface-visibility: hidden;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   }
   
   &__card-front {
-    @apply bg-background-light flex flex-col items-center justify-center;
-    background-image: linear-gradient(135deg, rgba(42, 59, 76, 0.9), rgba(26, 42, 60, 0.9));
+    @apply bg-background-light flex flex-col items-center justify-center bg-[linear-gradient(135deg, rgba(42, 59, 76, 0.9), rgba(26, 42, 60, 0.9))];
   }
   
   &__card-back {
@@ -145,9 +138,7 @@
   }
   
   &__pattern {
-    @apply absolute inset-0 opacity-10;
-    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%2300f0ff' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-    z-index: 0;
+    @apply absolute inset-0 bg-[url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%2300f0ff' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")]/10 bg-im z-0;
   }
   
   &__list {
@@ -211,13 +202,12 @@
   }
   
   &__item {
-    @apply bg-background p-6 rounded-lg;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    @apply bg-background p-6 rounded-lg shadow-[0 4px 6px rgba(0, 0, 0, 0.1)];
   }
   
   &__question {
     @apply text-xl font-heading font-semibold mb-4 text-neon-blue;
-    text-shadow: 0 0 5px theme('colors.neon_blue');
+    text-shadow: 0 0 5px var(--color-neon-blue);
   }
   
   &__answer {

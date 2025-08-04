@@ -1,15 +1,15 @@
 import { lazy, Suspense, useEffect, useState } from 'react';
-import './App.css';
+import './styles/App.css';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import { HelmetProvider } from 'react-helmet-async';
+
 import { AnimatePresence } from 'framer-motion';
 import { store } from './store';
 import Header from './components/header';
 import Footer from './components/footer';
-import CookieConsent, { ConsentOptions } from './components/shared/CookieConsent';
+import CookieConsent, { ConsentOptions } from './components/global/CookieConsent';
 import ScrollToTop from './components/scrollToTop';
-import GTMTester from './components/shared/GTMTester';
+import GTMTester from './components/global/GTMTester';
 
 const Home = lazy(() => import('./pages/home'));
 const Privacy = lazy(() => import('./pages/privacy'));
@@ -71,7 +71,7 @@ function App() {
 
   return (
     <Provider store={store}>
-      <HelmetProvider>
+      
         <Router>
           <ScrollToTop />
           <QueryParamDetector>
@@ -120,7 +120,7 @@ function App() {
             </div>
           </QueryParamDetector>
         </Router>
-      </HelmetProvider>
+    
     </Provider>
   );
 }

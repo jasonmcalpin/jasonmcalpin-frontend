@@ -45,7 +45,7 @@
   
   &__image {
     @apply w-64 h-64 rounded-full overflow-hidden border-4 border-neon-blue;
-    box-shadow: 0 0 15px theme('colors.neon_blue');
+    box-shadow: 0 0 15px var(--color-neon-blue);
   }
   
   &__image-placeholder {
@@ -71,7 +71,7 @@
   
   &__category-title {
     @apply text-xl font-heading font-semibold mb-6 text-neon-blue;
-    text-shadow: 0 0 5px theme('colors.neon_blue');
+    text-shadow: 0 0 5px var(--color-neon-blue);
   }
   
   &__list {
@@ -100,8 +100,8 @@
   
   &__progress {
     @apply h-full rounded-full;
-    background: linear-gradient(to right, theme('colors.neon_blue'), theme('colors.neon_purple'));
-    box-shadow: 0 0 5px theme('colors.neon_blue');
+    background: linear-gradient(to right, var(--color-neon-blue), theme('colors.neon_purple'));
+    box-shadow: 0 0 5px var(--color-neon-blue);
   }
 }
 
@@ -113,7 +113,7 @@
     @apply relative space-y-8 pl-8 before:absolute before:left-0 before:top-2 before:h-full before:w-0.5 before:bg-neon-blue;
     
     &::before {
-      box-shadow: 0 0 5px theme('colors.neon_blue');
+      box-shadow: 0 0 5px var(--color-neon-blue);
     }
   }
   
@@ -123,7 +123,7 @@
   
   &__marker {
     @apply absolute -left-10 top-2 w-4 h-4 rounded-full bg-neon-blue;
-    box-shadow: 0 0 10px theme('colors.neon_blue');
+    box-shadow: 0 0 10px var(--color-neon-blue);
   }
   
   &__content {
@@ -265,7 +265,7 @@
   
   &::before {
     content: '';
-    @apply absolute inset-0 bg-neon-blue opacity-5;
+    @apply absolute inset-0 bg-neon-blue/5;
     background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%2300f0ff' fill-opacity='0.2'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
   }
   
