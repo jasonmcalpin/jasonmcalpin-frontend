@@ -130,7 +130,7 @@ const About = () => {
       <Hero 
         heroTitle="About Me"
         heroSubtitle="Full Stack Developer with a passion for creating modern web experiences"
-        heroImage="url('/assets/images/about/sammy-2023.png')"
+        heroImage="linear-gradient(to right, #2a3b4ce6, #1a2a3ce6), url(/assets/images/code-bg.jpg)"
       />
 
       <motion.section 

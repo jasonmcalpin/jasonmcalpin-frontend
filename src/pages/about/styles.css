@@ -1,7 +1,7 @@
 @reference "../../styles/tailwind.css";
 
 .about {
-  @apply pt-16; 
+  @apply pt-16;
 }
 
 
@@ -10,77 +10,78 @@
 
 .about-intro {
   @apply py-16;
-  
-  &__content {
-    @apply grid grid-cols-1 md:grid-cols-3 gap-8;
-  }
-  
-  &__text {
-    @apply md:col-span-2;
-  }
-  
-  &__paragraph {
-    @apply text-gray-300 mb-4;
-  }
-  
-  &__image-container {
-    @apply flex justify-center items-center;
-  }
-  
-  &__image {
-    @apply w-64 h-64 rounded-full overflow-hidden border-4 border-neon-blue;
-    box-shadow: 0 0 15px var(--color-neon-blue);
-  }
-  
-  &__image-placeholder {
-    @apply w-full h-full bg-primary flex items-center justify-center text-6xl font-heading font-bold text-white;
-    background-image: url('/assets/images/about/sammy-2023.png');
+}
+
+.about-intro__content {
+  @apply grid grid-cols-1 md:grid-cols-3 gap-8;
+}
+
+.about-intro__text {
+  @apply md:col-span-2;
+}
+
+.about-intro__paragraph {
+  @apply text-gray-300 mb-4;
+}
+
+.about-intro__image-container {
+  @apply flex justify-center items-center;
+}
+
+.about-intro__image {
+  @apply w-64 h-64 rounded-full overflow-hidden border-4 border-neon-blue;
+  box-shadow: 0 0 15px var(--color-neon-blue);
+}
+
+.about-intro__image-placeholder {
+  @apply w-full h-full bg-primary flex items-center justify-center text-6xl font-heading font-bold text-white;
+  background-image: url('/assets/images/about/sammy-2023.png');
   background-size: cover;
   background-position: center;
-  }
 }
+
 
 .about-skills {
   @apply py-16 bg-background-light;
-  
+
   &__categories {
     @apply grid grid-cols-1 lg:grid-cols-3 gap-8;
   }
-  
+
   &__category {
     @apply bg-background p-6 rounded-lg;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   }
-  
+
   &__category-title {
     @apply text-xl font-heading font-semibold mb-6 text-neon-blue;
     text-shadow: 0 0 5px var(--color-neon-blue);
   }
-  
+
   &__list {
     @apply space-y-4;
   }
-  
+
   &__item {
     @apply mb-4;
   }
-  
+
   &__info {
     @apply flex justify-between mb-1;
   }
-  
+
   &__name {
     @apply text-white;
   }
-  
+
   &__level {
     @apply text-gray-400;
   }
-  
+
   &__bar {
     @apply w-full h-2 bg-gray-700 rounded-full overflow-hidden;
   }
-  
+
   &__progress {
     @apply h-full rounded-full;
     background: linear-gradient(to right, var(--color-neon-blue), var(--color-neon-purple));
@@ -90,72 +91,72 @@
 
 .about-experience {
   @apply py-16;
-  
+
   &__timeline {
     @apply relative space-y-8 pl-8 before:absolute before:left-0 before:top-2 before:h-full before:w-0.5 before:bg-neon-blue;
-    
+
     &::before {
       box-shadow: 0 0 5px var(--color-neon-blue);
     }
   }
-  
+
   &__item {
     @apply relative;
   }
-  
+
   &__marker {
     @apply absolute -left-10 top-2 w-4 h-4 rounded-full bg-neon-blue;
     box-shadow: 0 0 10px var(--color-neon-blue);
   }
-  
+
   &__content {
     @apply bg-background-light p-6 rounded-lg;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   }
-  
+
   &__header {
     @apply mb-2;
   }
-  
+
   &__title {
     @apply text-xl font-heading font-bold text-white;
   }
-  
+
   &__company {
     @apply text-neon-blue ml-2;
   }
-  
+
   &__meta {
     @apply flex flex-wrap justify-between text-sm text-gray-400 mb-4;
   }
-  
+
   &__location {
     @apply flex items-center;
-    
+
     &::before {
-      content: '\f3c5'; 
+      content: '\f3c5';
       @apply mr-1;
     }
   }
-  
+
   &__date {
     @apply flex items-center;
-    
+
     &::before {
-      content: '\f073'; 
+      content: '\f073';
       @apply mr-1;
     }
   }
-  
+
   &__description {
     @apply text-gray-300 mb-4;
     white-space: pre-wrap;
   }
-  
+
   &__technologies {
     @apply flex flex-wrap gap-2;
   }
-  
+
   &__tech-tag {
     @apply bg-primary-dark text-white text-xs py-1 px-2 rounded-full;
   }
@@ -163,37 +164,37 @@
 
 .about-education {
   @apply py-16 bg-background-light;
-  
+
   &__list {
     @apply space-y-8;
   }
-  
+
   &__item {
     @apply flex flex-col md:flex-row gap-6;
   }
-  
+
   &__year {
     @apply md:w-1/4 text-xl font-heading font-bold text-neon-purple;
     text-shadow: 0 0 5px var(--color-neon-purple);
   }
-  
+
   &__content {
     @apply md:w-3/4 bg-background p-6 rounded-lg;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   }
-  
+
   &__degree {
     @apply text-xl font-heading font-bold text-white mb-2;
   }
-  
+
   &__institution {
     @apply flex flex-wrap justify-between text-gray-300 mb-2;
   }
-  
+
   &__location {
     @apply text-gray-400 text-sm;
   }
-  
+
   &__description {
     @apply text-gray-400 text-sm italic;
     white-space: pre-wrap;
@@ -202,37 +203,37 @@
 
 .about-awards {
   @apply py-16 bg-background-light;
-  
+
   &__list {
     @apply space-y-8;
   }
-  
+
   &__item {
     @apply flex flex-col md:flex-row gap-6;
   }
-  
+
   &__year {
     @apply md:w-1/4 text-xl font-heading font-bold text-neon-purple;
     text-shadow: 0 0 5px var(--color-neon-purple);
   }
-  
+
   &__content {
     @apply md:w-3/4 bg-background p-6 rounded-lg;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   }
-  
+
   &__title {
     @apply text-xl font-heading font-bold text-white mb-2;
   }
-  
+
   &__institution {
     @apply flex flex-wrap justify-between text-gray-300 mb-2;
   }
-  
+
   &__location {
     @apply text-gray-400 text-sm;
   }
-  
+
   &__description {
     @apply text-gray-400 text-sm italic;
     white-space: pre-wrap;
@@ -241,25 +242,25 @@
 
 .about-contact {
   @apply py-24 bg-primary-dark relative overflow-hidden;
-  
+
   &::before {
     content: '';
     @apply absolute inset-0 bg-neon-blue/5;
     background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%2300f0ff' fill-opacity='0.2'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
   }
-  
+
   &__content {
     @apply relative z-10 text-center max-w-2xl mx-auto;
   }
-  
+
   &__title {
     @apply text-3xl md:text-4xl font-heading font-bold mb-4 text-white;
   }
-  
+
   &__text {
     @apply text-xl text-gray-300 mb-8;
   }
-  
+
   &__cta {
     @apply text-lg px-8 py-3;
   }
