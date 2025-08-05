@@ -8,6 +8,7 @@ import { fadeInUp, staggerContainer } from '../../utils/animations';
 import { Skill, Experience, Education, Awards } from '../../types';
 import SEO from '../../components/global/SEO';
 import { getPersonSchema } from '../../utils/schema';
+import Hero from '../../components/global/Hero';
 import './styles.css';
 
 const About = () => {
@@ -125,15 +126,12 @@ const About = () => {
         type="profile"
         schema={personSchema}
       />
-      <section className="about-hero">
-        <div className="about-hero__container">
-          <h1 className="about-hero__title">About Me</h1>
-          <p className="about-hero__subtitle">
-            Full Stack Developer with a passion for creating modern web experiences
-          </p>
-        </div>
-      </section>
-      
+
+      <Hero 
+        heroTitle="About Me"
+        heroSubtitle="Full Stack Developer with a passion for creating modern web experiences"
+        heroImage="url('/assets/images/about/sammy-2023.png')"
+      />
 
       <motion.section 
         className="about-intro"

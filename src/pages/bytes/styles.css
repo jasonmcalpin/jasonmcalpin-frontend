@@ -104,7 +104,7 @@
   }
 }
 
-// Markdown content styles
+
 .markdown-content {
   h1, h2, h3, h4, h5, h6 {
     @apply font-heading font-bold text-white mt-8 mb-4;
@@ -196,7 +196,6 @@
   }
 }
 
-// Hero section
 .bytes-hero {
   @apply py-24 bg-primary-dark relative overflow-hidden;
   background-image: linear-gradient(to right, rgba(42, 59, 76, 0.9), rgba(26, 42, 60, 0.9)), url('/assets/images/bytes-bg.jpg');
@@ -217,12 +216,10 @@
   }
 }
 
-// Bytes content section
 .bytes-content {
   @apply py-16;
 }
 
-// Filters
 .bytes-filters {
   @apply mb-12;
   
@@ -263,17 +260,17 @@
     
     &--active {
       @apply bg-neon-purple text-white;
-      box-shadow: 0 0 10px theme('colors.neon_purple');
+      box-shadow: 0 0 10px var(--color-neon-purple);
     }
   }
 }
 
-// Bytes grid
+
 .bytes-grid {
   @apply grid grid-cols-1 md:grid-cols-2 gap-8;
 }
 
-// Empty state
+
 .bytes-empty {
   @apply col-span-full py-12 text-center;
   
@@ -282,7 +279,6 @@
   }
 }
 
-// Newsletter section
 .bytes-newsletter {
   @apply py-16 bg-primary-dark relative overflow-hidden;
   
@@ -333,7 +329,6 @@
   }
 }
 
-// Topics section
 .bytes-topics {
   @apply py-16 bg-background-light;
   
@@ -373,7 +368,7 @@
       @apply bg-[#FF7E00]/20;
       
       &::before {
-        content: '\f3fd'; // Speedometer icon (would be replaced with actual implementation)
+        content: '\f3fd'; 
         @apply text-4xl text-secondary;
       }
     }
@@ -382,7 +377,7 @@
       @apply bg-[#00F0FF]/20;
       
       &::before {
-        content: '\f1ad'; // Building icon (would be replaced with actual implementation)
+        content: '\f1ad'; 
         @apply text-4xl text-neon-blue;
       }
     }

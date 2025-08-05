@@ -1,5 +1,8 @@
+@reference "../../../styles/tailwind.css";
+
 .project-card {
-  @apply bg-background-light rounded-lg overflow-hidden transition-all duration-300 shadow-[0 4px 6px rgba(0, 0, 0, 0.1)];
+  @apply bg-background-light rounded-lg overflow-hidden transition-all duration-300;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .project-card__image-container {
@@ -15,7 +18,8 @@
 }
 
 .project-card__featured {
-  @apply absolute top-3 right-3 bg-secondary text-white text-xs font-bold py-1 px-2 rounded shadow-[0 0 10px rgba(255, 126, 0, 0.5)];
+  @apply absolute top-3 right-3 bg-secondary text-white text-xs font-bold py-1 px-2 rounded;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .project-card__featured span {
@@ -67,7 +71,8 @@
 
 
 .project-card__link--live {
-  @apply bg-neon-blue text-white hover:bg-blue-600 shadow-[0 0 5px var(--color-neon-blue)];
+  @apply bg-neon-blue text-white hover:bg-blue-600;
+  box-shadow: 0 0 5px var(--color-neon-blue)
 
 }
 

@@ -48,7 +48,7 @@
     
     &--active {
       @apply bg-secondary text-white;
-      box-shadow: 0 0 10px theme('colors.secondary.DEFAULT');
+      box-shadow: 0 0 10px var(--color-secondary);
     }
   }
 }

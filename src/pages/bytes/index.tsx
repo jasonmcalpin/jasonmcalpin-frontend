@@ -5,6 +5,7 @@ import { filterBytes, fetchBytes } from '../../store/slices/bytesSlice';
 import ByteCard from '../../components/global/byteCard';
 import { fadeInUp, staggerContainer } from '../../utils/animations';
 import './styles.css';
+import Hero from '../../components/global/Hero';
 
 const Bytes = () => {
   const dispatch = useAppDispatch();
@@ -56,16 +57,11 @@ const Bytes = () => {
 
   return (
     <div className="bytes" role="main" aria-labelledby="bytes-heading">
-      <section className="bytes-hero">
-        <div className="bytes-hero__container">
-          <h1 id="bytes-heading" className="bytes-hero__title">
-            Bytes
-          </h1>
-          <p className="bytes-hero__subtitle">
-            Insights, tutorials, and thoughts on web development
-          </p>
-        </div>
-      </section>
+      <Hero 
+        heroTitle="Bytes"
+        heroSubtitle="Insights, tutorials, and thoughts on web development"
+        heroImage="linear-gradient(to right, rgba(42, 59, 76, 0.9), rgba(26, 42, 60, 0.9)), url('/assets/images/projects-bg.jpg')"
+      />
 
       <section className="bytes-content">
         <div className="section-container">

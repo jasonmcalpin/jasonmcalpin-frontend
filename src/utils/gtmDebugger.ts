@@ -7,15 +7,12 @@
  * @returns {boolean} True if GTM is initialized, false otherwise
  */
 export const checkGTMInitialization = (): boolean => {
-  // Check if dataLayer exists
   const hasDataLayer = typeof window.dataLayer !== 'undefined';
 
-  // Check if GTM script is loaded
   const hasGTMScript = Array.from(document.getElementsByTagName('script')).some(
     script => script.src && script.src.includes('googletagmanager.com/gtm.js')
   );
 
-  // Check if GTM iframe is present
   const hasGTMIframe = Array.from(document.getElementsByTagName('iframe')).some(
     iframe => iframe.src && iframe.src.includes('googletagmanager.com/ns.html')
   );
@@ -53,13 +50,11 @@ export const triggerGTMEvent = (
   console.log(`GTM Debug: Triggered event "${eventName}" with parameters:`, eventParameters);
 };
 
-// Define DataLayerEvent type for better type safety
 export interface DataLayerEvent {
   event?: string;
   [key: string]: unknown;
 }
 
-// Add TypeScript interface for window object to include dataLayer
 declare global {
   interface Window {
     dataLayer: DataLayerEvent[];

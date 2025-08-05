@@ -1,4 +1,4 @@
-@use "sass:color";
+@reference "../../../styles/tailwind.css";
 
 .cookie-consent {
   position: fixed;
@@ -120,7 +120,6 @@
     }
   }
   
-  // Responsive adjustments
   @media (max-width: 768px) {
     &__buttons {
       width: 100%;

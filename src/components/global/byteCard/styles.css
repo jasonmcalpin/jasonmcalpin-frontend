@@ -1,3 +1,5 @@
+@reference "../../../styles/tailwind.css";
+
 .byte-card {
   @apply bg-background-light rounded-lg overflow-hidden transition-all duration-300;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -26,7 +28,7 @@
     @apply flex items-center;
     
     &::before {
-      content: '\f073'; // Calendar icon (would be replaced with actual implementation)
+      content: '\f073';
       @apply mr-1;
     }
   }
@@ -35,7 +37,7 @@
     @apply flex items-center;
     
     &::before {
-      content: '\f017'; // Clock icon (would be replaced with actual implementation)
+      content: '\f017'; 
       @apply mr-1;
     }
   }
@@ -58,10 +60,10 @@
   
   &__link {
     @apply inline-flex items-center justify-center px-4 py-2 text-sm font-medium rounded transition-all duration-300 bg-neon-purple text-white hover:bg-purple-700 mt-2;
-    box-shadow: 0 0 5px theme('colors.neon_purple');
+    box-shadow: 0 0 5px var(--color-neon-purple);
     
     &::after {
-      content: '\f054'; // Arrow icon (would be replaced with actual implementation)
+      content: '\f054';
       @apply ml-1;
     }
   }

@@ -33,7 +33,6 @@ export const useScrollAnimation = (
   return [ref, controls] as const;
 };
 
-// Common animation variants
 export const fadeInUp = {
   hidden: { opacity: 0, y: 60 },
   visible: { 

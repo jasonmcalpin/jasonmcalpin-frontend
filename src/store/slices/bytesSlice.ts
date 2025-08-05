@@ -30,7 +30,6 @@ const initialState: BytesState = {
   error: null,
 };
 
-// Define a type for the parsed TOML data structure
 interface TomlData {
   articles: Array<{
     id: string;
@@ -74,7 +73,6 @@ export const fetchBytes = createAsyncThunk('bytes/fetchBytes', async (_, { rejec
       };
     });
 
-    // Sort bytes by date (latest to oldest)
     const sortedBytes = bytes.sort((a, b) => {
       return new Date(b.date).getTime() - new Date(a.date).getTime();
     });

@@ -6,8 +6,8 @@
 
 
 .hero {
-  @apply min-h-screen flex flex-col md:flex-row items-center justify-center px-4 py-16 bg-[ linear-gradient(to bottom, rgba(18, 18, 18, 1), rgba(30, 30, 30, 0.8))];
-  
+  @apply min-h-screen flex flex-col md:flex-row items-center justify-center px-4 py-16;
+  background-image: linear-gradient(to bottom, rgba(18, 18, 18, 1), rgba(30, 30, 30, 0.8));
   &__content {
     @apply w-full md:w-1/2 mb-12 md:mb-0 md:pr-8;
 
@@ -49,19 +49,23 @@
       box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
       
       &--1 {
-        @apply bg-primary bg-cover bg-center bg-[url('/assets/images/code.jpg')];
+        @apply bg-primary bg-cover bg-center;
+        background-image: url('/assets/images/code.jpg');
       }
       
       &--2 {
-        @apply bg-secondary bg-cover bg-center bg-[url('/assets/images/design.jpg')];
+        @apply bg-secondary bg-cover bg-center;
+        background-image: url('/assets/images/design.jpg');
       }
       
       &--3 {
-        @apply bg-neon-blue bg-cover bg-center bg-[url('/assets/images/mobile.jpg')];
+        @apply bg-neon-blue bg-cover bg-center;
+        background-image: url('/assets/images/mobile.jpg');
       }
       
       &--4 {
-        @apply bg-neon-purple bg-cover bg-center bg-[url('/assets/images/web.jpg')];
+        @apply bg-neon-purple bg-cover bg-center;
+        background-image: url('/assets/images/web.jpg');
       }
       
       &::after {
@@ -83,7 +87,7 @@
   &::after {
     content: '';
     @apply block w-24 h-1 mt-4 bg-secondary;
-    box-shadow: 0 0 10px theme('colors.secondary.DEFAULT');
+    box-shadow: 0 0 10px var(--color-secondary);
   }
 }
 
@@ -152,7 +156,6 @@
   }
 }
 
-// Bytes section
 .home-bytes {
   @apply py-16 bg-background-light;
   

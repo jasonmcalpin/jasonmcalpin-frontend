@@ -5,25 +5,7 @@
 }
 
 
-.about-hero {
-  @apply py-24 bg-primary-dark relative overflow-hidden;
-  background-image: linear-gradient(to right, rgba(42, 59, 76, 0.9), rgba(26, 42, 60, 0.9)), url('/assets/images/code-bg.jpg');
-  background-size: cover;
-  background-position: center;
-  
-  &__container {
-    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center;
-  }
-  
-  &__title {
-    @apply text-4xl md:text-5xl font-heading font-bold mb-4 text-white;
-    text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-  }
-  
-  &__subtitle {
-    @apply text-xl text-gray-300 max-w-2xl mx-auto;
-  }
-}
+
 
 
 .about-intro {
@@ -58,7 +40,6 @@
   }
 }
 
-// Skills section
 .about-skills {
   @apply py-16 bg-background-light;
   
@@ -102,12 +83,11 @@
   
   &__progress {
     @apply h-full rounded-full;
-    background: linear-gradient(to right, var(--color-neon-blue), theme('colors.neon_purple'));
+    background: linear-gradient(to right, var(--color-neon-blue), var(--color-neon-purple));
     box-shadow: 0 0 5px var(--color-neon-blue);
   }
 }
 
-// Experience section
 .about-experience {
   @apply py-16;
   
@@ -181,7 +161,6 @@
   }
 }
 
-// Education section
 .about-education {
   @apply py-16 bg-background-light;
   
@@ -195,7 +174,7 @@
   
   &__year {
     @apply md:w-1/4 text-xl font-heading font-bold text-neon-purple;
-    text-shadow: 0 0 5px theme('colors.neon_purple');
+    text-shadow: 0 0 5px var(--color-neon-purple);
   }
   
   &__content {
@@ -221,7 +200,6 @@
   }
 }
 
-// Awards section
 .about-awards {
   @apply py-16 bg-background-light;
   
@@ -235,7 +213,7 @@
   
   &__year {
     @apply md:w-1/4 text-xl font-heading font-bold text-neon-purple;
-    text-shadow: 0 0 5px theme('colors.neon_purple');
+    text-shadow: 0 0 5px var(--color-neon-purple);
   }
   
   &__content {
@@ -261,7 +239,6 @@
   }
 }
 
-// Contact CTA section
 .about-contact {
   @apply py-24 bg-primary-dark relative overflow-hidden;
   

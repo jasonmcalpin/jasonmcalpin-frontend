@@ -39,5 +39,4 @@ export class DataService {
   }
 }
 
-// Create a singleton instance
 export const dataService = new DataService();

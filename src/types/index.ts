@@ -1,4 +1,3 @@
-// Common types used throughout the application
 
 export interface NavLink {
   path: string;
@@ -19,6 +18,12 @@ export interface SocialLink {
   icon: string;
   linkText: string;
   label: string;
+}
+
+export interface Hero {
+  heroTitle: string;
+  heroSubtitle: string;
+  heroImage?: string;
 }
 
 export interface Skill {
