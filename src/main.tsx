@@ -4,7 +4,7 @@ import { createRoot } from 'react-dom/client';
 import './styles/index.css';
 import App from './App.tsx';
 import TagManager from 'react-gtm-module';
-import { hasConsentedTo } from './components/global/CookieConsent';
+import { hasConsentedTo } from './components/global/CookieConsent/consentUtils.ts';
 import { checkGTMInitialization } from './utils/gtmDebugger';
 
 const head = createHead();

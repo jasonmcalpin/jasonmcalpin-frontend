@@ -1,4 +1,4 @@
-import { hasUserConsented, hasConsentedTo } from '../components/global/CookieConsent';
+import { hasUserConsented, hasConsentedTo } from '../components/global/CookieConsent/consentUtils';
 
 /**
  * Check if the user has given consent for cookies/localStorage

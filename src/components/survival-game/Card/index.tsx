@@ -4,7 +4,7 @@ import { Card as CardType, Effects } from "../../../types";
 
 interface CardProps {
   card: CardType;
-  onSwipe: (direction: string, effects: Effects) => void;
+  onSwipe: (_direction: string, _effects: Effects) => void;
 }
 
 const Card: React.FC<CardProps> = ({ card, onSwipe }) => {

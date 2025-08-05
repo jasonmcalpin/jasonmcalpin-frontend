@@ -56,6 +56,7 @@ export interface DataLayerEvent {
 }
 
 declare global {
+  // eslint-disable-next-line no-unused-vars
   interface Window {
     dataLayer: DataLayerEvent[];
   }

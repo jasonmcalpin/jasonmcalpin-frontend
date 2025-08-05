@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "npm run optimize-images && tsc -b && vite build && cpy .htaccess dist/ --flat",
+    "build": "npm run optimize-images && tsc -b && vite build && cp .htaccess dist/ --f",
     "build:analyze": "npm run build && open dist/stats.html",
     "optimize-images": "node scripts/optimize-images.js",
     "lint": "eslint .",

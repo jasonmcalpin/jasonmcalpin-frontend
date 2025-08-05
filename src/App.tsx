@@ -7,7 +7,8 @@ import { AnimatePresence } from 'framer-motion';
 import { store } from './store';
 import Header from './components/header';
 import Footer from './components/footer';
-import CookieConsent, { ConsentOptions } from './components/global/CookieConsent';
+import {CookieConsent } from './components/global/CookieConsent';
+import { ConsentOptions } from './components/global/CookieConsent/consentUtils';
 import ScrollToTop from './components/scrollToTop';
 import GTMTester from './components/global/GTMTester';
 
