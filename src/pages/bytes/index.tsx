@@ -60,7 +60,7 @@ const Bytes = () => {
       <Hero 
         heroTitle="Bytes"
         heroSubtitle="Insights, tutorials, and thoughts on web development"
-        heroImage="linear-gradient(to right, rgba(42, 59, 76, 0.9), rgba(26, 42, 60, 0.9)), url('/assets/images/projects-bg.jpg')"
+        heroImage="/assets/images/projects-bg.jpg"
       />
 
       <section className="bytes-content">

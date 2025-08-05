@@ -1,70 +1,72 @@
 @reference "../../../styles/tailwind.css";
 
 .byte-card {
-  @apply bg-background-light rounded-lg overflow-hidden transition-all duration-300;
+  /* @apply bg-background-light rounded-lg overflow-hidden transition-all duration-300; */
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  
-  &__image-container {
-    @apply relative w-full h-48 overflow-hidden;
-  }
-  
-  &__image {
-    @apply w-full h-full object-cover transition-transform duration-500;
-  }
-  
-  &:hover &__image {
-    @apply transform scale-110;
-  }
-  
-  &__content {
-    @apply p-6;
-  }
-  
-  &__meta {
-    @apply flex justify-between text-xs text-gray-400 mb-3;
-  }
-  
-  &__date {
-    @apply flex items-center;
-    
-    &::before {
-      content: '\f073';
-      @apply mr-1;
-    }
-  }
-  
-  &__reading-time {
-    @apply flex items-center;
-    
-    &::before {
-      content: '\f017'; 
-      @apply mr-1;
-    }
-  }
-  
-  &__title {
-    @apply text-xl font-heading font-bold mb-2 text-white;
-  }
-  
-  &__excerpt {
-    @apply text-gray-300 mb-4 line-clamp-3;
-  }
-  
-  &__tags {
-    @apply flex flex-wrap gap-2 mb-4;
-  }
-  
-  &__tag {
-    @apply bg-primary-dark text-white text-xs py-1 px-2 rounded-full;
-  }
-  
-  &__link {
-    @apply inline-flex items-center justify-center px-4 py-2 text-sm font-medium rounded transition-all duration-300 bg-neon-purple text-white hover:bg-purple-700 mt-2;
-    box-shadow: 0 0 5px var(--color-neon-purple);
-    
-    &::after {
-      content: '\f054';
-      @apply ml-1;
-    }
-  }
+}
+
+/* .byte-card__image-container {
+  @apply relative w-full h-48 overflow-hidden;
+}
+
+.byte-card__image {
+  @apply w-full h-full object-cover transition-transform duration-500;
+} */
+
+.byte-card:hover .byte-card__image {
+  @apply transform scale-110;
+}
+
+/* .byte-card__content {
+  @apply p-6;
+} */
+
+/* .byte-card__meta {
+  @apply flex justify-between text-xs text-gray-400 mb-3;
+} */
+
+/* .byte-card__date {
+  @apply flex items-center;
+} */
+
+.byte-card__date::before {
+  content: '\f073';
+  @apply mr-1;
+}
+
+
+/* .byte-card__reading-time {
+  @apply flex items-center;
+} */
+
+.byte-card__reading-time::before {
+  content: '\f017';
+  @apply mr-1;
+}
+
+
+/* .byte-card__title {
+  @apply text-xl font-heading font-bold mb-2 text-white;
+}
+
+.byte-card__excerpt {
+  @apply text-gray-300 mb-4 line-clamp-3;
+} */
+
+/* .byte-card__tags {
+  @apply flex flex-wrap gap-2 mb-4;
+}
+
+.byte-card__tag {
+  @apply bg-primary-dark text-white text-xs py-1 px-2 rounded-full;
+} */
+
+.byte-card__link {
+  /* @apply inline-flex items-center justify-center px-4 py-2 text-sm font-medium rounded transition-all duration-300 bg-neon-purple text-white hover:bg-purple-700 mt-2; */
+  box-shadow: 0 0 5px var(--color-neon-purple);
+}
+
+.byte-card__link::after {
+  content: '\f054';
+  @apply ml-1;
 }

@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { SocialLink } from '../../types';
 import { fadeInUp, staggerContainer } from '../../utils/animations';
+import Hero from '../../components/global/Hero';
 import './styles.css';
 
 const Contact = () => {
@@ -26,14 +27,12 @@ const Contact = () => {
 
   return (
     <div className="contact">
-      <section className="contact-hero">
-        <div className="contact-hero__container">
-          <h1 className="contact-hero__title">Get In Touch</h1>
-          <p className="contact-hero__subtitle">
-            Connect with me through social media or send me a message
-          </p>
-        </div>
-      </section>
+       <Hero 
+        heroTitle="Get In Touch"
+        heroSubtitle="Connect with me through social media or send me a message"
+        heroImage="/assets/images/contact-bg.jpg"
+      />
+
       
       <section className="contact-content">
         <div className="section-container">

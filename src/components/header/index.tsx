@@ -141,15 +141,15 @@ const Header = () => {
           <motion.li key={link.path} className="relative" variants={linkVariants}>
             <Link
               to={link.path}
-              className={`text-white hover:text-neonBlue transition-colors duration-300 text-base font-medium ${
-                location.pathname === link.path ? 'text-neonBlue relative' : ''
+              className={` hover:text-[var(--color-neon-blue)] transition-colors duration-300 text-base font-medium ${
+                location.pathname === link.path ? 'text-[var(--color-neon-blue)] relative' : 'text-white'
               }`}
-            >
-              {link.label}
+            >{link.label}
+
               {location.pathname === link.path && (
                 <span
                   className="absolute bottom-[-5px] left-0 w-full h-[2px] bg-neon-blue"
-                  style={{boxShadow: '0 0 5px var(--color-neonBlue), 0 0 10px var(--color-neonBlue)'}}
+                  style={{boxShadow: '0 0 5px var(--color-neon-blue), 0 0 10px var(--color-neon-blue)'}}
                 />
               )}
             </Link>
@@ -204,8 +204,8 @@ const Header = () => {
             >
               <Link
                 to={link.path}
-                className={`block py-4 px-6 text-white hover:text-neonBlue transition-colors duration-300 ${
-                  location.pathname === link.path ? 'text-neonBlue' : ''
+                className={`block py-4 px-6 text-white hover:var(--color-neon-blue) transition-colors duration-300 ${
+                  location.pathname === link.path ? 'var(--color-neon-blue)' : ''
                 }`}
               >
                 {link.label}

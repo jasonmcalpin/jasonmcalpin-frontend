@@ -4,6 +4,7 @@ import { useAppDispatch, useAppSelector } from '../../hooks/useAppStore';
 import { filterProjects, fetchProjects } from '../../store/slices/projectsSlice';
 import ProjectCard from '../../components/global/projectCard';
 import { fadeInUp, staggerContainer } from '../../utils/animations';
+import Hero from '../../components/global/Hero';
 import './styles.css';
 
 const Projects = () => {
@@ -35,14 +36,12 @@ const Projects = () => {
 
   return (
     <div className="projects">
-      <section className="projects-hero">
-        <div className="projects-hero__container">
-          <h1 className="projects-hero__title">My Projects</h1>
-          <p className="projects-hero__subtitle">
-            A collection of my work showcasing my skills and experience
-          </p>
-        </div>
-      </section>
+      <Hero 
+        heroTitle="My Projects"
+        heroSubtitle="A collection of my work showcasing my skills and experience"
+        heroImage="/assets/images/projects-bg.jpg"
+      />
+
       
       <section className="projects-content">
         <div className="section-container">

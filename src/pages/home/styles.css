@@ -1,89 +1,93 @@
 @reference "../../styles/tailwind.css";
 
-.home {
-  @apply pt-16; 
-}
+/* .home {
+  @apply pt-16;
+} */
 
 
 .hero {
-  @apply min-h-screen flex flex-col md:flex-row items-center justify-center px-4 py-16;
   background-image: linear-gradient(to bottom, rgba(18, 18, 18, 1), rgba(30, 30, 30, 0.8));
-  &__content {
-    @apply w-full md:w-1/2 mb-12 md:mb-0 md:pr-8;
+}
 
-  }
+/* .hero__content {
+  @apply w-full md:w-1/2 mb-12 md:mb-0 md:pr-8;
 
-
-  @media (min-width: 768px) {
-    &__content {
-      margin: 0px 0px 0px auto;
-      max-width: 40rem;
-    }
-  }
-  
-  &__title {
-    @apply text-4xl sm:text-5xl md:text-6xl font-heading font-bold mb-6;
-    
-    &-line {
-      @apply block mb-2;
-    }
-  }
-  
-  &__subtitle {
-    @apply text-xl text-gray-300 mb-8 max-w-lg;
-  }
-  
-  &__cta {
-    @apply flex flex-wrap gap-4;
-  }
-  
-  &__visual {
-    @apply w-full md:w-1/2 flex justify-center items-center;
-  }
-  
-  &__grid {
-    @apply grid grid-cols-2 gap-4 w-full max-w-md;
-    
-    &-item {
-      @apply h-32 rounded-lg relative overflow-hidden;
-      box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
-      
-      &--1 {
-        @apply bg-primary bg-cover bg-center;
-        background-image: url('/assets/images/code.jpg');
-      }
-      
-      &--2 {
-        @apply bg-secondary bg-cover bg-center;
-        background-image: url('/assets/images/design.jpg');
-      }
-      
-      &--3 {
-        @apply bg-neon-blue bg-cover bg-center;
-        background-image: url('/assets/images/mobile.jpg');
-      }
-      
-      &--4 {
-        @apply bg-neon-purple bg-cover bg-center;
-        background-image: url('/assets/images/web.jpg');
-      }
-      
-      &::after {
-        content: '';
-        @apply absolute inset-0 bg-black/40;
-      }
-    }
-  }
 }
 
 
-.section-container {
+@media (min-width: 768px) {
+  .hero__content {
+    margin: 0px 0px 0px auto;
+    max-width: 40rem;
+  }
+} 
+
+.hero__title {
+  @apply text-4xl sm:text-5xl md:text-6xl font-heading font-bold mb-6;
+}
+
+.hero__title-line {
+  @apply block mb-2;
+}
+
+
+.hero__subtitle {
+  @apply text-xl text-gray-300 mb-8 max-w-lg;
+}
+
+.hero__cta {
+  @apply flex flex-wrap gap-4;
+}
+
+.hero__visual {
+  @apply w-full md:w-1/2 flex justify-center items-center;
+}
+
+.hero__grid {
+  @apply grid grid-cols-2 gap-4 w-full max-w-md;
+} */
+
+.hero__grid-item {
+  /* @apply h-32 rounded-lg relative overflow-hidden; */
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+}
+
+.hero__grid-item--1 {
+  /* @apply bg-primary bg-cover bg-center; */
+  background-image: url('/assets/images/code.jpg');
+}
+
+.hero__grid-item--2 {
+  /* @apply bg-secondary bg-cover bg-center; */
+  background-image: url('/assets/images/design.jpg');
+}
+
+.hero__grid-item--3 {
+  /* @apply bg-neon-blue bg-cover bg-center; */
+  background-image: url('/assets/images/mobile.jpg');
+}
+
+.hero__grid-item--4 {
+  /* @apply bg-neon-purple bg-cover bg-center; */
+  background-image: url('/assets/images/web.jpg');
+}
+
+.hero__grid-item::after {
+  /* content: '';
+  @apply absolute inset-0 bg-black/40; */
+}
+
+
+
+
+
+/* .section-container {
   @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16;
-}
+} */
 
 .section-title {
   @apply text-3xl md:text-4xl font-heading font-bold mb-12 text-white;
-  
+
   &::after {
     content: '';
     @apply block w-24 h-1 mt-4 bg-secondary;
@@ -91,13 +95,13 @@
   }
 }
 
-.section-header {
+/* .section-header {
   @apply flex flex-col sm:flex-row justify-between items-start sm:items-center mb-12;
-}
+} */
 
 .section-link {
-  @apply text-neon-blue hover:text-blue-400 transition-colors duration-300 flex items-center mt-4 sm:mt-0;
-  
+  /* @apply text-neon-blue hover:text-blue-400 transition-colors duration-300 flex items-center mt-4 sm:mt-0; */
+
   &::after {
     content: '\f054';
     @apply ml-2 text-xs;
@@ -105,52 +109,52 @@
 }
 
 
-.home-about {
+/* .home-about {
   @apply py-16 bg-background-light;
-  
+}
   &__content {
     @apply grid grid-cols-1 md:grid-cols-2 gap-8;
   }
-  
+
   &__text {
     @apply flex flex-col;
   }
-  
+
   &__paragraph {
     @apply text-gray-300 mb-4;
   }
-  
+
   &__cta {
     @apply mt-4 self-start;
   }
-  
+
   &__skills {
     @apply grid grid-cols-1 sm:grid-cols-2 gap-6;
-  }
-  
-  &__skill-category {
-    @apply bg-background p-6 rounded-lg;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  }
-  
-  &__skill-title {
-    @apply text-xl font-heading font-semibold mb-4 text-neon-blue;
-    text-shadow: 0 0 5px var(--color-neon-blue);
-  }
-  
-  &__skill-tags {
-    @apply flex flex-wrap gap-2;
-  }
-  
-  &__skill-tag {
-    @apply bg-primary-dark text-white text-sm py-1 px-3 rounded-full;
-  }
+  } */
+
+.home-about__skill-category {
+  /* @apply bg-background p-6 rounded-lg; */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
+.home-about__skill-title {
+  /* @apply text-xl font-heading font-semibold mb-4 text-neon-blue; */
+  text-shadow: 0 0 5px var(--color-neon-blue);
+}
 
-.home-projects {
+/* &__skill-tags {
+    @apply flex flex-wrap gap-2;
+  }
+
+  &__skill-tag {
+    @apply bg-primary-dark text-white text-sm py-1 px-3 rounded-full;
+  } */
+
+
+
+/* .home-projects {
   @apply py-16;
-  
+
   &__grid {
     @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8;
   }
@@ -158,34 +162,34 @@
 
 .home-bytes {
   @apply py-16 bg-background-light;
-  
+
   &__grid {
     @apply grid grid-cols-1 md:grid-cols-2 gap-8;
   }
-}
+} */
 
 
 .home-contact {
   @apply py-24 bg-primary-dark relative overflow-hidden;
-  
+
   &::before {
     content: '';
     @apply absolute inset-0 bg-neon-blue/5;
     background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%2300f0ff' fill-opacity='0.2'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
   }
-  
+
   &__content {
     @apply relative z-10 text-center max-w-2xl mx-auto;
   }
-  
+
   &__title {
     @apply text-3xl md:text-4xl font-heading font-bold mb-4 text-white;
   }
-  
+
   &__text {
     @apply text-xl text-gray-300 mb-8;
   }
-  
+
   &__cta {
     @apply text-lg px-8 py-3;
   }

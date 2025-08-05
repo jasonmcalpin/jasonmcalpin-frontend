@@ -1,18 +1,17 @@
 import { motion } from 'framer-motion';
 import { fadeInUp } from '../../utils/animations';
+import Hero from '../../components/global/Hero';
 import './styles.css';
 
 const Privacy = () => {
   return (
     <div className="privacy">
-      <section className="privacy-hero">
-        <div className="privacy-hero__container">
-          <h1 className="privacy-hero__title">Privacy Policy</h1>
-          <p className="privacy-hero__subtitle">
-            How we handle your data and respect your privacy
-          </p>
-        </div>
-      </section>
+      <Hero 
+        heroTitle="Privacy Policy"
+        heroSubtitle="How we handle your data and respect your privacy"
+        heroImage="/assets/images/contact-bg.jpg"
+      />
+      
       
       <section className="privacy-content">
         <div className="section-container">
