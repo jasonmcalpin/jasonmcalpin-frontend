@@ -57,7 +57,7 @@ const QueryParamDetector = ({ children }: { children: React.ReactNode }) => {
       {children}
       <GTMTester isVisible={showGTMTester} />
     </>
-  );
+  );45
 };
 
 function App() {

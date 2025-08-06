@@ -22,6 +22,14 @@ const config: Config = {
         'neon-blue': '0 0 5px var(--color-neon-blue), 0 0 10px var(--color-neon-blue)',
         'neon-purple': '0 0 5px var(--color-neon-purple), 0 0 10px var(--color-neon-purple)',
       },
+      textShadow: {
+        'neon-blue': '0 0 5px var(--color-neon-blue), 0 0 10px var(--color-neon-blue)',
+        'neon-purple': '0 0 5px var(--color-neon-purple), 0 0 10px var(--color-neon-purple)',
+      },
+      fontFamily: {
+        heading: ['var(--font-heading)'],
+        body: ['var(--font-body)'],
+      },
     },
   },
   plugins: [
@@ -36,6 +44,16 @@ const config: Config = {
         },
       });
     },
+    function ({ matchUtilities, theme }) {
+      matchUtilities(
+        {
+          'text-shadow': (value) => ({
+            textShadow: value,
+          }),
+        },
+        { values: theme('textShadow') }
+      )
+    }
   ],
 };
 

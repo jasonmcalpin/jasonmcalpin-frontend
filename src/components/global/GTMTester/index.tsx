@@ -15,7 +15,7 @@ const GTMTester: React.FC<GTMTesterProps> = ({ isVisible = false }) => {
   const [eventParams, setEventParams] = useState('{"param1": "value1", "param2": "value2"}');
   const [isExpanded, setIsExpanded] = useState(false);
 
-  if (!isVisible) return null;
+  if (import.meta.env.MODE === 'production' || !isVisible) return null;
 
   const handleTriggerEvent = () => {
     try {
@@ -23,7 +23,6 @@ const GTMTester: React.FC<GTMTesterProps> = ({ isVisible = false }) => {
       triggerGTMEvent(eventName, params);
     } catch (error) {
       console.error('Invalid JSON for event parameters:', error);
-      alert('Invalid JSON for event parameters. Please check the console for details.');
     }
   };
 
