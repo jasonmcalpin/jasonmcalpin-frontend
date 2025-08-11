@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { SocialLink } from '../../types';
+import type { SocialLink } from '../../types';
 import { fadeInUp, staggerContainer } from '../../utils/animations';
 import Hero from '../../components/global/Hero';
 import { CenterTitle, MotionTitle } from '../../components/global/Titles';
@@ -109,17 +109,32 @@ const Contact = () => {
                     
                     <div className="contact-info__card-back">
                       <ul className="contact-info__list">
-                        <li className="contact-info__item contact-info__item--email">
-                          <span className="contact-info__label">Email</span>
-                          <span className="contact-info__value">contact@jasonmcalpin.com</span>
+                        <li className="contact-info__item">
+                          <span className="contact-info__icon-fa" aria-hidden="true">
+                            <i className="fa-solid fa-envelope"></i>
+                          </span>
+                          <div className="contact-info__text">
+                            <span className="contact-info__label">Email</span>
+                            <span className="contact-info__value">contact@jasonmcalpin.com</span>
+                          </div>
                         </li>
-                        <li className="contact-info__item contact-info__item--location">
-                          <span className="contact-info__label">Location</span>
-                          <span className="contact-info__value">Atlanta, GA</span>
+                        <li className="contact-info__item">
+                          <span className="contact-info__icon-fa" aria-hidden="true">
+                            <i className="fa-solid fa-location-dot"></i>
+                          </span>
+                          <div className="contact-info__text">
+                            <span className="contact-info__label">Location</span>
+                            <span className="contact-info__value">Atlanta, GA</span>
+                          </div>
                         </li>
-                        <li className="contact-info__item contact-info__item--availability">
-                          <span className="contact-info__label">Availability</span>
-                          <span className="contact-info__value">Open to opportunities</span>
+                        <li className="contact-info__item">
+                          <span className="contact-info__icon-fa" aria-hidden="true">
+                            <i className="fa-solid fa-clock"></i>
+                          </span>
+                          <div className="contact-info__text">
+                            <span className="contact-info__label">Availability</span>
+                            <span className="contact-info__value">Open to opportunities</span>
+                          </div>
                         </li>
                       </ul>
                     </div>

@@ -11,7 +11,7 @@
 */
 
 import React from 'react';
-import { Pacts as PactsType } from '../../../types';
+import type { Pacts as PactsType } from '../../../types';
 interface PactsProps {
   pacts: PactsType;
 }

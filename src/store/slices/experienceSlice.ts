@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { Experience } from '../../types';
+import type { Experience } from '../../types';
 import { dataService } from '../../services/dataService';
 
 interface ExperienceState {

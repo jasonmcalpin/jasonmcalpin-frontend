@@ -73,29 +73,33 @@
   @apply font-bold text-lg;
 }
 
-.contact-social__username {
-  @apply text-sm text-white/80;
+
+.contact-info__icon-fa {
+  @apply text-neon-blue text-xl flex items-center justify-center w-6 h-6 shrink-0;
 }
 
-.contact-info {
+.contact-info__text {
   @apply flex flex-col;
 }
 
-.contact-info__content {
-  @apply flex flex-col items-center;
-}
-
+/* Flip card container */
 .contact-info__card {
   @apply w-full max-w-md h-64 my-8;
+  perspective: 1000px;
 }
 
+/* Inner wrapper that rotates */
 .contact-info__card-inner {
-  @apply relative w-full h-full transition-transform duration-700 transform-3d;
+  @apply relative w-full h-full transition-transform duration-700;
+  transform-style: preserve-3d;
 }
 
+/* Trigger flip on hover */
+.contact-info__card:hover .contact-info__card-inner,
 .contact-info__card-inner:hover {
   transform: rotateY(180deg);
 }
+
 
 .contact-info__card-front,
 .contact-info__card-back {
@@ -109,7 +113,8 @@
 }
 
 .contact-info__card-back {
-  @apply bg-background-light flex flex-col justify-center rotate-y-180;
+  @apply bg-background-light flex flex-col justify-center;
+  transform: rotateY(180deg);
 }
 
 .contact-info__logo {
@@ -130,33 +135,9 @@
 }
 
 .contact-info__item {
-  @apply flex flex-col;
-  position: relative;
+  @apply flex items-start gap-3;
 }
 
-.contact-info__item--email::before {
-  content: '\f0e0';
-  @apply text-neon-blue text-xl mb-1;
-  position: absolute;
-  left: -1.5em;
-  top: 0px;
-}
-
-.contact-info__item--location::before {
-  content: '\f3c5';
-  @apply text-neon-blue text-xl mb-1;
-  position: absolute;
-  left: -1.5em;
-  top: 0px;
-}
-
-.contact-info__item--availability::before {
-  content: '\f017';
-  @apply text-neon-blue text-xl mb-1;
-  position: absolute;
-  left: -1.5em;
-  top: 0px;
-}
 
 .contact-info__label {
   @apply text-gray-400 text-sm;

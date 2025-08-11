@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSwipeable } from 'react-swipeable';
-import { Card as CardType, Effects } from "../../../types";
+import type { Card as CardType, Effects } from "../../../types";
 
 interface CardProps {
   card: CardType;

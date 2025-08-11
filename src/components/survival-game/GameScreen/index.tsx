@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Card from '../Card';
 import Pacts from '../Pacts';
-import { Card as CardType, Pacts as PactsType, Effects, GameData } from '../../../types';
+import type { Card as CardType, Pacts as PactsType, Effects, GameData } from '../../../types';
 
 const GameScreen: React.FC = () => {
   const [gameData, setGameData] = useState<GameData | null>(null);

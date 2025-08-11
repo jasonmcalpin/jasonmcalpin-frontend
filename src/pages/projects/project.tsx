@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useAppSelector } from '../../hooks/useAppStore';
-import { Project } from '../../store/slices/projectsSlice';
+import type { Project } from '../../store/slices/projectsSlice';
 import { fadeInUp } from '../../utils/animations';
 import './styles.css';
 

@@ -10,7 +10,4 @@
   box-shadow: 0 0 10px var(--color-secondary);
 }
 
-.section-link::after {
-  content: '\f054';
-  @apply ml-2 text-xs;
-}
+.section-link .fa-icon { @apply ml-2 text-xs; }

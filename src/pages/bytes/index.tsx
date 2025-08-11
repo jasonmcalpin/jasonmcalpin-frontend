@@ -220,7 +220,9 @@ const Bytes = () => {
               <div
                 className="bytes-topics__icon bytes-topics__icon--performance"
                 aria-hidden="true"
-              ></div>
+              >
+                <span className="fa-icon"><i className="fa-solid fa-gauge-high"></i></span>
+              </div>
               <h3 id="topic-performance" className="bytes-topics__title">
                 Web Performance
               </h3>
@@ -242,7 +244,9 @@ const Bytes = () => {
               <div
                 className="bytes-topics__icon bytes-topics__icon--architecture"
                 aria-hidden="true"
-              ></div>
+              >
+                <span className="fa-icon"><i className="fa-solid fa-building"></i></span>
+              </div>
               <h3 id="topic-architecture" className="bytes-topics__title">
                 Architecture
               </h3>

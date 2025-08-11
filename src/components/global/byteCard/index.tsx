@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { Byte } from '../../../store/slices/bytesSlice';
+import type { Byte } from '../../../store/slices/bytesSlice';
 import OptimizedImage from '../OptimizedImage';
 import './styles.css';
 
@@ -48,8 +48,14 @@ const ByteCard: React.FC<ByteCardProps> = ({ byte, index }) => {
       
       <div className="byte-card__content p-6">
         <div className="byte-card__meta flex justify-between text-xs text-gray-400 mb-3" aria-label="Article metadata">
-          <span className="byte-card__date flex items-center" aria-label="Publication date">{formatDate(byte.date)}</span>
-          <span className="byte-card__reading-time flex items-center" aria-label="Reading time">{byte.readingTime} min read</span>
+          <span className="byte-card__date flex items-center" aria-label="Publication date">
+            <span className="fa-icon" aria-hidden="true"><i className="fa-solid fa-calendar-days"></i></span>
+            {formatDate(byte.date)}
+          </span>
+          <span className="byte-card__reading-time flex items-center" aria-label="Reading time">
+            <span className="fa-icon" aria-hidden="true"><i className="fa-solid fa-clock"></i></span>
+            {byte.readingTime} min read
+          </span>
         </div>
         
         <h3 id={`byte-title-${byte.id}`} className="byte-card__title text-xl font-heading font-bold mb-2 text-white">{byte.title}</h3>
@@ -68,7 +74,7 @@ const ByteCard: React.FC<ByteCardProps> = ({ byte, index }) => {
           className="byte-card__link inline-flex items-center justify-center px-4 py-2 text-sm font-medium rounded transition-all duration-300 bg-neon-purple text-white hover:bg-purple-700 mt-2"
           aria-label={`Read ${byte.title}`}
         >
-          Take A Byte
+          Take A Byte <span className="fa-icon" aria-hidden="true"><i className="fa-solid fa-angle-right"></i></span>
         </Link>
       </div>
     </motion.div>

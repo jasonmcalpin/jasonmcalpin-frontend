@@ -372,19 +372,13 @@
   @apply bg-[#FF7E00]/20;
 }
 
-.bytes-topics__icon--performance::before {
-  content: '\f3fd';
-  @apply text-4xl text-secondary;
-}
+.bytes-topics__icon--performance .fa-icon { @apply text-4xl text-secondary; }
 
 .bytes-topics__icon--architecture {
   @apply bg-[#00F0FF]/20;
 }
 
-.bytes-topics__icon--architecture::before {
-  content: '\f1ad';
-  @apply text-4xl text-neon-blue;
-}
+.bytes-topics__icon--architecture .fa-icon { @apply text-4xl text-neon-blue; }
 
 .bytes-topics__title {
   @apply text-xl font-heading font-semibold mb-4 text-white;

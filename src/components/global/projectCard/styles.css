@@ -26,10 +26,7 @@
   @apply relative z-10;
 } */
 
-.project-card__featured::before {
-  content: '';
-  @apply absolute inset-0 bg-secondary/50 blur-sm z-1;
-}
+.project-card__featured .featured-overlay { @apply absolute inset-0 bg-secondary/50 blur-sm z-1; }
 
 
 /* .project-card__content {
@@ -64,10 +61,7 @@
   @apply bg-gray-800 text-white hover:bg-gray-700;
 } */
 
-.project-card__link--github::before {
-  content: '\f09b';
-  @apply mr-1;
-}
+.project-card__link--github .fa-icon { @apply mr-1; }
 
 
 .project-card__link--live {
@@ -76,17 +70,11 @@
 
 }
 
-.project-card__link--live::before {
-  content: '\f0c1';
-  @apply mr-1;
-}
+.project-card__link--live .fa-icon { @apply mr-1; }
 
 
 /* .project-card__link--details {
   @apply bg-secondary text-white hover:bg-secondary-light;
 } */
 
-.project-card__link--details::after {
-  content: '\f054';
-  @apply ml-1;
-}
+.project-card__link--details .fa-icon { @apply ml-1; }

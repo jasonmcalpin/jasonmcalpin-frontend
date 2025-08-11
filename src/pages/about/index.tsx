@@ -5,7 +5,7 @@ import { useScrollAnimation } from '../../hooks/useScrollAnimation';
 import { useAppDispatch, useAppSelector } from '../../hooks/useAppStore';
 import { fetchExperiences } from '../../store/slices/experienceSlice';
 import { fadeInUp, staggerContainer } from '../../utils/animations';
-import { Skill, Experience, Education, Awards } from '../../types';
+import type { Skill, Experience, Education, Awards } from '../../types';
 import SEO from '../../components/global/SEO';
 import { getPersonSchema } from '../../utils/schema';
 import Hero from '../../components/global/Hero';
@@ -298,8 +298,12 @@ const About = () => {
                   </div>
                   
                   <div className="about-experience__meta">
-                    <span className="about-experience__location">{experience.location}</span>
+                    <span className="about-experience__location">
+                      <span className="fa-icon" aria-hidden="true"><i className="fa-solid fa-location-dot"></i></span>
+                      {experience.location}
+                    </span>
                     <span className="about-experience__date">
+                      <span className="fa-icon" aria-hidden="true"><i className="fa-solid fa-calendar-days"></i></span>
                       {formatDate(experience.startDate)} - {formatDate(experience.endDate)}
                     </span>
                   </div>

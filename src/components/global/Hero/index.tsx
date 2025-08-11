@@ -1,6 +1,6 @@
-import type { Hero } from '../../../types';
+import type { Hero as HeroProps } from '../../../types';
 
-const Hero = ({ heroTitle, heroSubtitle, heroImage }: Hero) => {
+const Hero = ({ heroTitle, heroSubtitle, heroImage }: HeroProps) => {
 
   return (
     <section className={`py-24 bg-primary-dark relative overflow-hidden bg-center bg-cover`} style={{ backgroundImage: heroImage ? `linear-gradient(to right, #2a3b4ce6, #1a2a3ce6), url(${heroImage})` : 'linear-gradient(to right, #2a3b4ce6, #1a2a3ce6)' }}>

@@ -8,7 +8,7 @@ import { store } from './store';
 import Header from './components/header';
 import Footer from './components/footer';
 import {CookieConsent } from './components/global/CookieConsent';
-import { ConsentOptions } from './components/global/CookieConsent/consentUtils';
+import type { ConsentOptions } from './components/global/CookieConsent/consentUtils';
 import ScrollToTop from './components/scrollToTop';
 import GTMTester from './components/global/GTMTester';
 

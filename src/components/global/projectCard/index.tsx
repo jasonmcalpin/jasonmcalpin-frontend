@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { Project } from '../../../store/slices/projectsSlice';
+import type { Project } from '../../../store/slices/projectsSlice';
 import OptimizedImage from '../OptimizedImage';
 import './styles.css';
 
@@ -38,8 +38,9 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, index }) => {
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         />
         {project.featured && (
-          <div className="project-card__featured absolute top-3 right-3 bg-secondary text-white text-xs font-bold py-1 px-2 rounded">
+          <div className="project-card__featured absolute top-3 right-3 bg-secondary text-white text-xs font-bold py-1 px-2 rounded overflow-hidden">
             <span className='relative z-10'>Featured</span>
+            <span className="featured-overlay" aria-hidden="true"></span>
           </div>
         )}
       </div>
@@ -65,6 +66,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, index }) => {
               className="inline-flex items-center justify-center px-3 py-1 text-sm font-medium rounded transition-all duration-300 bg-gray-800 text-white hover:bg-gray-700 project-card__link--github "
               aria-label={`View ${project.title} on GitHub`}
             >
+              <span className="fa-icon" aria-hidden="true"><i className="fa-brands fa-github"></i></span>
               GitHub
             </a>
           )}
@@ -77,6 +79,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, index }) => {
               className="inline-flex items-center justify-center px-3 py-1 text-sm font-medium rounded transition-all duration-300 project-card__link--live bg-neon-blue text-white hover:bg-blue-600"
               aria-label={`View live demo of ${project.title}`}
             >
+              <span className="fa-icon" aria-hidden="true"><i className="fa-solid fa-link"></i></span>
               Live Demo
             </a>
           )}
@@ -85,7 +88,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, index }) => {
             to={`/projects/${project.slug}`} 
             className="inline-flex items-center justify-center px-3 py-1 text-sm font-medium rounded transition-all duration-300 project-card__link--details bg-secondary text-white hover:bg-secondary-light"
           >
-            Details
+            Details <span className="fa-icon" aria-hidden="true"><i className="fa-solid fa-angle-right"></i></span>
           </Link>
         </div>
       </div>
