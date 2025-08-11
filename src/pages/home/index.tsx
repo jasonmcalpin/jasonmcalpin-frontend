@@ -10,6 +10,7 @@ import SEO from '../../components/global/SEO';
 import { useScrollAnimation } from '../../hooks/useScrollAnimation';
 import { fadeInUp, staggerContainer } from '../../utils/animations';
 import { getWebsiteSchema } from '../../utils/schema';
+import { MotionTitle, LinkTitle } from '../../components/global/Titles';
 import './styles.css';
 
 const Home = () => {
@@ -104,9 +105,7 @@ const Home = () => {
         variants={staggerContainer}
       >
         <div className="section-container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-          <motion.h2 className="section-title text-3xl md:text-4xl font-heading font-bold mb-12 text-white" variants={fadeInUp}>
-            About Me
-          </motion.h2>
+          <MotionTitle>About Me</MotionTitle>
           
           <motion.div className="home-about__content grid grid-cols-1 md:grid-cols-2 gap-8" variants={fadeInUp}>
             <div className="home-about__text flex flex-col">
@@ -158,12 +157,7 @@ const Home = () => {
         variants={staggerContainer}
       >
         <div className="section-container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-          <motion.div className="section-header flex flex-col sm:flex-row justify-between items-start sm:items-center mb-12" variants={fadeInUp}>
-            <h2 className="section-title text-3xl md:text-4xl font-heading font-bold mb-12 text-white">Featured Projects</h2>
-            <Link to="/projects" className="section-link text-neon-blue hover:text-blue-400 transition-colors duration-300 flex items-center mt-4 sm:mt-0">
-              View All Projects
-            </Link>
-          </motion.div>
+          <LinkTitle link='/projects' linkText='View All Projects'>Featured Projects</LinkTitle>
           
           <div className="home-projects__grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {featuredProjects.map((project, index) => (
@@ -181,13 +175,7 @@ const Home = () => {
         variants={staggerContainer}
       >
         <div className="section-container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-          <motion.div className="section-header flex flex-col sm:flex-row justify-between items-start sm:items-center mb-12" variants={fadeInUp}>
-            <h2 className="section-title text-3xl md:text-4xl font-heading font-bold mb-12 text-white">Recent Bytes</h2>
-            <Link to="/bytes" className="section-link text-neon-blue hover:text-blue-400 transition-colors duration-300 flex items-center mt-4 sm:mt-0">
-              View All Bytes
-            </Link>
-          </motion.div>
-          
+          <LinkTitle link='/bytes' linkText='View All Bytes'>Recent Bytes</LinkTitle>
           <div className="home-bytes__grid">
             {recentBytes.map((byte, index) => (
               <ByteCard key={byte.id} byte={byte} index={index} />

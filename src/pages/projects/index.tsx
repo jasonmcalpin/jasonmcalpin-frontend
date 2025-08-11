@@ -5,6 +5,7 @@ import { filterProjects, fetchProjects } from '../../store/slices/projectsSlice'
 import ProjectCard from '../../components/global/projectCard';
 import { fadeInUp, staggerContainer } from '../../utils/animations';
 import Hero from '../../components/global/Hero';
+import { CenterTitle } from '../../components/global/Titles';
 import './styles.css';
 
 const Projects = () => {
@@ -112,15 +113,9 @@ const Projects = () => {
       
       <section className="projects-process">
         <div className="section-container">
-          <motion.h2 
-            className="section-title text-center"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-          >
+          <CenterTitle>
             My Development Process
-          </motion.h2>
+          </CenterTitle>
           
           <div className="projects-process__steps">
             <motion.div 

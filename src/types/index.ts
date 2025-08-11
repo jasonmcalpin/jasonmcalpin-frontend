@@ -5,6 +5,22 @@ export interface NavLink {
   subLinks?: NavLink[];
 }
 
+export interface TitleProps {
+  children: React.ReactNode;
+}
+
+export interface LinkTitleProps {
+  children: React.ReactNode;
+  link?: string;
+  linkText?: string;
+}
+
+export interface Title {
+  children: string;
+  link?: string;
+  linkText?: string;
+}
+
 export interface ChoiceButton {
   path: string;
   children: string;

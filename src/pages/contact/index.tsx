@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { SocialLink } from '../../types';
 import { fadeInUp, staggerContainer } from '../../utils/animations';
 import Hero from '../../components/global/Hero';
+import { CenterTitle, MotionTitle } from '../../components/global/Titles';
 import './styles.css';
 
 const Contact = () => {
@@ -43,9 +44,9 @@ const Contact = () => {
               animate="visible"
               variants={staggerContainer}
             >
-              <motion.h2 className="section-title" variants={fadeInUp}>
+              <MotionTitle>
                 Connect With Me
-              </motion.h2>
+              </MotionTitle>
               
               <motion.p className="contact-social__text" variants={fadeInUp}>
                 Feel free to reach out through any of these platforms. I'm always open to discussing new projects, 
@@ -91,9 +92,9 @@ const Contact = () => {
               animate="visible"
               variants={staggerContainer}
             >
-              <motion.h2 className="section-title" variants={fadeInUp}>
+              <MotionTitle>
                 Contact Information
-              </motion.h2>
+              </MotionTitle>
               
               <motion.div className="contact-info__content" variants={fadeInUp}>
                 <div className="contact-info__card">
@@ -137,15 +138,9 @@ const Contact = () => {
       
       <section className="contact-faq">
         <div className="section-container">
-          <motion.h2 
-            className="section-title text-center"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-          >
+          <CenterTitle>
             Frequently Asked Questions
-          </motion.h2>
+          </CenterTitle>
           
           <div className="contact-faq__grid">
             <motion.div 

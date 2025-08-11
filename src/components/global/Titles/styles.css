@@ -1,0 +1,16 @@
+@reference "../../../styles/tailwind.css";
+
+/* .section-title {
+  @apply text-3xl md:text-4xl font-heading font-bold mb-12 text-white;
+} */
+
+.section-title::after {
+  content: '';
+  @apply block w-24 h-1 mt-4 bg-secondary;
+  box-shadow: 0 0 10px var(--color-secondary);
+}
+
+.section-link::after {
+  content: '\f054';
+  @apply ml-2 text-xs;
+}

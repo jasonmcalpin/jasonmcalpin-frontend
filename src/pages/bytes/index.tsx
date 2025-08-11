@@ -6,6 +6,7 @@ import ByteCard from '../../components/global/byteCard';
 import { fadeInUp, staggerContainer } from '../../utils/animations';
 import './styles.css';
 import Hero from '../../components/global/Hero';
+import { CenterTitle } from '../../components/global/Titles';
 
 const Bytes = () => {
   const dispatch = useAppDispatch();
@@ -160,16 +161,9 @@ const Bytes = () => {
       {/* Topics Section */}
       <section className="bytes-topics" aria-labelledby="topics-heading">
         <div className="section-container">
-          <motion.h2
-            id="topics-heading"
-            className="section-title text-center"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-          >
+          <CenterTitle>
             Topics I Write About
-          </motion.h2>
+          </CenterTitle>
 
           <div className="bytes-topics__grid" role="list" aria-label="Topic categories">
             <motion.div

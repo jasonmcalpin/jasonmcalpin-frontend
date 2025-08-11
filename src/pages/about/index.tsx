@@ -9,6 +9,8 @@ import { Skill, Experience, Education, Awards } from '../../types';
 import SEO from '../../components/global/SEO';
 import { getPersonSchema } from '../../utils/schema';
 import Hero from '../../components/global/Hero';
+
+import { FlatTitle, MotionTitle } from '../../components/global/Titles';
 import './styles.css';
 
 const About = () => {
@@ -143,7 +145,7 @@ const About = () => {
         <div className="section-container">
           <div className="about-intro__content">
             <motion.div className="about-intro__text" variants={fadeInUp}>
-              <h2 className="section-title">Who I Am</h2>
+              <FlatTitle>Who I Am</FlatTitle>
               <p className="about-intro__paragraph">
                 I'm Jason McAlpin, a passionate full stack developer with over 8 years of experience 
                 in building web applications. I specialize in creating responsive, user-friendly 
@@ -181,9 +183,9 @@ const About = () => {
         variants={staggerContainer}
       >
         <div className="section-container">
-          <motion.h2 className="section-title" variants={fadeInUp}>
+          <MotionTitle>
             My Skills
-          </motion.h2>
+          </MotionTitle>
           
           <motion.div className="about-skills__categories" variants={fadeInUp}>
             <div className="about-skills__category">
@@ -276,9 +278,9 @@ const About = () => {
         variants={staggerContainer}
       >
         <div className="section-container">
-          <motion.h2 className="section-title" variants={fadeInUp}>
+          <MotionTitle>
             Work Experience
-          </motion.h2>
+          </MotionTitle>
           
           <div className="about-experience__timeline">
             {experiences.map((experience, index) => (
@@ -328,9 +330,9 @@ const About = () => {
         variants={staggerContainer}
       >
         <div className="section-container">
-          <motion.h2 className="section-title" variants={fadeInUp}>
+          <MotionTitle>
             Education
-          </motion.h2>
+          </MotionTitle>
           
           <div className="about-education__list">
             {education.map((edu, index) => (
@@ -368,9 +370,9 @@ const About = () => {
         variants={staggerContainer}
       >
         <div className="section-container">
-          <motion.h2 className="section-title" variants={fadeInUp}>
+          <MotionTitle>
             Awards
-          </motion.h2>
+          </MotionTitle>
           
           <div className="about-awards__list">
             {awards.map((award, index) => (
