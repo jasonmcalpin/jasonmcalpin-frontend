@@ -34,7 +34,7 @@
     "slug": "us-open-watson-project",
     "title": "US Open Watson Project",
     "description": "Developed AI-powered interactive web application using IBM Watson's tone analyzer to create personalized tennis portraits for fans. Built system that processed open-ended user responses to generate personality trait percentages and match users with professional tennis players based on data analysis. Implemented both on-site booth integration nodejs systems and remote microsite functionality, showcasing AI capabilities to mainstream audiences.",
-    "imageUrl": "/assets/images/projects/us-open.jpg",
+    "liveUrl": "https://vimeo.com/230087606",
     "technologies": [
       "IBM Watson",
       "Python",

@@ -21,7 +21,7 @@ const About = () => {
   useEffect(() => {
     dispatch(fetchExperiences());
   }, [dispatch]);
-  const seoDescription = 'Learn more about Jason McAlpin, a Full Stack Developer with expertise in React, TypeScript, Node.js, and modern web technologies. View my skills, experience, and background.';
+  const seoDescription = "Learn more about Jason McAlpin, a Full Stack Developer with expertise in React, TypeScript, Node.js, and modern web technologies. View my skills, experience, and background.";
   const personSchema = getPersonSchema();
   const [introRef, introControls] = useScrollAnimation();
   const [skillsRef, skillsControls] = useScrollAnimation();
@@ -86,7 +86,7 @@ const About = () => {
   
   const education: Education[] = [
     {
-      degree: 'Associate's Degree in Computer Science',
+      degree: "Associate's Degree in Computer Science",
       institution: 'Albert Merrill',
       location: 'New York, NY',
       startYear: 1986,
@@ -121,53 +121,53 @@ const About = () => {
   };
 
   return (
-    <div className='about'>
+    <div className="about">
       <SEO 
-        title='About Me'
+        title="About Me"
         description={seoDescription}
-        canonical='/about'
-        type='profile'
+        canonical="/about"
+        type="profile"
         schema={personSchema}
       />
 
       <Hero 
-        heroTitle='About Me'
-        heroSubtitle='Full Stack Developer with a passion for creating modern web experiences'
-        heroImage='/assets/images/code-bg.jpg'
+        heroTitle="About Me"
+        heroSubtitle="Full Stack Developer with a passion for creating modern web experiences"
+        heroImage="/assets/images/code-bg.jpg"
       />
 
       <motion.section 
-        className='about-intro'
+        className="about-intro"
         ref={introRef as unknown as React.RefObject<HTMLElement>}
-        initial='hidden'
+        initial="hidden"
         animate={introControls}
         variants={staggerContainer}
       >
-        <div className='section-container'>
-          <div className='about-intro__content'>
-            <motion.div className='about-intro__text' variants={fadeInUp}>
+        <div className="section-container">
+          <div className="about-intro__content">
+            <motion.div className="about-intro__text" variants={fadeInUp}>
               <FlatTitle>Who I Am</FlatTitle>
-              <p className='about-intro__paragraph'>
+              <p className="about-intro__paragraph">
                 I'm Jason McAlpin, a passionate full stack developer with over 8 years of experience 
                 in building web applications. I specialize in creating responsive, user-friendly 
                 interfaces with modern JavaScript frameworks like React, while also having strong 
                 backend skills with Node.js and various databases.
               </p>
-              <p className='about-intro__paragraph'>
+              <p className="about-intro__paragraph">
                 My approach to development focuses on creating clean, maintainable code that delivers 
                 exceptional user experiences. I'm constantly learning and adapting to new technologies 
                 to stay at the forefront of web development.
               </p>
-              <p className='about-intro__paragraph'>
+              <p className="about-intro__paragraph">
                 When I'm not coding, you can find me exploring new technologies, contributing to open 
                 source projects, or sharing my knowledge through writing technical bytes.
               </p>
             </motion.div>
             
-            <motion.div className='about-intro__image-container' variants={fadeInUp}>
-              <div className='about-intro__image'>
+            <motion.div className="about-intro__image-container" variants={fadeInUp}>
+              <div className="about-intro__image">
                 
-                <div className='about-intro__image-placeholder'>
+                <div className="about-intro__image-placeholder">
                   
                 </div>
               </div>
@@ -177,32 +177,32 @@ const About = () => {
       </motion.section>
       
       <motion.section 
-        className='about-skills'
+        className="about-skills"
         ref={skillsRef as unknown as React.RefObject<HTMLElement>}
-        initial='hidden'
+        initial="hidden"
         animate={skillsControls}
         variants={staggerContainer}
       >
-        <div className='section-container'>
+        <div className="section-container">
           <MotionTitle>
             My Skills
           </MotionTitle>
           
-          <motion.div className='about-skills__categories' variants={fadeInUp}>
-            <div className='about-skills__category'>
-              <h3 className='about-skills__category-title'>Frontend</h3>
-              <div className='about-skills__list'>
+          <motion.div className="about-skills__categories" variants={fadeInUp}>
+            <div className="about-skills__category">
+              <h3 className="about-skills__category-title">Frontend</h3>
+              <div className="about-skills__list">
                 {skills
                   .filter(skill => skill.category === 'frontend')
                   .map((skill, index) => (
-                    <div key={index} className='about-skills__item'>
-                      <div className='about-skills__info'>
-                        <span className='about-skills__name'>{skill.name}</span>
-                        <span className='about-skills__level'>{skill.level} Years</span>
+                    <div key={index} className="about-skills__item">
+                      <div className="about-skills__info">
+                        <span className="about-skills__name">{skill.name}</span>
+                        <span className="about-skills__level">{skill.level} Years</span>
                       </div>
-                      <div className='about-skills__bar'>
+                      <div className="about-skills__bar">
                         <motion.div 
-                          className='about-skills__progress'
+                          className="about-skills__progress"
                           initial={{ width: 0 }}
                           whileInView={{ width: `${skill.level*6.5}%` }}
                           viewport={{ once: true }}
@@ -215,20 +215,20 @@ const About = () => {
               </div>
             </div>
             
-            <div className='about-skills__category'>
-              <h3 className='about-skills__category-title'>Backend</h3>
-              <div className='about-skills__list'>
+            <div className="about-skills__category">
+              <h3 className="about-skills__category-title">Backend</h3>
+              <div className="about-skills__list">
                 {skills
                   .filter(skill => skill.category === 'backend')
                   .map((skill, index) => (
-                    <div key={index} className='about-skills__item'>
-                      <div className='about-skills__info'>
-                        <span className='about-skills__name'>{skill.name}</span>
-                        <span className='about-skills__level'>{skill.level} Years</span>
+                    <div key={index} className="about-skills__item">
+                      <div className="about-skills__info">
+                        <span className="about-skills__name">{skill.name}</span>
+                        <span className="about-skills__level">{skill.level} Years</span>
                       </div>
-                      <div className='about-skills__bar'>
+                      <div className="about-skills__bar">
                         <motion.div 
-                          className='about-skills__progress'
+                          className="about-skills__progress"
                           initial={{ width: 0 }}
                           whileInView={{ width: `${skill.level*6.5}%` }}
                           viewport={{ once: true }}
@@ -241,20 +241,20 @@ const About = () => {
               </div>
             </div>
             
-            <div className='about-skills__category'>
-              <h3 className='about-skills__category-title'>DevOps & Tooling</h3>
-              <div className='about-skills__list'>
+            <div className="about-skills__category">
+              <h3 className="about-skills__category-title">DevOps & Tooling</h3>
+              <div className="about-skills__list">
                 {skills
                   .filter(skill => skill.category === 'DevOps')
                   .map((skill, index) => (
-                    <div key={index} className='about-skills__item'>
-                      <div className='about-skills__info'>
-                        <span className='about-skills__name'>{skill.name}</span>
-                        <span className='about-skills__level'>{skill.level} Years</span>
+                    <div key={index} className="about-skills__item">
+                      <div className="about-skills__info">
+                        <span className="about-skills__name">{skill.name}</span>
+                        <span className="about-skills__level">{skill.level} Years</span>
                       </div>
-                      <div className='about-skills__bar'>
+                      <div className="about-skills__bar">
                         <motion.div 
-                          className='about-skills__progress'
+                          className="about-skills__progress"
                           initial={{ width: 0 }}
                           whileInView={{ width: `${skill.level*6.5}%` }}
                           viewport={{ once: true }}
@@ -272,50 +272,50 @@ const About = () => {
       
 
       <motion.section 
-        className='about-experience'
+        className="about-experience"
         ref={experienceRef as unknown as React.RefObject<HTMLElement>}
-        initial='hidden'
+        initial="hidden"
         animate={experienceControls}
         variants={staggerContainer}
       >
-        <div className='section-container'>
+        <div className="section-container">
           <MotionTitle>
             Work Experience
           </MotionTitle>
           
-          <div className='about-experience__timeline'>
+          <div className="about-experience__timeline">
             {experiences.map((experience, index) => (
               <motion.div 
                 key={index} 
-                className='about-experience__item'
+                className="about-experience__item"
                 variants={fadeInUp}
                 custom={index}
               >
-                <div className='about-experience__marker'></div>
-                <div className='about-experience__content'>
-                  <div className='about-experience__header'>
-                    <h3 className='about-experience__title'>{experience.title}</h3>
-                    <span className='about-experience__company'>{experience.company}</span>
+                <div className="about-experience__marker"></div>
+                <div className="about-experience__content">
+                  <div className="about-experience__header">
+                    <h3 className="about-experience__title">{experience.title}</h3>
+                    <span className="about-experience__company">{experience.company}</span>
                   </div>
                   
-                  <div className='about-experience__meta'>
-                    <span className='about-experience__location'>
-                      <InlineIcon iconName='location-dot' />
+                  <div className="about-experience__meta">
+                    <span className="about-experience__location">
+                      <InlineIcon iconName="location-dot" />
                       {experience.location}
                     </span>
-                    <span className='about-experience__date'>
-                      <InlineIcon iconName='calendar-days' />
+                    <span className="about-experience__date">
+                      <InlineIcon iconName="calendar-days" />
                       {formatDate(experience.startDate)} - {formatDate(experience.endDate)}
                     </span>
                   </div>
                   
-                  <p className='about-experience__description'>
+                  <p className="about-experience__description">
                     {experience.description}
                   </p>
                   
-                  <div className='about-experience__technologies'>
+                  <div className="about-experience__technologies">
                     {experience.technologies.map((tech: string, i: number) => (
-                      <span key={i} className='about-experience__tech-tag'>
+                      <span key={i} className="about-experience__tech-tag">
                         {tech}
                       </span>
                     ))}
@@ -328,37 +328,37 @@ const About = () => {
       </motion.section>
       
       <motion.section 
-        className='about-education'
+        className="about-education"
         ref={educationRef as unknown as React.RefObject<HTMLElement>}
-        initial='hidden'
+        initial="hidden"
         animate={educationControls}
         variants={staggerContainer}
       >
-        <div className='section-container'>
+        <div className="section-container">
           <MotionTitle>
             Education
           </MotionTitle>
           
-          <div className='about-education__list'>
+          <div className="about-education__list">
             {education.map((edu, index) => (
               <motion.div 
                 key={index} 
-                className='about-education__item'
+                className="about-education__item"
                 variants={fadeInUp}
                 custom={index}
               >
-                <div className='about-education__year'>
+                <div className="about-education__year">
                   <span>{edu.startYear} - {edu.endYear || 'Present'}</span>
                 </div>
                 
-                <div className='about-education__content'>
-                  <h3 className='about-education__degree'>{edu.degree}</h3>
-                  <div className='about-education__institution'>
+                <div className="about-education__content">
+                  <h3 className="about-education__degree">{edu.degree}</h3>
+                  <div className="about-education__institution">
                     <span>{edu.institution}</span>
-                    <span className='about-education__location'>{edu.location}</span>
+                    <span className="about-education__location">{edu.location}</span>
                   </div>
                   {edu.description && (
-                    <p className='about-education__description'>{edu.description}</p>
+                    <p className="about-education__description">{edu.description}</p>
                   )}
                 </div>
               </motion.div>
@@ -368,36 +368,36 @@ const About = () => {
       </motion.section>
 
       <motion.section 
-        className='about-education'
+        className="about-education"
         ref={awardRef as unknown as React.RefObject<HTMLElement>}
-        initial='hidden'
+        initial="hidden"
         animate={awardControls}
         variants={staggerContainer}
       >
-        <div className='section-container'>
+        <div className="section-container">
           <MotionTitle>
             Awards
           </MotionTitle>
           
-          <div className='about-awards__list'>
+          <div className="about-awards__list">
             {awards.map((award, index) => (
               <motion.div 
                 key={index} 
-                className='about-awards__item'
+                className="about-awards__item"
                 variants={fadeInUp}
                 custom={index}
               >
-                <div className='about-awards__year'>
+                <div className="about-awards__year">
                   <span>{award.awardYear}</span>
                 </div>
                 
-                <div className='about-awards__content'>
-                  <h3 className='about-awards__title'>{award.awardTitle}</h3>
-                  <div className='about-awards__institution'>
+                <div className="about-awards__content">
+                  <h3 className="about-awards__title">{award.awardTitle}</h3>
+                  <div className="about-awards__institution">
                     <span>{award.institution}</span>
                   </div>
                   {award.description && (
-                    <p className='about-awards__description'>{award.description}</p>
+                    <p className="about-awards__description">{award.description}</p>
                   )}
                 </div>
               </motion.div>
@@ -406,10 +406,10 @@ const About = () => {
         </div>
       </motion.section>
       {/* Contact CTA Section */}
-      <section className='about-contact'>
-        <div className='section-container'>
+      <section className="about-contact">
+        <div className="section-container">
           <motion.div 
-            className='about-contact__content'
+            className="about-contact__content"
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ 
               opacity: 1, 
@@ -418,11 +418,11 @@ const About = () => {
             }}
             viewport={{ once: true }}
           >
-            <h2 className='about-contact__title'>Interested in working together?</h2>
-            <p className='about-contact__text'>
+            <h2 className="about-contact__title">Interested in working together?</h2>
+            <p className="about-contact__text">
               I'm always open to discussing new projects, creative ideas or opportunities to be part of your vision.
             </p>
-            <Link to='/contact' className='btn btn-primary about-contact__cta'>
+            <Link to="/contact" className="btn btn-primary about-contact__cta">
               Get In Touch
             </Link>
           </motion.div>
