@@ -31,39 +31,39 @@ const GTMTester: React.FC<GTMTesterProps> = ({ isVisible = false }) => {
   };
 
   return (
-    <div className="gtm-tester">
-      <div className="gtm-tester__header" onClick={() => setIsExpanded(!isExpanded)}>
+    <div className='gtm-tester'>
+      <div className='gtm-tester__header' onClick={() => setIsExpanded(!isExpanded)}>
         <h3>GTM Tester {isExpanded ? '▼' : '▶'}</h3>
       </div>
 
       {isExpanded && (
-        <div className="gtm-tester__content">
-          <div className="gtm-tester__field">
-            <label htmlFor="event-name">Event Name:</label>
+        <div className='gtm-tester__content'>
+          <div className='gtm-tester__field'>
+            <label htmlFor='event-name'>Event Name:</label>
             <input
-              id="event-name"
-              type="text"
+              id='event-name'
+              type='text'
               value={eventName}
               onChange={e => setEventName(e.target.value)}
             />
           </div>
 
-          <div className="gtm-tester__field">
-            <label htmlFor="event-params">Event Parameters (JSON):</label>
+          <div className='gtm-tester__field'>
+            <label htmlFor='event-params'>Event Parameters (JSON):</label>
             <textarea
-              id="event-params"
+              id='event-params'
               value={eventParams}
               onChange={e => setEventParams(e.target.value)}
               rows={5}
             />
           </div>
 
-          <div className="gtm-tester__actions">
+          <div className='gtm-tester__actions'>
             <button onClick={handleTriggerEvent}>Trigger Event</button>
             <button onClick={handleCheckGTM}>Check GTM Status</button>
           </div>
 
-          <div className="gtm-tester__info">
+          <div className='gtm-tester__info'>
             <p>
               <strong>GTM ID:</strong> {import.meta.env.VITE_GTM_ID || 'Not set'}
             </p>

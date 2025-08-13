@@ -36,25 +36,25 @@ const Projects = () => {
   };
 
   return (
-    <div className="projects">
+    <div className='projects'>
       <Hero 
-        heroTitle="My Projects"
-        heroSubtitle="A collection of my work showcasing my skills and experience"
-        heroImage="/assets/images/projects-bg.jpg"
+        heroTitle='My Projects'
+        heroSubtitle='A collection of my work showcasing my skills and experience'
+        heroImage='/assets/images/projects-bg.jpg'
       />
 
       
-      <section className="projects-content">
-        <div className="section-container">
+      <section className='projects-content'>
+        <div className='section-container'>
           {/* Filters */}
           <motion.div 
-            className="projects-filters"
+            className='projects-filters'
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <h2 className="projects-filters__title">Filter by:</h2>
-            <div className="projects-filters__buttons">
+            <h2 className='projects-filters__title'>Filter by:</h2>
+            <div className='projects-filters__buttons'>
               <button 
                 className={`projects-filters__button ${activeFilter === null ? 'projects-filters__button--active' : ''}`}
                 onClick={() => handleFilterChange(null)}
@@ -82,10 +82,10 @@ const Projects = () => {
           </motion.div>
           
           <motion.div 
-            className="projects-grid"
+            className='projects-grid'
             variants={staggerContainer}
-            initial="hidden"
-            animate="visible"
+            initial='hidden'
+            animate='visible'
           >
             {filteredProjects.length > 0 ? (
               filteredProjects.map((project, index) => (
@@ -93,14 +93,14 @@ const Projects = () => {
               ))
             ) : (
               <motion.div 
-                className="projects-empty"
+                className='projects-empty'
                 variants={fadeInUp}
               >
-                <p className="projects-empty__message">
+                <p className='projects-empty__message'>
                   No projects found with the selected filter.
                 </p>
                 <button 
-                  className="btn btn-primary"
+                  className='btn btn-primary'
                   onClick={() => handleFilterChange(null)}
                 >
                   Show All Projects
@@ -111,68 +111,68 @@ const Projects = () => {
         </div>
       </section>
       
-      <section className="projects-process">
-        <div className="section-container">
+      <section className='projects-process'>
+        <div className='section-container'>
           <CenterTitle>
             My Development Process
           </CenterTitle>
           
-          <div className="projects-process__steps">
+          <div className='projects-process__steps'>
             <motion.div 
-              className="projects-process__step"
+              className='projects-process__step'
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.1 }}
             >
-              <div className="projects-process__step-number">01</div>
-              <h3 className="projects-process__step-title">Discovery & Planning</h3>
-              <p className="projects-process__step-description">
+              <div className='projects-process__step-number'>01</div>
+              <h3 className='projects-process__step-title'>Discovery & Planning</h3>
+              <p className='projects-process__step-description'>
                 I start by understanding the project requirements, goals, and target audience. 
                 This phase includes research, wireframing, and creating a detailed project plan.
               </p>
             </motion.div>
             
             <motion.div 
-              className="projects-process__step"
+              className='projects-process__step'
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.2 }}
             >
-              <div className="projects-process__step-number">02</div>
-              <h3 className="projects-process__step-title">Design & Prototyping</h3>
-              <p className="projects-process__step-description">
+              <div className='projects-process__step-number'>02</div>
+              <h3 className='projects-process__step-title'>Design & Prototyping</h3>
+              <p className='projects-process__step-description'>
                 Next, I create visual designs and interactive prototypes to establish the look and feel 
                 of the project. This ensures we have a clear vision before development begins.
               </p>
             </motion.div>
             
             <motion.div 
-              className="projects-process__step"
+              className='projects-process__step'
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.3 }}
             >
-              <div className="projects-process__step-number">03</div>
-              <h3 className="projects-process__step-title">Development</h3>
-              <p className="projects-process__step-description">
+              <div className='projects-process__step-number'>03</div>
+              <h3 className='projects-process__step-title'>Development</h3>
+              <p className='projects-process__step-description'>
                 During development, I write clean, maintainable code following best practices. 
                 I use modern frameworks and tools to build scalable and performant applications.
               </p>
             </motion.div>
             
             <motion.div 
-              className="projects-process__step"
+              className='projects-process__step'
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.4 }}
             >
-              <div className="projects-process__step-number">04</div>
-              <h3 className="projects-process__step-title">Testing & Deployment</h3>
-              <p className="projects-process__step-description">
+              <div className='projects-process__step-number'>04</div>
+              <h3 className='projects-process__step-title'>Testing & Deployment</h3>
+              <p className='projects-process__step-description'>
                 Finally, I thoroughly test the application to ensure it works flawlessly across all devices 
                 and browsers. After testing, I deploy the project and provide ongoing support.
               </p>
@@ -181,10 +181,10 @@ const Projects = () => {
         </div>
       </section>
       
-      <section className="projects-cta">
-        <div className="section-container">
+      <section className='projects-cta'>
+        <div className='section-container'>
           <motion.div 
-            className="projects-cta__content"
+            className='projects-cta__content'
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ 
               opacity: 1, 
@@ -193,11 +193,11 @@ const Projects = () => {
             }}
             viewport={{ once: true }}
           >
-            <h2 className="projects-cta__title">Have a project in mind?</h2>
-            <p className="projects-cta__text">
+            <h2 className='projects-cta__title'>Have a project in mind?</h2>
+            <p className='projects-cta__text'>
               I'm always looking for interesting projects to work on. Let's discuss how I can help bring your ideas to life.
             </p>
-            <a href="/contact" className="btn btn-primary projects-cta__button">
+            <a href='/contact' className='btn btn-primary projects-cta__button'>
               Start a Project
             </a>
           </motion.div>

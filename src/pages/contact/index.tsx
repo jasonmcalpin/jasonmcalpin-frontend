@@ -5,6 +5,7 @@ import { fadeInUp, staggerContainer } from '../../utils/animations';
 import Hero from '../../components/global/Hero';
 import { CenterTitle, MotionTitle } from '../../components/global/Titles';
 import './styles.css';
+import InlineIcon from '@/components/global/Icons';
 
 const Contact = () => {
   const [socialLinks, setSocialLinks] = useState<SocialLink[]>([]);
@@ -27,57 +28,57 @@ const Contact = () => {
   }, []);
 
   return (
-    <div className="contact">
+    <div className='contact'>
        <Hero 
-        heroTitle="Get In Touch"
-        heroSubtitle="Connect with me through social media or send me a message"
-        heroImage="/assets/images/contact-bg.jpg"
+        heroTitle='Get In Touch'
+        heroSubtitle='Connect with me through social media or send me a message'
+        heroImage='/assets/images/contact-bg.jpg'
       />
 
       
-      <section className="contact-content">
-        <div className="section-container">
-          <div className="contact-content__grid">
+      <section className='contact-content'>
+        <div className='section-container'>
+          <div className='contact-content__grid'>
             <motion.div 
-              className="contact-social"
-              initial="hidden"
-              animate="visible"
+              className='contact-social'
+              initial='hidden'
+              animate='visible'
               variants={staggerContainer}
             >
               <MotionTitle>
                 Connect With Me
               </MotionTitle>
               
-              <motion.p className="contact-social__text" variants={fadeInUp}>
+              <motion.p className='contact-social__text' variants={fadeInUp}>
                 Feel free to reach out through any of these platforms. I'm always open to discussing new projects, 
                 creative ideas, or opportunities to be part of your vision.
               </motion.p>
               
-              <motion.ul className="contact-social__list" variants={staggerContainer}>
+              <motion.ul className='contact-social__list' variants={staggerContainer}>
                 {socialLinks.map((link, index) => (
                   <motion.li 
                     key={link.platform} 
-                    className="contact-social__item"
+                    className='contact-social__item'
                     variants={fadeInUp}
                     custom={index}
                   >
                     <a 
                       href={link.url} 
-                      target="_blank" 
-                      rel="noopener noreferrer"
+                      target='_blank' 
+                      rel='noopener noreferrer'
                       className={`contact-social__link contact-social__link--${link.platform}`}
                       aria-label={link.label}
                     >
-                      <span className="contact-social__icon">
+                      <span className='contact-social__icon'>
                       <img 
                         src={link.icon} 
                         alt={`${link.label} icon`}
                         style={{ width: '40px', height: '40px', objectFit: 'cover' }}
                       />
                       </span>
-                      <div className="contact-social__info">
-                        <span className="contact-social__platform">{link.label}</span>
-                        <span className="contact-social__username">{link.linkText}</span>
+                      <div className='contact-social__info'>
+                        <span className='contact-social__platform'>{link.label}</span>
+                        <span className='contact-social__username'>{link.linkText}</span>
                       </div>
                     </a>
                   </motion.li>
@@ -87,53 +88,47 @@ const Contact = () => {
             
 
             <motion.div 
-              className="contact-info"
-              initial="hidden"
-              animate="visible"
+              className='contact-info'
+              initial='hidden'
+              animate='visible'
               variants={staggerContainer}
             >
               <MotionTitle>
                 Contact Information
               </MotionTitle>
               
-              <motion.div className="contact-info__content" variants={fadeInUp}>
-                <div className="contact-info__card">
-                  <div className="contact-info__card-inner">
-                    <div className="contact-info__card-front">
-                      <div className="contact-info__logo">
-                        <span className="neon-text">Jason McAlpin</span>
+              <motion.div className='contact-info__content' variants={fadeInUp}>
+                <div className='contact-info__card'>
+                  <div className='contact-info__card-inner'>
+                    <div className='contact-info__card-front'>
+                      <div className='contact-info__logo'>
+                        <span className='neon-text'>Jason McAlpin</span>
                       </div>
-                      <div className="contact-info__title">Full Stack Developer</div>
-                      <div className="contact-info__pattern"></div>
+                      <div className='contact-info__title'>Full Stack Developer</div>
+                      <div className='contact-info__pattern'></div>
                     </div>
                     
-                    <div className="contact-info__card-back">
-                      <ul className="contact-info__list">
-                        <li className="contact-info__item">
-                          <span className="contact-info__icon-fa" aria-hidden="true">
-                            <i className="fa-solid fa-envelope"></i>
-                          </span>
-                          <div className="contact-info__text">
-                            <span className="contact-info__label">Email</span>
-                            <span className="contact-info__value">contact@jasonmcalpin.com</span>
+                    <div className='contact-info__card-back'>
+                      <ul className='contact-info__list'>
+                        <li className='contact-info__item'>
+                          <InlineIcon className='text-neon-blue text-xl flex items-center justify-center w-6 h-6 shrink-0' iconName='envelope' />
+                          <div className='contact-info__text'>
+                            <span className='contact-info__label'>Email</span>
+                            <span className='contact-info__value'>contact@jasonmcalpin.com</span>
                           </div>
                         </li>
-                        <li className="contact-info__item">
-                          <span className="contact-info__icon-fa" aria-hidden="true">
-                            <i className="fa-solid fa-location-dot"></i>
-                          </span>
-                          <div className="contact-info__text">
-                            <span className="contact-info__label">Location</span>
-                            <span className="contact-info__value">Atlanta, GA</span>
+                        <li className='contact-info__item'>
+                          <InlineIcon className='text-neon-blue text-xl flex items-center justify-center w-6 h-6 shrink-0' iconName='location-dot' />
+                          <div className='contact-info__text'>
+                            <span className='contact-info__label'>Location</span>
+                            <span className='contact-info__value'>Atlanta, GA</span>
                           </div>
                         </li>
-                        <li className="contact-info__item">
-                          <span className="contact-info__icon-fa" aria-hidden="true">
-                            <i className="fa-solid fa-clock"></i>
-                          </span>
-                          <div className="contact-info__text">
-                            <span className="contact-info__label">Availability</span>
-                            <span className="contact-info__value">Open to opportunities</span>
+                        <li className='contact-info__item'>
+                          <InlineIcon className='text-neon-blue text-xl flex items-center justify-center w-6 h-6 shrink-0' iconName='clock' />
+                          <div className='contact-info__text'>
+                            <span className='contact-info__label'>Availability</span>
+                            <span className='contact-info__value'>Open to opportunities</span>
                           </div>
                         </li>
                       </ul>
@@ -141,8 +136,8 @@ const Contact = () => {
                   </div>
                 </div>
                 
-                <p className="contact-info__note">
-                  <span className="contact-info__note-icon">ℹ️</span>
+                <p className='contact-info__note'>
+                  <span className='contact-info__note-icon'>ℹ️</span>
                   <span>Hover over the card to see contact details</span>
                 </p>
               </motion.div>
@@ -151,22 +146,22 @@ const Contact = () => {
         </div>
       </section>
       
-      <section className="contact-faq">
-        <div className="section-container">
+      <section className='contact-faq'>
+        <div className='section-container'>
           <CenterTitle>
             Frequently Asked Questions
           </CenterTitle>
           
-          <div className="contact-faq__grid">
+          <div className='contact-faq__grid'>
             <motion.div 
-              className="contact-faq__item"
+              className='contact-faq__item'
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.1 }}
             >
-              <h3 className="contact-faq__question">What services do you offer?</h3>
-              <p className="contact-faq__answer">
+              <h3 className='contact-faq__question'>What services do you offer?</h3>
+              <p className='contact-faq__answer'>
                 I offer full-stack web development services, including frontend development with React, 
                 backend development with Node.js, Next.js and database design. I can help with everything from 
                 building a complete web application to improving specific aspects of your existing project.
@@ -174,14 +169,14 @@ const Contact = () => {
             </motion.div>
             
             <motion.div 
-              className="contact-faq__item"
+              className='contact-faq__item'
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.2 }}
             >
-              <h3 className="contact-faq__question">How do you handle project pricing?</h3>
-              <p className="contact-faq__answer">
+              <h3 className='contact-faq__question'>How do you handle project pricing?</h3>
+              <p className='contact-faq__answer'>
                 Project pricing depends on the scope, complexity, and timeline. I offer both hourly rates 
                 and fixed-price quotes based on detailed project requirements. I'm happy to discuss your 
                 specific needs and provide a transparent pricing structure.
@@ -189,14 +184,14 @@ const Contact = () => {
             </motion.div>
             
             <motion.div 
-              className="contact-faq__item"
+              className='contact-faq__item'
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.3 }}
             >
-              <h3 className="contact-faq__question">What is your typical project process?</h3>
-              <p className="contact-faq__answer">
+              <h3 className='contact-faq__question'>What is your typical project process?</h3>
+              <p className='contact-faq__answer'>
                 My process typically includes an initial consultation, requirements gathering, design approval, 
                 development, testing, and deployment. I maintain clear communication throughout and provide 
                 regular updates on progress. After launch, I also offer maintenance and support services.
@@ -204,14 +199,14 @@ const Contact = () => {
             </motion.div>
             
             <motion.div 
-              className="contact-faq__item"
+              className='contact-faq__item'
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.4 }}
             >
-              <h3 className="contact-faq__question">Are you available for remote work?</h3>
-              <p className="contact-faq__answer">
+              <h3 className='contact-faq__question'>Are you available for remote work?</h3>
+              <p className='contact-faq__answer'>
                 Yes, I work remotely with clients from around the world. I use collaborative tools to 
                 maintain effective communication and ensure project success regardless of location. I'm 
                 flexible with scheduling meetings across different time zones.

@@ -56,11 +56,11 @@ const OptimizedImage = ({
       <div 
         className={`optimized-image optimized-image--error ${className}`}
         style={{ width: '100%', height: '100%' }}
-        role="img"
+        role='img'
         aria-label={`Image failed to load: ${alt}`}
         {...props}
       >
-        <div className="optimized-image__placeholder">
+        <div className='optimized-image__placeholder'>
           
         </div>
       </div>
@@ -73,7 +73,7 @@ const OptimizedImage = ({
 
   return (
     <picture className={`optimized-image ${isLoaded ? 'optimized-image--loaded' : ''} ${className}`}>
-      <source srcSet={webpSrc} type="image/webp" />
+      <source srcSet={webpSrc} type='image/webp' />
       
       <img
         src={src}
@@ -90,12 +90,12 @@ const OptimizedImage = ({
       
       {!isLoaded && (
         <div 
-          className="optimized-image__loading" 
-          role="status" 
-          aria-label="Image loading"
+          className='optimized-image__loading' 
+          role='status' 
+          aria-label='Image loading'
         >
-          <div className="loading-spinner" aria-hidden="true"></div>
-          <span className="sr-only">Loading image</span>
+          <div className='loading-spinner' aria-hidden='true'></div>
+          <span className='sr-only'>Loading image</span>
         </div>
       )}
     </picture>

@@ -9,40 +9,40 @@ const NotFound = () => {
   const [contentRef, contentControls] = useScrollAnimation();
 
   return (
-    <div className="not-found">
+    <div className='not-found'>
       <SEO 
-        title="404 - Page Not Found"
-        description="The page you are looking for does not exist."
-        canonical="/404"
+        title='404 - Page Not Found'
+        description='The page you are looking for does not exist.'
+        canonical='/404'
       />
       
       <motion.div 
-        className="not-found__container"
+        className='not-found__container'
         ref={contentRef}
-        initial="hidden"
+        initial='hidden'
         animate={contentControls}
         variants={staggerContainer}
       >
-        <motion.div className="not-found__content" variants={fadeInUp}>
+        <motion.div className='not-found__content' variants={fadeInUp}>
           <motion.h1 
-            className="not-found__title"
+            className='not-found__title'
             variants={neonFlicker}
-            initial="hidden"
-            animate="visible"
+            initial='hidden'
+            animate='visible'
           >
             404
           </motion.h1>
           
-          <motion.h2 className="not-found__subtitle" variants={fadeInUp}>
+          <motion.h2 className='not-found__subtitle' variants={fadeInUp}>
             Page Not Found
           </motion.h2>
           
-          <motion.p className="not-found__text" variants={fadeInUp}>
+          <motion.p className='not-found__text' variants={fadeInUp}>
             The page you are looking for doesn't exist or has been moved.
           </motion.p>
           
-          <motion.div className="not-found__actions" variants={fadeInUp}>
-            <Link to="/" className="btn btn-primary">
+          <motion.div className='not-found__actions' variants={fadeInUp}>
+            <Link to='/' className='btn btn-primary'>
               Back to Home
             </Link>
             
@@ -51,7 +51,7 @@ const NotFound = () => {
         </motion.div>
         
         <motion.div 
-          className="not-found__visual"
+          className='not-found__visual'
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ 
             opacity: 1, 
@@ -59,11 +59,11 @@ const NotFound = () => {
             transition: { duration: 0.8, delay: 0.2 }
           }}
         >
-          <div className="not-found__grid">
-            <div className="not-found__grid-item not-found__grid-item--1"></div>
-            <div className="not-found__grid-item not-found__grid-item--2"></div>
-            <div className="not-found__grid-item not-found__grid-item--3"></div>
-            <div className="not-found__grid-item not-found__grid-item--4"></div>
+          <div className='not-found__grid'>
+            <div className='not-found__grid-item not-found__grid-item--1'></div>
+            <div className='not-found__grid-item not-found__grid-item--2'></div>
+            <div className='not-found__grid-item not-found__grid-item--3'></div>
+            <div className='not-found__grid-item not-found__grid-item--4'></div>
           </div>
         </motion.div>
       </motion.div>

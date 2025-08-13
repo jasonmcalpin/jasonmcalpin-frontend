@@ -28,37 +28,37 @@ const Footer = () => {
 
   return (
     <motion.footer
-      className="bg-background-dark text-white py-4 mt-4"
-      initial="hidden"
-      whileInView="visible"
+      className='bg-background-dark text-white py-4 mt-4'
+      initial='hidden'
+      whileInView='visible'
       viewport={{ once: true }}
       variants={footerVariants}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-3 gap-8">
-        <motion.div className="flex flex-col" variants={itemVariants}>
-          <Link to="/" className="inline-flex no-underline mb-4">
-            <div className="text-2xl font-heading font-bold">
-              <span className="neon-text mr-1">Jason McAlpin</span>
+      <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-3 gap-8'>
+        <motion.div className='flex flex-col' variants={itemVariants}>
+          <Link to='/' className='inline-flex no-underline mb-4'>
+            <div className='text-2xl font-heading font-bold'>
+              <span className='neon-text mr-1'>Jason McAlpin</span>
             </div>
           </Link>
         </motion.div>
 
-        <motion.div className="flex flex-col" variants={itemVariants}>
+        <motion.div className='flex flex-col' variants={itemVariants}>
           <h4
-            className="text-lg font-heading font-semibold mb-4 text-neonBlue"
+            className='text-lg font-heading font-semibold mb-4 text-neonBlue'
             style={{
               textShadow: '0 0 5px var(--color-neonBlue)',
             }}
           >
             Links
           </h4>
-          <ul className="list-none p-0 m-0 space-y-3">
-            <li className="flex items-center">
+          <ul className='list-none p-0 m-0 space-y-3'>
+            <li className='flex items-center'>
               <Link
-                to="/privacy"
-                className="text-white hover:text-neonBlue transition-colors duration-300"
+                to='/privacy'
+                className='text-white hover:text-neonBlue transition-colors duration-300'
               >
-                <span className="mr-2 text-secondary">{'>'}</span>
+                <span className='mr-2 text-secondary'>{'>'}</span>
                 Privacy Policy
               </Link>
             </li>
@@ -67,13 +67,13 @@ const Footer = () => {
       </div>
 
       <motion.div
-        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 mt-4 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center"
+        className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 mt-4 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center'
         variants={itemVariants}
       >
-        <div className="text-sm text-gray-400 mb-2 md:mb-0">
+        <div className='text-sm text-gray-400 mb-2 md:mb-0'>
           &copy; {currentYear} Jason McAlpin. All rights reserved.
         </div>
-        <div className="text-sm text-gray-400">
+        <div className='text-sm text-gray-400'>
           Built with React, TypeScript, and Tailwind CSS
         </div>
       </motion.div>

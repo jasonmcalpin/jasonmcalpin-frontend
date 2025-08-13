@@ -61,11 +61,11 @@ const BytePage = () => {
 
   if (isLoading) {
     return (
-      <div className="byte-page" role="region" aria-label="Loading byte content">
-        <div className="section-container">
-          <div className="byte-page__loading">
-            <p aria-live="polite">Loading byte...</p>
-            <div className="loading-spinner" aria-hidden="true"></div>
+      <div className='byte-page' role='region' aria-label='Loading byte content'>
+        <div className='section-container'>
+          <div className='byte-page__loading'>
+            <p aria-live='polite'>Loading byte...</p>
+            <div className='loading-spinner' aria-hidden='true'></div>
           </div>
         </div>
       </div>
@@ -74,15 +74,15 @@ const BytePage = () => {
 
   if (!byte) {
     return (
-      <div className="byte-page" role="region" aria-label="Byte not found">
-        <div className="section-container">
-          <div className="byte-page__not-found">
+      <div className='byte-page' role='region' aria-label='Byte not found'>
+        <div className='section-container'>
+          <div className='byte-page__not-found'>
             <h1>Byte Not Found</h1>
             <p>The byte you're looking for doesn't exist or has been removed.</p>
             <button 
-              className="btn btn-primary"
+              className='btn btn-primary'
               onClick={() => navigate('/bytes')}
-              aria-label="Return to bytes listing page"
+              aria-label='Return to bytes listing page'
             >
               Back to Bytes
             </button>
@@ -102,12 +102,12 @@ const BytePage = () => {
   });
 
   return (
-    <div className="byte-page">
+    <div className='byte-page'>
       <SEO 
         title={byte.title}
         description={byte.excerpt || `${byte.title} - Read this byte by ${byte.author}`}
         canonical={`/bytes/${byte.slug}`}
-        type="byte"
+        type='byte'
         image={byte.imageUrl}
         byte={{
           publishedTime: byte.date,
@@ -116,11 +116,11 @@ const BytePage = () => {
         }}
         schema={byteSchema}
       />
-      <section className="byte-page__hero">
-        <div className="byte-page__hero-container">
+      <section className='byte-page__hero'>
+        <div className='byte-page__hero-container'>
           <motion.h1 
-            id="byte-title"
-            className="byte-page__title"
+            id='byte-title'
+            className='byte-page__title'
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
@@ -129,32 +129,32 @@ const BytePage = () => {
           </motion.h1>
           
           <motion.div 
-            className="byte-page__meta"
+            className='byte-page__meta'
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            aria-label="Article metadata"
+            aria-label='Article metadata'
           >
-            <div className="byte-page__author-date">
-              <span className="byte-page__author" aria-label="Author">{byte.author}</span>
-              <span className="byte-page__date" aria-label="Publication date">{formatDate(byte.date)}</span>
+            <div className='byte-page__author-date'>
+              <span className='byte-page__author' aria-label='Author'>{byte.author}</span>
+              <span className='byte-page__date' aria-label='Publication date'>{formatDate(byte.date)}</span>
             </div>
-            <span className="byte-page__reading-time" aria-label="Estimated reading time">{byte.readingTime} min read</span>
+            <span className='byte-page__reading-time' aria-label='Estimated reading time'>{byte.readingTime} min read</span>
           </motion.div>
           
           <motion.div 
-            className="byte-page__tags"
+            className='byte-page__tags'
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            role="list"
-            aria-label="Article tags"
+            role='list'
+            aria-label='Article tags'
           >
             {byte.tags.map((tag, i) => (
               <span 
                 key={i} 
-                className="byte-page__tag"
-                role="listitem"
+                className='byte-page__tag'
+                role='listitem'
               >
                 {tag}
               </span>
@@ -163,19 +163,19 @@ const BytePage = () => {
         </div>
       </section>
       
-      <section className="byte-page__content" role="article" aria-labelledby="byte-title">
-        <div className="section-container">
+      <section className='byte-page__content' role='article' aria-labelledby='byte-title'>
+        <div className='section-container'>
           {byte.imageUrl && (
             <motion.div 
-              className="byte-page__image-container"
+              className='byte-page__image-container'
               variants={fadeInUp}
-              initial="hidden"
-              animate="visible"
+              initial='hidden'
+              animate='visible'
             >
               <img 
                 src={byte.imageUrl} 
                 alt={`Featured image for article: ${byte.title}`} 
-                className="byte-page__image"
+                className='byte-page__image'
                 onError={(e) => {
                   const target = e.target as HTMLImageElement;
                   target.style.display = 'none';
@@ -194,10 +194,10 @@ const BytePage = () => {
           )}
           
           <motion.div 
-            className="byte-page__body markdown-content prose prose-invert max-w-none"
+            className='byte-page__body markdown-content prose prose-invert max-w-none'
             variants={fadeInUp}
-            initial="hidden"
-            animate="visible"
+            initial='hidden'
+            animate='visible'
             transition={{ delay: 0.2 }}
           >
             <ReactMarkdown 
@@ -244,8 +244,8 @@ const BytePage = () => {
                 // Security: Ensure links open in new tab with security attributes
                 a: ({...props}) => (
                   <a 
-                    target="_blank" 
-                    rel="noopener noreferrer" 
+                    target='_blank' 
+                    rel='noopener noreferrer' 
                     {...props}
                   />
                 )
@@ -259,18 +259,18 @@ const BytePage = () => {
       
       
       {/* Back to Bytes Button */}
-      <section className="byte-page__footer" role="navigation" aria-label="Byte navigation">
-        <div className="section-container">
+      <section className='byte-page__footer' role='navigation' aria-label='Byte navigation'>
+        <div className='section-container'>
           <motion.div 
-            className="byte-page__navigation"
+            className='byte-page__navigation'
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
             <button 
-              className="btn btn-primary"
+              className='btn btn-primary'
               onClick={() => navigate('/bytes')}
-              aria-label="Return to bytes listing page"
+              aria-label='Return to bytes listing page'
             >
               Back to Bytes
             </button>

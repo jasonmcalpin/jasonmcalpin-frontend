@@ -9,6 +9,12 @@ export interface TitleProps {
   children: React.ReactNode;
 }
 
+export interface iconProps {
+  iconName: string;
+  weight?: 'solid' | 'regular' | 'brands';
+  className?: string;
+}
+
 export interface LinkTitleProps {
   children: React.ReactNode;
   link?: string;

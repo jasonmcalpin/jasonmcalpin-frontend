@@ -74,10 +74,6 @@
 }
 
 
-.contact-info__icon-fa {
-  @apply text-neon-blue text-xl flex items-center justify-center w-6 h-6 shrink-0;
-}
-
 .contact-info__text {
   @apply flex flex-col;
 }

@@ -116,29 +116,29 @@ const Header = () => {
     backdropFilter: 'blur(10px)',
   }}
 >
-  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+  <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center'>
     <motion.div
-      className="flex items-center"
-      initial="hidden"
+      className='flex items-center'
+      initial='hidden'
       animate={mounted ? 'visible' : 'hidden'}
       variants={logoVariants}
     >
-      <Link to="/" className="flex items-center no-underline">
-        <div className="text-xl sm:text-2xl font-heading font-bold">
-          <span className="neon-text mr-1">Jason McAlpin</span>
+      <Link to='/' className='flex items-center no-underline'>
+        <div className='text-xl sm:text-2xl font-heading font-bold'>
+          <span className='neon-text mr-1'>Jason McAlpin</span>
         </div>
       </Link>
     </motion.div>
 
     <motion.nav
-      className="hidden md:block"
-      initial="hidden"
+      className='hidden md:block'
+      initial='hidden'
       animate={mounted ? 'visible' : 'hidden'}
       variants={navVariants}
     >
-      <ul className="flex space-x-8 list-none p-0 m-0">
+      <ul className='flex space-x-8 list-none p-0 m-0'>
         {navLinks.map(link => (
-          <motion.li key={link.path} className="relative" variants={linkVariants}>
+          <motion.li key={link.path} className='relative' variants={linkVariants}>
             <Link
               to={link.path}
               className={` hover:text-[var(--color-neon-blue)] transition-colors duration-300 text-base font-medium ${
@@ -148,7 +148,7 @@ const Header = () => {
 
               {location.pathname === link.path && (
                 <span
-                  className="absolute bottom-[-5px] left-0 w-full h-[2px] bg-neon-blue"
+                  className='absolute bottom-[-5px] left-0 w-full h-[2px] bg-neon-blue'
                   style={{boxShadow: '0 0 5px var(--color-neon-blue), 0 0 10px var(--color-neon-blue)'}}
                 />
               )}
@@ -158,13 +158,13 @@ const Header = () => {
       </ul>
     </motion.nav>
 
-    <div className="block md:hidden">
+    <div className='block md:hidden'>
       <button
         className={`w-8 h-8 flex flex-col justify-center items-center bg-transparent border-0 cursor-pointer relative ${
           isMobileMenuOpen ? 'relative' : ''
         }`}
         onClick={handleMenuToggle}
-        aria-label="Toggle menu"
+        aria-label='Toggle menu'
       >
         <span
           className={`w-6 h-[2px] bg-white block transition-all duration-300 ${
@@ -188,17 +188,17 @@ const Header = () => {
   <AnimatePresence>
     {isMobileMenuOpen && (
       <motion.div
-        className="w-full bg-background-light overflow-hidden md:hidden"
-        initial="hidden"
-        animate="visible"
-        exit="exit"
+        className='w-full bg-background-light overflow-hidden md:hidden'
+        initial='hidden'
+        animate='visible'
+        exit='exit'
         variants={mobileMenuVariants}
       >
-        <ul className="list-none p-0 m-0">
+        <ul className='list-none p-0 m-0'>
           {navLinks.map(link => (
             <motion.li
               key={link.path}
-              className="border-b border-gray-800"
+              className='border-b border-gray-800'
               variants={linkVariants}
               whileHover={{ x: 10 }}
             >

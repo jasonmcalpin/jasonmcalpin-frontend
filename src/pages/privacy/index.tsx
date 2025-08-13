@@ -5,26 +5,26 @@ import './styles.css';
 
 const Privacy = () => {
   return (
-    <div className="privacy">
+    <div className='privacy'>
       <Hero 
-        heroTitle="Privacy Policy"
-        heroSubtitle="How we handle your data and respect your privacy"
-        heroImage="/assets/images/contact-bg.jpg"
+        heroTitle='Privacy Policy'
+        heroSubtitle='How we handle your data and respect your privacy'
+        heroImage='/assets/images/contact-bg.jpg'
       />
       
       
-      <section className="privacy-content">
-        <div className="section-container">
+      <section className='privacy-content'>
+        <div className='section-container'>
           <motion.div 
-            className="privacy-content__wrapper"
+            className='privacy-content__wrapper'
             variants={fadeInUp}
-            initial="hidden"
-            animate="visible"
+            initial='hidden'
+            animate='visible'
           >
             <h2>Introduction</h2>
             <p>
               This Privacy Policy explains how Jason McAlpin collects, uses, and protects 
-              your personal information when you visit jasonmcalpin.com ("the Website").
+              your personal information when you visit jasonmcalpin.com ('the Website').
             </p>
             
             <h2>Information We Collect</h2>
@@ -107,7 +107,7 @@ const Privacy = () => {
               available on this page.
             </p>
             
-            <p className="privacy-content__last-updated">
+            <p className='privacy-content__last-updated'>
               Last updated: May 20, 2025
             </p>
           </motion.div>
