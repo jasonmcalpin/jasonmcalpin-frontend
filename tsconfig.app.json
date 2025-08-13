@@ -21,7 +21,7 @@
 
     "baseUrl": ".",
     "paths": { "@/*": ["src/*"] },
-    "types": ["vite/client"],
+    "types": ["vite/client", "node"],
     "verbatimModuleSyntax": true
   },
   "include": ["src"]
