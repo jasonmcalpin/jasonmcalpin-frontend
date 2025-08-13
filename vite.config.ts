@@ -9,32 +9,20 @@ import { fileURLToPath } from 'node:url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// Allow toggling certain plugins via env to isolate CI issues
-const ENABLE_ANALYZE = process.env.ANALYZE === '1';
-const ENABLE_COMPRESS = process.env.COMPRESS !== '0';
-
 export default defineConfig({
   plugins: [
     react(),
     tailwindcss(),
-    ...(ENABLE_COMPRESS
-      ? [
-          compression({
-            algorithms: ['brotliCompress'],
-            threshold: 10240,
-          }),
-        ]
-      : []),
-    ...(ENABLE_ANALYZE
-      ? [
-          visualizer({
-            open: false,
-            gzipSize: true,
-            brotliSize: true,
-            filename: 'dist/stats.html',
-          }),
-        ]
-      : []),
+    compression({
+      algorithms: ['brotliCompress'],
+      threshold: 10240, 
+    }),
+    // visualizer({
+    //   open: false,
+    //   gzipSize: true,
+    //   brotliSize: true,
+    //   filename: 'dist/stats.html',
+    // }),
   ],
   base: '/',
   build: {
