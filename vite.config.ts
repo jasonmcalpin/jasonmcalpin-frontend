@@ -17,12 +17,12 @@ export default defineConfig({
       algorithms: ['brotliCompress'],
       threshold: 10240, 
     }),
-    // visualizer({
-    //   open: false,
-    //   gzipSize: true,
-    //   brotliSize: true,
-    //   filename: 'dist/stats.html',
-    // }),
+    visualizer({
+      open: false,
+      gzipSize: true,
+      brotliSize: true,
+      filename: 'dist/stats.html',
+    }),
   ],
   base: '/',
   build: {
