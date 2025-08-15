@@ -1,0 +1,47 @@
+@reference "../../styles/tailwind.css";
+
+.privacy-hero {
+  @apply py-24 bg-cover bg-center relative;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('/assets/images/contact-bg.jpg');
+}
+
+.privacy-hero__container {
+  @apply container mx-auto px-4 text-center;
+}
+
+.privacy-hero__title {
+  @apply text-4xl md:text-5xl font-bold text-white mb-4;
+}
+
+.privacy-hero__subtitle {
+  @apply text-xl text-gray-300 max-w-2xl mx-auto;
+}
+
+.privacy-content {
+  @apply py-16;
+}
+
+.privacy-content__wrapper {
+  @apply prose prose-invert max-w-4xl mx-auto;
+}
+
+.privacy-content__wrapper h2 {
+  @apply text-2xl font-bold mt-8 mb-4;
+}
+
+.privacy-content__wrapper p {
+  @apply mb-4;
+}
+
+.privacy-content__wrapper ul {
+  @apply list-disc pl-6 mb-6;
+}
+
+.privacy-content__wrapper ul li {
+  @apply mb-2;
+}
+
+.privacy-content__last-updated {
+  @apply text-sm text-gray-400 mt-12 pt-4 border-t border-gray-700;
+}
+

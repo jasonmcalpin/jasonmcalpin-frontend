@@ -23,7 +23,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 20
 
       - name: Clean install to fix Rollup native bindings
         run: |
@@ -42,7 +42,6 @@ jobs:
           name: build-artifacts
           path: dist/
           retention-days: 1
-          overwrite: true
 
   deploy-preview:
     if: github.event_name == 'pull_request'
@@ -54,7 +53,6 @@ jobs:
         with:
           name: build-artifacts
           path: dist/
-          overwrite: true
       
       - name: Create PR identifier file
         run: |
@@ -81,7 +79,7 @@ jobs:
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              body: `🚀 Deployed to staging! \n\n[View on Staging](${stagingUrl})`
+              body: `Deployed to staging! \n\n[View on Staging](${stagingUrl})`
             });
 
   deploy-production:
@@ -94,7 +92,6 @@ jobs:
         with:
           name: build-artifacts
           path: dist/
-          overwrite: true
       
       # GTM ID is now injected during build via environment variables
           
@@ -120,7 +117,6 @@ jobs:
         with:
           name: build-artifacts
           path: dist
-          overwrite: true
       
       - name: Create main branch identifier file
         run: |
@@ -150,7 +146,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 20.19.4
 
       - name: Install dependencies
         run: npm install --force
@@ -175,3 +171,4 @@ jobs:
           source: "dist/"
           target: "${{ secrets.FTP_TARGET_PREVIEW }}"
           strip_components: 1
+

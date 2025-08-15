@@ -1,15 +1,21 @@
-import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react-swc';
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react-swc'
+import tailwindcss from '@tailwindcss/vite'
 import { visualizer } from 'rollup-plugin-visualizer';
-import viteCompression from 'vite-plugin-compression';
+import { compression } from 'vite-plugin-compression2';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 
-// https://vite.dev/config/
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 export default defineConfig({
   plugins: [
     react(),
-    viteCompression({
-      algorithm: 'brotliCompress',
-      threshold: 10240, // Only compress files larger than 10KB
+    tailwindcss(),
+    compression({
+      algorithms: ['brotliCompress'],
+      threshold: 10240, 
     }),
     visualizer({
       open: false,
@@ -18,23 +24,19 @@ export default defineConfig({
       filename: 'dist/stats.html',
     }),
   ],
-  // Use root path for assets when using BrowserRouter
   base: '/',
   build: {
-    // Enable minification
     minify: 'terser',
     terserOptions: {
       compress: {
-        drop_console: false, // Temporarily keep console logs for GTM debugging
+        drop_console: false, 
         drop_debugger: true,
       },
       mangle: true,
     },
-    // Code splitting
     rollupOptions: {
       output: {
         manualChunks: {
-          // Split React and related packages into a separate chunk
           'vendor-react': ['react', 'react-dom', 'react-router-dom'],
           'vendor-redux': ['@reduxjs/toolkit', 'react-redux'],
           'vendor-ui': ['framer-motion', 'react-intersection-observer'],
@@ -44,9 +46,12 @@ export default defineConfig({
         assetFileNames: 'assets/[ext]/[name]-[hash].[ext]',
       },
     },
-    // Reduce chunk size warnings threshold
     chunkSizeWarningLimit: 500,
-    // Enable source maps for production
     sourcemap: true,
+  },
+  resolve: {
+    alias: {
+      '@': path.resolve(__dirname, 'src'),
+    },
   },
 });

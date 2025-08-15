@@ -1,9 +1,37 @@
-// Common types used throughout the application
 
 export interface NavLink {
   path: string;
   label: string;
   subLinks?: NavLink[];
+}
+
+export interface TitleProps {
+  children: React.ReactNode;
+}
+
+export interface iconProps {
+  iconName: string;
+  weight?: 'solid' | 'regular' | 'brands';
+  className?: string;
+}
+
+export interface LinkTitleProps {
+  children: React.ReactNode;
+  link?: string;
+  linkText?: string;
+}
+
+export interface Title {
+  children: string;
+  link?: string;
+  linkText?: string;
+}
+
+export interface ChoiceButton {
+  path: string;
+  children: string;
+  additionalClasses?: string;
+  type: 'flat' | 'primary' | 'secondary' | 'outline';
 }
 
 export interface SocialLink {
@@ -12,6 +40,12 @@ export interface SocialLink {
   icon: string;
   linkText: string;
   label: string;
+}
+
+export interface Hero {
+  heroTitle: string;
+  heroSubtitle: string;
+  heroImage?: string;
 }
 
 export interface Skill {

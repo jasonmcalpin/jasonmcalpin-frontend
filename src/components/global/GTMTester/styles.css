@@ -1,0 +1,105 @@
+.gtm-tester {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 350px;
+  background-color: #f8f9fa;
+  border: 1px solid #dee2e6;
+  border-radius: 4px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  z-index: 9999;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  font-size: 14px;
+  overflow: hidden;
+}
+
+.gtm-tester__header {
+  padding: 10px 15px;
+  background-color: #e9ecef;
+  cursor: pointer;
+  user-select: none;
+}
+
+.gtm-tester__header h3 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: #495057;
+}
+
+.gtm-tester__content {
+  padding: 15px;
+}
+
+.gtm-tester__field {
+  margin-bottom: 15px;
+}
+
+.gtm-tester__field label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 500;
+  color: #495057;
+}
+
+.gtm-tester__field input,
+.gtm-tester__field textarea {
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  font-family: inherit;
+  font-size: 14px;
+}
+
+.gtm-tester__field input:focus,
+.gtm-tester__field textarea:focus {
+  outline: none;
+  border-color: #80bdff;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+.gtm-tester__field textarea {
+  resize: vertical;
+  font-family: monospace;
+}
+
+.gtm-tester__actions {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.gtm-tester__actions button {
+  padding: 8px 12px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.gtm-tester__actions button:hover {
+  background-color: #0069d9;
+}
+
+.gtm-tester__actions button:active {
+  background-color: #0062cc;
+}
+
+.gtm-tester__info {
+  padding-top: 10px;
+  border-top: 1px solid #dee2e6;
+}
+
+.gtm-tester__info p {
+  margin: 5px 0;
+  color: #6c757d;
+}
+
+.gtm-tester__info small {
+  font-size: 12px;
+  color: #6c757d;
+}
+

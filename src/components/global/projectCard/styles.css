@@ -1,0 +1,80 @@
+@reference "../../../styles/tailwind.css";
+
+.project-card {
+  /* @apply bg-background-light rounded-lg overflow-hidden transition-all duration-300; */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* .project-card__image-container {
+  @apply relative w-full h-48 overflow-hidden;
+}
+
+.project-card__image {
+  @apply w-full h-full object-cover transition-transform duration-500;
+} */
+
+.project-card:hover .project-card__image {
+  @apply transform scale-110;
+}
+
+.project-card__featured {
+  /* @apply absolute top-3 right-3 bg-secondary text-white text-xs font-bold py-1 px-2 rounded; */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* .project-card__featured span {
+  @apply relative z-10;
+} */
+
+.project-card__featured .featured-overlay { @apply absolute inset-0 bg-secondary/50 blur-sm z-1; }
+
+
+/* .project-card__content {
+  @apply p-6;
+}
+
+.project-card__title {
+  @apply text-xl font-heading font-bold mb-2 text-white;
+}
+
+.project-card__description {
+  @apply text-gray-300 mb-4 line-clamp-3;
+}
+
+.project-card__technologies {
+  @apply flex flex-wrap gap-2 mb-4;
+}
+
+.project-card__tech-tag {
+  @apply bg-primary-dark text-white text-xs py-1 px-2 rounded-full;
+} */
+
+/* .project-card__links {
+  @apply flex flex-wrap gap-3 mt-auto;
+}
+
+.project-card__link {
+  @apply inline-flex items-center justify-center px-3 py-1 text-sm font-medium rounded transition-all duration-300;
+} */
+
+/* .project-card__link--github {
+  @apply bg-gray-800 text-white hover:bg-gray-700;
+} */
+
+.project-card__link--github .fa-icon { @apply mr-1; }
+
+
+.project-card__link--live {
+  /* @apply bg-neon-blue text-white hover:bg-blue-600; */
+  box-shadow: 0 0 5px var(--color-neon-blue)
+
+}
+
+.project-card__link--live .fa-icon { @apply mr-1; }
+
+
+/* .project-card__link--details {
+  @apply bg-secondary text-white hover:bg-secondary-light;
+} */
+
+.project-card__link--details .fa-icon { @apply ml-1; }

@@ -4,13 +4,14 @@ import { motion } from 'framer-motion';
 import { useAppDispatch, useAppSelector } from '../../hooks/useAppStore';
 import { filterProjects, fetchProjects } from '../../store/slices/projectsSlice';
 import { filterBytes, fetchBytes } from '../../store/slices/bytesSlice';
-import ProjectCard from '../../components/shared/projectCard';
-import ByteCard from '../../components/shared/byteCard';
-import SEO from '../../components/shared/SEO';
+import ProjectCard from '../../components/global/projectCard';
+import ByteCard from '../../components/global/byteCard';
+import SEO from '../../components/global/SEO';
 import { useScrollAnimation } from '../../hooks/useScrollAnimation';
 import { fadeInUp, staggerContainer } from '../../utils/animations';
 import { getWebsiteSchema } from '../../utils/schema';
-import './styles.scss';
+import { MotionTitle, LinkTitle } from '../../components/global/Titles';
+import './styles.css';
 
 const Home = () => {
   // SEO data
@@ -42,7 +43,7 @@ const Home = () => {
   ).slice(0, 2);
 
   return (
-    <div className="home">
+    <div className="home pt-16">
       <SEO 
         title="Home"
         description={seoDescription}
@@ -51,24 +52,24 @@ const Home = () => {
       />
       {/* Hero Section */}
       <motion.section 
-        className="hero"
+        className="hero min-h-screen flex flex-col md:flex-row items-center justify-center px-4 py-16"
         ref={heroRef as unknown as React.RefObject<HTMLElement>}
         initial="hidden"
         animate={heroControls}
         variants={staggerContainer}
       >
-        <div className="hero__content">
-          <motion.h1 className="hero__title" variants={fadeInUp}>
-            <span className="hero__title-line">Hi, I'm</span>
-            <span className="hero__title-line neon-text">Jason McAlpin</span>
-            <span className="hero__title-line">Full Stack Developer</span>
+        <div className="hero__content w-full md:w-1/2 mb-12 md:mb-0 md:pr-8 md:ml-auto md:max-w-[40rem]">
+          <motion.h1 className="hero__title text-4xl sm:text-5xl md:text-6xl font-heading font-bold mb-6" variants={fadeInUp}>
+            <span className="hero__title-line block mb-2">Hi, I'm</span>
+            <span className="hero__title-line neon-text block mb-2">Jason McAlpin</span>
+            <span className="hero__title-line block mb-2">Full Stack Developer</span>
           </motion.h1>
           
-          <motion.p className="hero__subtitle" variants={fadeInUp}>
+          <motion.p className="hero__subtitle text-xl text-gray-300 mb-8 max-w-lg" variants={fadeInUp}>
             Building modern web experiences with cutting-edge technologies
           </motion.p>
           
-          <motion.div className="hero__cta" variants={fadeInUp}>
+          <motion.div className="hero__cta flex flex-wrap gap-4" variants={fadeInUp}>
             <Link to="/projects" className="btn btn-primary">
               View My Work
             </Link>
@@ -79,7 +80,7 @@ const Home = () => {
         </div>
         
         <motion.div 
-          className="hero__visual"
+          className="hero__visual w-full md:w-1/2 flex justify-center items-center"
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ 
             opacity: 1, 
@@ -87,62 +88,60 @@ const Home = () => {
             transition: { duration: 0.8, delay: 0.2 }
           }}
         >
-          <div className="hero__grid">
-            <div className="hero__grid-item hero__grid-item--1"></div>
-            <div className="hero__grid-item hero__grid-item--2"></div>
-            <div className="hero__grid-item hero__grid-item--3"></div>
-            <div className="hero__grid-item hero__grid-item--4"></div>
+          <div className="hero__grid grid grid-cols-2 gap-4 w-full max-w-md">
+            <div className="hero__grid-item h-32 rounded-lg relative overflow-hidden after:content-[''] after:absolute after:inset-0 after:bg-black/40 bg-primary bg-cover bg-center hero__grid-item--1"></div>
+            <div className="hero__grid-item h-32 rounded-lg relative overflow-hidden after:content-[''] after:absolute after:inset-0 after:bg-black/40 bg-primary bg-cover bg-center hero__grid-item--2"></div>
+            <div className="hero__grid-item h-32 rounded-lg relative overflow-hidden after:content-[''] after:absolute after:inset-0 after:bg-black/40 bg-primary bg-cover bg-center hero__grid-item--3"></div>
+            <div className="hero__grid-item h-32 rounded-lg relative overflow-hidden after:content-[''] after:absolute after:inset-0 after:bg-black/40 bg-primary bg-cover bg-center hero__grid-item--4"></div>
           </div>
         </motion.div>
       </motion.section>
       
       <motion.section 
-        className="home-about"
+        className="home-about py-16 bg-background-light"
         ref={aboutRef as unknown as React.RefObject<HTMLElement>}
         initial="hidden"
         animate={aboutControls}
         variants={staggerContainer}
       >
-        <div className="section-container">
-          <motion.h2 className="section-title" variants={fadeInUp}>
-            About Me
-          </motion.h2>
+        <div className="section-container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+          <MotionTitle>About Me</MotionTitle>
           
-          <motion.div className="home-about__content" variants={fadeInUp}>
-            <div className="home-about__text">
-              <p className="home-about__paragraph">
+          <motion.div className="home-about__content grid grid-cols-1 md:grid-cols-2 gap-8" variants={fadeInUp}>
+            <div className="home-about__text flex flex-col">
+              <p className="home-about__paragraph text-gray-300 mb-4">
                 I'm a passionate full stack developer with expertise in modern web technologies. 
                 I specialize in building responsive, user-friendly applications with React, 
                 TypeScript, and other cutting-edge tools.
               </p>
-              <p className="home-about__paragraph">
+              <p className="home-about__paragraph text-gray-300 mb-4">
                 With a background in both frontend and backend development, I create seamless 
                 experiences that solve real-world problems.
               </p>
               
-              <Link to="/about" className="btn btn-secondary home-about__cta">
+              <Link to="/about" className="btn btn-secondary home-about__cta mt-4 self-start">
                 More About Me
               </Link>
             </div>
             
-            <div className="home-about__skills">
-              <div className="home-about__skill-category">
-                <h3 className="home-about__skill-title">Frontend</h3>
-                <div className="home-about__skill-tags">
-                  <span className="home-about__skill-tag">React</span>
-                  <span className="home-about__skill-tag">TypeScript</span>
-                  <span className="home-about__skill-tag">Redux</span>
-                  <span className="home-about__skill-tag">Tailwind</span>
+            <div className="home-about__skills grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <div className="home-about__skill-category bg-background p-6 rounded-lg">
+                <h3 className="home-about__skill-title text-xl font-heading font-semibold mb-4 text-neon-blue">Frontend</h3>
+                <div className="home-about__skill-tags flex flex-wrap gap-2">
+                  <span className="home-about__skill-tag bg-primary-dark text-white text-sm py-1 px-3 rounded-full">React</span>
+                  <span className="home-about__skill-tag bg-primary-dark text-white text-sm py-1 px-3 rounded-full">TypeScript</span>
+                  <span className="home-about__skill-tag bg-primary-dark text-white text-sm py-1 px-3 rounded-full">Redux</span>
+                  <span className="home-about__skill-tag bg-primary-dark text-white text-sm py-1 px-3 rounded-full">Tailwind</span>
                 </div>
               </div>
               
-              <div className="home-about__skill-category">
-                <h3 className="home-about__skill-title">Backend</h3>
-                <div className="home-about__skill-tags">
-                  <span className="home-about__skill-tag">Node.js</span>
-                  <span className="home-about__skill-tag">Express</span>
-                  <span className="home-about__skill-tag">MongoDB</span>
-                  <span className="home-about__skill-tag">GraphQL</span>
+              <div className="home-about__skill-category bg-background p-6 rounded-lg">
+                <h3 className="home-about__skill-title  text-xl font-heading font-semibold mb-4 text-neon-blue">Backend</h3>
+                <div className="home-about__skill-tags flex flex-wrap gap-2">
+                  <span className="home-about__skill-tag bg-primary-dark text-white text-sm py-1 px-3 rounded-full">Node.js</span>
+                  <span className="home-about__skill-tag bg-primary-dark text-white text-sm py-1 px-3 rounded-full">Express</span>
+                  <span className="home-about__skill-tag bg-primary-dark text-white text-sm py-1 px-3 rounded-full">MongoDB</span>
+                  <span className="home-about__skill-tag bg-primary-dark text-white text-sm py-1 px-3 rounded-full">GraphQL</span>
                 </div>
               </div>
             </div>
@@ -151,21 +150,16 @@ const Home = () => {
       </motion.section>
       
       <motion.section 
-        className="home-projects"
+        className="home-projects py-16"
         ref={projectsRef as unknown as React.RefObject<HTMLElement>}
         initial="hidden"
         animate={projectsControls}
         variants={staggerContainer}
       >
-        <div className="section-container">
-          <motion.div className="section-header" variants={fadeInUp}>
-            <h2 className="section-title">Featured Projects</h2>
-            <Link to="/projects" className="section-link">
-              View All Projects
-            </Link>
-          </motion.div>
+        <div className="section-container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+          <LinkTitle link='/projects' linkText='View All Projects'>Featured Projects</LinkTitle>
           
-          <div className="home-projects__grid">
+          <div className="home-projects__grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {featuredProjects.map((project, index) => (
               <ProjectCard key={project.id} project={project} index={index} />
             ))}
@@ -174,20 +168,14 @@ const Home = () => {
       </motion.section>
       
       <motion.section 
-        className="home-bytes"
+        className="home-bytes py-16 bg-background-light"
         ref={bytesRef as unknown as React.RefObject<HTMLElement>}
         initial="hidden"
         animate={bytesControls}
         variants={staggerContainer}
       >
-        <div className="section-container">
-          <motion.div className="section-header" variants={fadeInUp}>
-            <h2 className="section-title">Recent Bytes</h2>
-            <Link to="/bytes" className="section-link">
-              View All Bytes
-            </Link>
-          </motion.div>
-          
+        <div className="section-container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+          <LinkTitle link='/bytes' linkText='View All Bytes'>Recent Bytes</LinkTitle>
           <div className="home-bytes__grid">
             {recentBytes.map((byte, index) => (
               <ByteCard key={byte.id} byte={byte} index={index} />
@@ -197,7 +185,7 @@ const Home = () => {
       </motion.section>
       
       <section className="home-contact">
-        <div className="section-container">
+        <div className="section-container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
           <motion.div 
             className="home-contact__content"
             initial={{ opacity: 0, y: 50 }}

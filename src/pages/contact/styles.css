@@ -1,0 +1,190 @@
+@reference "../../styles/tailwind.css";
+
+.contact {
+  @apply pt-16;
+}
+
+.contact-content {
+  @apply py-16;
+}
+
+.contact-content__grid {
+  @apply grid grid-cols-1 lg:grid-cols-2 gap-12;
+}
+
+.contact-social {
+  @apply flex flex-col;
+}
+
+.contact-social__text {
+  @apply text-gray-300 mb-8;
+}
+
+.contact-social__list {
+  @apply space-y-4 list-none p-0;
+}
+
+.contact-social__item {
+  @apply w-full;
+}
+
+.contact-social__link {
+  @apply flex items-center p-4 rounded-lg transition-all duration-300;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.contact-social__link--linkedin {
+  @apply bg-[#0077B5] text-white;
+}
+
+.contact-social__link--linkedin:hover {
+  box-shadow: 0 0 0 2px #0077B5, 0 4px 10px rgba(0, 119, 181, 0.4);
+}
+
+.contact-social__link--github {
+  @apply bg-[#333] text-white;
+}
+
+.contact-social__link--github:hover {
+  box-shadow: 0 0 0 2px #333, 0 4px 10px rgba(51, 51, 51, 0.4);
+}
+
+.contact-social__link--twitter {
+  @apply bg-[#1DA1F2] text-white;
+}
+
+.contact-social__link--twitter:hover {
+  box-shadow: 0 0 0 2px #1DA1F2, 0 4px 10px rgba(29, 161, 242, 0.4);
+}
+
+.contact-social__icon {
+  @apply w-10 h-10 flex items-center justify-center rounded-full bg-white/20 mr-4;
+}
+
+.contact-social__icon::before {
+  @apply text-xl;
+}
+
+.contact-social__info {
+  @apply flex flex-col;
+}
+
+.contact-social__platform {
+  @apply font-bold text-lg;
+}
+
+
+.contact-info__text {
+  @apply flex flex-col;
+}
+
+/* Flip card container */
+.contact-info__card {
+  @apply w-full max-w-md h-64 my-8;
+  perspective: 1000px;
+}
+
+/* Inner wrapper that rotates */
+.contact-info__card-inner {
+  @apply relative w-full h-full transition-transform duration-700;
+  transform-style: preserve-3d;
+}
+
+/* Trigger flip on hover */
+.contact-info__card:hover .contact-info__card-inner,
+.contact-info__card-inner:hover {
+  transform: rotateY(180deg);
+}
+
+
+.contact-info__card-front,
+.contact-info__card-back {
+  @apply absolute w-full h-full rounded-lg p-6 backface-hidden;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.contact-info__card-front {
+  @apply bg-background-light flex flex-col items-center justify-center;
+  background-image: linear-gradient(135deg, rgba(42, 59, 76, 0.9), rgba(26, 42, 60, 0.9));
+}
+
+.contact-info__card-back {
+  @apply bg-background-light flex flex-col justify-center;
+  transform: rotateY(180deg);
+}
+
+.contact-info__logo {
+  @apply text-3xl font-heading font-bold mb-4;
+}
+
+.contact-info__title {
+  @apply text-gray-300 mb-6;
+}
+
+.contact-info__pattern {
+  @apply absolute inset-0 opacity-10 z-0;
+  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%2300f0ff' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+
+.contact-info__list {
+  @apply list-none py-0 px-5 space-y-6;
+}
+
+.contact-info__item {
+  @apply flex items-start gap-3;
+}
+
+
+.contact-info__label {
+  @apply text-gray-400 text-sm;
+}
+
+.contact-info__value {
+  @apply text-white font-medium;
+}
+
+.contact-info__note {
+  @apply text-gray-400 text-sm flex items-center justify-center mt-4;
+}
+
+.contact-info__note-icon {
+  @apply mr-2;
+}
+
+.contact-faq {
+  @apply py-16 bg-background-light;
+}
+
+.contact-faq__grid {
+  @apply grid grid-cols-1 md:grid-cols-2 gap-8 mt-12;
+}
+
+.contact-faq__item {
+  @apply bg-background p-6 rounded-lg;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.contact-faq__question {
+  @apply text-xl font-heading font-semibold mb-4 text-neon-blue;
+  text-shadow: 0 0 5px var(--color-neon-blue);
+}
+
+.contact-faq__answer {
+  @apply text-gray-300;
+}
+
+.text-center {
+  @apply text-center content-center;
+}
+
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+.transform-style-3d {
+  transform-style: preserve-3d;
+}
+
+.backface-hidden {
+  backface-visibility: hidden;
+}

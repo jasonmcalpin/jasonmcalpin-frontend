@@ -1,4 +1,4 @@
-import toml from 'toml-j0.4';
+import toml from 'toml';
 
 export class DataService {
   async fetchJson<T>(path: string): Promise<T> {
@@ -39,5 +39,4 @@ export class DataService {
   }
 }
 
-// Create a singleton instance
 export const dataService = new DataService();

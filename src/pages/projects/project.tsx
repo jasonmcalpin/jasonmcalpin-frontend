@@ -2,9 +2,9 @@ import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useAppSelector } from '../../hooks/useAppStore';
-import { Project } from '../../store/slices/projectsSlice';
+import type { Project } from '../../store/slices/projectsSlice';
 import { fadeInUp } from '../../utils/animations';
-import './styles.scss';
+import './styles.css';
 
 const ProjectPage = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -46,9 +46,9 @@ const ProjectPage = () => {
 
   if (isLoading) {
     return (
-      <div className="project-page">
-        <div className="section-container">
-          <div className="project-page__loading">
+      <div className='project-page'>
+        <div className='section-container'>
+          <div className='project-page__loading'>
             <p>Loading project...</p>
           </div>
         </div>
@@ -58,13 +58,13 @@ const ProjectPage = () => {
 
   if (!project) {
     return (
-      <div className="project-page">
-        <div className="section-container">
-          <div className="project-page__not-found">
+      <div className='project-page'>
+        <div className='section-container'>
+          <div className='project-page__not-found'>
             <h1>Project Not Found</h1>
             <p>The project you're looking for doesn't exist or has been removed.</p>
             <button 
-              className="btn btn-primary"
+              className='btn btn-primary'
               onClick={() => navigate('/projects')}
             >
               Back to Projects
@@ -76,12 +76,12 @@ const ProjectPage = () => {
   }
 
   return (
-    <div className="project-page">
+    <div className='project-page'>
       {/* Project Hero */}
-      <section className="project-page__hero">
-        <div className="project-page__hero-container">
+      <section className='project-page__hero'>
+        <div className='project-page__hero-container'>
           <motion.h1 
-            className="project-page__title"
+            className='project-page__title'
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
@@ -90,13 +90,13 @@ const ProjectPage = () => {
           </motion.h1>
           
           <motion.div 
-            className="project-page__technologies"
+            className='project-page__technologies'
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
             {project.technologies.map((tech, i) => (
-              <span key={i} className="project-page__tech-tag">
+              <span key={i} className='project-page__tech-tag'>
                 {tech}
               </span>
             ))}
@@ -105,19 +105,19 @@ const ProjectPage = () => {
       </section>
       
       {/* Project Content */}
-      <section className="project-page__content">
-        <div className="section-container">
+      <section className='project-page__content'>
+        <div className='section-container'>
           {project.imageUrl && (
             <motion.div 
-              className="project-page__image-container"
+              className='project-page__image-container'
               variants={fadeInUp}
-              initial="hidden"
-              animate="visible"
+              initial='hidden'
+              animate='visible'
             >
               <img 
                 src={project.imageUrl} 
                 alt={project.title} 
-                className="project-page__image"
+                className='project-page__image'
                 onError={(e) => {
                   const target = e.target as HTMLImageElement;
                   target.style.display = 'none';
@@ -127,10 +127,10 @@ const ProjectPage = () => {
           )}
           
           <motion.div 
-            className="project-page__description"
+            className='project-page__description'
             variants={fadeInUp}
-            initial="hidden"
-            animate="visible"
+            initial='hidden'
+            animate='visible'
             transition={{ delay: 0.2 }}
           >
             <h2>Project Overview</h2>
@@ -138,18 +138,18 @@ const ProjectPage = () => {
           </motion.div>
           
           <motion.div 
-            className="project-page__links"
+            className='project-page__links'
             variants={fadeInUp}
-            initial="hidden"
-            animate="visible"
+            initial='hidden'
+            animate='visible'
             transition={{ delay: 0.3 }}
           >
             {project.githubUrl && (
               <a 
                 href={project.githubUrl} 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="btn btn-secondary"
+                target='_blank' 
+                rel='noopener noreferrer'
+                className='btn btn-secondary'
               >
                 View on GitHub
               </a>
@@ -158,9 +158,9 @@ const ProjectPage = () => {
             {project.liveUrl && (
               <a 
                 href={project.liveUrl} 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="btn btn-primary"
+                target='_blank' 
+                rel='noopener noreferrer'
+                className='btn btn-primary'
               >
                 Visit Live Site
               </a>
@@ -170,16 +170,16 @@ const ProjectPage = () => {
       </section>
       
       {/* Back to Projects Button */}
-      <section className="project-page__footer">
-        <div className="section-container">
+      <section className='project-page__footer'>
+        <div className='section-container'>
           <motion.div 
-            className="project-page__navigation"
+            className='project-page__navigation'
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
             <button 
-              className="btn btn-primary"
+              className='btn btn-primary'
               onClick={() => navigate('/projects')}
             >
               Back to Projects

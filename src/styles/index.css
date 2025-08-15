@@ -1,0 +1,78 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@400;500;600;700&display=swap');
+@import './tailwind.css';
+@import "@fortawesome/fontawesome-free/css/all.min.css";
+
+:root {
+  color-scheme: dark;
+}
+
+body {
+  @apply bg-background text-white m-0 font-body;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  @apply font-heading;
+}
+
+@layer components {
+  .neon-text {
+    @apply text-neon-white;
+    text-shadow: 0 0 5px var(--color-neon-blue), 0 0 10px var(--color-neon-blue);
+  }
+
+  .neon-border {
+    @apply border border-neon-blue;
+    box-shadow: 0 0 5px var(--color-neon-blue), 0 0 10px var(--color-neon-blue);
+  }
+
+  .neon-purple-text {
+    @apply text-neon-purple;
+    text-shadow: 0 0 5px var(--color-neon-blue), 0 0 10px var(--color-neon-blue);
+  }
+
+  .neon-purple-border {
+    @apply border border-neon-purple;
+    box-shadow: 0 0 5px var(--color-neon-purple), 0 0 10px var(--color-neon-purple);
+  }
+
+  .highlight-outline {
+    @apply transition-all duration-300;
+    box-shadow: 0 0 0 0 var(--color-secondary);
+  }
+
+  .highlight-outline:hover {
+    box-shadow: 0 0 0 2px var(--color-secondary), 0 0 10px 0 var(--color-secondary);
+  }
+
+  .btn {
+    @apply px-4 py-2 rounded-md font-medium transition-all duration-300;
+  }
+
+  .btn-primary {
+    @apply bg-primary text-white hover:bg-primary-light;
+  }
+
+  .btn-secondary {
+    @apply bg-secondary text-white hover:bg-secondary-light;
+  }
+
+  .btn-outline {
+    @apply border border-neon-blue text-neon-blue hover:bg-neon-blue/10;
+    box-shadow: 0 0 5px var(--color-neon-blue);
+  }
+
+  .card {
+    @apply rounded-lg p-6 transition-all duration-300 bg-secondary-light;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  .card:hover {
+    box-shadow: 0 0 0 2px var(--color-secondary-DEFAULT), 0 4px 12px rgba(0, 0, 0, 0.2);
+  }
+
+  .section-container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16;
+  }
+}
+

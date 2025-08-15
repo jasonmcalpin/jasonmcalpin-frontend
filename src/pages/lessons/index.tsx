@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Brain, BarChart3, Code, Cpu, Lightbulb, Layers, Network } from 'lucide-react';
-import SEO from '../../components/shared/SEO';
+import SEO from '../../components/global/SEO';
 
 interface LessonCard {
   id: string;

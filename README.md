@@ -64,13 +64,6 @@ This is the source code for Jason McAlpin's personal website, built with React, 
 
 This project uses several tools to ensure code quality and consistency:
 
-#### Husky
-
-Husky is used to enforce code quality checks before commits and pushes:
-
-- **Pre-commit Hook**: Runs lint-staged to ensure code quality before committing
-- **Commit Message Hook**: Validates commit messages follow conventional commit format
-- **Pre-push Hook**: Runs TypeScript type checking before pushing to remote
 
 #### Lint-staged
 
@@ -117,6 +110,7 @@ Commitlint ensures commit messages follow the [Conventional Commits](https://www
    - `nav`: Navigation components
    - `deps`: Dependency updates
    - `config`: Configuration changes
+   - `copy`: Copy changes (e.g., text, labels)
 
 3. **Description (required)**: A short, imperative description of the change
 

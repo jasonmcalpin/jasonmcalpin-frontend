@@ -5,16 +5,19 @@ import { useScrollAnimation } from '../../hooks/useScrollAnimation';
 import { useAppDispatch, useAppSelector } from '../../hooks/useAppStore';
 import { fetchExperiences } from '../../store/slices/experienceSlice';
 import { fadeInUp, staggerContainer } from '../../utils/animations';
-import { Skill, Experience, Education, Awards } from '../../types';
-import SEO from '../../components/shared/SEO';
+import type { Skill, Experience, Education, Awards } from '../../types';
+import SEO from '../../components/global/SEO';
 import { getPersonSchema } from '../../utils/schema';
-import './styles.scss';
+import Hero from '../../components/global/Hero';
+import { InlineIcon } from '../../components/global/Icons';
+
+import { FlatTitle, MotionTitle } from '../../components/global/Titles';
+import './styles.css';
 
 const About = () => {
   const dispatch = useAppDispatch();
-  const { experiences }: { experiences: Experience[] } = useAppSelector((state) => state.experience);
-  
-  // Fetch experiences
+  const { experiences }: { experiences: Experience[] } = useAppSelector((state) => state.experience);  
+
   useEffect(() => {
     dispatch(fetchExperiences());
   }, [dispatch]);
@@ -126,16 +129,12 @@ const About = () => {
         type="profile"
         schema={personSchema}
       />
-      {/* Hero Section */}
-      <section className="about-hero">
-        <div className="about-hero__container">
-          <h1 className="about-hero__title">About Me</h1>
-          <p className="about-hero__subtitle">
-            Full Stack Developer with a passion for creating modern web experiences
-          </p>
-        </div>
-      </section>
-      
+
+      <Hero 
+        heroTitle="About Me"
+        heroSubtitle="Full Stack Developer with a passion for creating modern web experiences"
+        heroImage="/assets/images/code-bg.jpg"
+      />
 
       <motion.section 
         className="about-intro"
@@ -147,7 +146,7 @@ const About = () => {
         <div className="section-container">
           <div className="about-intro__content">
             <motion.div className="about-intro__text" variants={fadeInUp}>
-              <h2 className="section-title">Who I Am</h2>
+              <FlatTitle>Who I Am</FlatTitle>
               <p className="about-intro__paragraph">
                 I'm Jason McAlpin, a passionate full stack developer with over 8 years of experience 
                 in building web applications. I specialize in creating responsive, user-friendly 
@@ -185,9 +184,9 @@ const About = () => {
         variants={staggerContainer}
       >
         <div className="section-container">
-          <motion.h2 className="section-title" variants={fadeInUp}>
+          <MotionTitle>
             My Skills
-          </motion.h2>
+          </MotionTitle>
           
           <motion.div className="about-skills__categories" variants={fadeInUp}>
             <div className="about-skills__category">
@@ -280,9 +279,9 @@ const About = () => {
         variants={staggerContainer}
       >
         <div className="section-container">
-          <motion.h2 className="section-title" variants={fadeInUp}>
+          <MotionTitle>
             Work Experience
-          </motion.h2>
+          </MotionTitle>
           
           <div className="about-experience__timeline">
             {experiences.map((experience, index) => (
@@ -300,8 +299,12 @@ const About = () => {
                   </div>
                   
                   <div className="about-experience__meta">
-                    <span className="about-experience__location">{experience.location}</span>
+                    <span className="about-experience__location">
+                      <InlineIcon iconName="location-dot" />
+                      {experience.location}
+                    </span>
                     <span className="about-experience__date">
+                      <InlineIcon iconName="calendar-days" />
                       {formatDate(experience.startDate)} - {formatDate(experience.endDate)}
                     </span>
                   </div>
@@ -332,9 +335,9 @@ const About = () => {
         variants={staggerContainer}
       >
         <div className="section-container">
-          <motion.h2 className="section-title" variants={fadeInUp}>
+          <MotionTitle>
             Education
-          </motion.h2>
+          </MotionTitle>
           
           <div className="about-education__list">
             {education.map((edu, index) => (
@@ -372,9 +375,9 @@ const About = () => {
         variants={staggerContainer}
       >
         <div className="section-container">
-          <motion.h2 className="section-title" variants={fadeInUp}>
+          <MotionTitle>
             Awards
-          </motion.h2>
+          </MotionTitle>
           
           <div className="about-awards__list">
             {awards.map((award, index) => (

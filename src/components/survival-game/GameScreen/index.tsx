@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Card from '../Card';
 import Pacts from '../Pacts';
-import { Card as CardType, Pacts as PactsType, Effects, GameData } from '../../../types';
+import type { Card as CardType, Pacts as PactsType, Effects, GameData } from '../../../types';
 
 const GameScreen: React.FC = () => {
   const [gameData, setGameData] = useState<GameData | null>(null);
@@ -91,8 +91,8 @@ const GameScreen: React.FC = () => {
 
   if (loading || !gameData || !pacts) {
     return (
-      <div className="flex flex-col items-center justify-center min-h-[80vh]">
-        <p className="text-xl">Loading game...</p>
+      <div className='flex flex-col items-center justify-center min-h-[80vh]'>
+        <p className='text-xl'>Loading game...</p>
       </div>
     );
   }
@@ -100,8 +100,8 @@ const GameScreen: React.FC = () => {
   const currentCard: CardType = gameData.cards[cardIndex];
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-[80vh] p-4 max-w-4xl mx-auto">
-      <div className="w-full max-w-md">
+    <div className='flex flex-col items-center justify-center min-h-[80vh] p-4 max-w-4xl mx-auto'>
+      <div className='w-full max-w-md'>
         <Pacts pacts={pacts} />
         
         {/* Swipe direction indicator */}

@@ -1,0 +1,40 @@
+@reference "../../../styles/tailwind.css";
+
+.section-hero {
+  @apply py-24 bg-primary-dark relative overflow-hidden bg-center bg-cover;
+  background-image: linear-gradient(to right, rgba(42, 59, 76, 0.9), rgba(26, 42, 60, 0.9)), url('/assets/images/contact-bg.jpg');
+}
+
+.section-hero__container {
+  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center;
+}
+
+.section-hero__title {
+  @apply text-4xl md:text-5xl font-heading font-bold mb-4 text-white;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.section-hero__subtitle {
+  @apply text-xl text-gray-300 max-w-2xl mx-auto;
+}
+
+
+.about-hero {
+  @apply py-24 bg-primary-dark relative overflow-hidden;
+  background-image: linear-gradient(to right, rgba(42, 59, 76, 0.9), rgba(26, 42, 60, 0.9)), url('/assets/images/code-bg.jpg');
+  background-size: cover;
+  background-position: center;
+
+  &__container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center;
+  }
+
+  &__title {
+    @apply text-4xl md:text-5xl font-heading font-bold mb-4 text-white;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  }
+
+  &__subtitle {
+    @apply text-xl text-gray-300 max-w-2xl mx-auto;
+  }
+}

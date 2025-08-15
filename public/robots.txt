@@ -1,0 +1,18 @@
+# robots.txt for jasonmcalpin.com
+
+# Allow all web crawlers to access most of the site
+User-agent: *
+Allow: /
+Allow: /about
+Allow: /projects
+Allow: /bytes
+Allow: /contact
+
+# Disallow access to data files and other sensitive directories
+Disallow: /data/
+Disallow: /.github/
+Disallow: /src/
+Disallow: /node_modules/
+
+# Sitemap location
+Sitemap: https://jasonmcalpin.com/sitemap.xml

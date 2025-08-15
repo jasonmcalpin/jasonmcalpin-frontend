@@ -1,0 +1,16 @@
+{
+  "ignoreUnresolved": [],
+  "ignoreUnused": [
+    "@iarna/toml",
+    "@tailwindcss/vite",
+    "tailwindcss"
+  ],
+  "ignoreUnimported": [
+    "D:/Shared/Workspace/2025/jasonmcalpin-frontend/src/components/survival-game/FactionLoseScreen/index.tsx",
+    "D:/Shared/Workspace/2025/jasonmcalpin-frontend/src/utils/consentManager.ts",
+    "D:/Shared/Workspace/2025/jasonmcalpin-frontend/src/utils/localStorage.ts",
+    "D:\\Shared\\Workspace\\2025\\jasonmcalpin-frontend\\src\\components\\survival-game\\FactionLoseScreen\\index.tsx",
+    "D:\\Shared\\Workspace\\2025\\jasonmcalpin-frontend\\src\\utils\\consentManager.ts",
+    "D:\\Shared\\Workspace\\2025\\jasonmcalpin-frontend\\src\\utils\\localStorage.ts"
+  ]
+}

@@ -1,31 +1,30 @@
 import { motion } from 'framer-motion';
 import { fadeInUp } from '../../utils/animations';
-import './styles.scss';
+import Hero from '../../components/global/Hero';
+import './styles.css';
 
 const Privacy = () => {
   return (
-    <div className="privacy">
-      <section className="privacy-hero">
-        <div className="privacy-hero__container">
-          <h1 className="privacy-hero__title">Privacy Policy</h1>
-          <p className="privacy-hero__subtitle">
-            How we handle your data and respect your privacy
-          </p>
-        </div>
-      </section>
+    <div className='privacy'>
+      <Hero 
+        heroTitle='Privacy Policy'
+        heroSubtitle='How we handle your data and respect your privacy'
+        heroImage='/assets/images/contact-bg.jpg'
+      />
       
-      <section className="privacy-content">
-        <div className="section-container">
+      
+      <section className='privacy-content'>
+        <div className='section-container'>
           <motion.div 
-            className="privacy-content__wrapper"
+            className='privacy-content__wrapper'
             variants={fadeInUp}
-            initial="hidden"
-            animate="visible"
+            initial='hidden'
+            animate='visible'
           >
             <h2>Introduction</h2>
             <p>
               This Privacy Policy explains how Jason McAlpin collects, uses, and protects 
-              your personal information when you visit jasonmcalpin.com ("the Website").
+              your personal information when you visit jasonmcalpin.com ('the Website').
             </p>
             
             <h2>Information We Collect</h2>
@@ -108,7 +107,7 @@ const Privacy = () => {
               available on this page.
             </p>
             
-            <p className="privacy-content__last-updated">
+            <p className='privacy-content__last-updated'>
               Last updated: May 20, 2025
             </p>
           </motion.div>

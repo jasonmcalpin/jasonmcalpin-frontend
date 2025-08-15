@@ -11,25 +11,25 @@
 */
 
 import React from 'react';
-import { Pacts as PactsType } from '../../../types';
+import type { Pacts as PactsType } from '../../../types';
 interface PactsProps {
   pacts: PactsType;
 }
 
 const pactDisplayNames: { [key: string]: string } = {
-  megacorporationInfluence: "MegaCorp",
-  rogueAIProgress: "Rogue AI",
-  survivorTrust: "Wastelandlanders",
-  resources: "Supplies"
+  megacorporationInfluence: 'MegaCorp',
+  rogueAIProgress: 'Rogue AI',
+  survivorTrust: 'Wastelandlanders',
+  resources: 'Supplies'
 };
 
 const Pacts: React.FC<PactsProps> = ({ pacts }) => {
   return (
-    <div className="grid grid-cols-4 gap-4 w-full mb-4">
+    <div className='grid grid-cols-4 gap-4 w-full mb-4'>
       {Object.entries(pacts).map(([pact, value]) => (
-        <div key={pact} className="bg-background-light rounded-lg p-3 text-center">
-          <h3 className="text-sm font-heading text-neon-blue mb-1">{pactDisplayNames[pact]}</h3>
-          <p className="text-3xl font-bold">{value}</p>
+        <div key={pact} className='bg-background-light rounded-lg p-3 text-center'>
+          <h3 className='text-sm font-heading text-neon-blue mb-1'>{pactDisplayNames[pact]}</h3>
+          <p className='text-3xl font-bold'>{value}</p>
         </div>
       ))}
     </div>
