@@ -24,7 +24,9 @@
   background-image: url('/assets/images/web.jpg');
 }
 
-
+.home-bytes__grid {
+  @apply grid grid-cols-1 md:grid-cols-2 gap-8;
+}
 
 .home-about__skill-category {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
