@@ -297,7 +297,7 @@ const LLMBuildingLesson: React.FC = () => {
         </div>
       ),
     },
-    // Additional modules would be defined here
+    // Additional modules would be defined here if this works. may dump this section. no need when you have sites already providing this.
   ];
 
   const handleStepComplete = (stepId: string) => {

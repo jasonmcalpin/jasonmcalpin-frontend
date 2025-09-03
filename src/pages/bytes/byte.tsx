@@ -20,7 +20,6 @@ const BytePage = () => {
   const [byte, setByte] = useState<Byte | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
-  // Fetch bytes if they're not already loaded
   useEffect(() => {
     if (bytes.length === 0) {
       dispatch(fetchBytes());
@@ -28,7 +27,6 @@ const BytePage = () => {
   }, [dispatch, bytes.length]);
 
   useEffect(() => {
-    // Only proceed if bytes are loaded or loading has completed
     if (bytes.length > 0 || !isBytesLoading) {
       const foundByte = bytes.find((a) => a.slug === slug);
       

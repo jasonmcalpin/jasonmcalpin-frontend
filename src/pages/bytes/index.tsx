@@ -21,7 +21,7 @@ const Bytes = () => {
       // byte.tags.forEach(tag => tagSet.add(tag)); // this gets all tags
 
       if (byte.tags.length > 0) {
-        tagSet.add(byte.tags[0]); // Use the first tag to keep list shorter
+        tagSet.add(byte.tags[0]); // Use the first tag to keep list shorter because i dont want a huge list
       }
     });
     setTags(Array.from(tagSet).sort());
@@ -33,16 +33,13 @@ const Bytes = () => {
     });
   }, [dispatch]);
 
-  // Handle tag filter change
   const handleTagFilter = (tag: string | null) => {
     dispatch(filterBytes(tag));
     setSearchTerm('');
   };
 
-  // Handle search
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(e.target.value);
-    // Reset tag filter when searching
     if (activeTag) {
       dispatch(filterBytes(null));
     }

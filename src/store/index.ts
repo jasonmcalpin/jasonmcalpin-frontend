@@ -3,6 +3,7 @@ import uiReducer from './slices/uiSlice';
 import projectsReducer from './slices/projectsSlice';
 import bytesReducer from './slices/bytesSlice';
 import experienceReducer from './slices/experienceSlice';
+import { logoSlice } from './slices/logoSlice';
 
 export const store = configureStore({
   reducer: {
@@ -10,6 +11,7 @@ export const store = configureStore({
     projects: projectsReducer,
     bytes: bytesReducer,
     experience: experienceReducer,
+    logos: logoSlice.reducer,
   },
 });
 

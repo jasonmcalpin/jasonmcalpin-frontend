@@ -1,6 +1,8 @@
-import { lazy, Suspense, useEffect, useState } from 'react';
+// import { lazy, Suspense, useEffect, useState } from 'react';
+import { lazy, Suspense } from 'react';
 import './styles/App.css';
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+// import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { Provider } from 'react-redux';
 
 import { AnimatePresence } from 'framer-motion';
@@ -10,7 +12,7 @@ import Footer from './components/footer';
 import {CookieConsent } from './components/global/CookieConsent';
 import type { ConsentOptions } from './components/global/CookieConsent/consentUtils';
 import ScrollToTop from './components/scrollToTop';
-import GTMTester from './components/global/GTMTester';
+// import GTMTester from './components/global/GTMTester';
 
 const Home = lazy(() => import('./pages/home'));
 const Privacy = lazy(() => import('./pages/privacy'));
@@ -41,29 +43,26 @@ const LoadingFallback = () => (
   </div>
 );
 
-// Component to detect query parameters
 const QueryParamDetector = ({ children }: { children: React.ReactNode }) => {
-  const location = useLocation();
-  const [showGTMTester, setShowGTMTester] = useState(false);
+  // const location = useLocation();
+  // const [showGTMTester, setShowGTMTester] = useState(false);
 
-  useEffect(() => {
-    // Check for debug parameter
-    const params = new URLSearchParams(location.search);
-    setShowGTMTester(import.meta.env.DEV || params.has('debug') || params.has('gtm_debug'));
-  }, [location]);
+  // useEffect(() => {
+  //   const params = new URLSearchParams(location.search);
+  //   setShowGTMTester(import.meta.env.DEV || params.has('debug') || params.has('gtm_debug'));
+  // }, [location]);
 
   return (
     <>
       {children}
-      <GTMTester isVisible={showGTMTester} />
+      {/* <GTMTester isVisible={showGTMTester} /> */}
     </>
-  );45
+  );
 };
 
 function App() {
   const handleAcceptConsent = (options: ConsentOptions) => {
     console.log('User has provided consent with options:', options);
-    // GTM initialization is now handled in main.tsx
   };
 
   const handleDeclineConsent = () => {
