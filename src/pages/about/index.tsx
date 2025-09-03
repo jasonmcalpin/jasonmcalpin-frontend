@@ -3,105 +3,58 @@ import { Link } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useScrollAnimation } from '../../hooks/useScrollAnimation';
 import { useAppDispatch, useAppSelector } from '../../hooks/useAppStore';
-import { fetchExperiences } from '../../store/slices/experienceSlice';
+import { fetchLogos } from '../../store/slices/logoSlice';
 import { fadeInUp, staggerContainer } from '../../utils/animations';
-import type { Skill, Experience, Education, Awards } from '../../types';
+import type { Skill, CompanyLogos, Awards } from '../../types';
 import SEO from '../../components/global/SEO';
 import { getPersonSchema } from '../../utils/schema';
 import Hero from '../../components/global/Hero';
-import { InlineIcon } from '../../components/global/Icons';
+
 
 import { FlatTitle, MotionTitle } from '../../components/global/Titles';
 import './styles.css';
 
 const About = () => {
   const dispatch = useAppDispatch();
-  const { experiences }: { experiences: Experience[] } = useAppSelector((state) => state.experience);  
+  const { logos }: { logos: CompanyLogos[] } = useAppSelector((state) => state.logos);
 
   useEffect(() => {
-    dispatch(fetchExperiences());
+    dispatch(fetchLogos());
   }, [dispatch]);
   const seoDescription = "Learn more about Jason McAlpin, a Full Stack Developer with expertise in React, TypeScript, Node.js, and modern web technologies. View my skills, experience, and background.";
   const personSchema = getPersonSchema();
   const [introRef, introControls] = useScrollAnimation();
   const [skillsRef, skillsControls] = useScrollAnimation();
   const [experienceRef, experienceControls] = useScrollAnimation();
-  const [educationRef, educationControls] = useScrollAnimation();
   const [awardRef, awardControls] = useScrollAnimation();
   const skills: Skill[] = [
   // Frontend
   { name: 'React', level: 8, category: 'frontend' },
   { name: 'TypeScript', level: 4, category: 'frontend' },
-  { name: 'React-Native', level: 2, category: 'frontend' },
-  { name: 'HTML/CSS', level: 15, category: 'frontend' },
-  { name: 'Redux', level: 6, category: 'frontend' },
   { name: 'Tailwind CSS', level: 4, category: 'frontend' },
-  { name: 'SASS', level: 6, category: 'frontend' },
-  { name: 'JavaScript', level: 10, category: 'frontend' },
-  { name: 'jQuery', level: 4, category: 'frontend' },
   { name: 'Responsive Design', level: 10, category: 'frontend' },
   { name: 'UI/UX Design', level: 10, category: 'frontend' },
   { name: 'Figma', level: 5, category: 'frontend' },
-  { name: 'Angular', level: 1, category: 'frontend' },
-  { name: 'ActionScript', level: 2, category: 'frontend' },
-  { name: 'SVG Animation', level: 1, category: 'frontend' },
-  { name: 'Flash', level: 3, category: 'frontend' },
 
   // Backend
   { name: 'Node.js', level: 6, category: 'backend' },
   { name: 'Next.js', level: 4, category: 'backend' },
-  { name: 'Node-RED', level: 2, category: 'backend' },
-  { name: 'MySQL', level: 6, category: 'backend' },
   { name: 'REST APIs', level: 8, category: 'backend' },
-  { name: 'PostgreSQL', level: 8, category: 'backend' },
   { name: 'JWT', level: 4, category: 'backend' },
-  { name: 'Wordpress', level: 8, category: 'backend' },
-  { name: 'Drupal', level: 3, category: 'backend' },
-  { name: 'MongoDB', level: 2, category: 'backend' },
-  { name: 'PHP', level: 10, category: 'backend' },
   { name: 'Python', level: 5, category: 'backend' },
   { name: 'SQL', level: 10, category: 'backend' },
-  { name: 'Carbon Framework', level: 1, category: 'backend' },
-  { name: 'Bash', level: 2, category: 'backend' },
-  { name: 'Apache', level: 2, category: 'backend' },
-  { name: 'Objective-C', level: 2, category: 'backend' },
 
   // DevOps
-  { name: 'Agile Methodologies', level: 10, category: 'DevOps' },
   { name: 'Kubernetes', level: 2, category: 'DevOps' },
   { name: 'Cloudflare', level: 3, category: 'DevOps' },
-  { name: 'Git', level: 10, category: 'DevOps' },
   { name: 'Docker', level: 6, category: 'DevOps' },
   { name: 'AWS', level: 4, category: 'DevOps' },
-  { name: 'Vite', level: 2, category: 'DevOps' },
-  { name: 'Webpack', level: 8, category: 'DevOps' },
   { name: 'Jenkins', level: 4, category: 'DevOps' },
-  { name: 'Akamai', level: 2, category: 'DevOps' },
   { name: 'Amazon EC2', level: 2, category: 'DevOps' },
-  { name: 'Ubuntu Server', level: 2, category: 'DevOps' },
-  { name: 'SSO', level: 3, category: 'DevOps' },
   { name: 'IBM Watson', level: 3, category: 'DevOps' }
 ];
   
   
-  const education: Education[] = [
-    {
-      degree: "Associate's Degree in Computer Science",
-      institution: 'Albert Merrill',
-      location: 'New York, NY',
-      startYear: 1986,
-      endYear: 1987,
-      description: 'Pascal, COBOL, RPGII, C, C++, IBM Mainframes'
-    },
-    {
-      degree: 'Commercial Photography',
-      institution: 'School of Visual Arts',
-      location: 'New York, NY',
-      startYear: 1988,
-      endYear: 1988,
-      description: 'Commercial Photography'
-    }
-  ];
   
   const awards: Awards[] = [
     {
@@ -112,13 +65,6 @@ const About = () => {
     },
   ];
   
-
-  const formatDate = (dateString: string | null): string => {
-    if (!dateString) return 'Present';
-    
-    const date = new Date(dateString);
-    return date.toLocaleDateString('en-US', { year: 'numeric', month: 'short' });
-  };
 
   return (
     <div className="about">
@@ -280,93 +226,28 @@ const About = () => {
       >
         <div className="section-container">
           <MotionTitle>
-            Work Experience
+            Clients
           </MotionTitle>
           
-          <div className="about-experience__timeline">
-            {experiences.map((experience, index) => (
+          <div>
+            <ul className='flex flex-wrap gap-6 justify-center items-center'>
+            {logos.map((logo, index) => (
               <motion.div 
                 key={index} 
                 className="about-experience__item"
                 variants={fadeInUp}
                 custom={index}
               >
-                <div className="about-experience__marker"></div>
-                <div className="about-experience__content">
-                  <div className="about-experience__header">
-                    <h3 className="about-experience__title">{experience.title}</h3>
-                    <span className="about-experience__company">{experience.company}</span>
-                  </div>
-                  
-                  <div className="about-experience__meta">
-                    <span className="about-experience__location">
-                      <InlineIcon iconName="location-dot" />
-                      {experience.location}
-                    </span>
-                    <span className="about-experience__date">
-                      <InlineIcon iconName="calendar-days" />
-                      {formatDate(experience.startDate)} - {formatDate(experience.endDate)}
-                    </span>
-                  </div>
-                  
-                  <p className="about-experience__description">
-                    {experience.description}
-                  </p>
-                  
-                  <div className="about-experience__technologies">
-                    {experience.technologies.map((tech: string, i: number) => (
-                      <span key={i} className="about-experience__tech-tag">
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-                </div>
+                <li className="w-24 h-24 flex items-center justify-center bg-white rounded-lg shadow-sm border border-gray-100 p-1">
+                  <img src={logo.logoSrc} alt={logo.companyName} className='max-w-full max-h-full object-contain' />
+                </li>
               </motion.div>
             ))}
+            </ul>
           </div>
-        </div>
-      </motion.section>
-      
-      <motion.section 
-        className="about-education"
-        ref={educationRef as unknown as React.RefObject<HTMLElement>}
-        initial="hidden"
-        animate={educationControls}
-        variants={staggerContainer}
-      >
-        <div className="section-container">
-          <MotionTitle>
-            Education
-          </MotionTitle>
           
-          <div className="about-education__list">
-            {education.map((edu, index) => (
-              <motion.div 
-                key={index} 
-                className="about-education__item"
-                variants={fadeInUp}
-                custom={index}
-              >
-                <div className="about-education__year">
-                  <span>{edu.startYear} - {edu.endYear || 'Present'}</span>
-                </div>
-                
-                <div className="about-education__content">
-                  <h3 className="about-education__degree">{edu.degree}</h3>
-                  <div className="about-education__institution">
-                    <span>{edu.institution}</span>
-                    <span className="about-education__location">{edu.location}</span>
-                  </div>
-                  {edu.description && (
-                    <p className="about-education__description">{edu.description}</p>
-                  )}
-                </div>
-              </motion.div>
-            ))}
-          </div>
         </div>
       </motion.section>
-
       <motion.section 
         className="about-education"
         ref={awardRef as unknown as React.RefObject<HTMLElement>}

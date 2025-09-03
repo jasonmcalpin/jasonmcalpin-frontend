@@ -15,6 +15,12 @@ export interface iconProps {
   className?: string;
 }
 
+export interface CompanyLogos {
+  companyName: string;
+  logoSrc: string;
+  altText: string;
+}
+
 export interface LinkTitleProps {
   children: React.ReactNode;
   link?: string;

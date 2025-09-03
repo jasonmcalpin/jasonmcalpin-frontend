@@ -1,0 +1,37 @@
+[
+  {
+    "logoSrc": "/assets/images/logos/IBM-logo.svg",
+    "altText": "IBM",
+    "companyName": "IBM"
+  },
+  {
+    "logoSrc": "/assets/images/logos/ogilvy-logo.svg",
+    "altText": "Ogilvy",
+    "companyName": "Ogilvy"
+  },
+  {
+    "logoSrc": "/assets/images/logos/ford-dark-logo.svg",
+    "altText": "Ford Motors",
+    "companyName": "Ford Motors"
+  },
+  {
+    "logoSrc": "/assets/images/logos/twc-logo.svg",
+    "altText": "The Weather Channel",
+    "companyName": "The Weather Channel"
+  },
+  {
+    "logoSrc": "/assets/images/logos/amex-logo.svg",
+    "altText": "AMEX",
+    "companyName": "AMEX"
+  },
+  {
+    "logoSrc": "/assets/images/logos/keen-swh-400x400-logo.jpg",
+    "altText": "Keen Software House",
+    "companyName": "Keen Software House"
+  },
+  {
+    "logoSrc": "/assets/images/logos/purina-logo.png",
+    "altText": "Purina",
+    "companyName": "Purina"
+  }
+]
