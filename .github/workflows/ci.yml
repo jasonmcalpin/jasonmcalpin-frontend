@@ -61,7 +61,7 @@ jobs:
       - name: Deploy to staging site
         uses: appleboy/scp-action@v0.1.7
         with:
-          host: ${{ secrets.FTP_HOST_PREVIEW }}
+          host: ${{ secrets.FTP_HOST }}
           username: ${{ secrets.FTP_USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: ${{ secrets.SSH_PORT || '22' }}
@@ -74,7 +74,7 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            const stagingUrl = 'https://${{ secrets.FTP_HOST_PREVIEW }}';
+            const stagingUrl = 'https://${{ secrets.FTP_HOST }}';
             github.rest.issues.createComment({
               issue_number: context.issue.number,
               owner: context.repo.owner,
@@ -125,7 +125,7 @@ jobs:
       - name: Deploy main branch to staging
         uses: appleboy/scp-action@v0.1.7
         with:
-          host: ${{ secrets.FTP_HOST_PREVIEW }}
+          host: ${{ secrets.FTP_HOST }}
           username: ${{ secrets.FTP_USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: ${{ secrets.SSH_PORT || '22' }}
@@ -164,7 +164,7 @@ jobs:
       - name: Deploy main branch to staging
         uses: appleboy/scp-action@v0.1.7
         with:
-          host: ${{ secrets.FTP_HOST_PREVIEW }}
+          host: ${{ secrets.FTP_HOST }}
           username: ${{ secrets.FTP_USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: ${{ secrets.SSH_PORT || '22' }}
