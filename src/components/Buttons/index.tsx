@@ -16,13 +16,13 @@ export const Button: React.FC<ChoiceButton> = ({ path, children, type, additiona
 
     switch (type) {
         case 'primary':
-            typeClass += 'bg-primary text-white hover:bg-primary-light';
+            typeClass += ' bg-primary text-white hover:bg-primary-light';
             break;
         case 'secondary':
-            typeClass += 'bg-secondary text-white hover:bg-secondary-light';
+            typeClass += ' bg-secondary text-white hover:bg-secondary-light';
             break;
         case 'outline':
-            typeClass += 'border border-neon-blue text-neon-blue hover:bg-neon-blue/10 shadow-[var(--shadow-neon-blue)]';
+            typeClass += ' border border-neon-blue text-neon-blue hover:bg-neon-blue/10 shadow-[var(--shadow-neon-blue)]';
             break;
         default:
             break;
