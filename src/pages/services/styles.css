@@ -1,0 +1,217 @@
+@reference "../../styles/tailwind.css";
+
+/* Services Page Styles */
+.services {
+  @apply pt-16;
+}
+
+/* Introduction Section */
+.services-intro {
+  @apply py-16;
+}
+
+.services-intro__content {
+  @apply max-w-4xl mx-auto text-center;
+}
+
+.services-intro__text {
+  @apply text-lg text-gray-300 mb-4 leading-relaxed;
+}
+
+.services-intro__text strong {
+  @apply text-neon-blue font-semibold;
+}
+
+/* Services Offerings Section */
+.services-offerings {
+  @apply py-16 bg-background-light;
+}
+
+.services-grid {
+  @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8;
+}
+
+.service-card {
+  @apply bg-background p-6 rounded-lg transition-all duration-300;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.service-card:hover {
+  box-shadow: 0 8px 16px rgba(0, 240, 255, 0.2);
+  border: 1px solid var(--color-neon-blue);
+}
+
+.service-card__icon {
+  @apply text-5xl mb-4;
+}
+
+.service-card__title {
+  @apply text-xl font-heading font-bold text-white mb-3;
+}
+
+.service-card__description {
+  @apply text-gray-400 mb-4 text-sm;
+}
+
+.service-card__features {
+  @apply space-y-2;
+}
+
+.service-card__feature {
+  @apply text-gray-300 text-sm flex items-start;
+}
+
+.service-card__check {
+  @apply text-secondary mr-2 font-bold flex-shrink-0;
+}
+
+/* Technologies Section */
+.services-tech {
+  @apply py-16;
+}
+
+.services-tech__grid {
+  @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6;
+}
+
+.services-tech__category {
+  @apply bg-background-light p-6 rounded-lg;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.services-tech__category-title {
+  @apply text-lg font-heading font-semibold mb-4 text-neon-blue;
+  text-shadow: 0 0 5px var(--color-neon-blue);
+}
+
+.services-tech__tags {
+  @apply flex flex-wrap gap-2;
+}
+
+.services-tech__tag {
+  @apply bg-primary-dark text-white text-xs py-1 px-3 rounded-full border border-gray-700;
+  transition: all 0.3s ease;
+}
+
+.services-tech__tag:hover {
+  @apply border-neon-blue bg-neon-blue/10;
+  box-shadow: 0 0 8px var(--color-neon-blue);
+}
+
+/* Pricing Section */
+.services-pricing {
+  @apply py-16 bg-background-light;
+}
+
+.services-pricing__grid {
+  @apply grid grid-cols-1 md:grid-cols-3 gap-8 mb-8;
+}
+
+.pricing-card {
+  @apply bg-background p-8 rounded-lg text-center relative transition-all duration-300;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.pricing-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.pricing-card--featured {
+  @apply border-2 border-neon-blue;
+  box-shadow: 0 0 20px rgba(0, 240, 255, 0.3);
+}
+
+.pricing-card--featured:hover {
+  box-shadow: 0 0 30px rgba(0, 240, 255, 0.5);
+}
+
+.pricing-card__badge {
+  @apply absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-secondary text-white text-xs font-bold py-1 px-4 rounded-full;
+  box-shadow: 0 0 10px var(--color-secondary);
+}
+
+.pricing-card__title {
+  @apply text-2xl font-heading font-bold text-white mb-4;
+}
+
+.pricing-card__price {
+  @apply text-4xl font-heading font-bold text-neon-blue mb-2;
+  text-shadow: 0 0 10px var(--color-neon-blue);
+}
+
+.pricing-card__price span {
+  @apply text-lg text-gray-400;
+}
+
+.pricing-card__description {
+  @apply text-gray-400 mb-6;
+}
+
+.pricing-card__features {
+  @apply text-left space-y-3;
+}
+
+.pricing-card__features li {
+  @apply text-gray-300 flex items-start;
+}
+
+.pricing-card__features li::before {
+  content: '✓';
+  @apply text-secondary mr-2 font-bold flex-shrink-0;
+}
+
+.services-pricing__note {
+  @apply bg-primary-dark p-6 rounded-lg text-center;
+}
+
+.services-pricing__note p {
+  @apply text-gray-300;
+}
+
+.services-pricing__note strong {
+  @apply text-white;
+}
+
+/* CTA Section */
+.services-cta {
+  @apply py-24 bg-primary-dark relative overflow-hidden;
+}
+
+.services-cta::before {
+  content: '';
+  @apply absolute inset-0 bg-neon-blue/5;
+  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%2300f0ff' fill-opacity='0.2'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+
+.services-cta__content {
+  @apply relative z-10 text-center max-w-3xl mx-auto;
+}
+
+.services-cta__title {
+  @apply text-3xl md:text-4xl font-heading font-bold mb-4 text-white;
+}
+
+.services-cta__text {
+  @apply text-xl text-gray-300 mb-8;
+}
+
+.services-cta__buttons {
+  @apply flex flex-col sm:flex-row gap-4 justify-center mb-8;
+}
+
+.services-cta__button {
+  @apply text-lg px-8 py-3;
+}
+
+.services-cta__contact-info {
+  @apply mt-8 space-y-2;
+}
+
+.services-cta__contact-info p {
+  @apply text-gray-400;
+}
+
+.services-cta__contact-info strong {
+  @apply text-white;
+}
