@@ -22,7 +22,7 @@
 
     "baseUrl": ".",
     "paths": { "@/*": ["src/*"] },
-    "types": ["vite/client", "node"],
+    "types": ["vite/client", "node", "vitest/globals", "@testing-library/jest-dom"],
     "verbatimModuleSyntax": true
   },
   "include": ["src"]
