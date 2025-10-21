@@ -87,6 +87,18 @@ const Services = () => {
         'Team mentoring and training',
         'Best practices implementation'
       ]
+    },
+    {
+      title: 'Team Development & Technical Training',
+      icon: '👥',
+      description: 'Empowering teams through tailored training and development programs.',
+      features: [
+        'Technical workshops on React, Git, Node.js, and AI/ML',
+        'Code review training and best practices implementation',
+        'One-on-one mentoring for junior and mid-level engineers',
+        'Pair programming and knowledge transfer sessions',
+        'Building technical learning culture and internal communities'
+      ]
     }
   ];
 
