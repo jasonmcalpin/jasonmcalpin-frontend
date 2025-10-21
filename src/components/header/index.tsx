@@ -8,9 +8,11 @@ import type { NavLink } from '../../types';
 const navLinks: NavLink[] = [
   { path: '/', label: 'Home' },
   { path: '/about', label: 'About' },
-  { path: '/contact', label: 'Contact' },
+
+  { path: '/services', label: 'Services' },
   { path: '/projects', label: 'Projects' },
   { path: '/bytes', label: 'Bytes' },
+  { path: '/contact', label: 'Contact' },
   // { path: '/lessons', label: 'Lessons' },
 ];
 

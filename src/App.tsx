@@ -23,6 +23,7 @@ const Bytes = lazy(() => import('./pages/bytes'));
 const BytePage = lazy(() => import('./pages/bytes/byte'));
 const ProjectPage = lazy(() => import('./pages/projects/project'));
 const NotFound = lazy(() => import('./pages/notFound'));
+const Services = lazy(() => import('./pages/services'));
 
 // Game components
 const IntroScreen = lazy(() => import('./components/survival-game/IntroScreen'));
@@ -84,6 +85,7 @@ function App() {
                       <Route path='/' element={<Home />} />
                       <Route path='/about' element={<About />} />
                       <Route path='/contact' element={<Contact />} />
+                      <Route path='/services' element={<Services />} />
                       <Route path='/projects' element={<Projects />} />
                       <Route path='/bytes' element={<Bytes />} />
                       <Route

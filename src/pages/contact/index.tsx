@@ -10,7 +10,7 @@ import InlineIcon from '@/components/global/Icons';
 const Contact = () => {
   const [socialLinks, setSocialLinks] = useState<SocialLink[]>([]);
   const getEmail = () => {
-    // 'hi@jasonmcalpin.com' encoded in base64
+    // encoded email to prevent scraping
     return atob('aGlAamFzb25tY2FscGluLmNvbQ==');
   };
 

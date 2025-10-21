@@ -1,4 +1,4 @@
-import { describe, it, expect, vi, beforeEach } from 'vitest'
+import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest'
 import { 
   saveToLocalStorage, 
   loadFromLocalStorage, 
@@ -14,41 +14,45 @@ vi.mock('../consentManager', () => ({
 
 describe('localStorage utilities', () => {
   const mockConsent = vi.mocked(consentManager.hasUserConsent)
-  
+
   beforeEach(() => {
-    // Clear all mocks and localStorage before each test
-    vi.clearAllMocks()
-    localStorage.clear()
-    
-    // Default to having consent
+    // Default to having consent before each test
     mockConsent.mockReturnValue(true)
+  })
+
+  afterEach(() => {
+    // Restore all mocks and clear localStorage after each test
+    vi.restoreAllMocks()
+    localStorage.clear()
   })
 
   describe('saveToLocalStorage', () => {
     it('should save data to localStorage when user has consent', () => {
-      mockConsent.mockReturnValue(true)
+      const setItemSpy = vi.spyOn(localStorage, 'setItem')
       const testData = { name: 'John', age: 30 }
       
       saveToLocalStorage('user', testData)
       
-      expect(localStorage.setItem).toHaveBeenCalledWith('user', JSON.stringify(testData))
+      expect(setItemSpy).toHaveBeenCalledWith('user', JSON.stringify(testData))
     })
 
     it('should not save data when user lacks consent', () => {
       mockConsent.mockReturnValue(false)
+      const setItemSpy = vi.spyOn(localStorage, 'setItem')
       const testData = { name: 'John', age: 30 }
       
       saveToLocalStorage('user', testData)
       
-      expect(localStorage.setItem).not.toHaveBeenCalled()
+      expect(setItemSpy).not.toHaveBeenCalled()
     })
 
     it('should save cookieconsent_status even without consent', () => {
       mockConsent.mockReturnValue(false)
+      const setItemSpy = vi.spyOn(localStorage, 'setItem')
       
       saveToLocalStorage('cookieconsent_status', 'accepted')
       
-      expect(localStorage.setItem).toHaveBeenCalledWith('cookieconsent_status', JSON.stringify('accepted'))
+      expect(setItemSpy).toHaveBeenCalledWith('cookieconsent_status', JSON.stringify('accepted'))
     })
 
     it('should handle localStorage errors gracefully', () => {
@@ -67,31 +71,30 @@ describe('localStorage utilities', () => {
     })
 
     it('should handle different data types', () => {
-      mockConsent.mockReturnValue(true)
+      const setItemSpy = vi.spyOn(localStorage, 'setItem')
       
       // Test string
       saveToLocalStorage('string', 'hello')
-      expect(localStorage.setItem).toHaveBeenCalledWith('string', '"hello"')
+      expect(setItemSpy).toHaveBeenCalledWith('string', JSON.stringify('hello'))
       
       // Test number
       saveToLocalStorage('number', 42)
-      expect(localStorage.setItem).toHaveBeenCalledWith('number', '42')
+      expect(setItemSpy).toHaveBeenCalledWith('number', JSON.stringify(42))
       
       // Test boolean
       saveToLocalStorage('boolean', true)
-      expect(localStorage.setItem).toHaveBeenCalledWith('boolean', 'true')
+      expect(setItemSpy).toHaveBeenCalledWith('boolean', JSON.stringify(true))
       
       // Test array
       saveToLocalStorage('array', [1, 2, 3])
-      expect(localStorage.setItem).toHaveBeenCalledWith('array', '[1,2,3]')
+      expect(setItemSpy).toHaveBeenCalledWith('array', JSON.stringify([1, 2, 3]))
     })
   })
 
   describe('loadFromLocalStorage', () => {
     it('should load data from localStorage when user has consent', () => {
-      mockConsent.mockReturnValue(true)
       const testData = { name: 'John', age: 30 }
-      localStorage.setItem('user', JSON.stringify(testData))
+      vi.spyOn(localStorage, 'getItem').mockReturnValue(JSON.stringify(testData))
       
       const result = loadFromLocalStorage('user', {})
       
@@ -110,7 +113,7 @@ describe('localStorage utilities', () => {
 
     it('should load cookieconsent_status even without consent', () => {
       mockConsent.mockReturnValue(false)
-      localStorage.setItem('cookieconsent_status', JSON.stringify('accepted'))
+      vi.spyOn(localStorage, 'getItem').mockReturnValue(JSON.stringify('accepted'))
       
       const result = loadFromLocalStorage('cookieconsent_status', 'denied')
       
@@ -118,7 +121,7 @@ describe('localStorage utilities', () => {
     })
 
     it('should return default value when key does not exist', () => {
-      mockConsent.mockReturnValue(true)
+      vi.spyOn(localStorage, 'getItem').mockReturnValue(null)
       const defaultValue = 'default'
       
       const result = loadFromLocalStorage('nonexistent', defaultValue)
@@ -127,63 +130,62 @@ describe('localStorage utilities', () => {
     })
 
     it('should handle JSON parsing errors gracefully', () => {
-      mockConsent.mockReturnValue(true)
       const consoleSpy = vi.spyOn(console, 'error').mockImplementation(() => {})
-      localStorage.setItem('invalid', 'invalid json{')
+      vi.spyOn(localStorage, 'getItem').mockReturnValue('invalid json{')
       const defaultValue = 'default'
       
       const result = loadFromLocalStorage('invalid', defaultValue)
       
       expect(result).toBe(defaultValue)
       expect(consoleSpy).toHaveBeenCalledWith('Error loading from localStorage:', expect.any(Error))
-      
-      consoleSpy.mockRestore()
     })
 
     it('should handle different data types correctly', () => {
-      mockConsent.mockReturnValue(true)
+      const getItemSpy = vi.spyOn(localStorage, 'getItem')
       
       // Test string
-      localStorage.setItem('string', '"hello"')
+      getItemSpy.mockReturnValueOnce(JSON.stringify('hello'))
       expect(loadFromLocalStorage('string', '')).toBe('hello')
       
       // Test number
-      localStorage.setItem('number', '42')
+      getItemSpy.mockReturnValueOnce(JSON.stringify(42))
       expect(loadFromLocalStorage('number', 0)).toBe(42)
       
       // Test boolean
-      localStorage.setItem('boolean', 'true')
+      getItemSpy.mockReturnValueOnce(JSON.stringify(true))
       expect(loadFromLocalStorage('boolean', false)).toBe(true)
       
       // Test array
-      localStorage.setItem('array', '[1,2,3]')
+      getItemSpy.mockReturnValueOnce(JSON.stringify([1, 2, 3]))
       expect(loadFromLocalStorage('array', [])).toEqual([1, 2, 3])
     })
   })
 
   describe('removeFromLocalStorage', () => {
     it('should remove data from localStorage when user has consent', () => {
-      mockConsent.mockReturnValue(true)
+      const removeItemSpy = vi.spyOn(localStorage, 'removeItem')
       
       removeFromLocalStorage('user')
       
-      expect(localStorage.removeItem).toHaveBeenCalledWith('user')
+      expect(removeItemSpy).toHaveBeenCalledWith('user')
     })
 
     it('should not remove data when user lacks consent', () => {
       mockConsent.mockReturnValue(false)
+      const removeItemSpy = vi.spyOn(localStorage, 'removeItem')
       
       removeFromLocalStorage('user')
       
-      expect(localStorage.removeItem).not.toHaveBeenCalled()
+      expect(removeItemSpy).not.toHaveBeenCalled()
     })
 
     it('should remove cookieconsent_status even without consent', () => {
       mockConsent.mockReturnValue(false)
+      const removeItemSpy = vi.spyOn(localStorage, 'removeItem')
       
       removeFromLocalStorage('cookieconsent_status')
       
-      expect(localStorage.removeItem).toHaveBeenCalledWith('cookieconsent_status')
+      expect(removeItemSpy).toHaveBeenCalledWith('cookieconsent_status')
     })
 
     it('should handle localStorage errors gracefully', () => {
@@ -204,19 +206,20 @@ describe('localStorage utilities', () => {
 
   describe('clearLocalStorage', () => {
     it('should clear localStorage when user has consent', () => {
-      mockConsent.mockReturnValue(true)
+      const clearSpy = vi.spyOn(localStorage, 'clear')
       
       clearLocalStorage()
       
-      expect(localStorage.clear).toHaveBeenCalled()
+      expect(clearSpy).toHaveBeenCalled()
     })
 
     it('should not clear localStorage when user lacks consent', () => {
       mockConsent.mockReturnValue(false)
+      const clearSpy = vi.spyOn(localStorage, 'clear')
       
       clearLocalStorage()
       
-      expect(localStorage.clear).not.toHaveBeenCalled()
+      expect(clearSpy).not.toHaveBeenCalled()
     })
 
     it('should handle localStorage errors gracefully', () => {

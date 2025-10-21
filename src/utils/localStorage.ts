@@ -29,7 +29,7 @@ export const loadFromLocalStorage = <T>(key: string, defaultValue: T): T => {
   try {
     if (hasUserConsent() || key === 'cookieconsent_status') {
       const serializedValue = localStorage.getItem(key);
-      if (serializedValue === null) {
+      if (serializedValue === null || serializedValue === 'undefined') {
         return defaultValue;
       }
       return JSON.parse(serializedValue) as T;
