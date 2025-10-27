@@ -2263,10 +2263,10 @@ loupe@^3.1.0, loupe@^3.1.4:
   resolved "https://registry.yarnpkg.com/loupe/-/loupe-3.2.1.tgz#0095cf56dc5b7a9a7c08ff5b1a8796ec8ad17e76"
   integrity sha512-CdzqowRJCeLU72bHvWqwRBBlLcMEtIvGrlvef74kMnV2AolS9Y8xUv1I0U/MNAWMhBlKIoyuEgoJ0t/bbwHbLQ==
 
-lucide-react@^0.546.0:
-  version "0.546.0"
-  resolved "https://registry.yarnpkg.com/lucide-react/-/lucide-react-0.546.0.tgz#d9fdc232b47fe652e06401b7ee846bf82b4f7de8"
-  integrity sha512-Z94u6fKT43lKeYHiVyvyR8fT7pwCzDu7RyMPpTvh054+xahSgj4HFQ+NmflvzdXsoAjYGdCguGaFKYuvq0ThCQ==
+lucide-react@^0.548.0:
+  version "0.548.0"
+  resolved "https://registry.yarnpkg.com/lucide-react/-/lucide-react-0.548.0.tgz#14db954aea4d6e5c0ae9cbb107cdeb86197922e6"
+  integrity sha512-63b16z63jM9yc1MwxajHeuu0FRZFsDtljtDjYm26Kd86UQ5HQzu9ksEtoUUw4RBuewodw/tGFmvipePvRsKeDA==
 
 lz-string@^1.5.0:
   version "1.5.0"
