@@ -1,0 +1,4 @@
+# This file specifies who must review changes to critical files
+.github/CODEOWNERS @jasonmcalpin
+.github/*.yml @jasonmcalpin
+.github/workflows/ @jasonmcalpin
