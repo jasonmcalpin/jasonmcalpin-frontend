@@ -121,13 +121,13 @@
   @apply flex items-center;
 }
 
-.about-experience__location .fa-icon { @apply mr-1; }
+.about-experience__location .site-icon { @apply mr-1; }
 
 .about-experience__date {
   @apply flex items-center;
 }
 
-.about-experience__date .fa-icon { @apply mr-1; }
+.about-experience__date .site-icon { @apply mr-1; }
 
 .about-experience__description {
   @apply text-gray-300 mb-4;
@@ -189,13 +189,13 @@
   @apply flex items-center;
 }
 
-.about-experience__location .fa-icon { @apply mr-1; }
+.about-experience__location .site-icon { @apply mr-1; }
 
 .about-experience__date {
   @apply flex items-center;
 }
 
-.about-experience__date .fa-icon { @apply mr-1; }
+.about-experience__date .site-icon { @apply mr-1; }
 
 .about-experience__description {
   @apply text-gray-300 mb-4;
