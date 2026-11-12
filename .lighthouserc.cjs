@@ -2,15 +2,16 @@
 module.exports = {
   ci: {
     collect: {
-      staticDistDir: './dist',
-      isSinglePageApplication: true,
+      startServerCommand: 'node scripts/serve-built-site.mjs',
+      startServerReadyPattern: 'Static preview listening',
+      startServerReadyTimeout: 30000,
       numberOfRuns: 3,
       url: [
-        'http://localhost/',
-        'http://localhost/about',
-        'http://localhost/projects',
-        'http://localhost/bytes',
-        'http://localhost/bytes/champion-your-team',
+        'http://localhost:4173/',
+        'http://localhost:4173/about',
+        'http://localhost:4173/projects',
+        'http://localhost:4173/bytes',
+        'http://localhost:4173/bytes/champion-your-team',
       ],
       settings: {
         chromeFlags: '--no-sandbox --disable-dev-shm-usage',
