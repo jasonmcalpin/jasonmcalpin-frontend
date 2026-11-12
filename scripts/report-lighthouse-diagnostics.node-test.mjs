@@ -16,7 +16,15 @@ const lhr = (route, lcp, accessibility = 0.92) => ({
     'total-blocking-time': { numericValue: 20 },
     'cumulative-layout-shift': { numericValue: 0.002 },
     'largest-contentful-paint-element': {
-      details: { items: [{ node: { snippet: '<h1>About</h1>' } }] },
+      details: { items: [
+        { type: 'table', items: [{ node: { snippet: '<h1>About</h1>' } }] },
+        { type: 'table', items: [
+          { phase: 'TTFB', timing: 450 },
+          { phase: 'Load Delay', timing: 800 },
+          { phase: 'Load Time', timing: 10 },
+          { phase: 'Render Delay', timing: 340 },
+        ] },
+      ] },
     },
     'render-blocking-resources': {
       details: { items: [{ url: '/assets/main.css', wastedMs: 80 }] },
@@ -32,6 +40,7 @@ test('report maps route and actionable audit evidence', () => {
   const result = summarizeLhr(lhr('/about', 1600));
   assert.equal(result.route, '/about');
   assert.equal(result.lcpElement, '<h1>About</h1>');
+  assert.equal(result.lcpPhases['Load Delay'], 800);
   assert.equal(result.accessibilityFindings[0].selectors[0], '.logos');
   assert.equal(result.renderBlocking[0].wastedMs, 80);
 });
@@ -41,6 +50,7 @@ test('aggregate takes median metrics across runs and retains a representative au
   assert.equal(rows[0].runCount, 3);
   assert.equal(rows[0].timings.lcp, 1600);
   assert.match(markdown(rows), /1600/);
+  assert.match(markdown(rows), /Load Delay 800 ms/);
 });
 
 test('missing optional audits remain reportable', () => {

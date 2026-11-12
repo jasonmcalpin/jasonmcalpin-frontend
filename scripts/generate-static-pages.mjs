@@ -45,6 +45,18 @@ const experiences = JSON.parse(await readFile(join(dataDir, 'experience.json'), 
 const social = JSON.parse(await readFile(join(dataDir, 'social.json'), 'utf8'));
 if (!Array.isArray(experiences) || !Array.isArray(social)) throw new Error('Invalid supporting content');
 
+const responsiveImages = JSON.parse(await readFile(resolve('src/generated/image-manifest.json'), 'utf8'));
+const heroPreload = source => {
+  if (!source) return '';
+  const entry = responsiveImages[source];
+  if (!entry?.variants?.length) throw new Error('Missing responsive hero image: ' + source);
+  const variants = entry.variants;
+  const srcSet = variants.map(variant => variant.src + ' ' + variant.width + 'w').join(', ');
+  return '<link rel="preload" as="image" type="image/webp" fetchpriority="high" ' +
+    'href="' + escapeHtml(variants[0].src) + '" imagesrcset="' + escapeHtml(srcSet) +
+    '" imagesizes="100vw">\n  ';
+};
+
 const htmlTemplate = await readFile(join(dist, 'index.html'), 'utf8');
 if (!htmlTemplate.includes('<div id="root"></div>'))
   throw new Error('Vite output no longer contains the expected React mount point');
@@ -87,18 +99,20 @@ register('/about', 'About Me', 'Experience, background and engineering skills of
   elem('h2', 'Experience') +
   elem('ul', experiences.map(item => elem('li',
     elem('strong', escapeHtml(item.title + ' — ' + item.company)) +
-    paragraph(item.description))).join('')), { schema: personSchema });
+    paragraph(item.description))).join('')), { schema: personSchema, heroImage: '/assets/images/code-bg.jpg' });
 
 register('/projects', 'Projects', 'Software projects and selected engineering work',
   elem('h1', 'My Projects') +
   elem('ul', projects.map(project => elem('li',
     elem('h2', link('/projects/' + project.slug, project.title)) +
-    paragraph(project.description) + image(project.imageUrl, project.title))).join('')));
+    paragraph(project.description) + image(project.imageUrl, project.title))).join('')),
+  { heroImage: '/assets/images/projects-bg.jpg' });
 
 register('/bytes', 'Bytes', 'Technical articles, tutorials, and thoughts on software development',
   elem('h1', 'Bytes') +
   elem('ul', [...bytes].sort((a, b) => b.date.localeCompare(a.date)).map(byte => elem('li',
-    elem('h2', link('/bytes/' + byte.slug, byte.title)) + paragraph(byte.excerpt))).join('')));
+    elem('h2', link('/bytes/' + byte.slug, byte.title)) + paragraph(byte.excerpt))).join('')),
+  { heroImage: '/assets/images/projects-bg.jpg' });
 
 register('/contact', 'Contact', 'Ways to contact Jason McAlpin for software engineering work',
   elem('h1', 'Get In Touch') +
@@ -179,6 +193,7 @@ function renderPage(page) {
     '<meta ' + attribute + '="' + escapeHtml(key) + '" content="' + escapeHtml(value) + '">').join('\n  ');
   const schema = page.schema ? '\n  <script type="application/ld+json">' + jsonLd(page.schema) + '</script>' : '';
   return htmlTemplate
+    .replace('</head>', '\n  ' + heroPreload(page.heroImage) + '</head>')
     .replace(/<title>[^<]*<\/title>/, '<title>' + escapeHtml(title) + '</title>')
     .replace(/<meta name="description"\s+content="[^"]*"\s*\/?>/,
       '<meta name="description" content="' + escapeHtml(page.description) + '">')

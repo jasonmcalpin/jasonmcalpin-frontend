@@ -51,6 +51,27 @@ for (const page of manifest) {
     page.path + ': missing from sitemap');
   else assert(!sitemap.includes('<loc>https://jasonmcalpin.com' + page.path + '</loc>'),
     page.path + ': alias should be excluded from sitemap');
+  // The three hero-image LCP routes must expose a matching responsive preload
+  // before React/route JS executes. Other routes should not inherit the hint.
+  const heroSource = page.path === '/about' ? '/assets/images/code-bg.jpg' :
+    page.path === '/projects' || page.path === '/bytes' ? '/assets/images/projects-bg.jpg' : null;
+  const manifest = JSON.parse(await readFile('src/generated/image-manifest.json', 'utf8'));
+  const preloads = [...html.matchAll(/<link rel="preload" as="image"[^>]+>/g)].map(m => m[0]);
+  if (heroSource) {
+    const expected = manifest[heroSource];
+    assert(expected?.variants?.length > 0, page.path + ': missing responsive hero variants');
+    assert(preloads.length === 1, page.path + ': expected exactly one image preload');
+    if (expected?.variants?.length && preloads.length) {
+      const preload = preloads[0];
+      assert(preload.includes('fetchpriority="high"'), page.path + ': preload priority missing');
+      assert(preload.includes('imagesizes="100vw"'), page.path + ': responsive preload sizes missing');
+      for (const variant of expected.variants)
+        assert(preload.includes(variant.src + ' ' + variant.width + 'w'),
+          page.path + ': responsive preload missing variant ' + variant.src);
+    }
+  } else {
+    assert(preloads.length === 0, page.path + ': unexpected image preload');
+  }
   if (page.path.startsWith('/bytes/') && page.path !== '/bytes/') {
     assert(html.includes('"@type":"BlogPosting"'), page.path + ': invalid article schema');
     assert(html.includes('class="markdown-content'), page.path + ': article content not rendered');
