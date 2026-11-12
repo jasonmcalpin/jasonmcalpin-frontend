@@ -10,8 +10,6 @@ interface ProjectCardProps {
 }
 
 const ProjectCard: React.FC<ProjectCardProps> = ({ project, index }) => {
-  const delay = index * 0.1;
-
   return (
     <div 
       className='project-card highlight-outline bg-background-light rounded-lg overflow-hidden transition-all duration-300'
