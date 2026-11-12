@@ -61,3 +61,8 @@
 .home-contact__cta {
   @apply text-lg px-8 py-3;
 }
+/* Preserve space while the below-the-fold chunk is fetched; never block the hero. */
+.home-deferred-placeholder {
+  min-height: 60vh;
+  background: var(--color-background-light);
+}
