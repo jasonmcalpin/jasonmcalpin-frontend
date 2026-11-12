@@ -127,8 +127,11 @@ export interface Choice {
   effects: Effects;
 }
 
+export type FactionMeter = 'megacorporationInfluence' | 'rogueAIProgress' | 'survivorTrust';
+
 export interface Card {
   id: number;
+  faction: FactionMeter;
   text: string;
   leftChoice: Choice;
   rightChoice: Choice;
