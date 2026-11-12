@@ -53,8 +53,7 @@ for (const page of manifest) {
     page.path + ': alias should be excluded from sitemap');
   // The three hero-image LCP routes must expose a matching responsive preload
   // before React/route JS executes. Other routes should not inherit the hint.
-  const heroSource = page.path === '/about' ? '/assets/images/code-bg.jpg' :
-    page.path === '/projects' || page.path === '/bytes' ? '/assets/images/projects-bg.jpg' : null;
+  const heroSource = page.path === '/bytes' ? '/assets/images/projects-bg.jpg' : null;
   const manifest = JSON.parse(await readFile('src/generated/image-manifest.json', 'utf8'));
   const preloads = [...html.matchAll(/<link rel="preload" as="image"[^>]+>/g)].map(m => m[0]);
   if (heroSource) {
@@ -89,7 +88,9 @@ function escaped(input) {
 }
 
 const index = await readFile(join(dist, 'index.html'), 'utf8');
-assert(index.includes('Full Stack Developer'), 'Homepage body is not present in initial HTML');
+assert(index.includes('Solve the hard software problems'), 'Consulting homepage body is not present in initial HTML');
+const llms = await readFile(join(dist, 'llms.txt'), 'utf8');
+assert(llms.includes('MCP Stitch') && llms.includes('Browser Model Lab'), 'AI index missing public tooling');
 assert(!sitemap.includes('/search?'), 'Sitemap advertises an unimplemented search endpoint');
 assert((sitemap.match(/<loc>/g) || []).length === manifest.filter(page => !page.excludeSitemap).length,
   'Sitemap and static page manifest differ');

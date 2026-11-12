@@ -36,14 +36,12 @@ function validateCatalog(items, label, fields) {
   }
   return items;
 }
+const consulting = JSON.parse(await readFile(join(dataDir, 'consulting.json'), 'utf8'));
 const projects = validateCatalog(JSON.parse(await readFile(join(dataDir, 'projects.json'), 'utf8')),
   'projects', ['id', 'slug', 'title', 'description']);
 const bytes = validateCatalog(JSON.parse(await readFile(join(dataDir, 'bytes.json'), 'utf8')),
   'bytes',
   ['id', 'slug', 'title', 'excerpt', 'content', 'author', 'date']);
-const experiences = JSON.parse(await readFile(join(dataDir, 'experience.json'), 'utf8'));
-const social = JSON.parse(await readFile(join(dataDir, 'social.json'), 'utf8'));
-if (!Array.isArray(experiences) || !Array.isArray(social)) throw new Error('Invalid supporting content');
 
 const responsiveImages = JSON.parse(await readFile(resolve('src/generated/image-manifest.json'), 'utf8'));
 const heroPreload = source => {
@@ -75,38 +73,63 @@ function register(path, title, description, body, options = {}) {
   pages.push({ path, title, description, body, ...options });
 }
 
-const websiteSchema = { '@context': 'https://schema.org', '@type': 'WebSite',
-  name: 'Jason McAlpin', url: site };
 const personSchema = { '@context': 'https://schema.org', '@type': 'Person',
-  name: 'Jason McAlpin', url: site, jobTitle: 'Full Stack Developer',
-  sameAs: ['https://www.linkedin.com/in/jasondennismcalpin',
-    'https://github.com/jasonmcalpin'] };
+  '@id': site + '/about#person', name: consulting.identity.name,
+  url: site + '/about', jobTitle: consulting.identity.role,
+  description: consulting.identity.summary,
+  sameAs: [consulting.identity.linkedin, consulting.identity.github],
+  knowsAbout: consulting.services.map(service => service.title) };
+const websiteSchema = { '@context': 'https://schema.org', '@type': 'WebSite',
+  '@id': site + '/#website', name: 'Jason McAlpin — Independent Software Engineering',
+  url: site, description: consulting.identity.summary,
+  about: { '@id': personSchema['@id'] } };
+const serviceSchema = {
+  '@context': 'https://schema.org', '@type': 'OfferCatalog', name: 'Software engineering services',
+  itemListElement: consulting.services.map(service => ({ '@type': 'OfferCatalog', name: service.title,
+    description: service.description, url: site + '/services' }))
+};
 
-register('/', 'Home', 'Full-stack software engineering, projects, and technical writing by Jason McAlpin',
-  elem('h1', 'Jason McAlpin — Full Stack Developer') +
-  paragraph('Building modern web experiences with React, TypeScript, Node.js and AI.') +
-  elem('h2', 'Featured Projects') +
-  elem('ul', projects.filter(project => project.featured).slice(0, 3)
-    .map(project => elem('li', link('/projects/' + project.slug, project.title))).join('')) +
+const featuredSlugs = ['ibm-research-tool', 'ford-website', 'mcp-stitch', 'browser-model-lab'];
+const featuredProjects = featuredSlugs.map(slug => projects.find(project => project.slug === slug))
+  .filter(Boolean);
+register('/', 'Independent Software Engineering & Consulting', consulting.identity.summary,
+  elem('h1', escapeHtml(consulting.identity.headline)) +
+  paragraph(consulting.identity.summary) +
+  elem('p', link('/contact', 'Discuss a project') + ' · ' + link('/projects', 'See selected work')) +
+  elem('h2', 'What I can help you accomplish') +
+  elem('ul', consulting.services.map(service => elem('li',
+    elem('h3', escapeHtml(service.title)) + paragraph(service.description) +
+    link('/projects/' + service.evidence, 'Relevant work'))).join('')) +
+  elem('h2', 'Selected work') +
+  elem('ul', featuredProjects.map(project => elem('li',
+    elem('h3', link('/projects/' + project.slug, project.title)) +
+    paragraph(project.outcome || project.description))).join('')) +
   elem('h2', 'Recent Bytes') +
-  elem('ul', [...bytes].sort((a, b) => b.date.localeCompare(a.date)).slice(0, 3)
-    .map(byte => elem('li', link('/bytes/' + byte.slug, byte.title))).join('')),
-  { schema: websiteSchema, imageUrl: '/assets/images/code.jpg' });
+  elem('ul', [...bytes].sort((a,b) => b.date.localeCompare(a.date)).slice(0, 2)
+    .map(byte => elem('li', link('/bytes/' + byte.slug, byte.title))).join('')) +
+  elem('p', link('/contact', 'Tell me about your project')),
+  { schema: websiteSchema });
 
-register('/about', 'About Me', 'Experience, background and engineering skills of Jason McAlpin',
-  elem('h1', 'About Jason McAlpin') +
-  paragraph('Full-stack software developer specializing in React, TypeScript, backend systems and AI integration.') +
-  elem('h2', 'Experience') +
-  elem('ul', experiences.map(item => elem('li',
-    elem('strong', escapeHtml(item.title + ' — ' + item.company)) +
-    paragraph(item.description))).join('')), { schema: personSchema, heroImage: '/assets/images/code-bg.jpg' });
+register('/about', 'About Jason McAlpin',
+  'Independent software engineer with 15+ years of production experience across enterprise web, data, APIs and AI integration.',
+  elem('h1', 'A senior engineer who cares about the result') +
+  paragraph('I am Jason McAlpin, an independent software engineer and consultant based near Atlanta. For more than 15 years I have helped teams build, modernize and improve applications they depend on.') +
+  paragraph('My background spans digital experiences, data migration, APIs, enterprise publishing, performance work and applied AI, including contributions to projects for IBM and Ford.') +
+  elem('h2', 'Selected recognition') +
+  paragraph('The IBM Sales Intelligence Slack bot received a 2023 Sammy Award. I consulted on the Watson AI model and API integration; recognition belongs to the wider team.') +
+  elem('h2', 'Current engineering') +
+  paragraph('Published developer tools and ongoing work on model evaluation, agent coordination and project knowledge.') +
+  link('/projects', 'Explore engineering work') + ' · ' + link('/contact', 'Get in touch'),
+  { schema: personSchema });
 
-register('/projects', 'Projects', 'Software projects and selected engineering work',
-  elem('h1', 'My Projects') +
+register('/projects', 'Selected Engineering Work',
+  'Case studies and public engineering projects across modernization, AI, performance and developer tools.',
+  elem('h1', 'What I built. Why it mattered.') +
+  paragraph('Enterprise work, published tools and ongoing systems research, with clear contributions and maturity labels.') +
   elem('ul', projects.map(project => elem('li',
     elem('h2', link('/projects/' + project.slug, project.title)) +
-    paragraph(project.description) + image(project.imageUrl, project.title))).join('')),
-  { heroImage: '/assets/images/projects-bg.jpg' });
+    (project.kind ? paragraph(project.kind) : '') +
+    paragraph(project.outcome || project.description) + image(project.imageUrl, project.title))).join('')));
 
 register('/bytes', 'Bytes', 'Technical articles, tutorials, and thoughts on software development',
   elem('h1', 'Bytes') +
@@ -114,17 +137,28 @@ register('/bytes', 'Bytes', 'Technical articles, tutorials, and thoughts on soft
     elem('h2', link('/bytes/' + byte.slug, byte.title)) + paragraph(byte.excerpt))).join('')),
   { heroImage: '/assets/images/projects-bg.jpg' });
 
-register('/contact', 'Contact', 'Ways to contact Jason McAlpin for software engineering work',
-  elem('h1', 'Get In Touch') +
-  paragraph('Connect through the following professional profiles.') +
-  elem('ul', social.map(entry => elem('li', link(entry.url, entry.label))).join('')));
+register('/contact', 'Discuss a Software Project',
+  'Contact Jason McAlpin for application modernization, AI integration, performance or technical consulting.',
+  elem('h1', escapeHtml(consulting.contact.heading)) +
+  paragraph(consulting.contact.description) +
+  elem('p', link('mailto:' + consulting.identity.email, consulting.identity.email)) +
+  paragraph(consulting.identity.location) +
+  elem('p', link(consulting.identity.linkedin, 'LinkedIn') + ' · ' +
+    link(consulting.identity.github, 'GitHub')));
 
-register('/services', 'Services', 'Full-stack development, AI integration, and technical consulting services',
-  elem('h1', 'Professional Development Services') +
-  paragraph('Senior Full-Stack Engineer | React, TypeScript, Node.js, Python, AI/ML and software architecture.') +
-  elem('ul', ['Full-Stack Development', 'WordPress Development & Optimization',
-    'AI/ML Integration', 'Performance Optimization', 'Technical Consulting & Code Reviews',
-    'Team Development & Technical Training'].map(name => elem('li', escapeHtml(name))).join('')));
+register('/services', 'Software Engineering Services',
+  'Independent engineering for application modernization, AI integration, performance and technical consulting.',
+  elem('h1', 'Experienced engineering for the work that matters') +
+  paragraph(consulting.identity.summary) +
+  elem('ul', consulting.services.map(service => elem('li',
+    elem('h2', escapeHtml(service.title)) + paragraph(service.description) +
+    elem('ul', service.deliverables.map(item => elem('li', escapeHtml(item))).join('')) +
+    link('/projects/' + service.evidence, 'See relevant work'))).join('')) +
+  elem('h2', 'Ways to work together') +
+  elem('ul', consulting.engagements.map(item => elem('li',
+    elem('h3', escapeHtml(item.name)) + paragraph(item.description))).join('')) +
+  link('/contact', 'Discuss your project'),
+  { schema: serviceSchema });
 
 register('/privacy', 'Privacy Policy', 'Privacy information for jasonmcalpin.com',
   elem('h1', 'Privacy Policy') +
@@ -156,20 +190,28 @@ for (const byte of bytes) {
 
 for (const project of projects) {
   const path = '/projects/' + project.slug;
+  const description = project.outcome || project.description;
   const projectSchema = {
     '@context': 'https://schema.org', '@type': 'CreativeWork',
-    name: project.title, description: project.description,
+    '@id': url(path) + '#work', name: project.title, description,
     ...(project.imageUrl ? { image: absolute(project.imageUrl) } : {}),
-    creator: { '@type': 'Person', name: 'Jason McAlpin' },
+    creator: { '@id': personSchema['@id'] },
     keywords: project.technologies.join(', '), url: url(path),
   };
-  register(path, project.title, project.description,
+  const detail = project.challenge ?
+    elem('h2', 'The challenge') + paragraph(project.challenge) +
+    elem('h2', 'My contribution') + paragraph(project.role) + paragraph(project.approach) +
+    elem('h2', 'The outcome') + paragraph(description) :
+    elem('h2', 'Project overview') + paragraph(project.description);
+  register(path, project.title, description,
     elem('article', elem('h1', escapeHtml(project.title)) +
+      (project.category ? paragraph(project.category + (project.kind ? ' · ' + project.kind : '')) : '') +
       image(project.imageUrl, project.title) +
-      paragraph(project.description) +
-      elem('p', escapeHtml(project.technologies.join(', '))) +
-      (project.githubUrl ? paragraph('GitHub: ') + link(project.githubUrl, 'View on GitHub') : '') +
-      (project.liveUrl ? link(project.liveUrl, 'Visit Live Site') : ''),
+      detail + elem('h2', 'Technical context') +
+      paragraph(project.technologies.join(', ')) +
+      (project.githubUrl ? elem('p', link(project.githubUrl, 'View source repository')) : '') +
+      (project.liveUrl ? elem('p', link(project.liveUrl, 'Visit project or demo')) : '') +
+      elem('p', link('/contact', 'Discuss similar work')),
     ' class="project-page"'),
     { schema: projectSchema, imageUrl: project.imageUrl });
 }
@@ -247,6 +289,44 @@ const sitemap = '<?xml version="1.0" encoding="UTF-8"?>\n' +
     (page.date ? '<lastmod>' + escapeHtml(page.date) + '</lastmod>' : '') +
     '</url>').join('\n') + '\n</urlset>\n';
 await writeFile(join(dist, 'sitemap.xml'), sitemap);
+// Optional LLM-oriented navigation index: derived from the same published
+// business and project records as React and crawler-readable HTML.
+const aiIndex = [
+  '# Jason McAlpin — Independent Software Engineering',
+  '',
+  '> ' + consulting.identity.summary,
+  '',
+  '## Identity and contact',
+  '- ' + consulting.identity.role,
+  '- ' + consulting.identity.experience,
+  '- Location: ' + consulting.identity.location,
+  '- Project inquiries: ' + site + '/contact',
+  '- Email: ' + consulting.identity.email,
+  '',
+  '## Services',
+  ...consulting.services.map(service =>
+    '- [' + service.title + '](' + site + '/services): ' + service.description),
+  '',
+  '## Selected evidence',
+  ...featuredProjects.map(project =>
+    '- [' + project.title + '](' + site + '/projects/' + project.slug + '): ' +
+    (project.outcome || project.description)),
+  '',
+  '## Public tools and ongoing architecture',
+  ...projects.filter(project => project.kind).map(project =>
+    '- [' + project.title + '](' + site + '/projects/' + project.slug + '): ' +
+    project.kind + '. ' + project.description),
+  '',
+  '## Additional context',
+  '- [About](' + site + '/about)',
+  '- [Engineering writing](' + site + '/bytes)',
+  '- [Contact](' + site + '/contact)',
+  '',
+  'This file is a navigation aid, not an API or a guarantee of AI indexing. Check the linked pages for source context.',
+  ''
+].join('\n');
+await writeFile(join(dist, 'llms.txt'), aiIndex);
+
 await writeFile(join(dist, 'static-pages-manifest.json'), JSON.stringify(
   pages.map(page => ({ path: page.path, canonical: page.canonicalPath || page.path,
     title: page.title, description: page.description, excludeSitemap: !!page.excludeSitemap })),

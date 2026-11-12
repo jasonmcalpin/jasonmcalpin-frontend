@@ -16,7 +16,7 @@ for (const name of homeChunks) {
 if (homeImporters.length === 0)
   throw new Error('Homepage no longer dynamically imports HomeBelowFold');
 const deferred = await readFile(join(jsDir, below[0]), 'utf8');
-if (!deferred.includes('Featured Projects') || !deferred.includes('Recent Bytes'))
+if (!deferred.includes('Evidence, not just a technology list') || !deferred.includes('Engineering notes'))
   throw new Error('Below-the-fold sections are missing from deferred module');
 
 console.log('Verified lazy homepage boundary: ' + below[0] + ' imported by ' + homeImporters.join(', '));

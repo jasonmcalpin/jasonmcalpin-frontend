@@ -10,7 +10,7 @@ export const getWebsiteSchema = () => {
     '@type': 'WebSite',
     name: 'Jason McAlpin',
     url: 'https://jasonmcalpin.com',
-    description: 'Full Stack Developer specializing in React, TypeScript, and modern web technologies'
+    description: 'Independent software engineering, modernization, AI integration, performance and technical consulting'
   };
 };
 
@@ -21,13 +21,13 @@ export const getPersonSchema = () => {
     '@type': 'Person',
     name: 'Jason McAlpin',
     url: 'https://jasonmcalpin.com',
-    jobTitle: 'Full Stack Developer',
+    jobTitle: 'Independent Software Engineer & Consultant',
     sameAs: [
       'https://www.linkedin.com/in/jasondennismcalpin',
       'https://github.com/jasonmcalpin',
       'https://twitter.com/jasonmcalpin'
     ],
-    description: 'Full Stack Developer with expertise in React, TypeScript, and modern web technologies',
+    description: 'Independent software engineer helping organizations modernize applications, integrate AI and improve production systems',
     knowsAbout: [
       'React',
       'TypeScript',
