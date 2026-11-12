@@ -14,12 +14,12 @@ const project = { id: '1', slug: 'example', title: 'Example', description: 'Work
 
 describe('content contracts', () => {
   it('validates and normalizes articles and optional project images', () => {
-    expect(parseBytes({ articles: [byte] })[0]).toMatchObject(byte);
+    expect(parseBytes([byte])[0]).toMatchObject(byte);
     expect(parseProjects([project])[0].imageUrl).toBe('');
   });
   it('rejects malformed records and duplicate article routes', () => {
-    expect(() => parseBytes({ articles: [{ ...byte, tags: 'React' }] })).toThrow('bytes.articles[0].tags');
-    expect(() => parseBytes({ articles: [byte, byte] })).toThrow('duplicate slug');
+    expect(() => parseBytes([{ ...byte, tags: 'React' }])).toThrow('bytes[0].tags');
+    expect(() => parseBytes([byte, byte])).toThrow('duplicate slug');
     expect(() => parseProjects([{ ...project, featured: 'yes' }])).toThrow('projects[0].featured');
     expect(() => parseProjects([project, project])).toThrow('duplicate slug');
   });
