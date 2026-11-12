@@ -27,7 +27,7 @@ export default function HomeBelowFold() {
         <div className="consulting-container">
           <div className="consulting-section-heading">
             <p className="consulting-eyebrow">What I can help you accomplish</p>
-            <h2 id="capabilities-title">Practical solutions for complex systems.</h2>
+            <h2 id="capabilities-title">Complex problems. Simple answers.</h2>
             <p>Senior engineering guidance backed by hands-on implementation.</p>
           </div>
           <div className="consulting-service-grid">
@@ -45,7 +45,7 @@ export default function HomeBelowFold() {
       <section className="consulting-section consulting-section--subtle" aria-labelledby="work-title">
         <div className="consulting-container">
           <div className="consulting-section-heading consulting-section-heading--split">
-            <div><p className="consulting-eyebrow">Selected work</p><h2 id="work-title">Evidence, not just a technology list.</h2></div>
+            <div><p className="consulting-eyebrow">Selected work</p><h2 id="work-title">The work speaks.</h2></div>
             <Link to="/projects" className="consulting-text-link">View all work →</Link>
           </div>
           <div className="consulting-project-grid">{featured.map(project => <ProjectCard key={project.id} project={project} index={0} />)}</div>
@@ -54,7 +54,7 @@ export default function HomeBelowFold() {
       </section>
       <section className="consulting-section" aria-labelledby="approach-title">
         <div className="consulting-container consulting-two-column">
-          <div><p className="consulting-eyebrow">How I work</p><h2 id="approach-title">Direct, accountable engineering.</h2>
+          <div><p className="consulting-eyebrow">How I work</p><h2 id="approach-title">Experience beats guesswork.</h2>
             <p className="consulting-body">You work with the person designing and implementing the solution. We establish the business objective, constraints and acceptance criteria before committing to the technical approach.</p>
             <Link to="/contact" className="consulting-text-link">Talk through your challenge →</Link>
           </div>
