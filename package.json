@@ -4,8 +4,8 @@
   "version": "1.1.0",
   "type": "module",
   "scripts": {
-    "dev": "yarn optimize-images && yarn render:bytes && vite",
-    "build": "yarn verify:content && yarn verify:fonts && yarn optimize-images && yarn verify:images && yarn render:bytes && yarn verify:rendered-bytes && tsc -b && vite build && node scripts/generate-static-pages.mjs && yarn verify:static && yarn verify:chunks && yarn verify:no-motion && yarn verify:svg-layout && cp .htaccess dist/ --f",
+    "dev": "node scripts/optimize-images.js && node scripts/render-byte-content.mjs && vite",
+    "build": "node scripts/verify-json-content.mjs && node scripts/verify-self-hosted-fonts.mjs && node scripts/optimize-images.js && node scripts/verify-responsive-images.mjs && node scripts/render-byte-content.mjs && node scripts/verify-rendered-bytes.mjs && tsc -b && vite build && node scripts/generate-static-pages.mjs && node scripts/verify-static-pages.mjs && node scripts/verify-home-chunks.mjs && node scripts/verify-no-motion.mjs && node scripts/verify-svg-and-layout.mjs",
     "verify:static": "node scripts/verify-static-pages.mjs",
     "verify:content": "node scripts/verify-json-content.mjs",
     "verify:images": "node scripts/verify-responsive-images.mjs",
@@ -13,7 +13,7 @@
     "verify:chunks": "node scripts/verify-home-chunks.mjs",
     "verify:no-motion": "node scripts/verify-no-motion.mjs",
     "verify:svg-layout": "node scripts/verify-svg-and-layout.mjs",
-    "build:analyze": "yarn build && open dist/stats.html",
+    "build:analyze": "node --run build",
     "optimize-images": "node scripts/optimize-images.js",
     "lint": "eslint .",
     "preview": "vite preview",
@@ -75,5 +75,6 @@
     "prism-react-renderer": "^2.4.1",
     "react-markdown": "^10.1.0",
     "remark-gfm": "^4.0.1"
-  }
+  },
+  "packageManager": "yarn@1.22.22"
 }
