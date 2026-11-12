@@ -65,6 +65,29 @@ jobs:
           if-no-files-found: error
           retention-days: 1
 
+  windows-build:
+    name: Windows build portability
+    if: github.event_name != 'pull_request' || github.event.action != 'closed'
+    runs-on: windows-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v5
+      - name: Set up Node.js 22
+        uses: actions/setup-node@v5
+        with:
+          node-version: 22
+      - name: Install from the canonical Yarn lockfile
+        run: corepack yarn install --frozen-lockfile --non-interactive
+      - name: Check Windows tests and static build
+        run: |
+          corepack yarn test:run
+          corepack yarn build
+      - name: Confirm Apache config was copied
+        shell: pwsh
+        run: |
+          if (!(Test-Path 'dist/.htaccess')) { throw 'dist/.htaccess missing from published output' }
+
   lighthouse:
     name: Lighthouse baseline (informational)
     if: github.event_name == 'push' && github.ref == 'refs/heads/main' || github.event_name == 'pull_request' && github.event.action != 'closed'
