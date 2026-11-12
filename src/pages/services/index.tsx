@@ -1,6 +1,6 @@
 import SEO from '../../components/global/SEO';
 import Hero from '../../components/global/Hero';
-import { MotionTitle } from '../../components/global/Titles';
+import { RevealTitle } from '../../components/global/Titles';
 import './styles.css';
 
 interface Service {
@@ -170,7 +170,7 @@ const Services = () => {
         
        data-reveal="viewport">
         <div className="section-container">
-          <MotionTitle>What I Offer</MotionTitle>
+          <RevealTitle>What I Offer</RevealTitle>
 
           <div className="services-grid">
             {services.map((service, index) => (
@@ -208,7 +208,7 @@ const Services = () => {
         
        data-reveal="viewport">
         <div className="section-container">
-          <MotionTitle>Technologies & Expertise</MotionTitle>
+          <RevealTitle>Technologies & Expertise</RevealTitle>
 
           <div className="services-tech__grid"  data-reveal="viewport">
             {['Frontend', 'Backend', 'Database', 'Cloud', 'DevOps', 'CMS', 'AI/ML'].map((category) => (
@@ -239,7 +239,7 @@ const Services = () => {
         
        data-reveal="viewport">
         <div className="section-container">
-          <MotionTitle>Flexible Engagement Models</MotionTitle>
+          <RevealTitle>Flexible Engagement Models</RevealTitle>
 
           <div className="services-pricing__grid"  data-reveal="viewport">
             <div className="pricing-card">
