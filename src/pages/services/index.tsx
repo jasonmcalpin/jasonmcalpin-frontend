@@ -1,6 +1,3 @@
-import { motion } from 'framer-motion';
-import { useScrollAnimation } from '../../hooks/useScrollAnimation';
-import { fadeInUp, staggerContainer } from '../../utils/animations';
 import SEO from '../../components/global/SEO';
 import Hero from '../../components/global/Hero';
 import { MotionTitle } from '../../components/global/Titles';
@@ -19,11 +16,10 @@ interface Technology {
 }
 
 const Services = () => {
-  const [introRef, introControls] = useScrollAnimation();
-  const [servicesRef, servicesControls] = useScrollAnimation();
-  const [techRef, techControls] = useScrollAnimation();
-  const [pricingRef, pricingControls] = useScrollAnimation();
-  const [ctaRef, ctaControls] = useScrollAnimation();
+
+
+
+
 
   const seoDescription = "Professional software development and consulting services. Full-stack development, WordPress expertise, AI/ML integration, performance optimization, and technical consulting. Available for contract and project-based work.";
 
@@ -142,15 +138,15 @@ const Services = () => {
       />
 
       {/* Introduction */}
-      <motion.section
+      <section
         className="services-intro"
-        ref={introRef as unknown as React.RefObject<HTMLElement>}
-        initial="hidden"
-        animate={introControls}
-        variants={staggerContainer}
-      >
+        
+        
+        
+        
+       data-reveal="viewport">
         <div className="section-container">
-          <motion.div className="services-intro__content" variants={fadeInUp}>
+          <div className="services-intro__content"  data-reveal="viewport">
             <p className="services-intro__text">
               I'm a Senior Full-Stack Software Engineer with over 15 years of experience building
               enterprise-grade applications for Fortune 500 companies including <strong>IBM</strong> and <strong>Ford Motor Company</strong>.
@@ -161,31 +157,31 @@ const Services = () => {
               Whether you need a technical co-founder for your startup, short-term contract expertise, or
               ongoing consulting support, I bring enterprise-level experience with startup agility.
             </p>
-          </motion.div>
+          </div>
         </div>
-      </motion.section>
+      </section>
 
       {/* Services Grid */}
-      <motion.section
+      <section
         className="services-offerings"
-        ref={servicesRef as unknown as React.RefObject<HTMLElement>}
-        initial="hidden"
-        animate={servicesControls}
-        variants={staggerContainer}
-      >
+        
+        
+        
+        
+       data-reveal="viewport">
         <div className="section-container">
           <MotionTitle>What I Offer</MotionTitle>
 
           <div className="services-grid">
             {services.map((service, index) => (
-              <motion.div
+              <div
                 key={index}
                 className="service-card"
-                variants={fadeInUp}
-                custom={index}
-                whileHover={{ scale: 1.02 }}
-                transition={{ duration: 0.3 }}
-              >
+                
+                
+                
+                
+               data-reveal="scale" data-hover-lift="true">
                 <div className="service-card__icon">{service.icon}</div>
                 <h3 className="service-card__title">{service.title}</h3>
                 <p className="service-card__description">{service.description}</p>
@@ -197,24 +193,24 @@ const Services = () => {
                     </li>
                   ))}
                 </ul>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
-      </motion.section>
+      </section>
 
       {/* Technologies */}
-      <motion.section
+      <section
         className="services-tech"
-        ref={techRef as unknown as React.RefObject<HTMLElement>}
-        initial="hidden"
-        animate={techControls}
-        variants={staggerContainer}
-      >
+        
+        
+        
+        
+       data-reveal="viewport">
         <div className="section-container">
           <MotionTitle>Technologies & Expertise</MotionTitle>
 
-          <motion.div className="services-tech__grid" variants={fadeInUp}>
+          <div className="services-tech__grid"  data-reveal="viewport">
             {['Frontend', 'Backend', 'Database', 'Cloud', 'DevOps', 'CMS', 'AI/ML'].map((category) => (
               <div key={category} className="services-tech__category">
                 <h3 className="services-tech__category-title">{category}</h3>
@@ -230,22 +226,22 @@ const Services = () => {
                 </div>
               </div>
             ))}
-          </motion.div>
+          </div>
         </div>
-      </motion.section>
+      </section>
 
       {/* Pricing & Engagement */}
-      <motion.section
+      <section
         className="services-pricing"
-        ref={pricingRef as unknown as React.RefObject<HTMLElement>}
-        initial="hidden"
-        animate={pricingControls}
-        variants={staggerContainer}
-      >
+        
+        
+        
+        
+       data-reveal="viewport">
         <div className="section-container">
           <MotionTitle>Flexible Engagement Models</MotionTitle>
 
-          <motion.div className="services-pricing__grid" variants={fadeInUp}>
+          <div className="services-pricing__grid"  data-reveal="viewport">
             <div className="pricing-card">
               <h3 className="pricing-card__title">Hourly Consulting</h3>
               <div className="pricing-card__price">$80-120<span>/hour</span></div>
@@ -288,27 +284,27 @@ const Services = () => {
                 <li>Dedicated availability</li>
               </ul>
             </div>
-          </motion.div>
+          </div>
 
-          <motion.div className="services-pricing__note" variants={fadeInUp}>
+          <div className="services-pricing__note"  data-reveal="viewport">
             <p>
               <strong>All engagements include:</strong> Clear communication, regular updates, clean documented code,
               and a commitment to quality. Enterprise clients from Fortune 500 companies have trusted my work.
             </p>
-          </motion.div>
+          </div>
         </div>
-      </motion.section>
+      </section>
 
       {/* Contact CTA */}
-      <motion.section
+      <section
         className="services-cta"
-        ref={ctaRef as unknown as React.RefObject<HTMLElement>}
-        initial="hidden"
-        animate={ctaControls}
-        variants={staggerContainer}
-      >
+        
+        
+        
+        
+       data-reveal="viewport">
         <div className="section-container">
-          <motion.div className="services-cta__content" variants={fadeInUp}>
+          <div className="services-cta__content"  data-reveal="viewport">
             <h2 className="services-cta__title">Ready to Start Your Project?</h2>
             <p className="services-cta__text">
               Let's discuss how I can help bring your vision to life. Whether you need a full application,
@@ -337,9 +333,9 @@ const Services = () => {
               <p><strong>Response Time:</strong> Typically within 24 hours</p>
               <p><strong>Location:</strong> Available for remote work worldwide</p>
             </div>
-          </motion.div>
+          </div>
         </div>
-      </motion.section>
+      </section>
     </div>
   );
 };
