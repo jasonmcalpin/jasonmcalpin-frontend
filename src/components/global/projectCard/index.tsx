@@ -39,7 +39,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, index }) => {
           sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
         />
         {project.featured && (
-          <div className='project-card__featured absolute top-3 right-3 bg-secondary text-white text-xs font-bold py-1 px-2 rounded overflow-hidden'>
+          <div className='project-card__featured absolute top-3 right-3 bg-secondary text-black text-xs font-bold py-1 px-2 rounded overflow-hidden'>
             <span className='relative z-10'>Featured</span>
             <span className='featured-overlay' aria-hidden='true'></span>
           </div>
