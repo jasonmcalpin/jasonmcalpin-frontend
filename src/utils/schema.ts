@@ -1,44 +1,39 @@
-/**
- * Utility functions for generating structured data (JSON-LD) schemas
- * for different page types to improve SEO and enable rich snippets in search results.
- */
+import consulting from '../../public/data/consulting.json';
 
-// Base website schema
-export const getWebsiteSchema = () => {
-  return {
-    '@context': 'https://schema.org',
-    '@type': 'WebSite',
-    name: 'Jason McAlpin',
-    url: 'https://jasonmcalpin.com',
-    description: 'Independent software engineering, modernization, AI integration, performance and technical consulting'
-  };
-};
+/** All public-facing entities derive from the consulting content contract. */
+export const getWebsiteSchema = () => ({
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  '@id': 'https://jasonmcalpin.com/#website',
+  name: 'Jason McAlpin — Independent Software Engineering',
+  url: 'https://jasonmcalpin.com',
+  description: consulting.identity.summary,
+  about: { '@id': 'https://jasonmcalpin.com/about#person' },
+});
 
-// Person schema for About page
-export const getPersonSchema = () => {
-  return {
-    '@context': 'https://schema.org',
-    '@type': 'Person',
-    name: 'Jason McAlpin',
-    url: 'https://jasonmcalpin.com',
-    jobTitle: 'Independent Software Engineer & Consultant',
-    sameAs: [
-      'https://www.linkedin.com/in/jasondennismcalpin',
-      'https://github.com/jasonmcalpin',
-      'https://twitter.com/jasonmcalpin'
-    ],
-    description: 'Independent software engineer helping organizations modernize applications, integrate AI and improve production systems',
-    knowsAbout: [
-      'React',
-      'TypeScript',
-      'Node.js',
-      'Web Development',
-      'JavaScript',
-      'Frontend Development',
-      'Backend Development'
-    ]
-  };
-};
+export const getPersonSchema = () => ({
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  '@id': 'https://jasonmcalpin.com/about#person',
+  name: consulting.identity.name,
+  url: 'https://jasonmcalpin.com/about',
+  jobTitle: consulting.identity.role,
+  description: consulting.identity.summary,
+  sameAs: [consulting.identity.linkedin, consulting.identity.github],
+  knowsAbout: consulting.services.map(service => service.title),
+});
+
+export const getServicesSchema = () => ({
+  '@context': 'https://schema.org',
+  '@type': 'OfferCatalog',
+  name: 'Software engineering services',
+  itemListElement: consulting.services.map(service => ({
+    '@type': 'OfferCatalog',
+    name: service.title,
+    description: service.description,
+    url: 'https://jasonmcalpin.com/services',
+  })),
+});
 
 // Byte schema for blog posts
 export const getByteSchema = (byte: {
