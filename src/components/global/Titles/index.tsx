@@ -10,7 +10,7 @@ const FlatTitle = ({ children }: TitleProps) => {
   );
 };
 
-const MotionTitle = ({ children }: TitleProps) => {
+const RevealTitle = ({ children }: TitleProps) => {
   return (
     <h2 className='section-title text-3xl md:text-4xl font-heading font-bold mb-12 text-white'  data-reveal="viewport">
       {children}
@@ -44,4 +44,4 @@ const CenterTitle = ({ children }: TitleProps) => {
   );
 };
 
-export { FlatTitle, MotionTitle, LinkTitle, CenterTitle };
+export { FlatTitle, RevealTitle, LinkTitle, CenterTitle };
