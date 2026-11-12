@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import ReactMarkdown from 'react-markdown';
@@ -6,7 +6,6 @@ import remarkGfm from 'remark-gfm';
 import { Highlight, themes } from 'prism-react-renderer';
 import { useAppSelector, useAppDispatch } from '../../hooks/useAppStore';
 import { fetchBytes } from '../../store/slices/bytesSlice';
-import type { Byte } from '../../store/slices/bytesSlice';
 import SEO from '../../components/global/SEO';
 import { getByteSchema } from '../../utils/schema';
 import { fadeInUp } from '../../utils/animations';
@@ -16,48 +15,19 @@ const BytePage = () => {
   const { slug } = useParams<{ slug: string }>();
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const { bytes, isLoading: isBytesLoading } = useAppSelector((state) => state.bytes);
-  const [byte, setByte] = useState<Byte | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
+  const { bytes, isLoading, hasLoaded, error } = useAppSelector(state => state.bytes);
+  const byte = bytes.find(item => item.slug === slug);
 
   useEffect(() => {
-    if (bytes.length === 0) {
-      dispatch(fetchBytes());
-    }
-  }, [dispatch, bytes.length]);
-
-  useEffect(() => {
-    if (bytes.length > 0 || !isBytesLoading) {
-      const foundByte = bytes.find((a) => a.slug === slug);
-      
-      if (foundByte) {
-        setByte(foundByte);
-        setIsLoading(false);
-      } else {
-        if (bytes.length > 0) {
-          // Try to find a close match
-          const closeMatch = bytes.find(a => 
-            a.slug.includes(slug || '') || (slug || '').includes(a.slug)
-          );
-          
-          if (closeMatch) {
-            setByte(closeMatch);
-            setIsLoading(false);
-          } else {
-            // No match found, navigate back to bytes list
-            navigate('/bytes');
-          }
-        }
-      }
-    }
-  }, [bytes, slug, navigate, isBytesLoading]);
+    if (!hasLoaded && !isLoading && !error) dispatch(fetchBytes());
+  }, [dispatch, hasLoaded, isLoading, error]);
 
   const formatDate = (dateString: string) => {
     const options: Intl.DateTimeFormatOptions = { year: 'numeric', month: 'long', day: 'numeric' };
     return new Date(dateString).toLocaleDateString(undefined, options);
   };
 
-  if (isLoading) {
+  if (!hasLoaded && !error) {
     return (
       <div className='byte-page' role='region' aria-label='Loading byte content'>
         <div className='section-container'>
@@ -68,6 +38,13 @@ const BytePage = () => {
         </div>
       </div>
     );
+  }
+
+  if (error) {
+    return <div className='byte-page'><div className='section-container' role='alert'>
+      <h1>Unable to load bytes</h1><p>{error}</p>
+      <button className='btn btn-primary' onClick={() => dispatch(fetchBytes())}>Retry</button>
+    </div></div>;
   }
 
   if (!byte) {
