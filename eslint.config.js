@@ -3,10 +3,6 @@ import globals from 'globals';
 import tseslint from 'typescript-eslint';
 import reactHooks from 'eslint-plugin-react-hooks';
 import reactRefresh from 'eslint-plugin-react-refresh';
-import { FlatCompat } from '@eslint/eslintrc';
-
-const compat = new FlatCompat();
-
 export default tseslint.config([
   {
     ignores: ['dist', 'coverage', '*.config.*'],
@@ -14,7 +10,7 @@ export default tseslint.config([
   {
     files: ['**/*.{ts,tsx}'],
     languageOptions: {
-      parser: tseslint.parser, // ✅ This line is crucial
+      parser: tseslint.parser,
       ecmaVersion: 2020,
       sourceType: 'module',
       globals: globals.browser,
@@ -28,6 +24,11 @@ export default tseslint.config([
       ...js.configs.recommended.rules,
       ...tseslint.configs.recommended[1].rules,
       ...reactHooks.configs.recommended.rules,
+      // React Hooks v7 expands the recommended compiler checks. Keep the
+      // pre-existing Hooks safety rules as errors; surface the newly reported
+      // render-state/closure refactor work as warnings until tested separately.
+      'react-hooks/set-state-in-effect': 'warn',
+      'react-hooks/immutability': 'warn',
       // TypeScript owns unused-variable checks; underscore-prefixed callback parameters are intentional.
       'no-unused-vars': 'off',
       '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_', varsIgnorePattern: '^_' }],

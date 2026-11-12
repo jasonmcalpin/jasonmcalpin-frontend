@@ -79,8 +79,10 @@ jobs:
           node-version: 22
       - name: Install from the canonical Yarn lockfile
         run: corepack yarn install --frozen-lockfile --non-interactive
-      - name: Check Windows tests and static build
+      - name: Check Windows lint, typecheck, tests and static build
         run: |
+          corepack yarn lint
+          corepack yarn type-check
           corepack yarn test:run
           corepack yarn build
       - name: Confirm Apache config was copied
