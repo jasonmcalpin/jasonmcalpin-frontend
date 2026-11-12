@@ -1,9 +1,7 @@
 import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
 import { useAppDispatch, useAppSelector } from '../../hooks/useAppStore';
 import { filterProjects, fetchProjects, selectFilteredProjects } from '../../store/slices/projectsSlice';
 import ProjectCard from '../../components/global/projectCard';
-import { fadeInUp, staggerContainer } from '../../utils/animations';
 import Hero from '../../components/global/Hero';
 import { CenterTitle } from '../../components/global/Titles';
 import './styles.css';
@@ -45,12 +43,12 @@ const Projects = () => {
       <section className='projects-content'>
         <div className='section-container'>
           {/* Filters */}
-          <motion.div 
+          <div 
             className='projects-filters'
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-          >
+            
+            
+            
+           data-reveal="viewport">
             <h2 className='projects-filters__title'>Filter by:</h2>
             <div className='projects-filters__buttons'>
               <button 
@@ -77,14 +75,14 @@ const Projects = () => {
                 </button>
               ))}
             </div>
-          </motion.div>
+          </div>
           
-          <motion.div 
+          <div 
             className='projects-grid'
-            variants={staggerContainer}
-            initial='hidden'
-            animate='visible'
-          >
+            
+            
+            
+           data-reveal="viewport">
             {isLoading && projects.length === 0 ? (
               <p role='status'>Loading projects...</p>
             ) : error ? (
@@ -94,10 +92,10 @@ const Projects = () => {
                 <ProjectCard key={project.slug} project={project} index={index} />
               ))
             ) : (
-              <motion.div 
+              <div 
                 className='projects-empty'
-                variants={fadeInUp}
-              >
+                
+               data-reveal="viewport">
                 <p className='projects-empty__message'>
                   No projects found with the selected filter.
                 </p>
@@ -107,9 +105,9 @@ const Projects = () => {
                 >
                   Show All Projects
                 </button>
-              </motion.div>
+              </div>
             )}
-          </motion.div>
+          </div>
         </div>
       </section>
       
@@ -120,81 +118,77 @@ const Projects = () => {
           </CenterTitle>
           
           <div className='projects-process__steps'>
-            <motion.div 
+            <div 
               className='projects-process__step'
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-            >
+              
+              
+              
+              
+             data-reveal="viewport">
               <div className='projects-process__step-number'>01</div>
               <h3 className='projects-process__step-title'>Discovery & Planning</h3>
               <p className='projects-process__step-description'>
                 I start by understanding the project requirements, goals, and target audience. 
                 This phase includes research, wireframing, and creating a detailed project plan.
               </p>
-            </motion.div>
+            </div>
             
-            <motion.div 
+            <div 
               className='projects-process__step'
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-            >
+              
+              
+              
+              
+             data-reveal="viewport">
               <div className='projects-process__step-number'>02</div>
               <h3 className='projects-process__step-title'>Design & Prototyping</h3>
               <p className='projects-process__step-description'>
                 Next, I create visual designs and interactive prototypes to establish the look and feel 
                 of the project. This ensures we have a clear vision before development begins.
               </p>
-            </motion.div>
+            </div>
             
-            <motion.div 
+            <div 
               className='projects-process__step'
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.3 }}
-            >
+              
+              
+              
+              
+             data-reveal="viewport">
               <div className='projects-process__step-number'>03</div>
               <h3 className='projects-process__step-title'>Development</h3>
               <p className='projects-process__step-description'>
                 During development, I write clean, maintainable code following best practices. 
                 I use modern frameworks and tools to build scalable and performant applications.
               </p>
-            </motion.div>
+            </div>
             
-            <motion.div 
+            <div 
               className='projects-process__step'
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.4 }}
-            >
+              
+              
+              
+              
+             data-reveal="viewport">
               <div className='projects-process__step-number'>04</div>
               <h3 className='projects-process__step-title'>Testing & Deployment</h3>
               <p className='projects-process__step-description'>
                 Finally, I thoroughly test the application to ensure it works flawlessly across all devices 
                 and browsers. After testing, I deploy the project and provide ongoing support.
               </p>
-            </motion.div>
+            </div>
           </div>
         </div>
       </section>
       
       <section className='projects-cta'>
         <div className='section-container'>
-          <motion.div 
+          <div 
             className='projects-cta__content'
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ 
-              opacity: 1, 
-              y: 0,
-              transition: { duration: 0.5 }
-            }}
-            viewport={{ once: true }}
-          >
+            
+            
+            
+           data-reveal="viewport">
             <h2 className='projects-cta__title'>Have a project in mind?</h2>
             <p className='projects-cta__text'>
               I'm always looking for interesting projects to work on. Let's discuss how I can help bring your ideas to life.
@@ -202,7 +196,7 @@ const Projects = () => {
             <a href='/contact' className='btn btn-primary projects-cta__button'>
               Start a Project
             </a>
-          </motion.div>
+          </div>
         </div>
       </section>
     </div>
