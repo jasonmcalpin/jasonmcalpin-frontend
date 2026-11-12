@@ -43,8 +43,8 @@ This is the source code for Jason McAlpin's personal website, built with React, 
 
 ### Prerequisites
 
-- Node.js (v22+)
-- Yarn classic (v1.x)
+- Node.js 22 (CI and local builds use the same major version)
+- Corepack to run the pinned Yarn Classic version without a global Yarn installation
 
 ### Getting Started
 
@@ -58,16 +58,20 @@ This is the source code for Jason McAlpin's personal website, built with React, 
 2. Install dependencies
 
    ```bash
-   yarn install --frozen-lockfile
+   corepack yarn install --frozen-lockfile
    ```
 
 3. Start the development server
 
    ```bash
-   yarn dev
+   corepack yarn dev
    ```
 
 4. Open your browser and navigate to `http://localhost:5173`
+
+The canonical dependency lockfile is `yarn.lock` (Yarn 1.22.22 via the `packageManager` field). Use `corepack yarn build` on Windows, macOS, or Linux; the build generates `dist/.htaccess` on every OS. `corepack yarn build:analyze` generates `dist/stats.html`, which you can open in your browser.
+
+Do not use `pnpm install` or commit `pnpm-lock.yaml` in this repository: pnpm resolves a different dependency tree from Yarn CI. If you have already used pnpm, discard any untracked `pnpm-lock.yaml` and clear `node_modules` before reinstalling with the frozen Yarn lockfile. If Corepack is not installed on your Node distribution, install it first; a separate global Yarn installation is unnecessary.
 
 ### Available Scripts
 
