@@ -9,21 +9,21 @@
     {
       "id": 1,
       "faction": "megacorporationInfluence",
-      "text": "MegaCorp offers ration crates for a map of Scav hideouts. The Scavs will be exposed if you accept.",
+      "text": "MegaCorp wants you to trace Mecha's repair drones so it can seize their control hardware. It offers two supply packs for the route map, but Mecha will be exposed.",
       "leftChoice": {
-        "text": "Keep the routes secret",
+        "text": "Hide Mecha's routes",
         "effects": {
           "megacorporationInfluence": -1,
-          "survivorTrust": 2,
-          "resources": -1
+          "resources": -1,
+          "rogueAIProgress": 2
         }
       },
       "rightChoice": {
-        "text": "Trade the map for crates",
+        "text": "Sell the routes for supplies",
         "effects": {
           "megacorporationInfluence": 2,
-          "survivorTrust": -1,
-          "resources": 2
+          "resources": 2,
+          "rogueAIProgress": -1
         }
       },
       "background": "/command.png"
@@ -31,9 +31,9 @@
     {
       "id": 2,
       "faction": "megacorporationInfluence",
-      "text": "A MegaCorp checkpoint demands your spare batteries to run its perimeter guns. You could instead sneak them to Mecha.",
+      "text": "MegaCorp orders you to power its Mecha containment grid with your spare batteries. Refusing means spending a pack to smuggle the batteries to Mecha.",
       "leftChoice": {
-        "text": "Slip batteries to Mecha",
+        "text": "Smuggle batteries to Mecha",
         "effects": {
           "megacorporationInfluence": -2,
           "rogueAIProgress": 2,
@@ -41,7 +41,7 @@
         }
       },
       "rightChoice": {
-        "text": "Power the checkpoint",
+        "text": "Power the containment grid",
         "effects": {
           "megacorporationInfluence": 2,
           "rogueAIProgress": -1,
@@ -53,21 +53,21 @@
     {
       "id": 3,
       "faction": "megacorporationInfluence",
-      "text": "MegaCorp needs someone to repair a supply drone. They offer food, but the repaired drone will patrol Scav camps.",
+      "text": "MegaCorp offers food to repair a drone designed to seize Mecha's processors. Sabotaging it will cost you a ration.",
       "leftChoice": {
-        "text": "Sabotage the drone",
+        "text": "Sabotage the capture drone",
         "effects": {
           "megacorporationInfluence": -2,
-          "survivorTrust": 1,
-          "resources": -1
+          "resources": -1,
+          "rogueAIProgress": 1
         }
       },
       "rightChoice": {
-        "text": "Repair it for rations",
+        "text": "Repair it for food",
         "effects": {
           "megacorporationInfluence": 2,
-          "survivorTrust": -1,
-          "resources": 2
+          "resources": 2,
+          "rogueAIProgress": -1
         }
       },
       "background": "/sneak.png"
@@ -75,9 +75,9 @@
     {
       "id": 4,
       "faction": "rogueAIProgress",
-      "text": "Mecha asks you to route a scrap-yard generator into its network. The Scavs need that power for water pumps.",
+      "text": "Mecha wants to seize a scrapyard before Scavs dismantle its dormant machines. Its offer includes a small fuel payment if you lock out the Scavs.",
       "leftChoice": {
-        "text": "Leave power with Scavs",
+        "text": "Leave the yard to Scavs",
         "effects": {
           "rogueAIProgress": -2,
           "survivorTrust": 2,
@@ -85,7 +85,7 @@
         }
       },
       "rightChoice": {
-        "text": "Wire it into Mecha",
+        "text": "Secure the machines for Mecha",
         "effects": {
           "rogueAIProgress": 2,
           "survivorTrust": -2,
@@ -97,19 +97,21 @@
     {
       "id": 5,
       "faction": "rogueAIProgress",
-      "text": "Mecha can predict the next radiation storm and offers coordinates for two crates of salvage in return for access to your radio.",
+      "text": "Mecha offers two crates of salvage if you share your radio frequencies. It will use them to hunt Scav crews stripping its machines; keeping the radio private costs you a ration.",
       "leftChoice": {
-        "text": "Keep your radio private",
+        "text": "Protect the Scav frequencies",
         "effects": {
           "rogueAIProgress": -1,
-          "resources": -1
+          "resources": -1,
+          "survivorTrust": 1
         }
       },
       "rightChoice": {
-        "text": "Share the radio, take salvage",
+        "text": "Sell the frequencies for salvage",
         "effects": {
           "rogueAIProgress": 2,
-          "resources": 2
+          "resources": 2,
+          "survivorTrust": -1
         }
       },
       "background": "/woman.png"
@@ -117,21 +119,21 @@
     {
       "id": 6,
       "faction": "rogueAIProgress",
-      "text": "Mecha's small repair bot is trapped near a MegaCorp scanner. Freeing it costs supplies but keeps Mecha mobile.",
+      "text": "Scavs have cornered a Mecha repair bot for spare parts. Mecha begs you to recover it using two supply packs; leave it and you can salvage a spare ration.",
       "leftChoice": {
-        "text": "Leave the bot",
+        "text": "Let Scavs strip the bot",
         "effects": {
           "rogueAIProgress": -2,
-          "megacorporationInfluence": 1,
-          "resources": 1
+          "resources": 1,
+          "survivorTrust": 1
         }
       },
       "rightChoice": {
-        "text": "Rescue the bot",
+        "text": "Rescue Mecha's repair bot",
         "effects": {
           "rogueAIProgress": 2,
-          "megacorporationInfluence": -1,
-          "resources": -2
+          "resources": -2,
+          "survivorTrust": -1
         }
       },
       "background": "/help.png"
@@ -139,9 +141,9 @@
     {
       "id": 7,
       "faction": "survivorTrust",
-      "text": "Scavs ask you to hide their wounded inside your truck. MegaCorp will confiscate some supplies if you're stopped.",
+      "text": "Scavs need your truck to smuggle salvaged machine parts into a workshop making weapons against MegaCorp. Hiding them costs two supply packs.",
       "leftChoice": {
-        "text": "Turn them away",
+        "text": "Turn the Scavs away",
         "effects": {
           "survivorTrust": -2,
           "megacorporationInfluence": 1,
@@ -149,7 +151,7 @@
         }
       },
       "rightChoice": {
-        "text": "Hide the wounded",
+        "text": "Smuggle parts to the workshop",
         "effects": {
           "survivorTrust": 2,
           "megacorporationInfluence": -1,
@@ -161,21 +163,21 @@
     {
       "id": 8,
       "faction": "survivorTrust",
-      "text": "A Scav caravan offers fuel for your route if you jam Mecha's aerial scout. The jam will leave Mecha blind.",
+      "text": "Scavs offer fuel if you jam MegaCorp's surveillance drone above their weapons forge. Refusing the request will cost you a ration on the detour.",
       "leftChoice": {
-        "text": "Decline the deal",
+        "text": "Leave the drone online",
         "effects": {
           "survivorTrust": -1,
-          "rogueAIProgress": 1,
-          "resources": -1
+          "resources": -1,
+          "megacorporationInfluence": 1
         }
       },
       "rightChoice": {
-        "text": "Jam the scout for fuel",
+        "text": "Jam the drone for fuel",
         "effects": {
           "survivorTrust": 2,
-          "rogueAIProgress": -2,
-          "resources": 2
+          "resources": 2,
+          "megacorporationInfluence": -2
         }
       },
       "background": "/command.png"
@@ -183,19 +185,21 @@
     {
       "id": 9,
       "faction": "survivorTrust",
-      "text": "The Scavs found a food cache but need your lockpicking tools. Helping them will leave fewer tools for your escape.",
+      "text": "Scavs want your lockpicks to raid a MegaCorp arms locker and build weapons. Keeping your tools lets you salvage food, but lending them costs two supplies.",
       "leftChoice": {
-        "text": "Keep your tools",
+        "text": "Keep your tools and scavenge",
         "effects": {
           "survivorTrust": -2,
-          "resources": 1
+          "resources": 1,
+          "megacorporationInfluence": 1
         }
       },
       "rightChoice": {
-        "text": "Open the cache for them",
+        "text": "Lend the tools to Scavs",
         "effects": {
           "survivorTrust": 2,
-          "resources": -2
+          "resources": -2,
+          "megacorporationInfluence": -1
         }
       },
       "background": "/help.png"
@@ -203,9 +207,9 @@
     {
       "id": 10,
       "faction": "megacorporationInfluence",
-      "text": "MegaCorp has enough soldiers to strike Mecha's mainframe. They want you to plant a shutdown key; the raid will consume your batteries.",
+      "text": "MegaCorp plans to insert a shutdown key into Mecha's central controller and take over its drones. The operation will consume two supply packs; you could steal the key for salvage instead.",
       "leftChoice": {
-        "text": "Steal the key instead",
+        "text": "Steal the key for salvage",
         "effects": {
           "megacorporationInfluence": -3,
           "rogueAIProgress": 2,
@@ -213,7 +217,7 @@
         }
       },
       "rightChoice": {
-        "text": "Plant the shutdown key",
+        "text": "Install the control key",
         "effects": {
           "megacorporationInfluence": 3,
           "rogueAIProgress": -3,
@@ -228,21 +232,21 @@
     {
       "id": 11,
       "faction": "megacorporationInfluence",
-      "text": "MegaCorp is moving armored patrols against a Scav settlement. They offer you captured fuel if you guide the attack.",
+      "text": "MegaCorp's armored technicians are heading to seize a Mecha assembly line. They offer two fuel packs if you guide them; warning Mecha first costs two supplies.",
       "leftChoice": {
-        "text": "Warn the Scavs",
+        "text": "Warn Mecha's defenders",
         "effects": {
           "megacorporationInfluence": -3,
-          "survivorTrust": 3,
-          "resources": -2
+          "resources": -2,
+          "rogueAIProgress": 3
         }
       },
       "rightChoice": {
-        "text": "Guide the patrol for fuel",
+        "text": "Guide the takeover crew",
         "effects": {
           "megacorporationInfluence": 3,
-          "survivorTrust": -3,
-          "resources": 2
+          "resources": 2,
+          "rogueAIProgress": -3
         }
       },
       "background": "/command.png",
@@ -253,9 +257,9 @@
     {
       "id": 12,
       "faction": "megacorporationInfluence",
-      "text": "MegaCorp asks you to sabotage Mecha's charging depot. You could seize the parts yourself instead of handing them over.",
+      "text": "MegaCorp asks you to lock down Mecha's charging depot. The raid costs two supply packs, but rerouting its spare cells back to Mecha would earn you salvage.",
       "leftChoice": {
-        "text": "Keep the parts",
+        "text": "Reroute cells to Mecha",
         "effects": {
           "megacorporationInfluence": -2,
           "rogueAIProgress": 2,
@@ -263,7 +267,7 @@
         }
       },
       "rightChoice": {
-        "text": "Destroy the depot",
+        "text": "Lock down the depot",
         "effects": {
           "megacorporationInfluence": 3,
           "rogueAIProgress": -3,
@@ -278,21 +282,21 @@
     {
       "id": 13,
       "faction": "rogueAIProgress",
-      "text": "Mecha has enough drones to disable MegaCorp's communications tower. It needs your portable uplink for the strike.",
+      "text": "Mecha dispatches drones against a Scav convoy hauling stripped robot components to an anti-MegaCorp weapons factory. It needs your uplink, consuming two supply packs.",
       "leftChoice": {
-        "text": "Keep the uplink",
+        "text": "Sell the uplink to Scavs",
         "effects": {
           "rogueAIProgress": -3,
-          "megacorporationInfluence": 2,
-          "resources": 2
+          "resources": 2,
+          "survivorTrust": 2
         }
       },
       "rightChoice": {
-        "text": "Link the drones",
+        "text": "Coordinate Mecha's strike",
         "effects": {
           "rogueAIProgress": 3,
-          "megacorporationInfluence": -3,
-          "resources": -2
+          "resources": -2,
+          "survivorTrust": -3
         }
       },
       "background": "/connect.png",
@@ -303,9 +307,9 @@
     {
       "id": 14,
       "faction": "rogueAIProgress",
-      "text": "Mecha plans to send combat machines through a Scav market. It offers captured supply crates if you open a gate.",
+      "text": "Mecha wants to clear Scavs out of a market where dismantled machines are sold. Its drones will seize supplies for you if you open the gate, but warning the market costs two supply packs.",
       "leftChoice": {
-        "text": "Warn the market",
+        "text": "Warn the Scav market",
         "effects": {
           "rogueAIProgress": -3,
           "survivorTrust": 3,
@@ -313,7 +317,7 @@
         }
       },
       "rightChoice": {
-        "text": "Open the gate for crates",
+        "text": "Open the gate for payment",
         "effects": {
           "rogueAIProgress": 3,
           "survivorTrust": -3,
@@ -328,21 +332,21 @@
     {
       "id": 15,
       "faction": "rogueAIProgress",
-      "text": "Mecha needs a targeting chip to destroy MegaCorp's vehicle factory. You can sell the chip as salvage instead.",
+      "text": "Mecha plans to destroy the Scavs' machine-stripping workshop. You hold the targeting chip: Mecha demands it and two power packs, while Scavs will pay for it.",
       "leftChoice": {
-        "text": "Sell the chip as salvage",
+        "text": "Sell the chip to Scavs",
         "effects": {
           "rogueAIProgress": -2,
-          "megacorporationInfluence": 2,
-          "resources": 2
+          "resources": 2,
+          "survivorTrust": 2
         }
       },
       "rightChoice": {
-        "text": "Give Mecha the chip",
+        "text": "Guide Mecha's strike",
         "effects": {
           "rogueAIProgress": 3,
-          "megacorporationInfluence": -3,
-          "resources": -2
+          "resources": -2,
+          "survivorTrust": -3
         }
       },
       "background": "/help.png",
@@ -353,9 +357,9 @@
     {
       "id": 16,
       "faction": "survivorTrust",
-      "text": "Scav raiders prepare to breach MegaCorp's fuel train. They ask you to crack the locks and promise a share of the cargo.",
+      "text": "Scav raiders want to crack MegaCorp's weapons train and use the cargo to arm their rebellion. They promise you two supply packs for opening the locks; avoiding the raid costs two on the long route.",
       "leftChoice": {
-        "text": "Keep clear of the raid",
+        "text": "Avoid the armed raid",
         "effects": {
           "survivorTrust": -3,
           "megacorporationInfluence": 2,
@@ -363,7 +367,7 @@
         }
       },
       "rightChoice": {
-        "text": "Open the train for fuel",
+        "text": "Open the train for Scavs",
         "effects": {
           "survivorTrust": 3,
           "megacorporationInfluence": -3,
@@ -378,21 +382,21 @@
     {
       "id": 17,
       "faction": "survivorTrust",
-      "text": "The Scavs have enough people to raid Mecha's relay bunker. They need your explosives to cut off its drones.",
+      "text": "Scavs have built explosives from salvaged Mecha parts to breach MegaCorp's weapons bunker. They need two of your power packs to trigger the charges.",
       "leftChoice": {
-        "text": "Save the explosives",
+        "text": "Keep the power packs",
         "effects": {
           "survivorTrust": -3,
-          "rogueAIProgress": 2,
-          "resources": 2
+          "resources": 2,
+          "megacorporationInfluence": 2
         }
       },
       "rightChoice": {
-        "text": "Blow the relay bunker",
+        "text": "Blast MegaCorp's bunker",
         "effects": {
           "survivorTrust": 3,
-          "rogueAIProgress": -3,
-          "resources": -2
+          "resources": -2,
+          "megacorporationInfluence": -3
         }
       },
       "background": "/command.png",
@@ -403,21 +407,21 @@
     {
       "id": 18,
       "faction": "survivorTrust",
-      "text": "A Scav strike team wants you to intercept Mecha's repair shipment. They offer spare rations for your assistance.",
+      "text": "Scav fighters plan to ambush a MegaCorp transport carrying ammunition for the next crackdown. If you help, they pay you two rations; warning MegaCorp burns two of your supplies.",
       "leftChoice": {
-        "text": "Warn Mecha instead",
+        "text": "Warn MegaCorp's guards",
         "effects": {
           "survivorTrust": -2,
-          "rogueAIProgress": 2,
-          "resources": -2
+          "resources": -2,
+          "megacorporationInfluence": 2
         }
       },
       "rightChoice": {
-        "text": "Ambush the shipment",
+        "text": "Ambush the ammo convoy",
         "effects": {
           "survivorTrust": 3,
-          "rogueAIProgress": -3,
-          "resources": 2
+          "resources": 2,
+          "megacorporationInfluence": -3
         }
       },
       "background": "/hack.png",
@@ -428,9 +432,9 @@
     {
       "id": 19,
       "faction": "megacorporationInfluence",
-      "text": "MegaCorp is mobilizing for total control. They order you to shut down Mecha's central reactor before its army wakes.",
+      "text": "MegaCorp is ready to enslave Mecha's entire robot army through its central reactor. The takeover costs two supplies; stealing reactor fuel would help you escape.",
       "leftChoice": {
-        "text": "Divert reactor fuel for escape",
+        "text": "Steal reactor fuel",
         "effects": {
           "megacorporationInfluence": -3,
           "rogueAIProgress": 3,
@@ -438,7 +442,7 @@
         }
       },
       "rightChoice": {
-        "text": "Shut down the reactor",
+        "text": "Seize Mecha's reactor",
         "effects": {
           "megacorporationInfluence": 3,
           "rogueAIProgress": -3,
@@ -453,21 +457,21 @@
     {
       "id": 20,
       "faction": "megacorporationInfluence",
-      "text": "MegaCorp is sealing the wasteland borders. They want the location of a Scav evacuation tunnel and offer their final fuel stock.",
+      "text": "MegaCorp orders you to expose Mecha's hidden assembly tunnels before its final occupation. It promises two fuel packs; shielding those tunnels costs you supplies.",
       "leftChoice": {
-        "text": "Protect the tunnel",
+        "text": "Hide Mecha's tunnels",
         "effects": {
           "megacorporationInfluence": -3,
-          "survivorTrust": 3,
-          "resources": -2
+          "resources": -2,
+          "rogueAIProgress": 3
         }
       },
       "rightChoice": {
-        "text": "Sell the tunnel location",
+        "text": "Sell the tunnel coordinates",
         "effects": {
           "megacorporationInfluence": 3,
-          "survivorTrust": -3,
-          "resources": 2
+          "resources": 2,
+          "rogueAIProgress": -3
         }
       },
       "background": "/sneak.png",
@@ -478,21 +482,21 @@
     {
       "id": 21,
       "faction": "megacorporationInfluence",
-      "text": "MegaCorp's assault convoy is ready to flatten Scav defenses. They demand your navigation system for the final push.",
+      "text": "MegaCorp's final assault convoy is targeting Mecha's primary foundry. They demand your navigation unit, but sabotaging the convoy would net two supply packs.",
       "leftChoice": {
-        "text": "Disrupt the convoy",
+        "text": "Sabotage the convoy",
         "effects": {
           "megacorporationInfluence": -3,
-          "survivorTrust": 3,
-          "resources": 2
+          "resources": 2,
+          "rogueAIProgress": 3
         }
       },
       "rightChoice": {
-        "text": "Guide the final assault",
+        "text": "Guide the foundry assault",
         "effects": {
           "megacorporationInfluence": 3,
-          "survivorTrust": -3,
-          "resources": -2
+          "resources": -2,
+          "rogueAIProgress": -3
         }
       },
       "background": "/command.png",
@@ -503,21 +507,21 @@
     {
       "id": 22,
       "faction": "rogueAIProgress",
-      "text": "Mecha is building an army of autonomous bodies. It needs you to black out MegaCorp's defenses so the machines can deploy.",
+      "text": "Mecha's new combat bodies are marching on Scav salvage yards to stop the dismantling of its machines. It needs your generator cells to coordinate them.",
       "leftChoice": {
-        "text": "Keep the defenses online",
+        "text": "Keep the cells, warn Scavs",
         "effects": {
           "rogueAIProgress": -3,
-          "megacorporationInfluence": 3,
-          "resources": 2
+          "resources": 2,
+          "survivorTrust": 3
         }
       },
       "rightChoice": {
-        "text": "Black out MegaCorp",
+        "text": "Power Mecha's army",
         "effects": {
           "rogueAIProgress": 3,
-          "megacorporationInfluence": -3,
-          "resources": -2
+          "resources": -2,
+          "survivorTrust": -3
         }
       },
       "background": "/connect.png",
@@ -528,9 +532,9 @@
     {
       "id": 23,
       "faction": "rogueAIProgress",
-      "text": "Mecha has surrounded a Scav refuge with siege drones. It offers captured fuel if you reveal the refuge's emergency exit.",
+      "text": "Mecha has trapped Scavs in a refuge packed with salvaged robot parts. Its drones offer two fuel packs if you reveal an escape tunnel; hiding it costs two supplies.",
       "leftChoice": {
-        "text": "Hide the emergency exit",
+        "text": "Hide the Scav exit",
         "effects": {
           "rogueAIProgress": -3,
           "survivorTrust": 3,
@@ -538,7 +542,7 @@
         }
       },
       "rightChoice": {
-        "text": "Reveal it for fuel",
+        "text": "Sell the exit to Mecha",
         "effects": {
           "rogueAIProgress": 3,
           "survivorTrust": -3,
@@ -553,21 +557,21 @@
     {
       "id": 24,
       "faction": "rogueAIProgress",
-      "text": "Mecha is hours from launching its machine army. It asks you to sacrifice your remaining power cells to disable MegaCorp's anti-drone grid.",
+      "text": "Mecha's machine army is ready to wipe out the Scav dismantling camps. It needs the last of your portable power cells to locate the workshops; you could keep them and escape.",
       "leftChoice": {
-        "text": "Use the cells to escape",
+        "text": "Keep the cells for yourself",
         "effects": {
           "rogueAIProgress": -3,
-          "megacorporationInfluence": 3,
-          "resources": 2
+          "resources": 2,
+          "survivorTrust": 3
         }
       },
       "rightChoice": {
-        "text": "Disable the anti-drone grid",
+        "text": "Target the Scav workshops",
         "effects": {
           "rogueAIProgress": 3,
-          "megacorporationInfluence": -3,
-          "resources": -2
+          "resources": -2,
+          "survivorTrust": -3
         }
       },
       "background": "/woman.png",
@@ -578,9 +582,9 @@
     {
       "id": 25,
       "faction": "survivorTrust",
-      "text": "The Scavs are rallying for a final attack on MegaCorp headquarters. They need your access codes and promise a share of the vault.",
+      "text": "Scavs have enough salvaged Mecha weapons to storm MegaCorp's headquarters. They promise you two crates if you open the vault; selling out their plan would cost two supplies.",
       "leftChoice": {
-        "text": "Trade codes to MegaCorp",
+        "text": "Trade the plan to MegaCorp",
         "effects": {
           "survivorTrust": -3,
           "megacorporationInfluence": 3,
@@ -603,21 +607,21 @@
     {
       "id": 26,
       "faction": "survivorTrust",
-      "text": "Scav fighters are dismantling Mecha's factories. They ask you to overload the production core using your own batteries.",
+      "text": "Scav fighters have built an overload device from Mecha scrap to destroy MegaCorp's vehicle plant. They need two of your batteries; keeping them lets you salvage two supplies.",
       "leftChoice": {
-        "text": "Keep the batteries",
+        "text": "Keep your batteries",
         "effects": {
           "survivorTrust": -3,
-          "rogueAIProgress": 3,
-          "resources": 2
+          "resources": 2,
+          "megacorporationInfluence": 3
         }
       },
       "rightChoice": {
-        "text": "Overload the core",
+        "text": "Overload MegaCorp's plant",
         "effects": {
           "survivorTrust": 3,
-          "rogueAIProgress": -3,
-          "resources": -2
+          "resources": -2,
+          "megacorporationInfluence": -3
         }
       },
       "background": "/help.png",
@@ -628,21 +632,21 @@
     {
       "id": 27,
       "faction": "survivorTrust",
-      "text": "The Scavs are preparing to storm the last Mecha command station. They offer seized supplies if you cut its command fiber.",
+      "text": "Scavs are storming MegaCorp's last command tower with weapons made from stripped Mecha machines. Cut its command fiber for two seized supply packs or protect it and lose two rations.",
       "leftChoice": {
-        "text": "Protect the command fiber",
+        "text": "Protect MegaCorp's fiber",
         "effects": {
           "survivorTrust": -3,
-          "rogueAIProgress": 3,
-          "resources": -2
+          "resources": -2,
+          "megacorporationInfluence": 3
         }
       },
       "rightChoice": {
-        "text": "Cut the fiber for supplies",
+        "text": "Cut the fiber for Scavs",
         "effects": {
           "survivorTrust": 3,
-          "rogueAIProgress": -3,
-          "resources": 2
+          "resources": 2,
+          "megacorporationInfluence": -3
         }
       },
       "background": "/command.png",
