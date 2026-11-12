@@ -16,7 +16,7 @@ Object.defineProperty(window, 'matchMedia', {
   })),
 })
 
-// Mock IntersectionObserver for components using react-intersection-observer
+// Mock IntersectionObserver for native viewport reveal handling
 global.IntersectionObserver = vi.fn().mockImplementation(() => ({
   observe: vi.fn(),
   unobserve: vi.fn(),
