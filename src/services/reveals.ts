@@ -9,7 +9,8 @@ export function initializeReveals(): () => void {
   if (typeof document === 'undefined') return () => {};
   document.documentElement.classList.add('js-enabled');
   const targets = new WeakSet<Element>();
-  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const reducedMotion = typeof window.matchMedia === 'function' &&
+    window.matchMedia('(prefers-reduced-motion: reduce)')?.matches === true;
   const show = (element: Element) => element.classList.add('is-visible');
   const observer = !reducedMotion && 'IntersectionObserver' in window
     ? new IntersectionObserver(entries => {
