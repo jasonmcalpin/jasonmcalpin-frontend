@@ -46,7 +46,7 @@ export default function Services() {
                 <h3>{engagement.name}</h3><p>{engagement.description}</p>
               </article>)}
           </div>
-          <p className="consulting-small">Scope, timing and fees are agreed directly based on the work—not guessed from a generic price list.</p>
+          <p className="consulting-small">Scope, timing and fees are agreed directly based on the work, not guessed from a generic price list.</p>
         </div>
       </section>
       <section className="consulting-cta"><div className="consulting-container">

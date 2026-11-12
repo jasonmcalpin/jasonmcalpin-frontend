@@ -80,7 +80,7 @@ const personSchema = { '@context': 'https://schema.org', '@type': 'Person',
   sameAs: [consulting.identity.linkedin, consulting.identity.github],
   knowsAbout: consulting.services.map(service => service.title) };
 const websiteSchema = { '@context': 'https://schema.org', '@type': 'WebSite',
-  '@id': site + '/#website', name: 'Jason McAlpin — Independent Software Engineering',
+  '@id': site + '/#website', name: 'Jason McAlpin: Independent Software Engineering',
   url: site, description: consulting.identity.summary,
   about: { '@id': personSchema['@id'] } };
 const serviceSchema = {
@@ -292,7 +292,7 @@ await writeFile(join(dist, 'sitemap.xml'), sitemap);
 // Optional LLM-oriented navigation index: derived from the same published
 // business and project records as React and crawler-readable HTML.
 const aiIndex = [
-  '# Jason McAlpin — Independent Software Engineering',
+  '# Jason McAlpin: Independent Software Engineering',
   '',
   '> ' + consulting.identity.summary,
   '',
@@ -319,7 +319,7 @@ const aiIndex = [
   '',
   '## Additional context',
   '- [About](' + site + '/about)',
-  '- [Bytes — engineering writing](' + site + '/bytes)',
+  '- [Bytes: engineering writing](' + site + '/bytes)',
   '- [Contact](' + site + '/contact)',
   '',
   'This file is a navigation aid, not an API or a guarantee of AI indexing. Check the linked pages for source context.',

@@ -29,7 +29,7 @@ export default function Bytes() {
 
   return (
     <div className="consulting-page consulting-inner-page bytes" aria-labelledby="bytes-heading">
-      <SEO title="Bytes — Engineering Notes" description="Thoughts on software engineering, architecture, practical AI, performance and technology delivery." canonical="/bytes" />
+      <SEO title="Bytes: Engineering Notes" description="Thoughts on software engineering, architecture, practical AI, performance and technology delivery." canonical="/bytes" />
       <header className="consulting-page-intro consulting-container">
         <p className="consulting-eyebrow">Engineering / Ideas / Experiments</p>
         <h1 id="bytes-heading">Bytes.</h1>

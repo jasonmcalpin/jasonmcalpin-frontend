@@ -21,7 +21,7 @@ export default function Projects() {
       <header className="consulting-page-intro consulting-container">
         <p className="consulting-eyebrow">Selected work and open-source engineering</p>
         <h1>What I built. Why it mattered.</h1>
-        <p className="consulting-lead">Enterprise work, published tools and ongoing systems research—presented with my responsibilities, outcomes and the maturity of each project.</p>
+        <p className="consulting-lead">Enterprise work, published tools and ongoing systems research, presented with my responsibilities, outcomes and the maturity of each project.</p>
       </header>
       <section className="consulting-section consulting-section--subtle">
         <div className="consulting-container">

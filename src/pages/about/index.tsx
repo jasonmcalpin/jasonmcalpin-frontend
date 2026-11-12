@@ -25,7 +25,7 @@ export default function About() {
             <p className="consulting-eyebrow">Experience and approach</p>
             <h2>From technical ambiguity to working systems.</h2>
             <p className="consulting-body">My background spans customer-facing digital experiences, complex data migrations, APIs, enterprise publishing, performance work and applied AI. I've contributed to projects for IBM, Ford and teams working across several industries.</p>
-            <p className="consulting-body">I work across architectural decisions and implementation, with attention to what the organization needs to maintain after delivery—not just the code needed for a demonstration.</p>
+            <p className="consulting-body">I work across architectural decisions and implementation, with attention to what the organization needs to maintain after delivery, not just the code needed for a demonstration.</p>
             <Link to="/projects" className="consulting-text-link">See the work behind the claims →</Link>
           </div>
           <aside className="consulting-simple-card">

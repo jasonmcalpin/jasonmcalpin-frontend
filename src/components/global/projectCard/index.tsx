@@ -14,7 +14,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
       ) : (
         <div className="consulting-project-card__graphic" aria-hidden="true">
           <span>ENGINEERING / {project.category || 'SYSTEMS'}</span>
-          <strong>{project.title.split(' — ')[0]}</strong>
+          <strong>{project.title.split(': ')[0]}</strong>
         </div>
       )}
       <div className="consulting-project-card__body">
