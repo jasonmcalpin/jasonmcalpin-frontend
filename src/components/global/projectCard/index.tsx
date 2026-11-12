@@ -1,4 +1,3 @@
-import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import type { Project } from '../../../store/slices/projectsSlice';
 import OptimizedImage from '../OptimizedImage';
@@ -14,23 +13,13 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, index }) => {
   const delay = index * 0.1;
 
   return (
-    <motion.div 
+    <div 
       className='project-card highlight-outline bg-background-light rounded-lg overflow-hidden transition-all duration-300'
-      initial={{ opacity: 0, y: 50 }}
-      whileInView={{ 
-        opacity: 1, 
-        y: 0,
-        transition: { 
-          duration: 0.5,
-          delay 
-        }
-      }}
-      viewport={{ once: true, margin: '-100px' }}
-      whileHover={{ 
-        y: -10,
-        transition: { duration: 0.3 }
-      }}
-    >
+      
+      
+      
+      
+     data-reveal="viewport" data-hover-lift="true">
       <div className='project-card__image-container relative w-full h-48 overflow-hidden'>
         <OptimizedImage 
           src={project.imageUrl} 
@@ -93,7 +82,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, index }) => {
           </Link>
         </div>
       </div>
-    </motion.div>
+    </div>
   );
 };
 
