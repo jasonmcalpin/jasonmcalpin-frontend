@@ -23,8 +23,8 @@ const articles = JSON.parse(await readFile(source, 'utf8'));
 if (!Array.isArray(articles)) throw new Error('Byte catalog must be an array');
 
 function renderCode({ className, children, ...props }) {
-  const match = /(?:^|\\s)language-([\\w+-]+)/.exec(className || '');
-  const code = String(children).replace(/\\n$/, '');
+  const match = /(?:^|\s)language-([\w+-]+)/.exec(className || '');
+  const code = String(children).replace(/\n$/, '');
 
   // Inline code and fenced code without a language remain plain <code>.
   // ReactMarkdown owns the surrounding <pre> for fenced blocks; never nest it.
@@ -57,7 +57,7 @@ function renderArticle(byte) {
     throw new Error('Invalid article slug or content');
 
   // Article title is already rendered by the page heading.
-  const content = byte.content.replace(/^#\\s+([^\\r\\n]+)\\r?\\n/, (whole, heading) =>
+  const content = byte.content.replace(/^#\s+([^\r\n]+)\r?\n/, (whole, heading) =>
     heading.trim().toLowerCase() === byte.title.trim().toLowerCase() ? '' : whole);
 
   const html = renderToStaticMarkup(createElement(ReactMarkdown, {
@@ -72,9 +72,9 @@ function renderArticle(byte) {
   // Explicitly fail closed if the publishing pipeline ever permits raw HTML
   // or unsafe URL schemes through. Compiled fragments are the only HTML the
   // client inserts with dangerouslySetInnerHTML.
-  if (/<\\/?(?:script|iframe|object|embed|style)(?:\\s|>)/i.test(html) ||
-      /\\son[a-z]+\\s*=/i.test(html) ||
-      /(?:href|src)\\s*=\\s*["']\\s*(?:javascript|data):/i.test(html))
+  if (/<\/?(?:script|iframe|object|embed|style)(?:\s|>)/i.test(html) ||
+      /\son[a-z]+\s*=/i.test(html) ||
+      /(?:href|src)\s*=\s*["']\s*(?:javascript|data):/i.test(html))
     throw new Error('Unsafe HTML generated for ' + byte.slug);
   return html;
 }
@@ -91,7 +91,7 @@ for (const byte of articles) {
   if (!html.includes('<p>')) throw new Error('Empty rendered article ' + byte.slug);
   highlighted += (html.match(/class="language-/g) || []).length;
   characters += html.length;
-  await writeFile(join(output, byte.slug + '.html'), html + '\\n');
+  await writeFile(join(output, byte.slug + '.html'), html + '\n');
 }
 console.log('Precompiled ' + seen.size + ' article fragments (' + characters +
   ' HTML characters, ' + highlighted + ' highlighted code blocks).');
