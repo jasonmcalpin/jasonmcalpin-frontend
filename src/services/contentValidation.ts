@@ -46,7 +46,7 @@ export function parseBytes(value: unknown): Byte[] {
     return {
       id: string(a.id, `${path}.id`), slug: string(a.slug, `${path}.slug`),
       title: string(a.title, `${path}.title`), excerpt: string(a.excerpt, `${path}.excerpt`),
-      content: string(a.content, `${path}.content`), imageUrl: string(a.imageUrl, `${path}.imageUrl`),
+      imageUrl: string(a.imageUrl, `${path}.imageUrl`),
       author: string(a.author, `${path}.author`), date,
       tags: strings(a.tags, `${path}.tags`), readingTime: a.readingTime,
     };
