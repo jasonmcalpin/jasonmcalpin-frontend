@@ -1,4 +1,3 @@
-import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import type { Byte } from '@/store/slices/bytesSlice';
 import OptimizedImage from '../OptimizedImage';
@@ -19,25 +18,15 @@ const ByteCard: React.FC<ByteCardProps> = ({ byte, index }) => {
   };
 
   return (
-    <motion.div 
+    <div 
       className='byte-card highlight-outline bg-background-light rounded-lg overflow-hidden transition-all duration-300'
-      initial={{ opacity: 0, y: 50 }}
-      whileInView={{ 
-        opacity: 1, 
-        y: 0,
-        transition: { 
-          duration: 0.5,
-          delay 
-        }
-      }}
-      viewport={{ once: true, margin: '-100px' }}
-      whileHover={{ 
-        y: -10,
-        transition: { duration: 0.3 }
-      }}
+      
+      
+      
+      
       role='article'
       aria-labelledby={`byte-title-${byte.id}`}
-    >
+     data-reveal="viewport" data-hover-lift="true">
       <div className='byte-card__image-container relative w-full h-48 overflow-hidden'>
         <OptimizedImage 
           src={byte.imageUrl} 
@@ -78,7 +67,7 @@ const ByteCard: React.FC<ByteCardProps> = ({ byte, index }) => {
           Take A Byte <span className='fa-icon' aria-hidden='true'><i className='fa-solid fa-angle-right'></i></span>
         </Link>
       </div>
-    </motion.div>
+    </div>
   );
 };
 
