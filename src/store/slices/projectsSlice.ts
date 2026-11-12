@@ -54,8 +54,6 @@ export const projectsSlice = createSlice({
   reducers: {
     filterProjects: (state, action: PayloadAction<string | null>) => {
       state.activeFilter = action.payload;
-      
-
     },
   },
   extraReducers: (builder) => {
