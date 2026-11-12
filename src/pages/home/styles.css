@@ -8,22 +8,6 @@
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
 }
 
-.hero__grid-item--1 {
-  background-image: url('/assets/images/code.jpg');
-}
-
-.hero__grid-item--2 {
-  background-image: url('/assets/images/design.jpg');
-}
-
-.hero__grid-item--3 {
-  background-image: url('/assets/images/mobile.jpg');
-}
-
-.hero__grid-item--4 {
-  background-image: url('/assets/images/web.jpg');
-}
-
 .home-bytes__grid {
   @apply grid grid-cols-1 md:grid-cols-2 gap-8;
 }
