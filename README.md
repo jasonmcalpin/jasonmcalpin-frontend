@@ -1,3 +1,13 @@
+## Native UI animation (no runtime dependency)
+
+Decorative UI reveals, entrance effects, hover feedback, and skill-progress bars use **CSS transitions** activated by a single browser-native `IntersectionObserver` in `src/services/reveals.ts`. A `MutationObserver` registers lazy-loaded/route content. There is no Framer Motion, Motion DOM, or third-party intersection-observer package.
+
+- Markup opts in with `data-reveal="viewport"` or `data-reveal="scale"`; use `data-hover-lift` for optional card hover effects. Do not introduce delayed per-element JS animation controllers.
+- Animation is a **decorative enhancement**: no-JavaScript content remains readable; reduced-motion preferences disable transforms and transitions.
+- `yarn verify:no-motion` checks that no forbidden Motion imports, JSX tags, or obsolete direct dependencies return.
+- Header/mobile menu interaction uses normal React state and CSS only.
+- Keep reveal transforms layout-independent and short; no staggered JS timers.
+
 # Jason McAlpin - Personal Website
 
 This is the source code for Jason McAlpin's personal website, built with React, TypeScript, and Vite.
