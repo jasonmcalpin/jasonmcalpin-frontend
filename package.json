@@ -5,10 +5,11 @@
   "type": "module",
   "scripts": {
     "dev": "yarn optimize-images && vite",
-    "build": "yarn verify:content && yarn optimize-images && yarn verify:images && tsc -b && vite build && node scripts/generate-static-pages.mjs && yarn verify:static && yarn verify:chunks && yarn verify:no-motion && yarn verify:svg-layout && cp .htaccess dist/ --f",
+    "build": "yarn verify:content && yarn verify:fonts && yarn optimize-images && yarn verify:images && tsc -b && vite build && node scripts/generate-static-pages.mjs && yarn verify:static && yarn verify:chunks && yarn verify:no-motion && yarn verify:svg-layout && cp .htaccess dist/ --f",
     "verify:static": "node scripts/verify-static-pages.mjs",
     "verify:content": "node scripts/verify-json-content.mjs",
     "verify:images": "node scripts/verify-responsive-images.mjs",
+    "verify:fonts": "node scripts/verify-self-hosted-fonts.mjs",
     "verify:chunks": "node scripts/verify-home-chunks.mjs",
     "verify:no-motion": "node scripts/verify-no-motion.mjs",
     "verify:svg-layout": "node scripts/verify-svg-and-layout.mjs",
