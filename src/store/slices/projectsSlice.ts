@@ -21,6 +21,7 @@ interface ProjectsState {
   projects: Project[];
   activeFilter: string | null;
   isLoading: boolean;
+  hasLoaded: boolean;
   error: string | null;
 }
 
@@ -28,6 +29,7 @@ const initialState: ProjectsState = {
   projects: [],
   activeFilter: null,
   isLoading: false,
+  hasLoaded: false,
   error: null,
 };
 
@@ -64,10 +66,12 @@ export const projectsSlice = createSlice({
       })
       .addCase(fetchProjects.fulfilled, (state, action) => {
         state.isLoading = false;
+        state.hasLoaded = true;
         state.projects = action.payload;
       })
       .addCase(fetchProjects.rejected, (state, action) => {
         state.isLoading = false;
+        state.hasLoaded = true;
         state.error = action.payload as string;
       });
   },
