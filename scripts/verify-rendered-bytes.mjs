@@ -21,7 +21,7 @@ for (const byte of bytes) {
     problems.push('missing fenced blocks: ' + byte.slug);
   codeBlocks += (html.match(/class="language-/g) || []).length;
   if (/<\/?(?:script|iframe|object|embed|style)(?:\s|>)/i.test(html) ||
-      /\son[a-z]+\s*=/i.test(html) ||
+      /<[a-z][^>]*\son[a-z]+\s*=/i.test(html) ||
       /(?:href|src)\s*=\s*["']\s*(?:javascript|data):/i.test(html))
     problems.push('unsafe generated markup: ' + byte.slug);
   if (/<pre[^>]*>\s*<pre/i.test(html))
