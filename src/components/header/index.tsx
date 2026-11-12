@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { motion, AnimatePresence, easeInOut } from 'framer-motion';
 import { useAppDispatch, useAppSelector } from '../../hooks/useAppStore';
 import { toggleMobileMenu, closeMobileMenu, setIsScrolled } from '../../store/slices/uiSlice';
 import type { NavLink } from '../../types';
@@ -119,28 +118,28 @@ const Header = () => {
   }}
 >
   <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center'>
-    <motion.div
+    <div
       className='flex items-center'
-      initial='hidden'
-      animate={mounted ? 'visible' : 'hidden'}
-      variants={logoVariants}
-    >
+      
+      
+      
+     data-reveal="viewport">
       <Link to='/' className='flex items-center no-underline'>
         <div className='text-xl sm:text-2xl font-heading font-bold'>
           <span className='neon-text mr-1'>Jason McAlpin</span>
         </div>
       </Link>
-    </motion.div>
+    </div>
 
-    <motion.nav
+    <nav
       className='hidden md:block'
-      initial='hidden'
-      animate={mounted ? 'visible' : 'hidden'}
-      variants={navVariants}
-    >
+      
+      
+      
+     data-reveal="viewport">
       <ul className='flex space-x-8 list-none p-0 m-0'>
         {navLinks.map(link => (
-          <motion.li key={link.path} className='relative' variants={linkVariants}>
+          <li key={link.path} className='relative'  data-reveal="viewport">
             <Link
               to={link.path}
               className={` hover:text-[var(--color-neon-blue)] transition-colors duration-300 text-base font-medium ${
@@ -155,10 +154,10 @@ const Header = () => {
                 />
               )}
             </Link>
-          </motion.li>
+          </li>
         ))}
       </ul>
-    </motion.nav>
+    </nav>
 
     <div className='block md:hidden'>
       <button
@@ -187,23 +186,23 @@ const Header = () => {
     </div>
   </div>
 
-  <AnimatePresence>
+  <>
     {isMobileMenuOpen && (
-      <motion.div
+      <div
         className='w-full bg-background-light overflow-hidden md:hidden'
-        initial='hidden'
-        animate='visible'
-        exit='exit'
-        variants={mobileMenuVariants}
-      >
+        
+        
+        
+        
+       data-reveal="viewport">
         <ul className='list-none p-0 m-0'>
           {navLinks.map(link => (
-            <motion.li
+            <li
               key={link.path}
               className='border-b border-gray-800'
-              variants={linkVariants}
-              whileHover={{ x: 10 }}
-            >
+              
+              
+             data-reveal="viewport" data-hover-lift="true">
               <Link
                 to={link.path}
                 className={`block py-4 px-6 text-white hover:var(--color-neon-blue) transition-colors duration-300 ${
@@ -212,12 +211,12 @@ const Header = () => {
               >
                 {link.label}
               </Link>
-            </motion.li>
+            </li>
           ))}
         </ul>
-      </motion.div>
+      </div>
     )}
-  </AnimatePresence>
+  </>
 </header>
   );
 };
