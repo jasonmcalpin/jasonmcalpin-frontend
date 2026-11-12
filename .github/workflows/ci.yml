@@ -52,9 +52,14 @@ jobs:
       - name: Unit tests
         run: yarn test:run
 
+      - name: Contact endpoint contract tests
+        run: node --test backend/contact/index.test.mjs
+
       - name: Build project
         env:
           VITE_GTM_ID: ${{ startsWith(github.ref, 'refs/tags/v') && secrets.GTM_ID || '' }}
+          VITE_CONTACT_API_URL: ${{ vars.CONTACT_API_URL }}
+          VITE_TURNSTILE_SITE_KEY: ${{ vars.TURNSTILE_SITE_KEY }}
         run: yarn build
 
       - name: Upload build artifacts
@@ -80,15 +85,37 @@ jobs:
       - name: Install from the canonical Yarn lockfile
         run: corepack yarn install --frozen-lockfile --non-interactive
       - name: Check Windows lint, typecheck, tests and static build
+        env:
+          VITE_CONTACT_API_URL: ${{ vars.CONTACT_API_URL }}
+          VITE_TURNSTILE_SITE_KEY: ${{ vars.TURNSTILE_SITE_KEY }}
         run: |
           corepack yarn lint
           corepack yarn type-check
           corepack yarn test:run
+          node --test backend/contact/index.test.mjs
           corepack yarn build
       - name: Confirm Apache config was copied
         shell: pwsh
         run: |
           if (!(Test-Path 'dist/.htaccess')) { throw 'dist/.htaccess missing from published output' }
+
+  terraform-validate:
+    name: Validate contact Terraform
+    if: github.event_name != 'pull_request' || github.event.action != 'closed'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v5
+      - uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: '1.14.0'
+      - name: Check Terraform format
+        run: terraform -chdir=infra/contact fmt -check -recursive
+      - name: Initialize without AWS state
+        run: terraform -chdir=infra/contact init -backend=false -input=false
+      - name: Validate contact infrastructure
+        run: terraform -chdir=infra/contact validate -no-color
 
   lighthouse:
     name: Lighthouse baseline (informational)
