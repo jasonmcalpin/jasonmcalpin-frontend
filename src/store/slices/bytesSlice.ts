@@ -48,8 +48,6 @@ export const bytesSlice = createSlice({
   reducers: {
     filterBytes: (state, action: PayloadAction<string | null>) => {
       state.activeTag = action.payload;
-
-
     },
   },
   extraReducers: builder => {
