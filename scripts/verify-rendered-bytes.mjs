@@ -3,6 +3,13 @@ import { join, resolve } from 'node:path';
 
 const published = resolve('public/data/byte-html');
 const bytes = JSON.parse(await readFile('public/data/bytes.json', 'utf8'));
+const index = JSON.parse(await readFile('public/data/bytes-index.json', 'utf8'));
+if (!Array.isArray(index) || index.length !== bytes.length ||
+    index.some((entry, i) => entry.slug !== bytes[i].slug ||
+      Object.hasOwn(entry, 'content') ||
+      JSON.stringify(entry) !== JSON.stringify(
+        Object.fromEntries(Object.entries(bytes[i]).filter(([key]) => key !== 'content')))))
+  throw new Error('Runtime article index does not match the authored metadata catalog');
 const expected = new Set(bytes.map(byte => byte.slug + '.html'));
 const actual = new Set(await readdir(published));
 const problems = [];
