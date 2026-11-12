@@ -81,7 +81,7 @@ jobs:
           name: build-artifacts
           path: dist/
       - name: Check Lighthouse diagnostic reporter
-        run: node --test scripts/report-lighthouse-diagnostics.test.mjs
+        run: node --test scripts/report-lighthouse-diagnostics.node-test.mjs
       - name: Collect browser quality baseline
         uses: treosh/lighthouse-ci-action@v12
         with:
