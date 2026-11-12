@@ -4,7 +4,6 @@ import { createElement } from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
-import toml from 'toml';
 
 const site = 'https://jasonmcalpin.com';
 const dist = resolve('dist');
@@ -43,8 +42,8 @@ function validateCatalog(items, label, fields) {
 }
 const projects = validateCatalog(JSON.parse(await readFile(join(dataDir, 'projects.json'), 'utf8')),
   'projects', ['id', 'slug', 'title', 'description']);
-const parsedBytes = toml.parse(await readFile(join(dataDir, 'bytes.toml'), 'utf8'));
-const bytes = validateCatalog(parsedBytes.articles, 'bytes',
+const bytes = validateCatalog(JSON.parse(await readFile(join(dataDir, 'bytes.json'), 'utf8')),
+  'bytes',
   ['id', 'slug', 'title', 'excerpt', 'content', 'author', 'date']);
 const experiences = JSON.parse(await readFile(join(dataDir, 'experience.json'), 'utf8'));
 const social = JSON.parse(await readFile(join(dataDir, 'social.json'), 'utf8'));
