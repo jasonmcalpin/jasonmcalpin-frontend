@@ -25,7 +25,7 @@ export default function Header() {
     <><a href="#main-content" className="consulting-skip-link">Skip to main content</a>
     <header className={'consulting-nav ' + (isScrolled ? 'consulting-nav--scrolled' : '')}>
       <div className="consulting-nav__inner">
-        <Link to="/" className="consulting-nav__brand" aria-label="Jason McAlpin, home">Jason McAlpin<span> / independent engineer</span></Link>
+        <Link to="/" className="consulting-nav__brand" aria-label="Jason McAlpin, home">Jason McAlpin<span> / software consultant</span></Link>
         <nav className="consulting-nav__links" aria-label="Primary navigation">
           {navLinks.map(link => <Link key={link.path} to={link.path}
             aria-current={location.pathname === link.path ? 'page' : undefined}>{link.label}</Link>)}

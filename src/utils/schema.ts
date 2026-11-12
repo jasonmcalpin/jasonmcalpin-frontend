@@ -5,7 +5,7 @@ export const getWebsiteSchema = () => ({
   '@context': 'https://schema.org',
   '@type': 'WebSite',
   '@id': 'https://jasonmcalpin.com/#website',
-  name: 'Jason McAlpin: Independent Software Engineering',
+  name: 'Jason McAlpin: Software Engineering & Consulting',
   url: 'https://jasonmcalpin.com',
   description: consulting.identity.summary,
   about: { '@id': 'https://jasonmcalpin.com/about#person' },
