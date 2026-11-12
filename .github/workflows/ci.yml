@@ -80,12 +80,29 @@ jobs:
         with:
           name: build-artifacts
           path: dist/
+      - name: Check Lighthouse diagnostic reporter
+        run: node --test scripts/report-lighthouse-diagnostics.node-test.mjs
       - name: Collect browser quality baseline
         uses: treosh/lighthouse-ci-action@v12
         with:
           configPath: ./.lighthouserc.cjs
           uploadArtifacts: true
           temporaryPublicStorage: false
+
+      - name: Summarize Lighthouse bottlenecks
+        if: always()
+        run: node scripts/report-lighthouse-diagnostics.mjs
+
+      - name: Upload machine-readable Lighthouse diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lighthouse-diagnostics
+          path: |
+            .lighthouseci/diagnostics.json
+            .lighthouseci/diagnostics.md
+          if-no-files-found: warn
+          retention-days: 90
 
   deploy-preview:
     if: github.event_name == 'pull_request' && github.event.action != 'closed' && github.event.pull_request.head.repo.full_name == github.repository
