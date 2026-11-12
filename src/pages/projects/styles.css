@@ -29,7 +29,7 @@
 }
 
 .projects-filters__button--active {
-  @apply bg-secondary text-white;
+  @apply bg-secondary text-black;
   box-shadow: 0 0 10px var(--color-secondary);
 }
 
