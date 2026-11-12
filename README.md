@@ -223,7 +223,7 @@ Project-specific instructions live in [AGENTS.md](AGENTS.md) and reusable skills
 
 ## Static HTML publishing and SEO
 
-The website remains a **React 19 / Vite client application**. The build now also generates contentful HTML for the primary public routes from the existing `public/data/bytes.toml`, `projects.json`, `experience.json`, and `social.json` files.
+The website remains a **React 19 / Vite client application**. The build now also generates contentful HTML for the primary public routes from the existing `public/data/bytes.json`, `projects.json`, `experience.json`, and `social.json` files.
 
 - `yarn build` creates `dist/index.html` plus extension-suffixed static HTML documents (for example `dist/bytes/champion-your-team.html`). `.htaccess` maps public extensionless routes to the appropriate document before the SPA fallback. Routes with nested pages, currently `/projects/` and `/bytes/`, also get a physical `index.html` inside their corresponding directories. This prevents directory listings when the origin does not apply Apache rewrite rules.
 - A generated `dist/sitemap.xml` covers published pages and catalog entries; there is no manually maintained sitemap. `dist/static-pages-manifest.json` makes the build's route contract inspectable.
