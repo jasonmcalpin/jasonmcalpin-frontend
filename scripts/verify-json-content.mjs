@@ -36,6 +36,30 @@ for (const [index, article] of articles.entries()) {
   if (fences % 2 !== 0) throw new Error(label + ': unbalanced Markdown code fences');
   codeFences += fences;
 }
+// Consulting content is the shared contract for React, static pages and the
+// optional AI index. Broken evidence references must fail before publishing.
+const consulting = JSON.parse(await readFile(resolve('public/data/consulting.json'), 'utf8'));
+const projects = JSON.parse(await readFile(resolve('public/data/projects.json'), 'utf8'));
+if (!consulting.identity?.headline || !consulting.identity?.summary ||
+    !consulting.identity?.email || !Array.isArray(consulting.services) ||
+    !Array.isArray(consulting.engagements) || !Array.isArray(projects))
+  throw new Error('Invalid consulting site content');
+const projectSlugs = new Set(projects.map(project => project.slug));
+if (projectSlugs.size !== projects.length) throw new Error('Duplicate project slugs');
+for (const service of consulting.services) {
+  if (!service.id || !service.title || !service.description || !service.evidence ||
+      !projectSlugs.has(service.evidence) || !Array.isArray(service.deliverables) ||
+      !service.deliverables.length) throw new Error('Invalid service or evidence: ' + service.id);
+}
+for (const project of projects) {
+  if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(project.slug))
+    throw new Error('Invalid project slug: ' + project.slug);
+  if (!project.category || !Array.isArray(project.technologies))
+    throw new Error('Missing project classification: ' + project.slug);
+  if (project.kind && (!project.role || !project.challenge || !project.approach || !project.outcome))
+    throw new Error('Incomplete public engineering case study: ' + project.slug);
+}
+
 try {
   await access(resolve('public/data/bytes.toml'));
   throw new Error('Legacy bytes.toml must not be published');
