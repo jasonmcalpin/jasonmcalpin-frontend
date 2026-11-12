@@ -211,6 +211,21 @@ This reverts commit abc1234.
 
 Project-specific instructions live in [AGENTS.md](AGENTS.md) and reusable skills are installed in [`.agents/skills/`](.agents/skills/). These originate from [codex-engineering-guidelines](https://github.com/jasonmcalpin/codex-engineering-guidelines), with website-specific deployment, content, and consent contracts added locally. Review upstream improvements explicitly; these are versioned copies, not automatically synchronized.
 
+## Static HTML publishing and SEO
+
+The website remains a **React 19 / Vite client application**. The build now also generates contentful HTML for the primary public routes from the existing `public/data/bytes.toml`, `projects.json`, `experience.json`, and `social.json` files.
+
+- `yarn build` creates `dist/index.html` plus extension-suffixed static HTML documents (for example `dist/bytes/champion-your-team.html`). `.htaccess` maps public extensionless routes to the appropriate document before the SPA fallback.
+- A generated `dist/sitemap.xml` covers published pages and catalog entries; there is no manually maintained sitemap. `dist/static-pages-manifest.json` makes the build's route contract inspectable.
+- Each document contains a semantic heading, meaningful content, unique title/description/canonical/Open Graph metadata and JSON-LD where appropriate. The article source is rendered with the same React Markdown and GFM libraries used by the client.
+- `yarn verify:static` asserts that generated files contain content and metadata **without executing JavaScript**, correspond to the sitemap, and retain the React bootstrap. Build runs it automatically and fails on violations.
+
+**Rendering boundary:** This is progressive static HTML (a no-JavaScript content fallback), **not React SSR hydration**. The normal React SPA takes over the root on startup and preserves existing interactivity. Complete visual equivalence between the static fallback and the hydrated SPA is not claimed. Interactive games and lessons stay client-rendered. This approach avoids a server runtime and any React Router/Redux SSR migration, while making public article and portfolio content available immediately to crawlers.
+
+**Deployment prerequisite:** The existing Apache `.htaccess` with `mod_rewrite` must be honored by the origin. If hosting changes to a static server without Apache rewrites, configure clean-URL fallback for generated `.html` files at the new host. SCP deployment currently copies files but does not remove pages deleted from a catalog; after removing/renaming a published slug, clear obsolete generated HTML at the server as part of the release.
+
+**SEO measurement:** Compare Lighthouse quality reports with the previous baseline, but Lighthouse scores do not prove crawler visibility or source-HTML completeness. The static HTML contract is independently verified by the build. The long-term upgrade to fully hydrated static React markup requires making React/Redux/router rendering deterministic on both server and client.
+
 ## Lighthouse baseline
 
 Pull requests and pushes to `main` run a separate, informational **mobile** Lighthouse CI audit against the production build artifact. The audit does not change the release/tag deployment path or block staging/production on score thresholds. Each representative route is collected three times:
