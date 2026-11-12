@@ -159,7 +159,7 @@ const BytePage = () => {
         </div>
       </section>
       
-      <section className='byte-page__content' role='article' aria-labelledby='byte-title'>
+      <article className='byte-page__content' aria-labelledby='byte-title'>
         <div className='section-container'>
           {byte.imageUrl && (
             <div 
@@ -195,7 +195,7 @@ const BytePage = () => {
             )}
           </div>
         </div>
-      </section>
+      </article>
       
       
       {/* Back to Bytes Button */}
