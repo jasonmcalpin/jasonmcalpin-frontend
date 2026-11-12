@@ -1,6 +1,5 @@
 import { useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { motion } from 'framer-motion';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { Highlight, themes } from 'prism-react-renderer';
@@ -8,7 +7,6 @@ import { useAppSelector, useAppDispatch } from '../../hooks/useAppStore';
 import { fetchBytes } from '../../store/slices/bytesSlice';
 import SEO from '../../components/global/SEO';
 import { getByteSchema } from '../../utils/schema';
-import { fadeInUp } from '../../utils/animations';
 import './styles.css';
 
 const BytePage = () => {
@@ -93,38 +91,38 @@ const BytePage = () => {
       />
       <section className='byte-page__hero'>
         <div className='byte-page__hero-container'>
-          <motion.h1 
+          <h1 
             id='byte-title'
             className='byte-page__title'
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-          >
+            
+            
+            
+           data-reveal="viewport">
             {byte.title}
-          </motion.h1>
+          </h1>
           
-          <motion.div 
+          <div 
             className='byte-page__meta'
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
+            
+            
+            
             aria-label='Article metadata'
-          >
+           data-reveal="viewport">
             <div className='byte-page__author-date'>
               <span className='byte-page__author' aria-label='Author'>{byte.author}</span>
               <span className='byte-page__date' aria-label='Publication date'>{formatDate(byte.date)}</span>
             </div>
             <span className='byte-page__reading-time' aria-label='Estimated reading time'>{byte.readingTime} min read</span>
-          </motion.div>
+          </div>
           
-          <motion.div 
+          <div 
             className='byte-page__tags'
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
+            
+            
+            
             role='list'
             aria-label='Article tags'
-          >
+           data-reveal="viewport">
             {byte.tags.map((tag, i) => (
               <span 
                 key={i} 
@@ -134,19 +132,19 @@ const BytePage = () => {
                 {tag}
               </span>
             ))}
-          </motion.div>
+          </div>
         </div>
       </section>
       
       <section className='byte-page__content' role='article' aria-labelledby='byte-title'>
         <div className='section-container'>
           {byte.imageUrl && (
-            <motion.div 
+            <div 
               className='byte-page__image-container'
-              variants={fadeInUp}
-              initial='hidden'
-              animate='visible'
-            >
+              
+              
+              
+             data-reveal="viewport">
               <img 
                 src={byte.imageUrl} 
                 alt={`Featured image for article: ${byte.title}`} 
@@ -165,16 +163,16 @@ const BytePage = () => {
                   }
                 }}
               />
-            </motion.div>
+            </div>
           )}
           
-          <motion.div 
+          <div 
             className='byte-page__body markdown-content prose prose-invert max-w-none'
-            variants={fadeInUp}
-            initial='hidden'
-            animate='visible'
-            transition={{ delay: 0.2 }}
-          >
+            
+            
+            
+            
+           data-reveal="viewport">
             <ReactMarkdown 
               remarkPlugins={[remarkGfm]}
               // Security: Disable HTML to prevent XSS attacks
@@ -228,7 +226,7 @@ const BytePage = () => {
             >
               {Array.isArray(byte.content) ? byte.content.join('\n') : byte.content}
             </ReactMarkdown>
-          </motion.div>
+          </div>
         </div>
       </section>
       
@@ -236,12 +234,12 @@ const BytePage = () => {
       {/* Back to Bytes Button */}
       <section className='byte-page__footer' role='navigation' aria-label='Byte navigation'>
         <div className='section-container'>
-          <motion.div 
+          <div 
             className='byte-page__navigation'
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-          >
+            
+            
+            
+           data-reveal="viewport">
             <button 
               className='btn btn-primary'
               onClick={() => navigate('/bytes')}
@@ -249,7 +247,7 @@ const BytePage = () => {
             >
               Back to Bytes
             </button>
-          </motion.div>
+          </div>
         </div>
       </section>
     </div>
