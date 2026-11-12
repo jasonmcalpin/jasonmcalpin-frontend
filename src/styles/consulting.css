@@ -20,6 +20,8 @@
 .consulting-page p { line-height: 1.7; }
 .consulting-container { max-width: 1160px; margin-inline: auto; padding-inline: clamp(1.25rem, 3.6vw, 3rem); }
 .consulting-inner-page { padding-top: 76px; }
+/* Bytes' legacy stylesheet is dynamically imported; this wins its generic pt-16 rule. */
+.consulting-page.consulting-inner-page { padding-top: 76px; }
 .consulting-hero { padding: clamp(7rem, 12vw, 11rem) 0 clamp(5rem, 9vw, 8rem); background: #f6f8f6; }
 .consulting-hero__layout { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(260px, .76fr); gap: clamp(3rem, 6vw, 6rem); align-items: center; }
 .consulting-hero__title { max-width: 13ch; margin: 1.25rem 0; }
