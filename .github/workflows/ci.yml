@@ -13,28 +13,25 @@ permissions:
 
 jobs:
   regenerate-eslint-lockfile:
-    name: Prepare Yarn lockfile upgrade artifact (temporary)
-    if: github.event_name == 'pull_request' && github.event.action != 'closed'
+    name: Synchronize Yarn lockfile (temporary)
+    if: github.event_name == 'pull_request' && github.head_ref == 'chore/eslint-10-modernization'
     runs-on: ubuntu-latest
     permissions:
-      contents: read
+      contents: write
     steps:
       - uses: actions/checkout@v5
+        with:
+          ref: chore/eslint-10-modernization
+          persist-credentials: true
       - uses: actions/setup-node@v5
         with:
           node-version: 22
-      - name: Resolve updated dependency graph with Yarn Classic
+      - name: Resolve and commit canonical Yarn lockfile
         run: |
           corepack yarn install --non-interactive
-          corepack yarn --version
-          git diff --stat -- yarn.lock
-      - name: Upload regenerated lockfile
-        uses: actions/upload-artifact@v4
-        with:
-          name: eslint10-yarn-lock
-          path: yarn.lock
-          if-no-files-found: error
-          retention-days: 2
+          git add yarn.lock
+          git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit -m 'build(deps): synchronize Yarn lockfile for ESLint 10'
+          git push origin HEAD:chore/eslint-10-modernization
 
   build:
     # A closed PR only needs the staging reset job, not a build of the closed branch.
