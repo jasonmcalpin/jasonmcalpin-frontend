@@ -1,12 +1,8 @@
 import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
 import SEO from '../../components/global/SEO';
-import { useScrollAnimation } from '../../hooks/useScrollAnimation';
-import { fadeInUp, staggerContainer, neonFlicker } from '../../utils/animations';
 import './styles.css';
 
 const NotFound = () => {
-  const [contentRef, contentControls] = useScrollAnimation();
 
   return (
     <div className='not-found'>
@@ -16,57 +12,53 @@ const NotFound = () => {
         canonical='/404'
       />
       
-      <motion.div 
+      <div 
         className='not-found__container'
-        ref={contentRef}
-        initial='hidden'
-        animate={contentControls}
-        variants={staggerContainer}
-      >
-        <motion.div className='not-found__content' variants={fadeInUp}>
-          <motion.h1 
+        
+        
+        
+        
+       data-reveal="viewport">
+        <div className='not-found__content'  data-reveal="viewport">
+          <h1 
             className='not-found__title'
-            variants={neonFlicker}
-            initial='hidden'
-            animate='visible'
-          >
+            
+            
+            
+           data-reveal="viewport">
             404
-          </motion.h1>
+          </h1>
           
-          <motion.h2 className='not-found__subtitle' variants={fadeInUp}>
+          <h2 className='not-found__subtitle'  data-reveal="viewport">
             Page Not Found
-          </motion.h2>
+          </h2>
           
-          <motion.p className='not-found__text' variants={fadeInUp}>
+          <p className='not-found__text'  data-reveal="viewport">
             The page you are looking for doesn't exist or has been moved.
-          </motion.p>
+          </p>
           
-          <motion.div className='not-found__actions' variants={fadeInUp}>
+          <div className='not-found__actions'  data-reveal="viewport">
             <Link to='/' className='btn btn-primary'>
               Back to Home
             </Link>
             
 
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
         
-        <motion.div 
+        <div 
           className='not-found__visual'
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ 
-            opacity: 1, 
-            scale: 1,
-            transition: { duration: 0.8, delay: 0.2 }
-          }}
-        >
+          
+          
+         data-reveal="scale">
           <div className='not-found__grid'>
             <div className='not-found__grid-item not-found__grid-item--1'></div>
             <div className='not-found__grid-item not-found__grid-item--2'></div>
             <div className='not-found__grid-item not-found__grid-item--3'></div>
             <div className='not-found__grid-item not-found__grid-item--4'></div>
           </div>
-        </motion.div>
-      </motion.div>
+        </div>
+      </div>
     </div>
   );
 };
