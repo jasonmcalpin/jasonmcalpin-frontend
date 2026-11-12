@@ -35,7 +35,7 @@ export const hasUserConsented = (): boolean => {
 
 export const hasConsentedTo = (option: keyof ConsentOptions): boolean => {
   const consent = getUserConsent();
-  if (!consent || !consent.consented) return false;
+  if (!consent || !consent.consented || consent.policyVersion !== POLICY_VERSION) return false;
   return !!consent.options[option];
 };
 
