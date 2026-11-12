@@ -44,14 +44,14 @@ const Footer = () => {
         </motion.div>
 
         <motion.div className='flex flex-col' variants={itemVariants}>
-          <h4
+          <h2
             className='text-lg font-heading font-semibold mb-4 text-neonBlue'
             style={{
               textShadow: '0 0 5px var(--color-neonBlue)',
             }}
           >
             Links
-          </h4>
+          </h2>
           <ul className='list-none p-0 m-0 space-y-3'>
             <li className='flex items-center'>
               <Link
