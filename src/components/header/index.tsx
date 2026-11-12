@@ -7,7 +7,7 @@ const navLinks = [
   { path: '/services', label: 'Services' },
   { path: '/projects', label: 'Work' },
   { path: '/about', label: 'About' },
-  { path: '/bytes', label: 'Writing' },
+  { path: '/bytes', label: 'Bytes' },
 ];
 
 export default function Header() {

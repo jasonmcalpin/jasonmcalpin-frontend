@@ -319,7 +319,7 @@ const aiIndex = [
   '',
   '## Additional context',
   '- [About](' + site + '/about)',
-  '- [Engineering writing](' + site + '/bytes)',
+  '- [Bytes — engineering writing](' + site + '/bytes)',
   '- [Contact](' + site + '/contact)',
   '',
   'This file is a navigation aid, not an API or a guarantee of AI indexing. Check the linked pages for source context.',

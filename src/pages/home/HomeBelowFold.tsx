@@ -65,7 +65,7 @@ export default function HomeBelowFold() {
         <section className="consulting-section consulting-section--subtle" aria-labelledby="writing-title">
           <div className="consulting-container">
             <div className="consulting-section-heading consulting-section-heading--split">
-              <div><p className="consulting-eyebrow">Engineering notes</p><h2 id="writing-title">How I think about the work.</h2></div>
+              <div><p className="consulting-eyebrow">Bits of thinking</p><h2 id="writing-title">Recent Bytes.</h2></div>
               <Link to="/bytes" className="consulting-text-link">Read the Bytes →</Link>
             </div>
             <div className="home-bytes__grid">{recentBytes.map((byte, index) => <ByteCard key={byte.id} byte={byte} index={index} />)}</div>

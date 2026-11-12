@@ -11,7 +11,7 @@ export default function Footer() {
       </div>
       <nav aria-label="Footer navigation">
         <Link to="/services">Services</Link><Link to="/projects">Selected work</Link>
-        <Link to="/about">About</Link><Link to="/bytes">Writing</Link>
+        <Link to="/about">About</Link><Link to="/bytes">Bytes</Link>
       </nav>
       <div>
         <strong>Have a difficult problem to solve?</strong>
