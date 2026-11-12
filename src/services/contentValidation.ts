@@ -34,7 +34,7 @@ function uniqueSlugs<T extends { slug?: string }>(items: T[], path: string): T[]
   return items;
 }
 
-/** Validate content at the untrusted fetch/TOML boundary, before it enters Redux. */
+/** Validate JSON content at the untrusted fetch boundary, before it enters Redux. */
 export function parseBytes(value: unknown): Byte[] {
   return uniqueSlugs(array(value, 'bytes', (value, path): Byte => {
     const a = record(value, path);
