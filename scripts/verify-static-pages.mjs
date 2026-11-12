@@ -92,6 +92,10 @@ assert(index.includes('Solve the hard software problems'), 'Consulting homepage 
 const contactPage = await readFile(join(dist, 'contact.html'), 'utf8');
 assert(!contactPage.includes('mailto:'), 'Contact must not expose destination mailbox');
 assert(contactPage.includes('Cloudflare Turnstile'), 'Contact static fallback must disclose spam verification');
+const privacyPage = await readFile(join(dist, 'privacy.html'), 'utf8');
+const privacyAlias = await readFile(join(dist, 'privacy-policy.html'), 'utf8');
+assert(privacyPage.includes('Amazon SES') && privacyAlias.includes('Amazon SES'), 'Both privacy documents must describe inquiry processing');
+assert(!privacyPage.includes('mailto:') && !privacyAlias.includes('mailto:'), 'Privacy documents must not expose destination mailbox');
 const llms = await readFile(join(dist, 'llms.txt'), 'utf8');
 assert(llms.includes('MCP Stitch') && llms.includes('Browser Model Lab'), 'AI index missing public tooling');
 assert(!sitemap.includes('/search?'), 'Sitemap advertises an unimplemented search endpoint');

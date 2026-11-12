@@ -169,7 +169,7 @@ register('/privacy', 'Privacy Policy', 'Privacy information for jasonmcalpin.com
   paragraph('Project inquiries are protected by Cloudflare Turnstile and delivered through AWS Lambda and Amazon SES. Optional analytics require consent; game preferences are stored locally. Use the contact page for privacy requests.'));
 register('/privacy-policy', 'Privacy Policy', 'Privacy information for jasonmcalpin.com',
   elem('h1', 'Privacy Policy') +
-  paragraph('Privacy settings can be managed using the controls on this website.'),
+  paragraph('Project inquiries use Cloudflare Turnstile, AWS Lambda and Amazon SES for validation and delivery. Optional analytics require consent; game preferences are stored locally. Use the contact page for privacy requests.'),
   { canonicalPath: '/privacy', excludeSitemap: true });
 
 for (const byte of bytes) {
