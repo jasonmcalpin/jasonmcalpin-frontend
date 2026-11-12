@@ -22,6 +22,7 @@ export default function Header() {
   }, [dispatch]);
 
   return (
+    <><a href="#main-content" className="consulting-skip-link">Skip to main content</a>
     <header className={'consulting-nav ' + (isScrolled ? 'consulting-nav--scrolled' : '')}>
       <div className="consulting-nav__inner">
         <Link to="/" className="consulting-nav__brand" aria-label="Jason McAlpin, home">Jason McAlpin<span> / independent engineer</span></Link>
@@ -39,6 +40,6 @@ export default function Header() {
         {navLinks.map(link => <Link to={link.path} key={link.path} aria-current={location.pathname === link.path ? 'page' : undefined}>{link.label}</Link>)}
         <Link to="/contact">Discuss a project</Link>
       </nav>}
-    </header>
+    </header></>
   );
 }

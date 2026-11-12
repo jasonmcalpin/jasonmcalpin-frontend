@@ -100,8 +100,9 @@ const CookieConsent: React.FC<CookieConsentProps> = ({
         <div className='cookie-consent__content'>
           <h2 id='cookie-consent-title' className='cookie-consent__title'>Privacy Settings</h2>
           <p className='cookie-consent__message'>
-            This website uses localStorage to enhance your experience in the games and AI features to remember conversations.
-            All data is stored locally on your device and is not transmitted to our servers.
+            This website stores essential settings and progress for interactive features in your browser.
+            Optional analytics are enabled only with your consent. The project inquiry form separately
+            processes information you choose to submit, as explained in our privacy policy.
           </p>
 
           <div className='cookie-consent__options'>

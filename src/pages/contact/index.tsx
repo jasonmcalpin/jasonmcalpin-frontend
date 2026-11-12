@@ -117,9 +117,16 @@ export default function Contact() {
                     value={website} onChange={e => setWebsite(e.target.value)} />
                 </div>
                 <TurnstileChallenge siteKey={siteKey} resetKey={challengeKey}
-                  onToken={setTurnstileToken} onError={() => setChallengeError(true)} />
-                {challengeError && <p role="alert">Verification could not load. Refresh the page or try again.</p>}
+                  onToken={token => { setTurnstileToken(token); if (token) setChallengeError(false); }} onError={() => setChallengeError(true)} />
+                {challengeError && <div role="alert" className="consulting-verification-error">
+                  <p>Spam verification could not complete. Retry the verification to continue.</p>
+                  <button type="button" className="consulting-button consulting-button--outline"
+                    onClick={() => { setChallengeError(false); setTurnstileToken(null); setChallengeKey(key => key + 1); }}>
+                    Retry verification
+                  </button>
+                </div>}
                 {status==='error' && <p className="consulting-inquiry-error" role="alert">{feedback}</p>}
+                {status==='sending' && <p role="status">Submitting your inquiry securely…</p>}
                 <button type="submit" className="consulting-button consulting-button--primary"
                   disabled={!turnstileToken || status === 'sending' || challengeError}>
                   {status === 'sending' ? 'Sending inquiry…' : 'Send inquiry'}

@@ -57,7 +57,11 @@ export default function TurnstileChallenge({ siteKey, onToken, onError, resetKey
     }
     if (window.turnstile) render();
     else script.addEventListener('load', render);
-    const onScriptError = () => { if (!disposed) onErrorRef.current(); };
+    const onScriptError = () => {
+      if (disposed) return;
+      script?.remove();
+      onErrorRef.current();
+    };
     script.addEventListener('error', onScriptError);
     return () => {
       disposed = true;

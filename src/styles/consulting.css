@@ -240,3 +240,8 @@
 .consulting-process__step p { font-size: .94rem; color: #526570; }
 @media (max-width: 900px) { .consulting-process { grid-template-columns: repeat(2,minmax(0,1fr)); } }
 @media (max-width: 560px) { .consulting-process { grid-template-columns: 1fr; } }
+
+.consulting-skip-link { position: fixed; left: 1rem; top: -5rem; z-index: 100; background: #fff; color: #193c45; padding: .8rem 1.15rem; border: 2px solid #215a63; border-radius: 4px; font-weight: 750; }
+.consulting-skip-link:focus-visible { top: .75rem; outline: 3px solid #478a95; outline-offset: 2px; }
+.consulting-verification-error { border-left: 3px solid #a65353; padding: 1rem; background: #fff3f1; }
+.consulting-verification-error p { color: #822a30; margin-bottom: .7rem; }
