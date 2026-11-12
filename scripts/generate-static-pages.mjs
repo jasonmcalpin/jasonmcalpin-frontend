@@ -197,9 +197,22 @@ function renderPage(page) {
       '<link rel="canonical" href="' + escapeHtml(canonical) + '">')
     .replace(/\s*<meta property="og:[^"]+"[^>]*>/g, '')
     .replace(/\s*<meta name="twitter:[^"]+"[^>]*>/g, '')
-    .replace('</head>', '\n  ' + metas + schema + '\n</head>')
+    .replace('</head>', `
+  <!-- Hide the non-hydratable static fallback before first paint when JS is available.
+       Without JavaScript, content stays visible and fully navigable. -->
+  <style>
+    .js-enabled [data-static-content] { display: none !important; }
+    [data-static-loading] { display: none; }
+    .js-enabled [data-static-loading] {
+      display: flex; min-height: 65vh; align-items: center; justify-content: center;
+      color: #e5e7eb; background: #121212; font: 500 1rem system-ui, sans-serif;
+    }
+  </style>
+  <script>document.documentElement.classList.add('js-enabled');</script>
+` + '\n  ' + metas + schema + '\n</head>')
     .replace('<div id="root"></div>',
-      '<div id="root">' + shell(page.body) + '</div>');
+      '<div id="root"><div data-static-content>' + shell(page.body) + '</div>' +
+      '<div data-static-loading role="status" aria-live="polite">Loading page...</div></div>');
 }
 
 for (const page of pages) {

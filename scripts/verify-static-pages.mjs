@@ -15,8 +15,18 @@ for (const page of manifest) {
   const file = join(dist, page.path === '/' ? 'index.html' : page.path.slice(1) + '.html');
   const html = await readFile(file, 'utf8');
   const canonical = 'https://jasonmcalpin.com' + page.canonical;
-  assert(html.includes('<div id="root"><div class="app">'), page.path + ': static content missing');
+  assert(html.includes('<div id="root"><div data-static-content><div class="app">'), page.path + ': static content missing');
   assert(html.includes('<h1'), page.path + ': semantic heading missing');
+  assert(html.includes('document.documentElement.classList.add(\'js-enabled\')'),
+    page.path + ': early JS capability marker missing');
+  assert(html.includes('.js-enabled [data-static-content] { display: none !important; }'),
+    page.path + ': JS-first-paint flash protection missing');
+  assert(html.includes('<div data-static-loading role="status"'),
+    page.path + ': loading transition not available');
+  assert(html.indexOf("classList.add('js-enabled')") < html.indexOf('<div id="root">'),
+    page.path + ': pre-paint JS detection appears after content');
+  assert(!html.includes('<div data-static-content hidden'),
+    page.path + ': crawler fallback must not be hidden without JavaScript');
   assert(html.includes('<title>' + escaped(page.title) + ' | Jason McAlpin</title>'),
     page.path + ': title does not match');
   assert(html.includes('rel="canonical" href="' + canonical + '"'), page.path + ': canonical does not match');
