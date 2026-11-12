@@ -1,9 +1,5 @@
 import { readFile, writeFile, mkdir } from 'node:fs/promises';
 import { dirname, join, resolve } from 'node:path';
-import { createElement } from 'react';
-import { renderToStaticMarkup } from 'react-dom/server';
-import ReactMarkdown from 'react-markdown';
-import remarkGfm from 'remark-gfm';
 
 const site = 'https://jasonmcalpin.com';
 const dist = resolve('dist');
@@ -67,12 +63,6 @@ function register(path, title, description, body, options = {}) {
   pages.push({ path, title, description, body, ...options });
 }
 
-function markdown(source, title) {
-  // Page heading is already outside the Markdown region; avoid duplicate H1 when identical.
-  const cleaned = source.replace(/^#\s+([^\r\n]+)\r?\n/, (match, heading) =>
-    heading.trim().toLowerCase() === title.trim().toLowerCase() ? '' : match);
-  return renderToStaticMarkup(createElement(ReactMarkdown, { remarkPlugins: [remarkGfm] }, cleaned));
-}
 const websiteSchema = { '@context': 'https://schema.org', '@type': 'WebSite',
   name: 'Jason McAlpin', url: site };
 const personSchema = { '@context': 'https://schema.org', '@type': 'Person',
@@ -144,7 +134,7 @@ for (const byte of bytes) {
     elem('article', elem('h1', escapeHtml(byte.title)) +
       elem('p', escapeHtml(byte.author + ' · ' + byte.date)) +
       image(byte.imageUrl, byte.title) +
-      elem('div', markdown(byte.content, byte.title), ' class="markdown-content prose prose-invert"'),
+      elem('div', await readFile(join(dataDir, 'byte-html', byte.slug + '.html'), 'utf8'), ' class="markdown-content prose prose-invert"'),
     ' class="byte-page"'), {
       schema: articleSchema, imageUrl: byte.imageUrl, date: byte.date, type: 'article',
     });
