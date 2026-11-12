@@ -1,6 +1,7 @@
 import type { CompanyLogos } from '../../types';
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { dataService } from '../../services/dataService';
+import { parseLogos } from '../../services/contentValidation';
 
 interface LogoState {
   logos: CompanyLogos[];
@@ -18,7 +19,7 @@ export const fetchLogos = createAsyncThunk(
   'logos/fetchLogos',
   async (_, { rejectWithValue }) => {
     try {
-      return await dataService.fetchJson<CompanyLogos[]>('/data/logos.json');
+      return await dataService.fetchJson('/data/logos.json', parseLogos);
     } catch (error) {
       console.error('Error fetching logos:', error);
       return rejectWithValue((error as Error).message || 'Unknown error');

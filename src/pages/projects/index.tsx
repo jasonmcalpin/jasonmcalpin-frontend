@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useAppDispatch, useAppSelector } from '../../hooks/useAppStore';
-import { filterProjects, fetchProjects } from '../../store/slices/projectsSlice';
+import { filterProjects, fetchProjects, selectFilteredProjects } from '../../store/slices/projectsSlice';
 import ProjectCard from '../../components/global/projectCard';
 import { fadeInUp, staggerContainer } from '../../utils/animations';
 import Hero from '../../components/global/Hero';
@@ -10,7 +10,8 @@ import './styles.css';
 
 const Projects = () => {
   const dispatch = useAppDispatch();
-  const { projects, filteredProjects, activeFilter } = useAppSelector((state) => state.projects);
+  const { projects, activeFilter, isLoading, error } = useAppSelector((state) => state.projects);
+  const filteredProjects = useAppSelector(selectFilteredProjects);
   const [technologies, setTechnologies] = useState<string[]>([]);
   
   // Extract unique technologies from projects
@@ -24,10 +25,7 @@ const Projects = () => {
   
   // Fetch projects and initialize with all projects
   useEffect(() => {
-    dispatch(fetchProjects())
-      .then(() => {
-        dispatch(filterProjects(null));
-      });
+    dispatch(fetchProjects());
   }, [dispatch]);
   
   // Handle filter change
@@ -87,7 +85,11 @@ const Projects = () => {
             initial='hidden'
             animate='visible'
           >
-            {filteredProjects.length > 0 ? (
+            {isLoading && projects.length === 0 ? (
+              <p role='status'>Loading projects...</p>
+            ) : error ? (
+              <div role='alert'><p>Unable to load projects: {error}</p><button className='btn btn-primary' onClick={() => dispatch(fetchProjects())}>Retry</button></div>
+            ) : filteredProjects.length > 0 ? (
               filteredProjects.map((project, index) => (
                 <ProjectCard key={project.slug} project={project} index={index} />
               ))

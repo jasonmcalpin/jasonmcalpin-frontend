@@ -1,50 +1,23 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { useAppSelector } from '../../hooks/useAppStore';
-import type { Project } from '../../store/slices/projectsSlice';
+import { useAppSelector, useAppDispatch } from '../../hooks/useAppStore';
+import { fetchProjects } from '../../store/slices/projectsSlice';
 import { fadeInUp } from '../../utils/animations';
 import './styles.css';
 
 const ProjectPage = () => {
   const { slug } = useParams<{ slug: string }>();
   const navigate = useNavigate();
-  const { projects } = useAppSelector((state) => state.projects);
-  const [project, setProject] = useState<Project | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
+  const dispatch = useAppDispatch();
+  const { projects, isLoading, hasLoaded, error } = useAppSelector(state => state.projects);
+  const project = projects.find(item => item.slug === slug);
 
   useEffect(() => {
-    console.log('Projects:', projects);
-    console.log('Current slug:', slug);
-    
-    const foundProject = projects.find((p) => p.slug === slug);
-    console.log('Found project:', foundProject);
-    
-    if (foundProject) {
-      console.log('Setting project:', foundProject);
-      setProject(foundProject);
-      setIsLoading(false);
-    } else {
-      if (projects.length > 0) {
-        console.log('No project found with slug:', slug);
-        console.log('Available slugs:', projects.map(p => p.slug).join(', '));
-        
-        // Try to find a close match
-        const closeMatch = projects.find(p => 
-          p.slug?.includes(slug || '') || (slug || '').includes(p.slug || '')
-        );
-        if (closeMatch) {
-          console.log('Found close match:', closeMatch);
-          setProject(closeMatch);
-          setIsLoading(false);
-        } else {
-          setIsLoading(false);
-        }
-      }
-    }
-  }, [projects, slug, navigate]);
+    if (!hasLoaded && !isLoading && !error) dispatch(fetchProjects());
+  }, [dispatch, hasLoaded, isLoading, error]);
 
-  if (isLoading) {
+  if (!hasLoaded && !error) {
     return (
       <div className='project-page'>
         <div className='section-container'>
@@ -54,6 +27,13 @@ const ProjectPage = () => {
         </div>
       </div>
     );
+  }
+
+  if (error) {
+    return <div className='project-page'><div className='section-container' role='alert'>
+      <h1>Unable to load projects</h1><p>{error}</p>
+      <button className='btn btn-primary' onClick={() => dispatch(fetchProjects())}>Retry</button>
+    </div></div>;
   }
 
   if (!project) {

@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import type { Experience } from '../../types';
 import { dataService } from '../../services/dataService';
+import { parseExperiences } from '../../services/contentValidation';
 
 interface ExperienceState {
   experiences: Experience[];
@@ -18,7 +19,7 @@ export const fetchExperiences = createAsyncThunk(
   'experience/fetchExperiences',
   async (_, { rejectWithValue }) => {
     try {
-      return await dataService.fetchJson<Experience[]>('/data/experience.json');
+      return await dataService.fetchJson('/data/experience.json', parseExperiences);
     } catch (error) {
       console.error('Error fetching experiences:', error);
       return rejectWithValue((error as Error).message || 'Unknown error');

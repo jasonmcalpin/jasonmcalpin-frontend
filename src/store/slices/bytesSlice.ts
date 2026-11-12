@@ -1,6 +1,9 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { dataService } from '../../services/dataService';
+import { parseBytes } from '../../services/contentValidation';
+import { createSelector } from '@reduxjs/toolkit';
+import type { RootState } from '../index';
 
 export interface Byte {
   id: string;
@@ -17,72 +20,25 @@ export interface Byte {
 
 interface BytesState {
   bytes: Byte[];
-  filteredBytes: Byte[];
   activeTag: string | null;
   isLoading: boolean;
+  hasLoaded: boolean;
   error: string | null;
 }
 
 const initialState: BytesState = {
   bytes: [],
-  filteredBytes: [],
   activeTag: null,
   isLoading: false,
+  hasLoaded: false,
   error: null,
 };
 
-interface TomlData {
-  articles: Array<{
-    id: string;
-    title: string;
-    slug: string;
-    excerpt: string;
-    date: string;
-    imageUrl: string;
-    author: string;
-    tags: string[];
-    readingTime: number;
-    content: string;
-  }>;
-}
-
 export const fetchBytes = createAsyncThunk('bytes/fetchBytes', async (_, { rejectWithValue }) => {
   try {
-    const parsedData = await dataService.fetchToml<TomlData>('/data/bytes.toml');
-
-    if (!Array.isArray(parsedData.articles)) {
-      throw new Error('Invalid TOML structure: articles is not an array');
-    }
-
-    const bytes = parsedData.articles.map(article => {
-      let content = article.content;
-      if (typeof content === 'string' && content.includes('\n')) {
-        content = content.trim();
-      }
-
-      return {
-        id: article.id,
-        title: article.title,
-        slug: article.slug,
-        excerpt: article.excerpt,
-        content: content,
-        imageUrl: article.imageUrl,
-        author: article.author,
-        date: String(article.date),
-        tags: Array.isArray(article.tags) ? article.tags : [],
-        readingTime: Number(article.readingTime),
-      };
-    });
-
-    const sortedBytes = bytes.sort((a, b) => {
-      return new Date(b.date).getTime() - new Date(a.date).getTime();
-    });
-
-    console.log('Fetched bytes from TOML:', bytes);
-    return sortedBytes as Byte[];
+    return await dataService.fetchToml('/data/bytes.toml', parseBytes);
   } catch (error) {
-    console.error('Error fetching bytes:', error);
-    return rejectWithValue((error as Error).message || 'Unknown error');
+    return rejectWithValue(error instanceof Error ? error.message : String(error));
   }
 });
 
@@ -92,14 +48,6 @@ export const bytesSlice = createSlice({
   reducers: {
     filterBytes: (state, action: PayloadAction<string | null>) => {
       state.activeTag = action.payload;
-
-      if (action.payload === null) {
-        state.filteredBytes = state.bytes;
-      } else {
-        state.filteredBytes = state.bytes.filter(byte =>
-          byte.tags.includes(action.payload as string)
-        );
-      }
     },
   },
   extraReducers: builder => {
@@ -110,11 +58,12 @@ export const bytesSlice = createSlice({
       })
       .addCase(fetchBytes.fulfilled, (state, action) => {
         state.isLoading = false;
+        state.hasLoaded = true;
         state.bytes = action.payload ?? [];
-        state.filteredBytes = action.payload ?? [];
       })
       .addCase(fetchBytes.rejected, (state, action) => {
         state.isLoading = false;
+        state.hasLoaded = true;
         state.error = action.payload as string;
       });
   },
@@ -123,3 +72,8 @@ export const bytesSlice = createSlice({
 export const { filterBytes } = bytesSlice.actions;
 
 export default bytesSlice.reducer;
+
+export const selectFilteredBytes = createSelector(
+  [(state: RootState) => state.bytes.bytes, (state: RootState) => state.bytes.activeTag],
+  (bytes, tag) => tag === null ? bytes : bytes.filter(byte => byte.tags.includes(tag)),
+);
