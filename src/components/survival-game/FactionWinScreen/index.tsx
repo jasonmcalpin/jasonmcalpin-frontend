@@ -6,7 +6,7 @@ const FactionWinScreen: React.FC = () => {
   const navigate = useNavigate();
   const { state } = useLocation();
   const faction = (state as { faction?: FactionKey } | null)?.faction;
-  const winner = faction && Object.hasOwn(factionNames, faction) ? factionNames[faction] : null;
+  const winner = faction && Object.prototype.hasOwnProperty.call(factionNames, faction) ? factionNames[faction] : null;
 
   const handleRestart = () => {
     navigate('/projects/route-66');
