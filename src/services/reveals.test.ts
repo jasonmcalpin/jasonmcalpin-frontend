@@ -1,14 +1,21 @@
-import { afterEach, describe, expect, it, vi } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { initializeReveals } from './reveals';
 
 describe('native reveal coordinator', () => {
   let cleanup: (() => void) | undefined;
+
+  beforeEach(() => {
+    vi.stubGlobal('IntersectionObserver', vi.fn().mockImplementation(() => ({
+      observe: vi.fn(), unobserve: vi.fn(), disconnect: vi.fn(),
+    })));
+  });
 
   afterEach(() => {
     cleanup?.();
     cleanup = undefined;
     document.body.replaceChildren();
     document.documentElement.classList.remove('js-enabled');
+    vi.unstubAllGlobals();
     vi.restoreAllMocks();
   });
 
@@ -44,7 +51,6 @@ describe('native reveal coordinator', () => {
     cleanup();
     cleanup = undefined;
     expect(disconnect).toHaveBeenCalled();
-    vi.unstubAllGlobals();
   });
 
   it('shows immediate reveals without waiting for the viewport', () => {
@@ -68,6 +74,5 @@ describe('native reveal coordinator', () => {
     document.body.appendChild(node);
 
     await vi.waitFor(() => expect(observe).toHaveBeenCalledWith(child));
-    vi.unstubAllGlobals();
   });
 });
