@@ -1,13 +1,10 @@
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
 import { useAppDispatch, useAppSelector } from '../../hooks/useAppStore';
 import { fetchProjects } from '../../store/slices/projectsSlice';
 import { fetchBytes } from '../../store/slices/bytesSlice';
 import ProjectCard from '../../components/global/projectCard';
 import ByteCard from '../../components/global/byteCard';
-import { useScrollAnimation } from '../../hooks/useScrollAnimation';
-import { fadeInUp, staggerContainer } from '../../utils/animations';
 import { MotionTitle, LinkTitle } from '../../components/global/Titles';
 
 // Loaded only when the below-the-fold boundary approaches the viewport.
@@ -19,9 +16,7 @@ const HomeBelowFold = () => {
   const { bytes, hasLoaded: bytesLoaded, isLoading: bytesLoading } =
     useAppSelector(state => state.bytes);
 
-  const [aboutRef, aboutControls] = useScrollAnimation({ delay: 200 });
-  const [projectsRef, projectsControls] = useScrollAnimation();
-  const [bytesRef, bytesControls] = useScrollAnimation();
+
 
   useEffect(() => {
     if (!projectsLoaded && !projectsLoading) dispatch(fetchProjects());
@@ -35,17 +30,17 @@ const HomeBelowFold = () => {
 
   return (
     <>
-      <motion.section 
+      <section 
         className="home-about py-16 bg-background-light"
-        ref={aboutRef as unknown as React.RefObject<HTMLElement>}
-        initial="hidden"
-        animate={aboutControls}
-        variants={staggerContainer}
-      >
+        
+        
+        
+        
+       data-reveal="viewport">
         <div className="section-container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
           <MotionTitle>About Me</MotionTitle>
           
-          <motion.div className="home-about__content grid grid-cols-1 md:grid-cols-2 gap-8" variants={fadeInUp}>
+          <div className="home-about__content grid grid-cols-1 md:grid-cols-2 gap-8"  data-reveal="viewport">
             <div className="home-about__text flex flex-col">
               <p className="home-about__paragraph text-gray-300 mb-4">
                 I'm a passionate full stack developer with expertise in modern web technologies. 
@@ -83,17 +78,17 @@ const HomeBelowFold = () => {
                 </div>
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
-      </motion.section>
+      </section>
       
-      <motion.section 
+      <section 
         className="home-projects py-16"
-        ref={projectsRef as unknown as React.RefObject<HTMLElement>}
-        initial="hidden"
-        animate={projectsControls}
-        variants={staggerContainer}
-      >
+        
+        
+        
+        
+       data-reveal="viewport">
         <div className="section-container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
           <LinkTitle link='/projects' linkText='View All Projects'>Featured Projects</LinkTitle>
           
@@ -103,15 +98,15 @@ const HomeBelowFold = () => {
             ))}
           </div>
         </div>
-      </motion.section>
+      </section>
       
-      <motion.section 
+      <section 
         className="home-bytes py-16 bg-background-light"
-        ref={bytesRef as unknown as React.RefObject<HTMLElement>}
-        initial="hidden"
-        animate={bytesControls}
-        variants={staggerContainer}
-      >
+        
+        
+        
+        
+       data-reveal="viewport">
         <div className="section-container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
           <LinkTitle link='/bytes' linkText='View All Bytes'>Recent Bytes</LinkTitle>
           <div className="home-bytes__grid">
@@ -120,20 +115,16 @@ const HomeBelowFold = () => {
             ))}
           </div>
         </div>
-      </motion.section>
+      </section>
       
       <section className="home-contact">
         <div className="section-container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-          <motion.div 
+          <div 
             className="home-contact__content"
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ 
-              opacity: 1, 
-              y: 0,
-              transition: { duration: 0.5 }
-            }}
-            viewport={{ once: true }}
-          >
+            
+            
+            
+           data-reveal="viewport">
             <h2 className="home-contact__title">Let's Work Together</h2>
             <p className="home-contact__text">
               Have a project in mind or want to discuss potential opportunities?
@@ -141,7 +132,7 @@ const HomeBelowFold = () => {
             <Link to="/contact" className="btn btn-primary home-contact__cta">
               Get In Touch
             </Link>
-          </motion.div>
+          </div>
         </div>
       </section>
     </>
