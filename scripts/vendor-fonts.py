@@ -61,8 +61,8 @@ for family, filename, source_sha, target in FONTS:
     limits = {"wght": (400, 400, 700)}
     if "opsz" in axes:
         limits["opsz"] = axes["opsz"].defaultValue
-    font = instantiateVariableFont(font, limits, inplace=False)
-
+    # Subset the original variable font before instancing: recent Inter GVAR
+    # uses a glyph variation map that can become inconsistent when instanced first.
     options = subset.Options()
     options.flavor = "woff2"
     options.recalc_average_width = True
@@ -76,6 +76,7 @@ for family, filename, source_sha, target in FONTS:
     subsetter = subset.Subsetter(options=options)
     subsetter.populate(unicodes=KEEP)
     subsetter.subset(font)
+    font = instantiateVariableFont(font, limits, inplace=False)
     font.flavor = "woff2"
     file = ROOT / target
     font.save(file)
