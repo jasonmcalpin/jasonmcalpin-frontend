@@ -96,11 +96,11 @@ register('/', 'Independent Software Engineering & Consulting', consulting.identi
   elem('h1', escapeHtml(consulting.identity.headline)) +
   paragraph(consulting.identity.summary) +
   elem('p', link('/contact', 'Discuss a project') + ' · ' + link('/projects', 'See selected work')) +
-  elem('h2', 'What I can help you accomplish') +
+  elem('h2', 'Complex problems. Simple answers.') +
   elem('ul', consulting.services.map(service => elem('li',
     elem('h3', escapeHtml(service.title)) + paragraph(service.description) +
     link('/projects/' + service.evidence, 'Relevant work'))).join('')) +
-  elem('h2', 'Selected work') +
+  elem('h2', 'The work speaks.') +
   elem('ul', featuredProjects.map(project => elem('li',
     elem('h3', link('/projects/' + project.slug, project.title)) +
     paragraph(project.outcome || project.description))).join('')) +
@@ -112,7 +112,7 @@ register('/', 'Independent Software Engineering & Consulting', consulting.identi
 
 register('/about', 'About Jason McAlpin',
   'Independent software engineer with 15+ years of production experience across enterprise web, data, APIs and AI integration.',
-  elem('h1', 'A senior engineer who cares about the result') +
+  elem('h1', '15 years. Still breaking things. Then fixing them.') +
   paragraph('I am Jason McAlpin, an independent software engineer and consultant based near Atlanta. For more than 15 years I have helped teams build, modernize and improve applications they depend on.') +
   paragraph('My background spans digital experiences, data migration, APIs, enterprise publishing, performance work and applied AI, including contributions to projects for IBM and Ford.') +
   elem('h2', 'Selected recognition') +
@@ -124,7 +124,7 @@ register('/about', 'About Jason McAlpin',
 
 register('/projects', 'Selected Engineering Work',
   'Case studies and public engineering projects across modernization, AI, performance and developer tools.',
-  elem('h1', 'What I built. Why it mattered.') +
+  elem('h1', 'The work speaks.') +
   paragraph('Enterprise work, published tools and ongoing systems research, with clear contributions and maturity labels.') +
   elem('ul', projects.map(project => elem('li',
     elem('h2', link('/projects/' + project.slug, project.title)) +
@@ -148,7 +148,7 @@ register('/contact', 'Discuss a Software Project',
 
 register('/services', 'Software Engineering Services',
   'Independent engineering for application modernization, AI integration, performance and technical consulting.',
-  elem('h1', 'Experienced engineering for the work that matters') +
+  elem('h1', 'Big problems. Better code.') +
   paragraph(consulting.identity.summary) +
   elem('ul', consulting.services.map(service => elem('li',
     elem('h2', escapeHtml(service.title)) + paragraph(service.description) +
@@ -157,7 +157,7 @@ register('/services', 'Software Engineering Services',
   elem('h2', 'Ways to work together') +
   elem('ul', consulting.engagements.map(item => elem('li',
     elem('h3', escapeHtml(item.name)) + paragraph(item.description))).join('')) +
-  elem('h2', 'How an engagement works') +
+  elem('h2', 'Less talk. More shipped.') +
   elem('ol', consulting.process.map(step => elem('li',
     elem('h3', escapeHtml(step.title)) + paragraph(step.description))).join('')) +
   paragraph('Confidentiality, intellectual-property ownership and payment terms are agreed in writing when appropriate.') +

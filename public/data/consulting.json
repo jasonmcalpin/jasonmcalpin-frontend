@@ -12,7 +12,7 @@
   "services": [
     {
       "id": "modernization",
-      "title": "Modernize applications and data",
+      "title": "Old systems. New tricks.",
       "icon": "layers",
       "description": "Turn fragile legacy platforms and isolated data into maintainable services and tools that teams can actually use.",
       "deliverables": [
@@ -24,7 +24,7 @@
     },
     {
       "id": "ai",
-      "title": "Integrate AI into real workflows",
+      "title": "Teaching machines new tricks.",
       "icon": "workflow",
       "description": "Connect LLMs and agent tooling to existing applications with attention to contracts, reliability and operational constraints.",
       "deliverables": [
@@ -36,7 +36,7 @@
     },
     {
       "id": "performance",
-      "title": "Improve speed, reliability and cost",
+      "title": "Faster. Leaner. Better.",
       "icon": "gauge",
       "description": "Find expensive or brittle behavior, improve critical paths and make delivery more dependable.",
       "deliverables": [
@@ -48,7 +48,7 @@
     },
     {
       "id": "consulting",
-      "title": "Get experienced engineering judgment",
+      "title": "Experience beats guesswork.",
       "icon": "compass",
       "description": "Clarify architecture, delivery risks and implementation trade-offs with a hands-on senior engineer.",
       "deliverables": [
@@ -79,7 +79,7 @@
     "Hands-on delivery across frontend, APIs, data and infrastructure"
   ],
   "contact": {
-    "heading": "Tell me about the problem you're solving.",
+    "heading": "You bring the problem. I'll bring the solution.",
     "description": "Share what you are building, what is not working and what outcome matters. I'll respond directly to discuss fit and next steps.",
     "subject": "Project inquiry",
     "body": "Hi Jason,\\n\\nWe're looking for help with:\\n\\nThe system or project is:\\n\\nWhat success would look like:\\n\\nTimeline or constraints:\\n\\nThanks,"

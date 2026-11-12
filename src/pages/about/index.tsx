@@ -16,14 +16,14 @@ export default function About() {
         schema={getPersonSchema()} />
       <header className="consulting-page-intro consulting-container">
         <p className="consulting-eyebrow">About</p>
-        <h1>A senior engineer who cares about the result.</h1>
+        <h1>15 years. Still breaking things. Then fixing them.</h1>
         <p className="consulting-lead">I'm Jason McAlpin, an independent software engineer and consultant based near Atlanta. For more than 15 years I've helped teams build, modernize and improve applications that people depend on.</p>
       </header>
       <section className="consulting-section consulting-section--subtle">
         <div className="consulting-container consulting-two-column">
           <div>
             <p className="consulting-eyebrow">Experience and approach</p>
-            <h2>From technical ambiguity to working systems.</h2>
+            <h2>Complex problems. Simple answers.</h2>
             <p className="consulting-body">My background spans customer-facing digital experiences, complex data migrations, APIs, enterprise publishing, performance work and applied AI. I've contributed to projects for IBM, Ford and teams working across several industries.</p>
             <p className="consulting-body">I work across architectural decisions and implementation, with attention to what the organization needs to maintain after delivery, not just the code needed for a demonstration.</p>
             <Link to="/projects" className="consulting-text-link">See the work behind the claims →</Link>
@@ -47,13 +47,13 @@ export default function About() {
       </section>}
       <section className="consulting-section consulting-section--subtle">
         <div className="consulting-container consulting-two-column">
-          <div><p className="consulting-eyebrow">Current engineering</p><h2>Working at the boundaries of AI systems.</h2></div>
+          <div><p className="consulting-eyebrow">Current engineering</p><h2>Teaching machines new tricks.</h2></div>
           <div><p className="consulting-body">Alongside client and enterprise work, I build tools for model evaluation, agent coordination and durable project knowledge. Some are published for anyone to install; others remain active engineering projects with their maturity documented openly.</p>
             <Link className="consulting-text-link" to="/projects">Explore AI and open-source projects →</Link></div>
         </div>
       </section>
       <section className="consulting-cta"><div className="consulting-container">
-        <p className="consulting-eyebrow">Work together</p><h2>Need experienced engineering on your next challenge?</h2>
+        <p className="consulting-eyebrow">Work together</p><h2>Big problems. Better code.</h2>
         <p>Let's discuss the outcome you're after and whether I'm the right person to help.</p>
         <Link to="/contact" className="consulting-button consulting-button--primary">Start a conversation</Link>
       </div></section>

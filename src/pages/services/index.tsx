@@ -13,7 +13,7 @@ export default function Services() {
         description="Independent engineering for application modernization, AI integration, performance and technical consulting." schema={getServicesSchema()} />
       <header className="consulting-page-intro consulting-container">
         <p className="consulting-eyebrow">Services</p>
-        <h1>Experienced engineering for the work that matters.</h1>
+        <h1>Big problems. Better code.</h1>
         <p className="consulting-lead">Whether you need to modernize an existing system, connect AI to business workflows or solve a costly performance problem, I help define the right solution and deliver it.</p>
         <Link to="/contact" className="consulting-button consulting-button--primary">Discuss your project</Link>
       </header>
@@ -38,7 +38,7 @@ export default function Services() {
       </section>
       <section className="consulting-section" aria-labelledby="engagement-heading">
         <div className="consulting-container">
-          <div className="consulting-section-heading"><p className="consulting-eyebrow">Working together</p><h2 id="engagement-heading">Choose the engagement that fits the problem.</h2></div>
+          <div className="consulting-section-heading"><p className="consulting-eyebrow">Working together</p><h2 id="engagement-heading">Pick your play.</h2></div>
           <div className="consulting-three-column">
             {consulting.engagements.map((engagement, index) =>
               <article className="consulting-simple-card" key={engagement.name}>
@@ -53,7 +53,7 @@ export default function Services() {
         <div className="consulting-container">
           <div className="consulting-section-heading">
             <p className="consulting-eyebrow">What happens next</p>
-            <h2 id="process-heading">A clear path from inquiry to delivery.</h2>
+            <h2 id="process-heading">Less talk. More shipped.</h2>
             <p>No obligation to arrive with a finished specification. The first step is understanding whether the work is a good fit.</p>
           </div>
           <ol className="consulting-process">

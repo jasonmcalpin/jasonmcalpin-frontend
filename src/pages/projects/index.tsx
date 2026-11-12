@@ -20,7 +20,7 @@ export default function Projects() {
         description="Case studies and public engineering projects: enterprise modernization, AI integrations, performance and open-source tools." />
       <header className="consulting-page-intro consulting-container">
         <p className="consulting-eyebrow">Selected work and open-source engineering</p>
-        <h1>What I built. Why it mattered.</h1>
+        <h1>The work speaks.</h1>
         <p className="consulting-lead">Enterprise work, published tools and ongoing systems research, presented with my responsibilities, outcomes and the maturity of each project.</p>
       </header>
       <section className="consulting-section consulting-section--subtle">
@@ -39,7 +39,7 @@ export default function Projects() {
         </div>
       </section>
       <section className="consulting-cta"><div className="consulting-container">
-        <p className="consulting-eyebrow">Have a similar challenge?</p><h2>Let's talk about your system.</h2>
+        <p className="consulting-eyebrow">Have a similar challenge?</p><h2>You bring the problem. I'll bring the solution.</h2>
         <p>Share what isn't working, what you need to build, or what needs to become simpler.</p>
         <Link to="/contact" className="consulting-button consulting-button--primary">Discuss a project</Link>
       </div></section>
