@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useAppDispatch, useAppSelector } from '../../hooks/useAppStore';
-import { filterBytes, fetchBytes } from '../../store/slices/bytesSlice';
+import { filterBytes, fetchBytes, selectFilteredBytes } from '../../store/slices/bytesSlice';
 import ByteCard from '../../components/global/byteCard';
 import { fadeInUp, staggerContainer } from '../../utils/animations';
 import './styles.css';
@@ -11,7 +11,8 @@ import { InlineIcon } from '../../components/global/Icons';
 
 const Bytes = () => {
   const dispatch = useAppDispatch();
-  const { bytes, filteredBytes, activeTag } = useAppSelector(state => state.bytes);
+  const { bytes, activeTag, isLoading, error } = useAppSelector(state => state.bytes);
+  const filteredBytes = useAppSelector(selectFilteredBytes);
   const [tags, setTags] = useState<string[]>([]);
   const [searchTerm, setSearchTerm] = useState('');
 
@@ -28,9 +29,7 @@ const Bytes = () => {
   }, [bytes]);
 
   useEffect(() => {
-    dispatch(fetchBytes()).then(() => {
-      dispatch(filterBytes(null));
-    });
+    dispatch(fetchBytes());
   }, [dispatch]);
 
   const handleTagFilter = (tag: string | null) => {
@@ -124,7 +123,11 @@ const Bytes = () => {
             initial='hidden'
             animate='visible'
           >
-            {searchFilteredBytes.length > 0 ? (
+            {isLoading && bytes.length === 0 ? (
+              <p role='status'>Loading bytes...</p>
+            ) : error ? (
+              <div role='alert'><p>Unable to load bytes: {error}</p><button className='btn btn-primary' onClick={() => dispatch(fetchBytes())}>Retry</button></div>
+            ) : searchFilteredBytes.length > 0 ? (
               searchFilteredBytes.map((byte, index) => (
                 <ByteCard key={byte.id} byte={byte} index={index} />
               ))
