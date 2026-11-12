@@ -9,5 +9,3 @@
   @apply block w-24 h-1 mt-4 bg-secondary;
   box-shadow: 0 0 10px var(--color-secondary);
 }
-
-.section-link .fa-icon { @apply ml-2 text-xs; }
