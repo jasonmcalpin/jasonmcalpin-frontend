@@ -12,7 +12,7 @@
     "preview": "vite preview",
     "security-check": "yarn audit --level moderate",
     "security-fix": "yarn audit",
-    "type-check": "tsc --noEmit",
+    "type-check": "tsc -b --pretty false",
     "test": "vitest",
     "test:run": "vitest run",
     "test:watch": "vitest --watch",
