@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Card from '../Card';
 import Pacts from '../Pacts';
@@ -12,6 +12,8 @@ const GameScreen: React.FC = () => {
   const [swipeAnimation, setSwipeAnimation] = useState(false);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
+  const choiceLocked = useRef(false);
+  const advanceTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   
   // Fetch game data
   useEffect(() => {
@@ -31,6 +33,15 @@ const GameScreen: React.FC = () => {
     };
     
     fetchGameData();
+  }, []);
+
+  // Only accept one decision until the next card has rendered.
+  useEffect(() => {
+    choiceLocked.current = false;
+  }, [cardIndex]);
+
+  useEffect(() => () => {
+    if (advanceTimer.current !== null) clearTimeout(advanceTimer.current);
   }, []);
 
   // Check win/lose conditions
@@ -65,7 +76,8 @@ const GameScreen: React.FC = () => {
   }, [swipeAnimation]);
 
   const handleSwipe = (direction: string, effects: Effects) => {
-    if (!gameData || !pacts) return;
+    if (!gameData || !pacts || choiceLocked.current) return;
+    choiceLocked.current = true;
     
     // Set the last swipe direction for visual feedback
     setLastSwipe(direction);
@@ -84,7 +96,8 @@ const GameScreen: React.FC = () => {
     setPacts(updatedPacts);
     
     // Move to next card after a short delay to allow animation to play
-    setTimeout(() => {
+    advanceTimer.current = setTimeout(() => {
+      advanceTimer.current = null;
       setCardIndex((prevIndex) => (prevIndex + 1) % gameData.cards.length);
     }, 300);
   };
@@ -113,7 +126,7 @@ const GameScreen: React.FC = () => {
           </div>
         )}
         
-        <Card card={currentCard} onSwipe={handleSwipe} />
+        <Card key={cardIndex} card={currentCard} onSwipe={handleSwipe} />
       </div>
     </div>
   );
