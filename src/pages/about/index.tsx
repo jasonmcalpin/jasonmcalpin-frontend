@@ -1,10 +1,7 @@
-import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { useEffect } from 'react';
-import { useScrollAnimation } from '../../hooks/useScrollAnimation';
 import { useAppDispatch, useAppSelector } from '../../hooks/useAppStore';
 import { fetchLogos } from '../../store/slices/logoSlice';
-import { fadeInUp, staggerContainer } from '../../utils/animations';
 import type { Skill, CompanyLogos, Awards } from '../../types';
 import SEO from '../../components/global/SEO';
 import { getPersonSchema } from '../../utils/schema';
@@ -23,10 +20,10 @@ const About = () => {
   }, [dispatch]);
   const seoDescription = "Learn more about Jason McAlpin, a Full Stack Developer with expertise in React, TypeScript, Node.js, and modern web technologies. View my skills, experience, and background.";
   const personSchema = getPersonSchema();
-  const [introRef, introControls] = useScrollAnimation();
-  const [skillsRef, skillsControls] = useScrollAnimation();
-  const [experienceRef, experienceControls] = useScrollAnimation();
-  const [awardRef, awardControls] = useScrollAnimation();
+
+
+
+
   const skills: Skill[] = [
   // Frontend
   { name: 'React', level: 8, category: 'frontend' },
@@ -82,16 +79,16 @@ const About = () => {
         heroImage="/assets/images/code-bg.jpg"
       />
 
-      <motion.section 
+      <section 
         className="about-intro"
-        ref={introRef as unknown as React.RefObject<HTMLElement>}
-        initial="hidden"
-        animate={introControls}
-        variants={staggerContainer}
-      >
+        
+        
+        
+        
+       data-reveal="viewport">
         <div className="section-container">
           <div className="about-intro__content">
-            <motion.div className="about-intro__text" variants={fadeInUp}>
+            <div className="about-intro__text"  data-reveal="viewport">
               <FlatTitle>Who I Am</FlatTitle>
               <p className="about-intro__paragraph">
                 I'm Jason McAlpin, a passionate full stack developer with over 8 years of experience 
@@ -108,33 +105,33 @@ const About = () => {
                 When I'm not coding, you can find me exploring new technologies, contributing to open 
                 source projects, or sharing my knowledge through writing technical bytes.
               </p>
-            </motion.div>
+            </div>
             
-            <motion.div className="about-intro__image-container" variants={fadeInUp}>
+            <div className="about-intro__image-container"  data-reveal="viewport">
               <div className="about-intro__image">
                 
                 <div className="about-intro__image-placeholder">
                   
                 </div>
               </div>
-            </motion.div>
+            </div>
           </div>
         </div>
-      </motion.section>
+      </section>
       
-      <motion.section 
+      <section 
         className="about-skills"
-        ref={skillsRef as unknown as React.RefObject<HTMLElement>}
-        initial="hidden"
-        animate={skillsControls}
-        variants={staggerContainer}
-      >
+        
+        
+        
+        
+       data-reveal="viewport">
         <div className="section-container">
           <MotionTitle>
             My Skills
           </MotionTitle>
           
-          <motion.div className="about-skills__categories" variants={fadeInUp}>
+          <div className="about-skills__categories"  data-reveal="viewport">
             <div className="about-skills__category">
               <h3 className="about-skills__category-title">Frontend</h3>
               <div className="about-skills__list">
@@ -147,13 +144,13 @@ const About = () => {
                         <span className="about-skills__level">{skill.level} Years</span>
                       </div>
                       <div className="about-skills__bar">
-                        <motion.div 
+                        <div 
                           className="about-skills__progress"
-                          initial={{ width: 0 }}
-                          whileInView={{ width: `${skill.level*6.5}%` }}
-                          viewport={{ once: true }}
-                          transition={{ duration: 1, delay: index * 0.1 }}
-                        ></motion.div>
+                          
+                          
+                          
+                          
+                         data-reveal="viewport" data-progress="true" style={{ '--progress-width': `${skill.level * 6.5}%` } as React.CSSProperties}></div>
                       </div>
                     </div>
                   ))
@@ -173,13 +170,13 @@ const About = () => {
                         <span className="about-skills__level">{skill.level} Years</span>
                       </div>
                       <div className="about-skills__bar">
-                        <motion.div 
+                        <div 
                           className="about-skills__progress"
-                          initial={{ width: 0 }}
-                          whileInView={{ width: `${skill.level*6.5}%` }}
-                          viewport={{ once: true }}
-                          transition={{ duration: 1, delay: index * 0.1 }}
-                        ></motion.div>
+                          
+                          
+                          
+                          
+                         data-reveal="viewport" data-progress="true" style={{ '--progress-width': `${skill.level * 6.5}%` } as React.CSSProperties}></div>
                       </div>
                     </div>
                   ))
@@ -199,31 +196,31 @@ const About = () => {
                         <span className="about-skills__level">{skill.level} Years</span>
                       </div>
                       <div className="about-skills__bar">
-                        <motion.div 
+                        <div 
                           className="about-skills__progress"
-                          initial={{ width: 0 }}
-                          whileInView={{ width: `${skill.level*6.5}%` }}
-                          viewport={{ once: true }}
-                          transition={{ duration: 1, delay: index * 0.1 }}
-                        ></motion.div>
+                          
+                          
+                          
+                          
+                         data-reveal="viewport" data-progress="true" style={{ '--progress-width': `${skill.level * 6.5}%` } as React.CSSProperties}></div>
                       </div>
                     </div>
                   ))
                 }
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
-      </motion.section>
+      </section>
       
 
-      <motion.section 
+      <section 
         className="about-experience"
-        ref={experienceRef as unknown as React.RefObject<HTMLElement>}
-        initial="hidden"
-        animate={experienceControls}
-        variants={staggerContainer}
-      >
+        
+        
+        
+        
+       data-reveal="viewport">
         <div className="section-container">
           <MotionTitle>
             Clients
@@ -232,29 +229,29 @@ const About = () => {
           <div>
             <ul className='flex flex-wrap gap-6 justify-center items-center'>
             {logos.map((logo, index) => (
-              <motion.div 
+              <div 
                 key={index} 
                 className="about-experience__item"
-                variants={fadeInUp}
-                custom={index}
-              >
+                
+                
+               data-reveal="viewport">
                 <li className="w-24 h-24 flex items-center justify-center bg-white rounded-lg shadow-sm border border-gray-100 p-1">
                   <img src={logo.logoSrc} alt={logo.companyName} className='max-w-full max-h-full object-contain' />
                 </li>
-              </motion.div>
+              </div>
             ))}
             </ul>
           </div>
           
         </div>
-      </motion.section>
-      <motion.section 
+      </section>
+      <section 
         className="about-education"
-        ref={awardRef as unknown as React.RefObject<HTMLElement>}
-        initial="hidden"
-        animate={awardControls}
-        variants={staggerContainer}
-      >
+        
+        
+        
+        
+       data-reveal="viewport">
         <div className="section-container">
           <MotionTitle>
             Awards
@@ -262,12 +259,12 @@ const About = () => {
           
           <div className="about-awards__list">
             {awards.map((award, index) => (
-              <motion.div 
+              <div 
                 key={index} 
                 className="about-awards__item"
-                variants={fadeInUp}
-                custom={index}
-              >
+                
+                
+               data-reveal="viewport">
                 <div className="about-awards__year">
                   <span>{award.awardYear}</span>
                 </div>
@@ -281,24 +278,20 @@ const About = () => {
                     <p className="about-awards__description">{award.description}</p>
                   )}
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
-      </motion.section>
+      </section>
       {/* Contact CTA Section */}
       <section className="about-contact">
         <div className="section-container">
-          <motion.div 
+          <div 
             className="about-contact__content"
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ 
-              opacity: 1, 
-              y: 0,
-              transition: { duration: 0.5 }
-            }}
-            viewport={{ once: true }}
-          >
+            
+            
+            
+           data-reveal="viewport">
             <h2 className="about-contact__title">Interested in working together?</h2>
             <p className="about-contact__text">
               I'm always open to discussing new projects, creative ideas or opportunities to be part of your vision.
@@ -306,7 +299,7 @@ const About = () => {
             <Link to="/contact" className="btn btn-primary about-contact__cta">
               Get In Touch
             </Link>
-          </motion.div>
+          </div>
         </div>
       </section>
     </div>
