@@ -1,6 +1,7 @@
 import http from 'node:http';
 import { readFile, stat } from 'node:fs/promises';
 import { extname, join, resolve, sep } from 'node:path';
+import { brotliCompressSync, gzipSync } from 'node:zlib';
 
 const dist = resolve('dist');
 const port = Number(process.env.PORT || 4173);
@@ -55,8 +56,29 @@ const server = http.createServer(async (req, res) => {
       const bytes = await file(candidate);
       if (!bytes) continue;
       const type = mime[extname(candidate)] || 'application/octet-stream';
-      res.writeHead(200, { 'Content-Type': type, 'Cache-Control': 'no-store' });
-      res.end(req.method === 'HEAD' ? undefined : bytes);
+      // Model production's text transfer compression instead of measuring a
+      // raw-byte static server. Dynamic negotiation supports HEAD and both
+      // Brotli (Chrome) and gzip without new runtime dependencies.
+      const eligible = /^(text\/|application\/(?:javascript|json|xml))/.test(type) &&
+        bytes.length >= 1024;
+      const accepted = (req.headers['accept-encoding'] || '')
+        .split(',').map(value => value.split(';')[0].trim());
+      let payload = bytes;
+      const headers = {
+        'Content-Type': type,
+        'Cache-Control': 'no-store',
+        'Vary': 'Accept-Encoding',
+      };
+      if (eligible && accepted.includes('br')) {
+        payload = brotliCompressSync(bytes);
+        headers['Content-Encoding'] = 'br';
+      } else if (eligible && accepted.includes('gzip')) {
+        payload = gzipSync(bytes);
+        headers['Content-Encoding'] = 'gzip';
+      }
+      headers['Content-Length'] = String(payload.length);
+      res.writeHead(200, headers);
+      res.end(req.method === 'HEAD' ? undefined : payload);
       return;
     }
     res.writeHead(404).end('Not found');
