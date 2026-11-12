@@ -4,7 +4,7 @@
   "version": "1.1.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "yarn optimize-images && vite",
     "build": "yarn verify:content && yarn optimize-images && tsc -b && vite build && node scripts/generate-static-pages.mjs && yarn verify:static && yarn verify:chunks && yarn verify:no-motion && yarn verify:svg-layout && cp .htaccess dist/ --f",
     "verify:static": "node scripts/verify-static-pages.mjs",
     "verify:content": "node scripts/verify-json-content.mjs",
