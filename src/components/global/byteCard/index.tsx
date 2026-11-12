@@ -10,8 +10,6 @@ interface ByteCardProps {
 }
 
 const ByteCard: React.FC<ByteCardProps> = ({ byte, index }) => {
-  const delay = index * 0.1;
-  
   const formatDate = (dateString: string) => {
     const options: Intl.DateTimeFormatOptions = { year: 'numeric', month: 'long', day: 'numeric' };
     return new Date(dateString).toLocaleDateString(undefined, options);
