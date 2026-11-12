@@ -215,7 +215,7 @@ Project-specific instructions live in [AGENTS.md](AGENTS.md) and reusable skills
 
 The website remains a **React 19 / Vite client application**. The build now also generates contentful HTML for the primary public routes from the existing `public/data/bytes.toml`, `projects.json`, `experience.json`, and `social.json` files.
 
-- `yarn build` creates `dist/index.html` plus extension-suffixed static HTML documents (for example `dist/bytes/champion-your-team.html`). `.htaccess` maps public extensionless routes to the appropriate document before the SPA fallback.
+- `yarn build` creates `dist/index.html` plus extension-suffixed static HTML documents (for example `dist/bytes/champion-your-team.html`). `.htaccess` maps public extensionless routes to the appropriate document before the SPA fallback. Routes with nested pages, currently `/projects/` and `/bytes/`, also get a physical `index.html` inside their corresponding directories. This prevents directory listings when the origin does not apply Apache rewrite rules.
 - A generated `dist/sitemap.xml` covers published pages and catalog entries; there is no manually maintained sitemap. `dist/static-pages-manifest.json` makes the build's route contract inspectable.
 - Each document contains a semantic heading, meaningful content, unique title/description/canonical/Open Graph metadata and JSON-LD where appropriate. The article source is rendered with the same React Markdown and GFM libraries used by the client.
 - `yarn verify:static` asserts that generated files contain content and metadata **without executing JavaScript**, correspond to the sitemap, and retain the React bootstrap. Build runs it automatically and fails on violations.

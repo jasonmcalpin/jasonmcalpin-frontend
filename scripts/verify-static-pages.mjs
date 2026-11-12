@@ -4,6 +4,7 @@ import { join, resolve } from 'node:path';
 const dist = resolve('dist');
 const manifest = JSON.parse(await readFile(join(dist, 'static-pages-manifest.json'), 'utf8'));
 const paths = new Set();
+const generatedRoutes = new Set(manifest.map(page => page.path));
 const sitemap = await readFile(join(dist, 'sitemap.xml'), 'utf8');
 const failures = [];
 const assert = (condition, message) => { if (!condition) failures.push(message); };
@@ -14,6 +15,14 @@ for (const page of manifest) {
   paths.add(page.path);
   const file = join(dist, page.path === '/' ? 'index.html' : page.path.slice(1) + '.html');
   const html = await readFile(file, 'utf8');
+  // Routes that also have children are physical directories in dist.
+  // The directory itself must resolve to its own content rather than expose a listing.
+  if (page.path !== '/' && [...generatedRoutes].some(path => path.startsWith(page.path + '/'))) {
+    const directoryFile = join(dist, page.path.slice(1), 'index.html');
+    const indexHtml = await readFile(directoryFile, 'utf8').catch(() => null);
+    assert(indexHtml !== null, page.path + '/: missing directory index');
+    assert(indexHtml === html, page.path + '/: directory index differs from canonical page');
+  }
   const canonical = 'https://jasonmcalpin.com' + page.canonical;
   assert(html.includes('<div id="root"><div data-static-content><div class="app">'), page.path + ': static content missing');
   assert(html.includes('<h1'), page.path + ': semantic heading missing');
