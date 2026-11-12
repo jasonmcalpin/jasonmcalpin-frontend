@@ -16,8 +16,8 @@ const FactionWinScreen: React.FC = () => {
     <div className='flex flex-col items-center justify-center min-h-[80vh] p-6 max-w-2xl mx-auto text-center'>
       <h1 className='text-4xl font-heading text-neon-purple mb-6'>Faction Victory</h1>
       <p className='text-lg mb-8'>
-        A faction has taken control, reaching maximum power! You have lost the game 
-        as the balance has been tipped irreversibly.
+        {winner ? `${winner} has taken control of the wasteland.` : 'A faction has taken control of the wasteland.'}
+        {' '}You did not gather enough supplies to escape before the balance tipped.
       </p>
       <button 
         onClick={handleRestart}
