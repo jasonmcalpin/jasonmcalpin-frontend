@@ -3,10 +3,6 @@ import globals from 'globals';
 import tseslint from 'typescript-eslint';
 import reactHooks from 'eslint-plugin-react-hooks';
 import reactRefresh from 'eslint-plugin-react-refresh';
-import { FlatCompat } from '@eslint/eslintrc';
-
-const compat = new FlatCompat();
-
 export default tseslint.config([
   {
     ignores: ['dist', 'coverage', '*.config.*'],
@@ -14,7 +10,7 @@ export default tseslint.config([
   {
     files: ['**/*.{ts,tsx}'],
     languageOptions: {
-      parser: tseslint.parser, // ✅ This line is crucial
+      parser: tseslint.parser,
       ecmaVersion: 2020,
       sourceType: 'module',
       globals: globals.browser,
