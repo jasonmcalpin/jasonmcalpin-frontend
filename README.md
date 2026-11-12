@@ -371,3 +371,30 @@ SVG files are deliberately left unchanged.
 variants or the derived manifest directly. Regenerate via `yarn optimize-images`.
 Image aliases and sizes are presentation decisions; source paths remain data
 in JSON catalogs. Do not generate images on each user request.
+
+## Local typography and font weight audit
+
+The visual system uses **Inter** for body copy and **Orbitron** for headings.
+The source previously requested Inter weights **300, 400, 500, 600 and 700**
+and Orbitron **400, 500, 600 and 700** from the Google Fonts CDN.
+Scanning the site for explicit Tailwind and CSS font weights found no
+`font-light`/300 use and no extra-bold/800+ use. Current content uses regular
+(400), medium (500), semibold (600), and bold (700); the range is covered by
+**one variable Latin/Extended-Latin WOFF2 per family**.
+
+The two files in `public/assets/fonts` are committed, self-hosted,
+preloaded for critical body/headline rendering, and declared with
+`font-display: swap`. There are no external Google Fonts CSS or font requests.
+Missing non-Latin characters use the CSS system fallback. Both fonts retain
+their original SIL Open Font License files alongside the binaries.
+
+Source/provenance: `scripts/vendor-fonts.py` reproducibly retrieves Google's
+[official fonts repository](https://github.com/google/fonts) at a **pinned Git
+revision**, checks the exact Git blob hashes, restricts the weight axes to
+400–700 (and fixes Inter's optical-size axis), subsets glyphs, and emits WOFF2
+with FontTools. It is a **maintenance-only** script: the normal CI/build does
+not download external fonts or require Python. If font needs change, regenerate
+and commit new assets deliberately.
+
+`yarn verify:fonts` validates real WOFF2 signatures, size budgets,
+`font-display: swap`, preloads, no Google Fonts dependencies, and OFL licenses.
