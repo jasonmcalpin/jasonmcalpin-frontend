@@ -1,0 +1,38 @@
+/* Native reveal effects: decorative, layout-independent, no animation runtime. */
+html.js-enabled [data-reveal] {
+  opacity: 0;
+  transform: translate3d(0, 18px, 0);
+  transition: opacity 360ms ease-out, transform 360ms ease-out;
+}
+html.js-enabled [data-reveal].is-visible {
+  opacity: 1;
+  transform: none;
+}
+html.js-enabled [data-reveal="scale"] {
+  transform: scale(.96);
+}
+html.js-enabled [data-reveal="scale"].is-visible {
+  transform: none;
+}
+[data-hover-lift] {
+  transition: transform 180ms ease, box-shadow 180ms ease;
+}
+@media (hover: hover) {
+  [data-hover-lift]:hover { transform: translateY(-5px); }
+}
+.about-skills__progress[data-progress] {
+  width: 0;
+  transition: width 700ms ease-out;
+}
+.about-skills__progress[data-progress].is-visible {
+  width: var(--progress-width);
+}
+@media (prefers-reduced-motion: reduce) {
+  html.js-enabled [data-reveal], html.js-enabled [data-reveal].is-visible {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  .about-skills__progress[data-progress] { width: var(--progress-width); transition: none; }
+  [data-hover-lift] { transition: none; }
+}
