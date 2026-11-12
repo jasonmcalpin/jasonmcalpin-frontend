@@ -61,7 +61,7 @@
   @apply bg-gray-800 text-white hover:bg-gray-700;
 } */
 
-.project-card__link--github .fa-icon { @apply mr-1; }
+.project-card__link--github .site-icon { @apply mr-1; }
 
 
 .project-card__link--live {
@@ -70,11 +70,11 @@
 
 }
 
-.project-card__link--live .fa-icon { @apply mr-1; }
+.project-card__link--live .site-icon { @apply mr-1; }
 
 
 /* .project-card__link--details {
   @apply bg-secondary text-white hover:bg-secondary-light;
 } */
 
-.project-card__link--details .fa-icon { @apply ml-1; }
+.project-card__link--details .site-icon { @apply ml-1; }

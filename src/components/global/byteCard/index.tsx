@@ -62,7 +62,7 @@ const ByteCard: React.FC<ByteCardProps> = ({ byte }) => {
           className='byte-card__link inline-flex items-center justify-center px-4 py-2 text-sm font-medium rounded transition-all duration-300 bg-neon-purple text-white hover:bg-purple-700 mt-2'
           aria-label={`Read ${byte.title}`}
         >
-          Take A Byte <span className='fa-icon' aria-hidden='true'><i className='fa-solid fa-angle-right'></i></span>
+          Take A Byte <InlineIcon iconName='angle-right' />
         </Link>
       </div>
     </div>
