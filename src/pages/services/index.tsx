@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { Layers3, Workflow, Gauge, Compass } from 'lucide-react';
 import SEO from '../../components/global/SEO';
 import consulting from '../../../public/data/consulting.json';
+import { getServicesSchema } from '../../utils/schema';
 
 const icons = { layers: Layers3, workflow: Workflow, gauge: Gauge, compass: Compass };
 
@@ -9,7 +10,7 @@ export default function Services() {
   return (
     <div className="consulting-page consulting-inner-page services">
       <SEO title="Software Engineering Services" canonical="/services"
-        description="Independent engineering for application modernization, AI integration, performance and technical consulting." />
+        description="Independent engineering for application modernization, AI integration, performance and technical consulting." schema={getServicesSchema()} />
       <header className="consulting-page-intro consulting-container">
         <p className="consulting-eyebrow">Services</p>
         <h1>Experienced engineering for the work that matters.</h1>
