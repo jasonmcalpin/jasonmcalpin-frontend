@@ -1,8 +1,5 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import ReactMarkdown from 'react-markdown';
-import remarkGfm from 'remark-gfm';
-import { Highlight, themes } from 'prism-react-renderer';
 import { useAppSelector, useAppDispatch } from '../../hooks/useAppStore';
 import { fetchBytes } from '../../store/slices/bytesSlice';
 import SEO from '../../components/global/SEO';
@@ -16,6 +13,31 @@ const BytePage = () => {
   const dispatch = useAppDispatch();
   const { bytes, isLoading, hasLoaded, error } = useAppSelector(state => state.bytes);
   const byte = bytes.find(item => item.slug === slug);
+
+  const articleSlug = byte?.slug;
+  const [compiled, setCompiled] = useState<{ slug: string; html: string } | null>(null);
+  const [htmlError, setHtmlError] = useState<string | null>(null);
+  const [retry, setRetry] = useState(0);
+
+  // The trusted HTML fragment is compiled by our build pipeline from JSON
+  // Markdown. Never accept HTML from an arbitrary endpoint or user input.
+  useEffect(() => {
+    if (!articleSlug) return;
+    const controller = new AbortController();
+    setHtmlError(null);
+    fetch('/data/byte-html/' + articleSlug + '.html', { signal: controller.signal })
+      .then(async response => {
+        if (!response.ok) throw new Error('HTTP ' + response.status);
+        const html = await response.text();
+        if (!html.trim()) throw new Error('Empty article HTML');
+        if (!controller.signal.aborted) setCompiled({ slug: articleSlug, html });
+      })
+      .catch(error => {
+        if (!controller.signal.aborted)
+          setHtmlError(error instanceof Error ? error.message : String(error));
+      });
+    return () => controller.abort();
+  }, [articleSlug, retry]);
 
   useEffect(() => {
     if (!hasLoaded && !isLoading && !error) dispatch(fetchBytes());
@@ -158,59 +180,19 @@ const BytePage = () => {
             
             
            data-reveal="viewport">
-            <ReactMarkdown 
-              remarkPlugins={[remarkGfm]}
-              // Security: Disable HTML to prevent XSS attacks
-              disallowedElements={['script']}
-              unwrapDisallowed={true}
-              components={{
-                code({className, children, ...props}) {
-                  const match = /language-(\w+)/.exec(className || '');
-                  const isInline = !match;
-                  
-                  if (isInline) {
-                    return (
-                      <code className={className} {...props}>
-                        {children}
-                      </code>
-                    );
-                  }
-                  
-                  const language = match ? match[1] : '';
-                  const code = String(children).replace(/\n$/, '');
-                  
-                  return (
-                    <Highlight
-                      theme={themes.nightOwl}
-                      code={code}
-                      language={language || 'typescript'}
-                    >
-                      {({className, style, tokens, getLineProps, getTokenProps}) => (
-                        <pre className={className} style={{...style, padding: '1em', borderRadius: '0.5em', overflow: 'auto'}}>
-                          {tokens.map((line, i) => (
-                            <div key={i} {...getLineProps({line, key: i})}>
-                              {line.map((token, key) => (
-                                <span key={key} {...getTokenProps({token, key})} />
-                              ))}
-                            </div>
-                          ))}
-                        </pre>
-                      )}
-                    </Highlight>
-                  );
-                },
-                // Security: Ensure links open in new tab with security attributes
-                a: ({...props}) => (
-                  <a 
-                    target='_blank' 
-                    rel='noopener noreferrer' 
-                    {...props}
-                  />
-                )
-              }}
-            >
-              {byte.content}
-            </ReactMarkdown>
+            {htmlError ? (
+              <div role="alert">
+                <p>Unable to load article content: {htmlError}</p>
+                <button className="btn btn-primary" onClick={() => setRetry(value => value + 1)}>
+                  Retry
+                </button>
+              </div>
+            ) : compiled?.slug === byte.slug ? (
+              // Safe boundary: source is generated, not arbitrary HTML.
+              <div dangerouslySetInnerHTML={{ __html: compiled.html }} />
+            ) : (
+              <p role="status" aria-live="polite">Loading article content...</p>
+            )}
           </div>
         </div>
       </section>

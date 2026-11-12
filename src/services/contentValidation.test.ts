@@ -7,8 +7,7 @@ import experienceReducer from '../store/slices/experienceSlice';
 import logoReducer from '../store/slices/logoSlice';
 import uiReducer from '../store/slices/uiSlice';
 
-const byte = { id: '1', slug: 'example', title: 'Example', excerpt: 'Summary', content: 'Body',
-  imageUrl: '/a.png', author: 'Author', date: '2026-01-01', tags: ['React'], readingTime: 3 };
+const byte = { id: '1', slug: 'example', title: 'Example', excerpt: 'Summary', imageUrl: '/a.png', author: 'Author', date: '2026-01-01', tags: ['React'], readingTime: 3 };
 const project = { id: '1', slug: 'example', title: 'Example', description: 'Work',
   technologies: ['React'], featured: true };
 

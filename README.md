@@ -235,7 +235,7 @@ The website remains a **React 19 / Vite client application**. The build now also
 
 - `yarn build` creates `dist/index.html` plus extension-suffixed static HTML documents (for example `dist/bytes/champion-your-team.html`). `.htaccess` maps public extensionless routes to the appropriate document before the SPA fallback. Routes with nested pages, currently `/projects/` and `/bytes/`, also get a physical `index.html` inside their corresponding directories. This prevents directory listings when the origin does not apply Apache rewrite rules.
 - A generated `dist/sitemap.xml` covers published pages and catalog entries; there is no manually maintained sitemap. `dist/static-pages-manifest.json` makes the build's route contract inspectable.
-- Each document contains a semantic heading, meaningful content, unique title/description/canonical/Open Graph metadata and JSON-LD where appropriate. The article source is rendered with the same React Markdown and GFM libraries used by the client.
+- Each document contains a semantic heading, meaningful content, unique title/description/canonical/Open Graph metadata and JSON-LD where appropriate. Article markup comes from the same build-generated, GFM + Prism highlighted HTML fragments consumed by the React client; the client itself does not parse Markdown.
 - `yarn verify:static` asserts that generated files contain content and metadata **without executing JavaScript**, correspond to the sitemap, and retain the React bootstrap. Build runs it automatically and fails on violations.
 
 **Rendering boundary:** This is progressive static HTML (a no-JavaScript content fallback), **not React SSR hydration**. The normal React SPA takes over the root on startup and preserves existing interactivity. Complete visual equivalence between the static fallback and the hydrated SPA is not claimed. Interactive games and lessons stay client-rendered. This approach avoids a server runtime and any React Router/Redux SSR migration, while making public article and portfolio content available immediately to crawlers.
@@ -341,9 +341,9 @@ Content, personal information, images, and design are Copyright © 2025 Jason Mc
 
 All published content catalogs are JSON. Byte articles live in `public/data/bytes.json` as an array of records containing an ID, slug, title, excerpt, date, author, tags, image URL, reading time, and a **Markdown string** in `content`.
 
-Fenced code snippets remain Markdown inside the JSON string (for example, a `typescript` fence). When editing an article, serialize Markdown with `JSON.stringify` or a JSON-aware editor rather than manually escaping quotes/newlines. The existing React Markdown/GFM and Prism renderer is unchanged by this migration.
+Fenced code snippets remain Markdown inside the JSON string (for example, a `typescript` fence). When editing an article, serialize Markdown with `JSON.stringify` or a JSON-aware editor rather than manually escaping quotes/newlines. The build-time publisher retains React Markdown/GFM and Prism Night Owl highlighting; those libraries are not shipped to the browser.
 
-`yarn verify:content` validates the article catalog and balanced Markdown code fences, and runs before every production build. The static publisher and browser fetch both read `bytes.json`; no TOML parser is required.
+`yarn verify:content` validates the article catalog and balanced Markdown code fences, and runs before every production build. The static publisher reads canonical `bytes.json`; browser routes use generated `bytes-index.json` for metadata and per-article compiled HTML. No TOML parser or runtime Markdown processor is required.
 
 ## Responsive image pipeline
 
@@ -398,3 +398,29 @@ and commit new assets deliberately.
 
 `yarn verify:fonts` validates real WOFF2 signatures, size budgets,
 `font-display: swap`, preloads, no Google Fonts dependencies, and OFL licenses.
+
+## Build-time Byte Markdown renderer
+
+Authored Markdown remains in `public/data/bytes.json`; each article's `content`
+is a Markdown string. `yarn render:bytes` compiles Markdown with GFM and
+the existing Prism Night Owl syntax highlighting at development/build startup
+into isolated, inert `public/data/byte-html/<slug>.html` fragments.
+
+The browser article route fetches **only that article's compiled fragment**
+and injects it into the article body. It does not download or execute the
+Markdown/GFM parser, Prism engine, or tokenization grammar. The existing
+`/bytes` listing and metadata contracts remain unchanged. Its lightweight
+`bytes-index.json` deliberately omits large Markdown bodies. The static HTML publisher
+uses the **same fragment**, so no-JavaScript content and SPA content share
+one rendering implementation.
+
+Security boundary: compilation uses `react-markdown` defaults (raw HTML is
+not interpreted and unsafe links are transformed), rejects active/unsafe
+markup, and publishes fragments exclusively from the version-controlled
+JSON catalog. Client HTML injection is permitted **only for this
+build-generated endpoint**; never use it for user-submitted HTML.
+
+`yarn verify:rendered-bytes` validates all generated articles, Markdown code
+blocks, unique slugs, absence of stale fragments, and forbidden HTML. Build
+and dev regenerate before Vite runs. The generated HTML directory is ignored
+in Git and copied into the release bundle by Vite.
