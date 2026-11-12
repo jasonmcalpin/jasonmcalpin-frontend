@@ -57,7 +57,7 @@ const Contact = () => {
               </p>
 
               <ul className='contact-social__list'  data-reveal="viewport">
-                {socialLinks.map((link, index) => (
+                {socialLinks.map(link => (
                   <li
                     key={link.platform}
                     className='contact-social__item'
