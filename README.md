@@ -4,7 +4,7 @@ This is the source code for Jason McAlpin's personal website, built with React, 
 
 ## Features
 
-- **Modern React Architecture**: Built with React 18, TypeScript, and Vite for optimal performance
+- **Modern React Architecture**: Built with React 19, TypeScript, and Vite for optimal performance
 - **Responsive Design**: Fully responsive layout that works on all devices
 - **Content Sections**: Home, About, Projects, Bytes (blog), and Contact sections
 - **Interactive Elements**: Includes animations and interactive components using Framer Motion
@@ -14,7 +14,7 @@ This is the source code for Jason McAlpin's personal website, built with React, 
 
 ## Technology Stack
 
-- **Frontend**: React 18, TypeScript, Redux Toolkit
+- **Frontend**: React 19, TypeScript, Redux Toolkit
 - **Styling**: SCSS, Tailwind CSS
 - **Build Tools**: Vite, ESLint, TypeScript
 - **Deployment**: GitHub Actions CI/CD pipeline
@@ -25,8 +25,8 @@ This is the source code for Jason McAlpin's personal website, built with React, 
 
 ### Prerequisites
 
-- Node.js (v18+)
-- npm (v10+)
+- Node.js (v22+)
+- Yarn classic (v1.x)
 
 ### Getting Started
 
@@ -40,25 +40,25 @@ This is the source code for Jason McAlpin's personal website, built with React, 
 2. Install dependencies
 
    ```bash
-   npm install
+   yarn install --frozen-lockfile
    ```
 
 3. Start the development server
 
    ```bash
-   npm run dev
+   yarn dev
    ```
 
 4. Open your browser and navigate to `http://localhost:5173`
 
 ### Available Scripts
 
-- `npm run dev` - Start the development server
-- `npm run build` - Build for production
-- `npm run optimize-images` - Optimize images using Sharp
-- `npm run lint` - Run ESLint
-- `npm run preview` - Preview the production build locally
-- `npm run type-check` - Run TypeScript type checking
+- `yarn dev` - Start the development server
+- `yarn build` - Build for production
+- `yarn optimize-images` - Optimize images using Sharp
+- `yarn lint` - Run ESLint
+- `yarn preview` - Preview the production build locally
+- `yarn type-check` - Run TypeScript type checking
 
 ### Code Quality Tools
 
@@ -206,6 +206,20 @@ revert: feat(auth): add login functionality
 
 This reverts commit abc1234.
 ```
+
+## Codex agent guidance
+
+Project-specific instructions live in [AGENTS.md](AGENTS.md) and reusable skills are installed in [`.agents/skills/`](.agents/skills/). These originate from [codex-engineering-guidelines](https://github.com/jasonmcalpin/codex-engineering-guidelines), with website-specific deployment, content, and consent contracts added locally. Review upstream improvements explicitly; these are versioned copies, not automatically synchronized.
+
+## CI verification and release safety
+
+CI uses the committed `yarn.lock` and runs `yarn lint`, `yarn type-check`, `yarn test:run`, and `yarn build` before uploading deployment artifacts. Pushes to main update staging; same-repository pull requests preview on the **shared** staging site. A closed, unmerged PR resets shared staging to main.
+
+Only `vMAJOR.MINOR.PATCH` tags whose tagged commit is an ancestor of `main` may deploy production. The tag must be created from an already-merged main commit. CI builds the tag, not a moving main branch, to ensure release reproducibility.
+
+GitHub Actions secrets `FTP_HOST`, `FTP_USERNAME`, `SSH_PRIVATE_KEY`, `FTP_TARGET_PREVIEW`, and `FTP_TARGET` remain operator-managed; `SSH_PORT` is optional. `GTM_ID` is used only in tagged production builds, and analytics scripts are loaded only after current-policy opt-in. Production and staging deployment jobs use GitHub Environments named `production` and `staging`. Configure required reviewers and tag/branch deployment rules for `production` in GitHub repository settings before treating approvals as enforced.
+
+**Deployment limitation:** previews overwrite one shared staging hostname; they are not isolated per-PR previews. The staging deployment concurrency group prevents concurrent uploads but not logical replacement by later queued workflows. Dedicated PR preview directories plus DNS/hosting routing would be a worthwhile future improvement, but require explicit server configuration.
 
 ## Deployment
 

@@ -11,6 +11,7 @@ import Header from './components/header';
 import Footer from './components/footer';
 import {CookieConsent } from './components/global/CookieConsent';
 import type { ConsentOptions } from './components/global/CookieConsent/consentUtils';
+import { initializeAnalytics } from './services/analytics';
 import ScrollToTop from './components/scrollToTop';
 // import GTMTester from './components/global/GTMTester';
 
@@ -63,7 +64,7 @@ const QueryParamDetector = ({ children }: { children: React.ReactNode }) => {
 
 function App() {
   const handleAcceptConsent = (options: ConsentOptions) => {
-    console.log('User has provided consent with options:', options);
+    if (options.analytics) initializeAnalytics();
   };
 
   const handleDeclineConsent = () => {

@@ -26,8 +26,8 @@ const CookieConsent: React.FC<CookieConsentProps> = ({
   const [visible, setVisible] = useState(false);
   const [options, setOptions] = useState<ConsentOptions>({
     essential: true,
-    preferences: true,
-    analytics: true
+    preferences: false,
+    analytics: false
   });
 
   useEffect(() => {

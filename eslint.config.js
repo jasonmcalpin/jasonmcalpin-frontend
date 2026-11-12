@@ -20,6 +20,7 @@ export default tseslint.config([
       globals: globals.browser,
     },
     plugins: {
+      '@typescript-eslint': tseslint.plugin,
       'react-hooks': reactHooks,
       'react-refresh': reactRefresh,
     },
@@ -27,6 +28,9 @@ export default tseslint.config([
       ...js.configs.recommended.rules,
       ...tseslint.configs.recommended[1].rules,
       ...reactHooks.configs.recommended.rules,
+      // TypeScript owns unused-variable checks; underscore-prefixed callback parameters are intentional.
+      'no-unused-vars': 'off',
+      '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_', varsIgnorePattern: '^_' }],
       'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
     },
   },
