@@ -1,9 +1,7 @@
 import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
 import type { SocialLink } from '../../types';
-import { fadeInUp, staggerContainer } from '../../utils/animations';
 import Hero from '../../components/global/Hero';
-import { CenterTitle, MotionTitle } from '../../components/global/Titles';
+import { CenterTitle, RevealTitle } from '../../components/global/Titles';
 import './styles.css';
 import InlineIcon from '@/components/global/Icons';
 
@@ -43,29 +41,29 @@ const Contact = () => {
       <section className='contact-content'>
         <div className='section-container'>
           <div className='contact-content__grid'>
-            <motion.div
+            <div
               className='contact-social'
-              initial='hidden'
-              animate='visible'
-              variants={staggerContainer}
-            >
-              <MotionTitle>
+              
+              
+              
+             data-reveal="viewport">
+              <RevealTitle>
                 Connect With Me
-              </MotionTitle>
+              </RevealTitle>
 
-              <motion.p className='contact-social__text' variants={fadeInUp}>
+              <p className='contact-social__text'  data-reveal="viewport">
                 Feel free to reach out through any of these platforms. I'm always open to discussing new projects,
                 creative ideas, or opportunities to be part of your vision.
-              </motion.p>
+              </p>
 
-              <motion.ul className='contact-social__list' variants={staggerContainer}>
-                {socialLinks.map((link, index) => (
-                  <motion.li
+              <ul className='contact-social__list'  data-reveal="viewport">
+                {socialLinks.map(link => (
+                  <li
                     key={link.platform}
                     className='contact-social__item'
-                    variants={fadeInUp}
-                    custom={index}
-                  >
+                    
+                    
+                   data-reveal="viewport">
                     <a
                       href={link.url}
                       target='_blank'
@@ -85,23 +83,23 @@ const Contact = () => {
                         <span className='contact-social__username'>{link.linkText}</span>
                       </div>
                     </a>
-                  </motion.li>
+                  </li>
                 ))}
-              </motion.ul>
-            </motion.div>
+              </ul>
+            </div>
 
 
-            <motion.div
+            <div
               className='contact-info'
-              initial='hidden'
-              animate='visible'
-              variants={staggerContainer}
-            >
-              <MotionTitle>
+              
+              
+              
+             data-reveal="viewport">
+              <RevealTitle>
                 Contact Information
-              </MotionTitle>
+              </RevealTitle>
 
-              <motion.div className='contact-info__content' variants={fadeInUp}>
+              <div className='contact-info__content'  data-reveal="viewport">
                 <div className='contact-info__card'>
                   <div className='contact-info__card-inner'>
                     <div className='contact-info__card-front'>
@@ -146,8 +144,8 @@ const Contact = () => {
                   <span className='contact-info__note-icon'>ℹ️</span>
                   <span>Hover over the card to see contact details</span>
                 </p>
-              </motion.div>
-            </motion.div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -159,65 +157,65 @@ const Contact = () => {
           </CenterTitle>
 
           <div className='contact-faq__grid'>
-            <motion.div
+            <div
               className='contact-faq__item'
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-            >
+              
+              
+              
+              
+             data-reveal="viewport">
               <h3 className='contact-faq__question'>What services do you offer?</h3>
               <p className='contact-faq__answer'>
                 I offer full-stack web development services, including frontend development with React,
                 backend development with Node.js, Next.js and database design. I can help with everything from
                 building a complete web application to improving specific aspects of your existing project.
               </p>
-            </motion.div>
+            </div>
 
-            <motion.div
+            <div
               className='contact-faq__item'
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-            >
+              
+              
+              
+              
+             data-reveal="viewport">
               <h3 className='contact-faq__question'>How do you handle project pricing?</h3>
               <p className='contact-faq__answer'>
                 Project pricing depends on the scope, complexity, and timeline. I offer both hourly rates
                 and fixed-price quotes based on detailed project requirements. I'm happy to discuss your
                 specific needs and provide a transparent pricing structure.
               </p>
-            </motion.div>
+            </div>
 
-            <motion.div
+            <div
               className='contact-faq__item'
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.3 }}
-            >
+              
+              
+              
+              
+             data-reveal="viewport">
               <h3 className='contact-faq__question'>What is your typical project process?</h3>
               <p className='contact-faq__answer'>
                 My process typically includes an initial consultation, requirements gathering, design approval,
                 development, testing, and deployment. I maintain clear communication throughout and provide
                 regular updates on progress. After launch, I also offer maintenance and support services.
               </p>
-            </motion.div>
+            </div>
 
-            <motion.div
+            <div
               className='contact-faq__item'
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.4 }}
-            >
+              
+              
+              
+              
+             data-reveal="viewport">
               <h3 className='contact-faq__question'>Are you available for remote work?</h3>
               <p className='contact-faq__answer'>
                 Yes, I work remotely with clients from around the world. I use collaborative tools to
                 maintain effective communication and ensure project success regardless of location. I'm
                 flexible with scheduling meetings across different time zones.
               </p>
-            </motion.div>
+            </div>
           </div>
         </div>
       </section>

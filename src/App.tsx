@@ -5,7 +5,6 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 // import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { Provider } from 'react-redux';
 
-import { AnimatePresence } from 'framer-motion';
 import { store } from './store';
 import Header from './components/header';
 import Footer from './components/footer';
@@ -80,7 +79,7 @@ function App() {
             <div className='app'>
               <Header />
               <main className='main'>
-                <AnimatePresence mode='wait'>
+                <>
                   <Suspense fallback={<LoadingFallback />}>
                     <Routes>
                       <Route path='/' element={<Home />} />
@@ -112,7 +111,7 @@ function App() {
                       <Route path='/privacy' element={<Privacy />} />
                     </Routes>
                   </Suspense>
-                </AnimatePresence>
+                </>
               </main>
               <Footer />
               <CookieConsent

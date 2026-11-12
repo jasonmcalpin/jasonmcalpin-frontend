@@ -1,9 +1,6 @@
 import { lazy, Suspense, useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
 import SEO from '../../components/global/SEO';
-import { useScrollAnimation } from '../../hooks/useScrollAnimation';
-import { fadeInUp, staggerContainer } from '../../utils/animations';
 import { getWebsiteSchema } from '../../utils/schema';
 import './styles.css';
 
@@ -49,7 +46,6 @@ function DeferredHomepageContent() {
 }
 
 const Home = () => {
-  const [heroRef, heroControls] = useScrollAnimation();
 
   return (
     <div className="home pt-16">
@@ -60,51 +56,47 @@ const Home = () => {
         schema={getWebsiteSchema()}
       />
       {/* Hero Section */}
-      <motion.section 
+      <section 
         className="hero min-h-screen flex flex-col md:flex-row items-center justify-center px-4 py-16"
-        ref={heroRef as unknown as React.RefObject<HTMLElement>}
-        initial="hidden"
-        animate={heroControls}
-        variants={staggerContainer}
-      >
+        
+        
+        
+        
+       data-reveal="viewport">
         <div className="hero__content w-full md:w-1/2 mb-12 md:mb-0 md:pr-8 md:ml-auto md:max-w-[40rem]">
-          <motion.h1 className="hero__title text-4xl sm:text-5xl md:text-6xl font-heading font-bold mb-6" variants={fadeInUp}>
+          <h1 className="hero__title text-4xl sm:text-5xl md:text-6xl font-heading font-bold mb-6"  data-reveal="viewport">
             <span className="hero__title-line block mb-2">Hi, I'm</span>
             <span className="hero__title-line neon-text block mb-2">Jason McAlpin</span>
             <span className="hero__title-line block mb-2">Full Stack Developer</span>
-          </motion.h1>
+          </h1>
           
-          <motion.p className="hero__subtitle text-xl text-gray-300 mb-8 max-w-lg" variants={fadeInUp}>
+          <p className="hero__subtitle text-xl text-gray-300 mb-8 max-w-lg"  data-reveal="viewport">
             Building modern web experiences with cutting-edge technologies
-          </motion.p>
+          </p>
           
-          <motion.div className="hero__cta flex flex-wrap gap-4" variants={fadeInUp}>
+          <div className="hero__cta flex flex-wrap gap-4"  data-reveal="viewport">
             <Link to="/projects" className="btn btn-primary">
               View My Work
             </Link>
             <Link to="/contact" className="btn btn-outline">
               Get In Touch
             </Link>
-          </motion.div>
+          </div>
         </div>
         
-        <motion.div 
+        <div 
           className="hero__visual w-full md:w-1/2 flex justify-center items-center"
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ 
-            opacity: 1, 
-            scale: 1,
-            transition: { duration: 0.8, delay: 0.2 }
-          }}
-        >
+          
+          
+         data-reveal="scale">
           <div className="hero__grid grid grid-cols-2 gap-4 w-full max-w-md">
             <div className="hero__grid-item h-32 rounded-lg relative overflow-hidden after:content-[''] after:absolute after:inset-0 after:bg-black/40 bg-primary bg-cover bg-center hero__grid-item--1"></div>
             <div className="hero__grid-item h-32 rounded-lg relative overflow-hidden after:content-[''] after:absolute after:inset-0 after:bg-black/40 bg-primary bg-cover bg-center hero__grid-item--2"></div>
             <div className="hero__grid-item h-32 rounded-lg relative overflow-hidden after:content-[''] after:absolute after:inset-0 after:bg-black/40 bg-primary bg-cover bg-center hero__grid-item--3"></div>
             <div className="hero__grid-item h-32 rounded-lg relative overflow-hidden after:content-[''] after:absolute after:inset-0 after:bg-black/40 bg-primary bg-cover bg-center hero__grid-item--4"></div>
           </div>
-        </motion.div>
-      </motion.section>
+        </div>
+      </section>
       
 
       <DeferredHomepageContent />

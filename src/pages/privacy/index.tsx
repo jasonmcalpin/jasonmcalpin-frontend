@@ -1,5 +1,3 @@
-import { motion } from 'framer-motion';
-import { fadeInUp } from '../../utils/animations';
 import Hero from '../../components/global/Hero';
 import './styles.css';
 
@@ -15,12 +13,12 @@ const Privacy = () => {
       
       <section className='privacy-content'>
         <div className='section-container'>
-          <motion.div 
+          <div 
             className='privacy-content__wrapper'
-            variants={fadeInUp}
-            initial='hidden'
-            animate='visible'
-          >
+            
+            
+            
+           data-reveal="viewport">
             <h2>Introduction</h2>
             <p>
               This Privacy Policy explains how Jason McAlpin collects, uses, and protects 
@@ -110,7 +108,7 @@ const Privacy = () => {
             <p className='privacy-content__last-updated'>
               Last updated: May 20, 2025
             </p>
-          </motion.div>
+          </div>
         </div>
       </section>
     </div>
