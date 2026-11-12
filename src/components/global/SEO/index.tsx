@@ -19,7 +19,7 @@ const SEO = ({
   title,
   description,
   canonical,
-  image = '/assets/images/placeholder.svg',
+  image = '/assets/images/code.jpg',
   type = 'website',
   byte,
   schema,
@@ -35,7 +35,7 @@ const SEO = ({
       <meta name="description" content={description} />
       <link rel="canonical" href={url} />
 
-      <meta property="og:type" content={type} />
+      <meta property="og:type" content={type === 'byte' ? 'article' : type} />
       <meta property="og:url" content={url} />
       <meta property="og:title" content={fullTitle} />
       <meta property="og:description" content={description} />
@@ -51,15 +51,15 @@ const SEO = ({
       {type === 'byte' && byte && (
         <>
           {byte.publishedTime && (
-            <meta property="byte:published_time" content={byte.publishedTime} />
+            <meta property="article:published_time" content={byte.publishedTime} />
           )}
           {byte.modifiedTime && (
-            <meta property="byte:modified_time" content={byte.modifiedTime} />
+            <meta property="article:modified_time" content={byte.modifiedTime} />
           )}
-          {byte.author && <meta property="byte:author" content={byte.author} />}
+          {byte.author && <meta property="article:author" content={byte.author} />}
           {byte.tags &&
             byte.tags.map((tag, i) => (
-              <meta key={i} property="byte:tag" content={tag} />
+              <meta key={i} property="article:tag" content={tag} />
             ))}
         </>
       )}
@@ -67,7 +67,7 @@ const SEO = ({
       {/* JSON-LD Structured Data */}
       {schema && (
         <script type='application/ld+json'>
-          {JSON.stringify(schema)}
+          {JSON.stringify(schema).replace(/</g, '\\u003c')}
         </script>
       )}
     </Head>
