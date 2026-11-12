@@ -30,4 +30,6 @@ jobs:
           git add public/assets/fonts/*.woff2 public/assets/fonts/LICENSE-*.txt
           git diff --cached --quiet && exit 0
           git commit -m "assets: vendor subset Inter and Orbitron WOFF2 from pinned OFL sources"
+          git fetch origin perf/self-host-subset-fonts
+          git rebase origin/perf/self-host-subset-fonts
           git push origin HEAD:perf/self-host-subset-fonts
