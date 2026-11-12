@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "yarn optimize-images && tsc -b && vite build && cp .htaccess dist/ --f",
+    "build": "yarn optimize-images && tsc -b && vite build && node scripts/generate-static-pages.mjs && yarn verify:static && cp .htaccess dist/ --f",
+    "verify:static": "node scripts/verify-static-pages.mjs",
     "build:analyze": "yarn build && open dist/stats.html",
     "optimize-images": "node scripts/optimize-images.js",
     "lint": "eslint .",
