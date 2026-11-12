@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import type { SocialLink } from '../../types';
 import Hero from '../../components/global/Hero';
-import { CenterTitle, MotionTitle } from '../../components/global/Titles';
+import { CenterTitle, RevealTitle } from '../../components/global/Titles';
 import './styles.css';
 import InlineIcon from '@/components/global/Icons';
 
@@ -47,9 +47,9 @@ const Contact = () => {
               
               
              data-reveal="viewport">
-              <MotionTitle>
+              <RevealTitle>
                 Connect With Me
-              </MotionTitle>
+              </RevealTitle>
 
               <p className='contact-social__text'  data-reveal="viewport">
                 Feel free to reach out through any of these platforms. I'm always open to discussing new projects,
@@ -95,9 +95,9 @@ const Contact = () => {
               
               
              data-reveal="viewport">
-              <MotionTitle>
+              <RevealTitle>
                 Contact Information
-              </MotionTitle>
+              </RevealTitle>
 
               <div className='contact-info__content'  data-reveal="viewport">
                 <div className='contact-info__card'>
