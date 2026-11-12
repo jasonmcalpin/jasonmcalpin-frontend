@@ -41,7 +41,7 @@ for (const [index, article] of articles.entries()) {
 const consulting = JSON.parse(await readFile(resolve('public/data/consulting.json'), 'utf8'));
 const projects = JSON.parse(await readFile(resolve('public/data/projects.json'), 'utf8'));
 if (!consulting.identity?.headline || !consulting.identity?.summary ||
-    !consulting.identity?.email || !Array.isArray(consulting.services) ||
+    'email' in consulting.identity || !Array.isArray(consulting.services) ||
     !Array.isArray(consulting.engagements) || !Array.isArray(projects))
   throw new Error('Invalid consulting site content');
 const projectSlugs = new Set(projects.map(project => project.slug));
