@@ -73,7 +73,7 @@ function renderArticle(byte) {
   // or unsafe URL schemes through. Compiled fragments are the only HTML the
   // client inserts with dangerouslySetInnerHTML.
   if (/<\/?(?:script|iframe|object|embed|style)(?:\s|>)/i.test(html) ||
-      /\son[a-z]+\s*=/i.test(html) ||
+      /<[a-z][^>]*\son[a-z]+\s*=/i.test(html) ||
       /(?:href|src)\s*=\s*["']\s*(?:javascript|data):/i.test(html))
     throw new Error('Unsafe HTML generated for ' + byte.slug);
   return html;
