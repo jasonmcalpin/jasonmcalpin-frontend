@@ -1,9 +1,7 @@
 import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
 import { useAppDispatch, useAppSelector } from '../../hooks/useAppStore';
 import { filterBytes, fetchBytes, selectFilteredBytes } from '../../store/slices/bytesSlice';
 import ByteCard from '../../components/global/byteCard';
-import { fadeInUp, staggerContainer } from '../../utils/animations';
 import './styles.css';
 import Hero from '../../components/global/Hero';
 import { CenterTitle } from '../../components/global/Titles';
@@ -64,14 +62,14 @@ const Bytes = () => {
       <section className='bytes-content'>
         <div className='section-container'>
           {/* Search and Filters */}
-          <motion.div
+          <div
             className='bytes-filters'
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
+            
+            
+            
             role='search'
             aria-label='Search and filter bytes'
-          >
+           data-reveal="viewport">
             <div className='bytes-filters__search'>
               <label htmlFor='bytes-search' className='sr-only'>
                 Search bytes
@@ -114,15 +112,15 @@ const Bytes = () => {
                 ))}
               </div>
             </div>
-          </motion.div>
+          </div>
 
           {/* Bytes Grid */}
-          <motion.div
+          <div
             className='bytes-grid'
-            variants={staggerContainer}
-            initial='hidden'
-            animate='visible'
-          >
+            
+            
+            
+           data-reveal="viewport">
             {isLoading && bytes.length === 0 ? (
               <p role='status'>Loading bytes...</p>
             ) : error ? (
@@ -132,12 +130,12 @@ const Bytes = () => {
                 <ByteCard key={byte.id} byte={byte} index={index} />
               ))
             ) : (
-              <motion.div
+              <div
                 className='bytes-empty'
-                variants={fadeInUp}
+                
                 role='status'
                 aria-live='polite'
-              >
+               data-reveal="viewport">
                 <p className='bytes-empty__message'>
                   {searchTerm
                     ? `No bytes found matching '${searchTerm}'`
@@ -153,9 +151,9 @@ const Bytes = () => {
                 >
                   Show All Bytes
                 </button>
-              </motion.div>
+              </div>
             )}
-          </motion.div>
+          </div>
         </div>
       </section>
 
@@ -167,15 +165,15 @@ const Bytes = () => {
           </CenterTitle>
 
           <div className='bytes-topics__grid' role='list' aria-label='Topic categories'>
-            <motion.div
+            <div
               className='bytes-topics__item'
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.1 }}
+              
+              
+              
+              
               role='listitem'
               aria-labelledby='topic-react'
-            >
+             data-reveal="viewport">
               <div
                 className='bytes-topics__icon bytes-topics__icon--react'
                 aria-hidden='true'
@@ -186,17 +184,17 @@ const Bytes = () => {
               <p className='bytes-topics__description'>
                 Modern React, Next and Python development, and frontend best practices.
               </p>
-            </motion.div>
+            </div>
 
-            <motion.div
+            <div
               className='bytes-topics__item'
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.2 }}
+              
+              
+              
+              
               role='listitem'
               aria-labelledby='topic-typescript'
-            >
+             data-reveal="viewport">
               <div
                 className='bytes-topics__icon bytes-topics__icon--typescript'
                 aria-hidden='true'
@@ -207,17 +205,17 @@ const Bytes = () => {
               <p className='bytes-topics__description'>
                 Leader tips, advanced techniques to keeping your team fresh and up on training.
               </p>
-            </motion.div>
+            </div>
 
-            <motion.div
+            <div
               className='bytes-topics__item'
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.3 }}
+              
+              
+              
+              
               role='listitem'
               aria-labelledby='topic-performance'
-            >
+             data-reveal="viewport">
               <div
                 className='bytes-topics__icon bytes-topics__icon--performance'
                 aria-hidden='true'
@@ -231,17 +229,17 @@ const Bytes = () => {
                 Optimization techniques, performance metrics, and tools to make your web apps
                 faster.
               </p>
-            </motion.div>
+            </div>
 
-            <motion.div
+            <div
               className='bytes-topics__item'
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.4 }}
+              
+              
+              
+              
               role='listitem'
               aria-labelledby='topic-architecture'
-            >
+             data-reveal="viewport">
               <div
                 className='bytes-topics__icon bytes-topics__icon--architecture'
                 aria-hidden='true'
@@ -255,7 +253,7 @@ const Bytes = () => {
                 Application architecture, design patterns, and structuring scalable web
                 applications.
               </p>
-            </motion.div>
+            </div>
           </div>
         </div>
       </section>
