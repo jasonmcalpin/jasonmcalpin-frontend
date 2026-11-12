@@ -1,8 +1,12 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { factionNames, type FactionKey } from '../GameScreen/rules';
 
 const FactionWinScreen: React.FC = () => {
   const navigate = useNavigate();
+  const { state } = useLocation();
+  const faction = (state as { faction?: FactionKey } | null)?.faction;
+  const winner = faction && Object.hasOwn(factionNames, faction) ? factionNames[faction] : null;
 
   const handleRestart = () => {
     navigate('/projects/route-66');
