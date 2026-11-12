@@ -137,7 +137,7 @@ const About = () => {
               <div className="about-skills__list">
                 {skills
                   .filter(skill => skill.category === 'frontend')
-                  .map((skill, index) => (
+                  .map(skill => (
                     <div key={index} className="about-skills__item">
                       <div className="about-skills__info">
                         <span className="about-skills__name">{skill.name}</span>
@@ -163,7 +163,7 @@ const About = () => {
               <div className="about-skills__list">
                 {skills
                   .filter(skill => skill.category === 'backend')
-                  .map((skill, index) => (
+                  .map(skill => (
                     <div key={index} className="about-skills__item">
                       <div className="about-skills__info">
                         <span className="about-skills__name">{skill.name}</span>
@@ -189,7 +189,7 @@ const About = () => {
               <div className="about-skills__list">
                 {skills
                   .filter(skill => skill.category === 'DevOps')
-                  .map((skill, index) => (
+                  .map(skill => (
                     <div key={index} className="about-skills__item">
                       <div className="about-skills__info">
                         <span className="about-skills__name">{skill.name}</span>
