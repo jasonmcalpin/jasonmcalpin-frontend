@@ -8,7 +8,7 @@ import { getPersonSchema } from '../../utils/schema';
 import Hero from '../../components/global/Hero';
 
 
-import { FlatTitle, MotionTitle } from '../../components/global/Titles';
+import { FlatTitle, RevealTitle } from '../../components/global/Titles';
 import './styles.css';
 
 const About = () => {
@@ -127,9 +127,9 @@ const About = () => {
         
        data-reveal="viewport">
         <div className="section-container">
-          <MotionTitle>
+          <RevealTitle>
             My Skills
-          </MotionTitle>
+          </RevealTitle>
           
           <div className="about-skills__categories"  data-reveal="viewport">
             <div className="about-skills__category">
@@ -137,7 +137,7 @@ const About = () => {
               <div className="about-skills__list">
                 {skills
                   .filter(skill => skill.category === 'frontend')
-                  .map(skill => (
+                  .map((skill, index) => (
                     <div key={index} className="about-skills__item">
                       <div className="about-skills__info">
                         <span className="about-skills__name">{skill.name}</span>
@@ -163,7 +163,7 @@ const About = () => {
               <div className="about-skills__list">
                 {skills
                   .filter(skill => skill.category === 'backend')
-                  .map(skill => (
+                  .map((skill, index) => (
                     <div key={index} className="about-skills__item">
                       <div className="about-skills__info">
                         <span className="about-skills__name">{skill.name}</span>
@@ -189,7 +189,7 @@ const About = () => {
               <div className="about-skills__list">
                 {skills
                   .filter(skill => skill.category === 'DevOps')
-                  .map(skill => (
+                  .map((skill, index) => (
                     <div key={index} className="about-skills__item">
                       <div className="about-skills__info">
                         <span className="about-skills__name">{skill.name}</span>
@@ -222,9 +222,9 @@ const About = () => {
         
        data-reveal="viewport">
         <div className="section-container">
-          <MotionTitle>
+          <RevealTitle>
             Clients
-          </MotionTitle>
+          </RevealTitle>
           
           <div>
             <ul className='flex flex-wrap gap-6 justify-center items-center'>
@@ -253,9 +253,9 @@ const About = () => {
         
        data-reveal="viewport">
         <div className="section-container">
-          <MotionTitle>
+          <RevealTitle>
             Awards
-          </MotionTitle>
+          </RevealTitle>
           
           <div className="about-awards__list">
             {awards.map((award, index) => (
