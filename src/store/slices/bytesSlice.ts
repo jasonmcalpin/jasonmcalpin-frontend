@@ -36,7 +36,7 @@ const initialState: BytesState = {
 
 export const fetchBytes = createAsyncThunk('bytes/fetchBytes', async (_, { rejectWithValue }) => {
   try {
-    return await dataService.fetchJson('/data/bytes.json', parseBytes);
+    return await dataService.fetchJson('/data/bytes-index.json', parseBytes);
   } catch (error) {
     return rejectWithValue(error instanceof Error ? error.message : String(error));
   }
