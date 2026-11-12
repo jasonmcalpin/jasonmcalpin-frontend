@@ -1,0 +1,18 @@
+/* Vendored from Google Fonts OFL sources; see public/assets/fonts/LICENSE-*.txt.
+ * Only 400-700 is needed: regular, medium, semibold and bold.
+ * Both variable fonts are Latin/extended-Latin subsets and font-display swap.
+ */
+@font-face {
+  font-family: 'Inter';
+  src: url('/assets/fonts/inter-latin-400-700.woff2') format('woff2');
+  font-weight: 400 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Orbitron';
+  src: url('/assets/fonts/orbitron-latin-400-700.woff2') format('woff2');
+  font-weight: 400 700;
+  font-style: normal;
+  font-display: swap;
+}
