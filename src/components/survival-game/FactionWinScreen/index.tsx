@@ -1,6 +1,6 @@
 import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { factionNames, type FactionKey } from '../GameScreen/rules';
+import { factionNames, factionEndings, type FactionKey } from '../GameScreen/rules';
 
 const FactionWinScreen: React.FC = () => {
   const navigate = useNavigate();
@@ -16,8 +16,9 @@ const FactionWinScreen: React.FC = () => {
     <div className='flex flex-col items-center justify-center min-h-[80vh] p-6 max-w-2xl mx-auto text-center'>
       <h1 className='text-4xl font-heading text-neon-purple mb-6'>Faction Victory</h1>
       <p className='text-lg mb-8'>
-        {winner ? `${winner} has taken control of the wasteland.` : 'A faction has taken control of the wasteland.'}
-        {' '}You did not gather enough supplies to escape before the balance tipped.
+        {faction && winner
+          ? factionEndings[faction]
+          : 'A faction has taken control of the wasteland before you could gather enough supplies to escape.'}
       </p>
       <button 
         onClick={handleRestart}

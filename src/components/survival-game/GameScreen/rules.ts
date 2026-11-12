@@ -8,6 +8,12 @@ export const factionNames = {
   survivorTrust: 'Scavs',
 } as const;
 
+export const factionEndings = {
+  megacorporationInfluence: 'MegaCorp overruns the Scav settlements and crushes Mecha\'s factories. Its soldiers seize the wasteland, closing the roads before you can escape.',
+  rogueAIProgress: 'Mecha unleashes an army of machines, smashing MegaCorp\'s defenses and Scav strongholds alike. The wasteland falls to its autonomous forces, and your route out is lost.',
+  survivorTrust: 'The Scavs rise up, smash Mecha\'s command stations, and break into MegaCorp\'s fortified city. The fighting engulfs your escape route, and you are caught in the battle.',
+} as const;
+
 export type FactionKey = keyof typeof factionNames;
 export type Outcome =
   | { type: 'supplies-depleted' }
