@@ -78,7 +78,7 @@ function App() {
           <QueryParamDetector>
             <div className='app'>
               <Header />
-              <main className='main'>
+              <main id='main-content' className='main' tabIndex={-1}>
                 <>
                   <Suspense fallback={<LoadingFallback />}>
                     <Routes>

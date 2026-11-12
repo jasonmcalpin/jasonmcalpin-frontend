@@ -1,4 +1,4 @@
-# Rustpunk Panic 66 — faction motives and decision contract
+# Rustpunk Panic 66: faction motives and decision contract
 
 ## Player objective
 

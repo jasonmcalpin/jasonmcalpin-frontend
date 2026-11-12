@@ -2,155 +2,44 @@ import { useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../hooks/useAppStore';
 import { toggleMobileMenu, closeMobileMenu, setIsScrolled } from '../../store/slices/uiSlice';
-import type { NavLink } from '../../types';
 
-const navLinks: NavLink[] = [
-  { path: '/', label: 'Home' },
-  { path: '/about', label: 'About' },
-
+const navLinks = [
   { path: '/services', label: 'Services' },
-  { path: '/projects', label: 'Projects' },
+  { path: '/projects', label: 'Work' },
+  { path: '/about', label: 'About' },
   { path: '/bytes', label: 'Bytes' },
-  { path: '/contact', label: 'Contact' },
-  // { path: '/lessons', label: 'Lessons' },
 ];
 
-const Header = () => {
+export default function Header() {
   const dispatch = useAppDispatch();
   const location = useLocation();
   const { isMobileMenuOpen, isScrolled } = useAppSelector(state => state.ui);
-
+  useEffect(() => { dispatch(closeMobileMenu()); }, [location.pathname, dispatch]);
   useEffect(() => {
-    dispatch(closeMobileMenu());
-  }, [location.pathname, dispatch]);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollPosition = window.scrollY;
-      dispatch(setIsScrolled(scrollPosition > 50));
-    };
-
-    window.addEventListener('scroll', handleScroll);
+    const handleScroll = () => dispatch(setIsScrolled(window.scrollY > 50));
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, [dispatch]);
 
-  const handleMenuToggle = () => {
-    dispatch(toggleMobileMenu());
-  };
-
-
   return (
-    <header
-  className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
-    isScrolled ? 'shadow-md' : ''
-  }`}
-  style={{
-    background: isScrolled ? 'rgba(18, 18, 18, 0.95)' : 'rgba(18, 18, 18, 0.8)',
-    backdropFilter: 'blur(10px)',
-  }}
->
-  <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center'>
-    <div
-      className='flex items-center'
-      
-      
-      
-     data-reveal="viewport">
-      <Link to='/' className='flex items-center no-underline'>
-        <div className='text-xl sm:text-2xl font-heading font-bold'>
-          <span className='neon-text mr-1'>Jason McAlpin</span>
-        </div>
-      </Link>
-    </div>
-
-    <nav
-      className='hidden md:block'
-      
-      
-      
-     data-reveal="viewport">
-      <ul className='flex space-x-8 list-none p-0 m-0'>
-        {navLinks.map(link => (
-          <li key={link.path} className='relative'  data-reveal="viewport">
-            <Link
-              to={link.path}
-              className={` hover:text-[var(--color-neon-blue)] transition-colors duration-300 text-base font-medium ${
-                location.pathname === link.path ? 'text-[var(--color-neon-blue)] relative' : 'text-white'
-              }`}
-            >{link.label}
-
-              {location.pathname === link.path && (
-                <span
-                  className='absolute bottom-[-5px] left-0 w-full h-[2px] bg-neon-blue'
-                  style={{boxShadow: '0 0 5px var(--color-neon-blue), 0 0 10px var(--color-neon-blue)'}}
-                />
-              )}
-            </Link>
-          </li>
-        ))}
-      </ul>
-    </nav>
-
-    <div className='block md:hidden'>
-      <button
-        className={`w-8 h-8 flex flex-col justify-center items-center bg-transparent border-0 cursor-pointer relative ${
-          isMobileMenuOpen ? 'relative' : ''
-        }`}
-        onClick={handleMenuToggle}
-        aria-label='Toggle menu'
-      >
-        <span
-          className={`w-6 h-[2px] bg-white block transition-all duration-300 ${
-            isMobileMenuOpen ? 'transform rotate-45 translate-y-[8px] mb-0' : 'mb-[6px]'
-          }`}
-        />
-        <span
-          className={`w-6 h-[2px] bg-white block transition-all duration-300 ${
-            isMobileMenuOpen ? 'opacity-0' : ''
-          }`}
-        />
-        <span
-          className={`w-6 h-[2px] bg-white block transition-all duration-300 ${
-            isMobileMenuOpen ? 'transform -rotate-45 -translate-y-[8px] mt-0' : 'mt-[6px]'
-          }`}
-        />
-      </button>
-    </div>
-  </div>
-
-  <>
-    {isMobileMenuOpen && (
-      <div
-        className='w-full bg-background-light overflow-hidden md:hidden'
-        
-        
-        
-        
-       data-reveal="viewport">
-        <ul className='list-none p-0 m-0'>
-          {navLinks.map(link => (
-            <li
-              key={link.path}
-              className='border-b border-gray-800'
-              
-              
-             data-reveal="viewport" data-hover-lift="true">
-              <Link
-                to={link.path}
-                className={`block py-4 px-6 text-white hover:var(--color-neon-blue) transition-colors duration-300 ${
-                  location.pathname === link.path ? 'var(--color-neon-blue)' : ''
-                }`}
-              >
-                {link.label}
-              </Link>
-            </li>
-          ))}
-        </ul>
+    <><a href="#main-content" className="consulting-skip-link">Skip to main content</a>
+    <header className={'consulting-nav ' + (isScrolled ? 'consulting-nav--scrolled' : '')}>
+      <div className="consulting-nav__inner">
+        <Link to="/" className="consulting-nav__brand" aria-label="Jason McAlpin, home">Jason McAlpin<span> / independent engineer</span></Link>
+        <nav className="consulting-nav__links" aria-label="Primary navigation">
+          {navLinks.map(link => <Link key={link.path} to={link.path}
+            aria-current={location.pathname === link.path ? 'page' : undefined}>{link.label}</Link>)}
+        </nav>
+        <Link to="/contact" className="consulting-nav__cta">Discuss a project <span aria-hidden="true">↗</span></Link>
+        <button type="button" className="consulting-nav__toggle" onClick={() => dispatch(toggleMobileMenu())}
+          aria-expanded={isMobileMenuOpen} aria-controls="mobile-site-nav" aria-label={isMobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}>
+          <span aria-hidden="true">{isMobileMenuOpen ? '×' : '☰'}</span>
+        </button>
       </div>
-    )}
-  </>
-</header>
+      {isMobileMenuOpen && <nav id="mobile-site-nav" className="consulting-nav__mobile" aria-label="Mobile navigation">
+        {navLinks.map(link => <Link to={link.path} key={link.path} aria-current={location.pathname === link.path ? 'page' : undefined}>{link.label}</Link>)}
+        <Link to="/contact">Discuss a project</Link>
+      </nav>}
+    </header></>
   );
-};
-
-export default Header;
+}

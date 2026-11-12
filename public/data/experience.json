@@ -2,7 +2,7 @@
   {
     "company": "Independent Research",
     "title": "Self-Directed Sabbatical | AI, LLMs, and Creative Coding",
-    "description": "Took a planned sabbatical to deepen my understanding of AI, large language models (LLMs), and emerging dev workflows. Engineered and deployed LLM-driven tools using LangChain, Ollama, and OpenAI APIs. Prototyped creative apps using modern stacks (Next.js, React, TypeScript, Tailwind). Explored concepts in local model hosting, prompt engineering, and dev automation. Focused on 'vibe coding' — fast iteration and experimental building to refine creativity and technical instincts.",
+    "description": "Took a planned sabbatical to deepen my understanding of AI, large language models (LLMs), and emerging dev workflows. Engineered and deployed LLM-driven tools using LangChain, Ollama, and OpenAI APIs. Prototyped creative apps using modern stacks (Next.js, React, TypeScript, Tailwind). Explored concepts in local model hosting, prompt engineering, and dev automation. Focused on 'vibe coding': fast iteration and experimental building to refine creativity and technical instincts.",
     "startDate": "2025-01",
     "endDate": "Present",
     "location": "Georgia, United States",

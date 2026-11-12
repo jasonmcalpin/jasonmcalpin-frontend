@@ -1,226 +1,141 @@
-import { useState, useEffect } from 'react';
-import type { SocialLink } from '../../types';
-import Hero from '../../components/global/Hero';
-import { CenterTitle, RevealTitle } from '../../components/global/Titles';
-import './styles.css';
-import InlineIcon from '@/components/global/Icons';
+import { useState } from 'react';
+import type { FormEvent } from 'react';
+import SEO from '../../components/global/SEO';
+import TurnstileChallenge from '../../components/contact/TurnstileChallenge';
+import consulting from '../../../public/data/consulting.json';
 
-const Contact = () => {
-  const [socialLinks, setSocialLinks] = useState<SocialLink[]>([]);
-  const getEmail = () => {
-    // encoded email to prevent scraping
-    return atob('aGlAamFzb25tY2FscGluLmNvbQ==');
+type SubmitStatus = 'idle' | 'sending' | 'accepted' | 'error';
+
+export default function Contact() {
+  const apiUrl = import.meta.env.VITE_CONTACT_API_URL?.trim() || '';
+  const siteKey = import.meta.env.VITE_TURNSTILE_SITE_KEY?.trim() || '';
+  const ready = Boolean(apiUrl && siteKey && /^https:\/\//.test(apiUrl));
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [message, setMessage] = useState('');
+  const [timeline, setTimeline] = useState('');
+  const [website, setWebsite] = useState('');
+  const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
+  const [challengeKey, setChallengeKey] = useState(0);
+  const [challengeError, setChallengeError] = useState(false);
+  const [status, setStatus] = useState<SubmitStatus>('idle');
+  const [feedback, setFeedback] = useState('');
+
+  const submit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    if (!ready || !turnstileToken || status === 'sending') return;
+    setStatus('sending');
+    setFeedback('');
+    try {
+      const response = await fetch(apiUrl, {
+        method: 'POST',
+        mode: 'cors',
+        credentials: 'omit',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({ name, email, message, timeline, website, turnstileToken }),
+        signal: AbortSignal.timeout(15000)
+      });
+      if (response.status !== 202) {
+        let data: { code?: string } = {};
+        try { data = await response.json(); } catch { /* no response body */ }
+        if (data.code === 'verification_failed')
+          throw new Error('Spam verification expired or failed. Please try again.');
+        if (data.code === 'invalid_inquiry')
+          throw new Error('Please check your information and try again.');
+        throw new Error('Your inquiry could not be submitted. Please try again later.');
+      }
+      setStatus('accepted');
+      setFeedback('Your inquiry was accepted for delivery. Thank you for reaching out.');
+      setName('');
+      setEmail('');
+      setMessage('');
+      setTimeline('');
+      setWebsite('');
+    } catch (error) {
+      setStatus('error');
+      setFeedback(error instanceof Error && !['Failed to fetch', 'TimeoutError'].includes(error.message)
+        ? error.message : 'Your inquiry could not be submitted. Please try again later.');
+    } finally {
+      setTurnstileToken(null);
+      setChallengeKey(value => value + 1);
+    }
   };
 
-  useEffect(() => {
-    const fetchSocialLinks = async () => {
-      try {
-        const response = await fetch('/data/social.json');
-        if (!response.ok) {
-          throw new Error('Failed to fetch social links');
-        }
-        const data = await response.json();
-        setSocialLinks(data as SocialLink[]);
-      } catch (error) {
-        console.error('Error fetching social links:', error);
-      }
-    };
-
-    fetchSocialLinks();
-  }, []);
-
   return (
-    <div className='contact'>
-      <Hero
-        heroTitle='Get In Touch'
-        heroSubtitle='Connect with me through social media or send me a message'
-        heroImage='/assets/images/contact-bg.jpg'
-      />
-
-
-      <section className='contact-content'>
-        <div className='section-container'>
-          <div className='contact-content__grid'>
-            <div
-              className='contact-social'
-              
-              
-              
-             data-reveal="viewport">
-              <RevealTitle>
-                Connect With Me
-              </RevealTitle>
-
-              <p className='contact-social__text'  data-reveal="viewport">
-                Feel free to reach out through any of these platforms. I'm always open to discussing new projects,
-                creative ideas, or opportunities to be part of your vision.
-              </p>
-
-              <ul className='contact-social__list'  data-reveal="viewport">
-                {socialLinks.map(link => (
-                  <li
-                    key={link.platform}
-                    className='contact-social__item'
-                    
-                    
-                   data-reveal="viewport">
-                    <a
-                      href={link.url}
-                      target='_blank'
-                      rel='noopener noreferrer'
-                      className={`contact-social__link contact-social__link--${link.platform}`}
-                      aria-label={link.label}
-                    >
-                      <span className='contact-social__icon'>
-                        <img
-                          src={link.icon}
-                          alt={`${link.label} icon`}
-                          style={{ width: '40px', height: '40px', objectFit: 'cover' }}
-                        />
-                      </span>
-                      <div className='contact-social__info'>
-                        <span className='contact-social__platform'>{link.label}</span>
-                        <span className='contact-social__username'>{link.linkText}</span>
-                      </div>
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-
-            <div
-              className='contact-info'
-              
-              
-              
-             data-reveal="viewport">
-              <RevealTitle>
-                Contact Information
-              </RevealTitle>
-
-              <div className='contact-info__content'  data-reveal="viewport">
-                <div className='contact-info__card'>
-                  <div className='contact-info__card-inner'>
-                    <div className='contact-info__card-front'>
-                      <div className='contact-info__logo'>
-                        <span className='neon-text'>Jason McAlpin</span>
-                      </div>
-                      <div className='contact-info__title'>Full Stack Developer</div>
-                      <div className='contact-info__pattern'></div>
-                    </div>
-
-                    <div className='contact-info__card-back'>
-                      <ul className='contact-info__list'>
-                        <li className='contact-info__item'>
-                          <InlineIcon className='text-neon-blue text-xl flex items-center justify-center w-6 h-6 shrink-0' iconName='envelope' />
-                          <div className='contact-info__text'>
-                            <span className='contact-info__label'>Email</span>
-                            <a href={`mailto:${getEmail()}`} className='contact-info__value hover:text-neon-blue transition-colors'>
-                              {getEmail()}
-                            </a>
-                          </div>
-                        </li>
-                        <li className='contact-info__item'>
-                          <InlineIcon className='text-neon-blue text-xl flex items-center justify-center w-6 h-6 shrink-0' iconName='location-dot' />
-                          <div className='contact-info__text'>
-                            <span className='contact-info__label'>Location</span>
-                            <span className='contact-info__value'>Atlanta, GA</span>
-                          </div>
-                        </li>
-                        <li className='contact-info__item'>
-                          <InlineIcon className='text-neon-blue text-xl flex items-center justify-center w-6 h-6 shrink-0' iconName='clock' />
-                          <div className='contact-info__text'>
-                            <span className='contact-info__label'>Availability</span>
-                            <span className='contact-info__value'>Open to opportunities</span>
-                          </div>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-
-                <p className='contact-info__note'>
-                  <span className='contact-info__note-icon'>ℹ️</span>
-                  <span>Hover over the card to see contact details</span>
-                </p>
-              </div>
+    <div className="consulting-page consulting-inner-page contact">
+      <SEO title="Discuss a Software Project" canonical="/contact"
+        description="Contact Jason McAlpin to discuss application modernization, AI integration, performance engineering or technical consulting." />
+      <header className="consulting-page-intro consulting-container">
+        <p className="consulting-eyebrow">Contact</p>
+        <h1>{consulting.contact.heading}</h1>
+        <p className="consulting-lead">{consulting.contact.description}</p>
+      </header>
+      <section className="consulting-section consulting-section--subtle">
+        <div className="consulting-container consulting-contact-grid">
+          <div className="consulting-simple-card">
+            <h2>Tell me about your project.</h2>
+            <p>Describe the system, the problem and what a successful engagement would look like. You don't need a complete specification to start.</p>
+            <p className="consulting-small">Based near Atlanta, Georgia · Remote collaboration available</p>
+            <p>Your message goes directly to my private business inbox. I don't publish that address or pass your inquiry to a public discussion feed.</p>
+            <div className="consulting-socials">
+              <a href={consulting.identity.linkedin} target="_blank" rel="noopener noreferrer">Connect on LinkedIn ↗</a>
+              <a href={consulting.identity.github} target="_blank" rel="noopener noreferrer">GitHub ↗</a>
             </div>
           </div>
-        </div>
-      </section>
-
-      <section className='contact-faq'>
-        <div className='section-container'>
-          <CenterTitle>
-            Frequently Asked Questions
-          </CenterTitle>
-
-          <div className='contact-faq__grid'>
-            <div
-              className='contact-faq__item'
-              
-              
-              
-              
-             data-reveal="viewport">
-              <h3 className='contact-faq__question'>What services do you offer?</h3>
-              <p className='contact-faq__answer'>
-                I offer full-stack web development services, including frontend development with React,
-                backend development with Node.js, Next.js and database design. I can help with everything from
-                building a complete web application to improving specific aspects of your existing project.
-              </p>
-            </div>
-
-            <div
-              className='contact-faq__item'
-              
-              
-              
-              
-             data-reveal="viewport">
-              <h3 className='contact-faq__question'>How do you handle project pricing?</h3>
-              <p className='contact-faq__answer'>
-                Project pricing depends on the scope, complexity, and timeline. I offer both hourly rates
-                and fixed-price quotes based on detailed project requirements. I'm happy to discuss your
-                specific needs and provide a transparent pricing structure.
-              </p>
-            </div>
-
-            <div
-              className='contact-faq__item'
-              
-              
-              
-              
-             data-reveal="viewport">
-              <h3 className='contact-faq__question'>What is your typical project process?</h3>
-              <p className='contact-faq__answer'>
-                My process typically includes an initial consultation, requirements gathering, design approval,
-                development, testing, and deployment. I maintain clear communication throughout and provide
-                regular updates on progress. After launch, I also offer maintenance and support services.
-              </p>
-            </div>
-
-            <div
-              className='contact-faq__item'
-              
-              
-              
-              
-             data-reveal="viewport">
-              <h3 className='contact-faq__question'>Are you available for remote work?</h3>
-              <p className='contact-faq__answer'>
-                Yes, I work remotely with clients from around the world. I use collaborative tools to
-                maintain effective communication and ensure project success regardless of location. I'm
-                flexible with scheduling meetings across different time zones.
-              </p>
-            </div>
+          <div className="consulting-simple-card">
+            <h2>Send a project inquiry.</h2>
+            {!ready ? (
+              <div role="status">
+                <p>The secure inquiry form is being connected. In the meantime, please reach out through LinkedIn.</p>
+                <a className="consulting-text-link" href={consulting.identity.linkedin} target="_blank" rel="noopener noreferrer">Contact me on LinkedIn ↗</a>
+              </div>
+            ) : status === 'accepted' ? (
+              <div role="status" className="consulting-inquiry-success">
+                <h3>Inquiry submitted</h3>
+                <p>{feedback}</p>
+                <button className="consulting-button consulting-button--outline" onClick={() => { setStatus('idle'); setFeedback(''); }}>Send another inquiry</button>
+              </div>
+            ) : (
+              <form onSubmit={submit} className="consulting-inquiry-form">
+                <p className="consulting-small">Your details are used to respond to your inquiry. See the <a href="/privacy">privacy policy</a>.</p>
+                <label htmlFor="inquiry-name">Your name</label>
+                <input id="inquiry-name" name="name" required minLength={2} maxLength={100}
+                  value={name} onChange={e => setName(e.target.value)} autoComplete="name" disabled={status==='sending'} />
+                <label htmlFor="inquiry-email">Your email</label>
+                <input id="inquiry-email" name="email" type="email" required maxLength={254}
+                  value={email} onChange={e => setEmail(e.target.value)} autoComplete="email" disabled={status==='sending'} />
+                <label htmlFor="inquiry-message">What are you trying to accomplish?</label>
+                <textarea id="inquiry-message" name="message" required minLength={20} maxLength={3000} rows={6}
+                  value={message} onChange={e => setMessage(e.target.value)} disabled={status==='sending'} />
+                <label htmlFor="inquiry-timeline">Timeline or constraints (optional)</label>
+                <input id="inquiry-timeline" name="timeline" maxLength={250} value={timeline}
+                  onChange={e => setTimeline(e.target.value)} disabled={status==='sending'} />
+                <div className="consulting-honeypot" aria-hidden="true">
+                  <label htmlFor="inquiry-website">Leave this blank</label>
+                  <input id="inquiry-website" name="website" tabIndex={-1} autoComplete="off"
+                    value={website} onChange={e => setWebsite(e.target.value)} />
+                </div>
+                <TurnstileChallenge siteKey={siteKey} resetKey={challengeKey}
+                  onToken={token => { setTurnstileToken(token); if (token) setChallengeError(false); }} onError={() => setChallengeError(true)} />
+                {challengeError && <div role="alert" className="consulting-verification-error">
+                  <p>Spam verification could not complete. Retry the verification to continue.</p>
+                  <button type="button" className="consulting-button consulting-button--outline"
+                    onClick={() => { setChallengeError(false); setTurnstileToken(null); setChallengeKey(key => key + 1); }}>
+                    Retry verification
+                  </button>
+                </div>}
+                {status==='error' && <p className="consulting-inquiry-error" role="alert">{feedback}</p>}
+                {status==='sending' && <p role="status">Submitting your inquiry securely…</p>}
+                <button type="submit" className="consulting-button consulting-button--primary"
+                  disabled={!turnstileToken || status === 'sending' || challengeError}>
+                  {status === 'sending' ? 'Sending inquiry…' : 'Send inquiry'}
+                </button>
+                <p className="consulting-small">Protected by Cloudflare Turnstile. This form does not save drafts to your browser storage.</p>
+              </form>
+            )}
           </div>
         </div>
       </section>
     </div>
   );
-};
-
-export default Contact;
+}

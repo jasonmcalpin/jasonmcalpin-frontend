@@ -1,306 +1,62 @@
-import { Link } from 'react-router-dom';
 import { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../hooks/useAppStore';
 import { fetchLogos } from '../../store/slices/logoSlice';
-import type { Skill, CompanyLogos, Awards } from '../../types';
 import SEO from '../../components/global/SEO';
 import { getPersonSchema } from '../../utils/schema';
-import Hero from '../../components/global/Hero';
 
-
-import { FlatTitle, RevealTitle } from '../../components/global/Titles';
-import './styles.css';
-
-const About = () => {
+export default function About() {
   const dispatch = useAppDispatch();
-  const { logos }: { logos: CompanyLogos[] } = useAppSelector((state) => state.logos);
-
-  useEffect(() => {
-    dispatch(fetchLogos());
-  }, [dispatch]);
-  const seoDescription = "Learn more about Jason McAlpin, a Full Stack Developer with expertise in React, TypeScript, Node.js, and modern web technologies. View my skills, experience, and background.";
-  const personSchema = getPersonSchema();
-
-
-
-
-  const skills: Skill[] = [
-  // Frontend
-  { name: 'React', level: 8, category: 'frontend' },
-  { name: 'TypeScript', level: 4, category: 'frontend' },
-  { name: 'Tailwind CSS', level: 4, category: 'frontend' },
-  { name: 'Responsive Design', level: 10, category: 'frontend' },
-  { name: 'UI/UX Design', level: 10, category: 'frontend' },
-  { name: 'Figma', level: 5, category: 'frontend' },
-
-  // Backend
-  { name: 'Node.js', level: 6, category: 'backend' },
-  { name: 'Next.js', level: 4, category: 'backend' },
-  { name: 'REST APIs', level: 8, category: 'backend' },
-  { name: 'JWT', level: 4, category: 'backend' },
-  { name: 'Python', level: 5, category: 'backend' },
-  { name: 'SQL', level: 10, category: 'backend' },
-
-  // DevOps
-  { name: 'Kubernetes', level: 2, category: 'DevOps' },
-  { name: 'Cloudflare', level: 3, category: 'DevOps' },
-  { name: 'Docker', level: 6, category: 'DevOps' },
-  { name: 'AWS', level: 4, category: 'DevOps' },
-  { name: 'Jenkins', level: 4, category: 'DevOps' },
-  { name: 'Amazon EC2', level: 2, category: 'DevOps' },
-  { name: 'IBM Watson', level: 3, category: 'DevOps' }
-];
-  
-  
-  
-  const awards: Awards[] = [
-    {
-      awardTitle: 'The Sammy Sales and Marketing Technology Award 2023',
-      institution: 'Business Intelligence Group',
-      awardYear: 2023,
-      description: 'Award for the IBM SlackBot for Sales Intelligence in the Large Company category. I acted as a consultant helping the developers connect the bot to Watson AI and define the models and API needed to pass the results back to slack.'
-    },
-  ];
-  
-
+  const { logos } = useAppSelector(state => state.logos);
+  useEffect(() => { dispatch(fetchLogos()); }, [dispatch]);
   return (
-    <div className="about">
-      <SEO 
-        title="About Me"
-        description={seoDescription}
-        canonical="/about"
-        type="profile"
-        schema={personSchema}
-      />
-
-      <Hero 
-        heroTitle="About Me"
-        heroSubtitle="Full Stack Developer with a passion for creating modern web experiences"
-        heroImage="/assets/images/code-bg.jpg"
-      />
-
-      <section 
-        className="about-intro"
-        
-        
-        
-        
-       data-reveal="viewport">
-        <div className="section-container">
-          <div className="about-intro__content">
-            <div className="about-intro__text"  data-reveal="viewport">
-              <FlatTitle>Who I Am</FlatTitle>
-              <p className="about-intro__paragraph">
-                I'm Jason McAlpin, a passionate full stack developer with over 8 years of experience 
-                in building web applications. I specialize in creating responsive, user-friendly 
-                interfaces with modern JavaScript frameworks like React, while also having strong 
-                backend skills with Node.js and various databases.
-              </p>
-              <p className="about-intro__paragraph">
-                My approach to development focuses on creating clean, maintainable code that delivers 
-                exceptional user experiences. I'm constantly learning and adapting to new technologies 
-                to stay at the forefront of web development.
-              </p>
-              <p className="about-intro__paragraph">
-                When I'm not coding, you can find me exploring new technologies, contributing to open 
-                source projects, or sharing my knowledge through writing technical bytes.
-              </p>
-            </div>
-            
-            <div className="about-intro__image-container"  data-reveal="viewport">
-              <div className="about-intro__image">
-                
-                <div className="about-intro__image-placeholder">
-                  
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      
-      <section 
-        className="about-skills"
-        
-        
-        
-        
-       data-reveal="viewport">
-        <div className="section-container">
-          <RevealTitle>
-            My Skills
-          </RevealTitle>
-          
-          <div className="about-skills__categories"  data-reveal="viewport">
-            <div className="about-skills__category">
-              <h3 className="about-skills__category-title">Frontend</h3>
-              <div className="about-skills__list">
-                {skills
-                  .filter(skill => skill.category === 'frontend')
-                  .map((skill, index) => (
-                    <div key={index} className="about-skills__item">
-                      <div className="about-skills__info">
-                        <span className="about-skills__name">{skill.name}</span>
-                        <span className="about-skills__level">{skill.level} Years</span>
-                      </div>
-                      <div className="about-skills__bar">
-                        <div 
-                          className="about-skills__progress"
-                          
-                          
-                          
-                          
-                         data-reveal="viewport" data-progress="true" style={{ '--progress-width': `${skill.level * 6.5}%` } as React.CSSProperties}></div>
-                      </div>
-                    </div>
-                  ))
-                }
-              </div>
-            </div>
-            
-            <div className="about-skills__category">
-              <h3 className="about-skills__category-title">Backend</h3>
-              <div className="about-skills__list">
-                {skills
-                  .filter(skill => skill.category === 'backend')
-                  .map((skill, index) => (
-                    <div key={index} className="about-skills__item">
-                      <div className="about-skills__info">
-                        <span className="about-skills__name">{skill.name}</span>
-                        <span className="about-skills__level">{skill.level} Years</span>
-                      </div>
-                      <div className="about-skills__bar">
-                        <div 
-                          className="about-skills__progress"
-                          
-                          
-                          
-                          
-                         data-reveal="viewport" data-progress="true" style={{ '--progress-width': `${skill.level * 6.5}%` } as React.CSSProperties}></div>
-                      </div>
-                    </div>
-                  ))
-                }
-              </div>
-            </div>
-            
-            <div className="about-skills__category">
-              <h3 className="about-skills__category-title">DevOps & Tooling</h3>
-              <div className="about-skills__list">
-                {skills
-                  .filter(skill => skill.category === 'DevOps')
-                  .map((skill, index) => (
-                    <div key={index} className="about-skills__item">
-                      <div className="about-skills__info">
-                        <span className="about-skills__name">{skill.name}</span>
-                        <span className="about-skills__level">{skill.level} Years</span>
-                      </div>
-                      <div className="about-skills__bar">
-                        <div 
-                          className="about-skills__progress"
-                          
-                          
-                          
-                          
-                         data-reveal="viewport" data-progress="true" style={{ '--progress-width': `${skill.level * 6.5}%` } as React.CSSProperties}></div>
-                      </div>
-                    </div>
-                  ))
-                }
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      
-
-      <section 
-        className="about-experience"
-        
-        
-        
-        
-       data-reveal="viewport">
-        <div className="section-container">
-          <RevealTitle>
-            Clients
-          </RevealTitle>
-          
+    <div className="consulting-page consulting-inner-page about">
+      <SEO title="About Jason McAlpin" canonical="/about" type="profile"
+        description="Independent software engineer with 15+ years of production experience across enterprise web, data, APIs and AI integration."
+        schema={getPersonSchema()} />
+      <header className="consulting-page-intro consulting-container">
+        <p className="consulting-eyebrow">About</p>
+        <h1>A senior engineer who cares about the result.</h1>
+        <p className="consulting-lead">I'm Jason McAlpin, an independent software engineer and consultant based near Atlanta. For more than 15 years I've helped teams build, modernize and improve applications that people depend on.</p>
+      </header>
+      <section className="consulting-section consulting-section--subtle">
+        <div className="consulting-container consulting-two-column">
           <div>
-            <ul className='flex flex-wrap gap-6 justify-center items-center'>
-            {logos.map((logo) => (
-              <li
-                key={logo.companyName}
-                className="about-experience__item w-24 h-24 flex items-center justify-center bg-white rounded-lg shadow-sm border border-gray-100 p-1"
-                data-reveal="viewport"
-              >
-                <img src={logo.logoSrc} alt={logo.companyName} className='max-w-full max-h-full object-contain' />
-              </li>
-            ))}
-            </ul>
+            <p className="consulting-eyebrow">Experience and approach</p>
+            <h2>From technical ambiguity to working systems.</h2>
+            <p className="consulting-body">My background spans customer-facing digital experiences, complex data migrations, APIs, enterprise publishing, performance work and applied AI. I've contributed to projects for IBM, Ford and teams working across several industries.</p>
+            <p className="consulting-body">I work across architectural decisions and implementation, with attention to what the organization needs to maintain after delivery, not just the code needed for a demonstration.</p>
+            <Link to="/projects" className="consulting-text-link">See the work behind the claims →</Link>
           </div>
-          
+          <aside className="consulting-simple-card">
+            <p className="consulting-eyebrow">Selected recognition</p>
+            <h3>2023 Sammy Award</h3>
+            <p>The IBM Sales Intelligence Slack bot received a Business Intelligence Group Sammy Award. I consulted on connecting the bot to Watson AI and defining the models and APIs used for Slack responses.</p>
+            <p className="consulting-small">Recognition belongs to the team and project; my involvement was a contributing engineering role.</p>
+          </aside>
         </div>
       </section>
-      <section 
-        className="about-education"
-        
-        
-        
-        
-       data-reveal="viewport">
-        <div className="section-container">
-          <RevealTitle>
-            Awards
-          </RevealTitle>
-          
-          <div className="about-awards__list">
-            {awards.map((award, index) => (
-              <div 
-                key={index} 
-                className="about-awards__item"
-                
-                
-               data-reveal="viewport">
-                <div className="about-awards__year">
-                  <span>{award.awardYear}</span>
-                </div>
-                
-                <div className="about-awards__content">
-                  <h3 className="about-awards__title">{award.awardTitle}</h3>
-                  <div className="about-awards__institution">
-                    <span>{award.institution}</span>
-                  </div>
-                  {award.description && (
-                    <p className="about-awards__description">{award.description}</p>
-                  )}
-                </div>
-              </div>
-            ))}
-          </div>
+      {logos.length > 0 && <section className="consulting-section">
+        <div className="consulting-container">
+          <div className="consulting-section-heading"><p className="consulting-eyebrow">Professional experience</p><h2>Clients I've worked with.</h2>
+            </div>
+          <ul className="consulting-client-logos">
+            {logos.map(logo => <li key={logo.companyName}><img loading="lazy" src={logo.logoSrc} alt={logo.companyName} /></li>)}
+          </ul>
+        </div>
+      </section>}
+      <section className="consulting-section consulting-section--subtle">
+        <div className="consulting-container consulting-two-column">
+          <div><p className="consulting-eyebrow">Current engineering</p><h2>Working at the boundaries of AI systems.</h2></div>
+          <div><p className="consulting-body">Alongside client and enterprise work, I build tools for model evaluation, agent coordination and durable project knowledge. Some are published for anyone to install; others remain active engineering projects with their maturity documented openly.</p>
+            <Link className="consulting-text-link" to="/projects">Explore AI and open-source projects →</Link></div>
         </div>
       </section>
-      {/* Contact CTA Section */}
-      <section className="about-contact">
-        <div className="section-container">
-          <div 
-            className="about-contact__content"
-            
-            
-            
-           data-reveal="viewport">
-            <h2 className="about-contact__title">Interested in working together?</h2>
-            <p className="about-contact__text">
-              I'm always open to discussing new projects, creative ideas or opportunities to be part of your vision.
-            </p>
-            <Link to="/contact" className="btn btn-primary about-contact__cta">
-              Get In Touch
-            </Link>
-          </div>
-        </div>
-      </section>
+      <section className="consulting-cta"><div className="consulting-container">
+        <p className="consulting-eyebrow">Work together</p><h2>Need experienced engineering on your next challenge?</h2>
+        <p>Let's discuss the outcome you're after and whether I'm the right person to help.</p>
+        <Link to="/contact" className="consulting-button consulting-button--primary">Start a conversation</Link>
+      </div></section>
     </div>
   );
-};
-
-export default About;
+}

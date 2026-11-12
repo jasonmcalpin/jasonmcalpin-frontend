@@ -15,6 +15,12 @@ export interface Project {
   githubUrl?: string;
   liveUrl?: string;
   featured: boolean;
+  category?: string;
+  kind?: string;
+  role?: string;
+  challenge?: string;
+  approach?: string;
+  outcome?: string;
 }
 
 interface ProjectsState {
@@ -83,5 +89,5 @@ export const selectFilteredProjects = createSelector(
   [(state: RootState) => state.projects.projects, (state: RootState) => state.projects.activeFilter],
   (projects, filter) => filter === null ? projects : filter === 'featured'
     ? projects.filter(project => project.featured)
-    : projects.filter(project => project.technologies.includes(filter)),
+    : projects.filter(project => project.category === filter),
 );

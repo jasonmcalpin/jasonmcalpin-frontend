@@ -1,53 +1,31 @@
 [
   {
-    "id": "1",
-    "slug": "rustpunk-panic-66",
-    "title": "Rustpunk Panic 66 a survival game",
-    "description": "A React-based survival game where players must escape a post-apocalyptic world by making strategic decisions.",
-    "imageUrl": "/assets/games/images/woman.png",
+    "id": "7",
+    "slug": "ibm-research-tool",
+    "title": "IBM Research: Legacy data modernization",
+    "description": "IBM Research Tool. This project involved converting over a million records from an old obfuscated data collection into a modern SQL database. \n I scoped the database requirements, docker repos and built up the infrastructure then created a REST-API for other services to reach the database. I then created commandline tools using node.js to import all of the records from their proprietary javascript format to SQL. Once the data was available in SQL I created a frontend that the teams could use to access and verify the data and ultimately use it going forward with much more ease and speed than the previous locally run application.",
+    "imageUrl": "/assets/images/projects/ibm.jpg",
     "technologies": [
-      "React",
-      "TypeScript",
-      "Redux",
-      "SCSS"
-    ],
-    "liveUrl": "/projects/route-66",
-    "featured": true
-  },
-  {
-    "id": "2",
-    "slug": "my-prostate-cancer-website",
-    "title": "My Prostate Cancer Website",
-    "description": "An informational website providing resources and support for those affected by prostate cancer.",
-    "imageUrl": "/assets/images/projects/my-prostate-cancer.png",
-    "technologies": [
-      "React",
-      "JavaScript",
+      "SQL",
       "REST-API",
-      "Firebase"
-    ],
-    "liveUrl": "https://www.myprostatecancerroadmap.com/",
-    "featured": false
-  },
-  {
-    "id": "3",
-    "slug": "us-open-watson-project",
-    "title": "US Open Watson Project",
-    "description": "Developed AI-powered interactive web application using IBM Watson's tone analyzer to create personalized tennis portraits for fans. Built system that processed open-ended user responses to generate personality trait percentages and match users with professional tennis players based on data analysis. Implemented both on-site booth integration nodejs systems and remote microsite functionality, showcasing AI capabilities to mainstream audiences.",
-    "liveUrl": "https://vimeo.com/230087606",
-    "technologies": [
-      "IBM Watson",
+      "Node.js (REST-API Backend)",
+      "Next.js (Frontend)",
       "Python",
-      "MySQL",
-      "Angular",
-      "Machine Learning"
+      "Carbon Framework",
+      "Docker",
+      "Git"
     ],
-    "featured": false
+    "featured": true,
+    "category": "Modernization",
+    "role": "Designed and implemented the migration pipeline, data services and team-facing verification application.",
+    "challenge": "A proprietary, locally operated data collection made more than a million research records difficult for teams to access and validate.",
+    "approach": "Scoped a SQL data model and Docker infrastructure, built Node.js import tooling to convert proprietary JavaScript records, exposed a REST API and developed a Next.js verification interface.",
+    "outcome": "Moved more than one million records into a queryable SQL system, giving teams a shared path to access and verify information."
   },
   {
     "id": "4",
     "slug": "ford-website",
-    "title": "Ford Website",
+    "title": "Ford: Customer experience and optimization",
     "description": "A redesigned website for Ford showcasing their vehicles and services with modern UI/UX principles.",
     "imageUrl": "/assets/images/projects/ford-home.png",
     "technologies": [
@@ -58,13 +36,60 @@
       "Node.js",
       "Adobe Target"
     ],
-    "liveUrl": "https://ford.com",
+    "featured": true,
+    "category": "Performance",
+    "role": "Contributed to production website releases, experiments and video integration.",
+    "challenge": "A high-traffic automotive experience needed reliable releases, meaningful experiments and more efficient media usage.",
+    "approach": "Implemented launch-related UI and Adobe Target experiments, and customized Brightcove playback behavior.",
+    "outcome": "Reduced unnecessary video replays and associated service consumption. Exact savings are not publicly quantified."
+  },
+  {
+    "id": "11",
+    "slug": "mcp-stitch",
+    "title": "MCP Stitch: Published agent design-to-code tooling",
+    "description": "An installable MCP server for Google Stitch that helps coding agents retrieve screens and export versioned local implementation bundles with HTML, screenshots and linked assets.",
+    "category": "Open Source & AI",
+    "kind": "Published tool",
+    "role": "Package author and maintainer.",
+    "challenge": "Generated design screens are difficult to hand off reproducibly to coding agents when assets and implementation context remain remote.",
+    "approach": "Built a TypeScript MCP server with versioned exports, linked-asset handling, implementation guidance and client configuration documentation.",
+    "outcome": "Published the mcp-stitch npm package for local installation and use in supported MCP clients.",
+    "technologies": [
+      "TypeScript",
+      "MCP",
+      "Node.js",
+      "Google Stitch"
+    ],
+    "githubUrl": "https://github.com/jasonmcalpin/mcp-stitch",
+    "liveUrl": "https://www.npmjs.com/package/mcp-stitch",
+    "imageUrl": "",
+    "featured": true
+  },
+  {
+    "id": "12",
+    "slug": "browser-model-lab",
+    "title": "Browser Model Lab: Evidence-based model qualification",
+    "description": "A model evaluation harness exploring browser and local model runtime capabilities, compatibility, failure diagnostics and task-based qualifications.",
+    "category": "Open Source & AI",
+    "kind": "Public engineering project",
+    "role": "Architecture and development.",
+    "challenge": "Model benchmarks alone do not explain whether a model can run reliably under real environment, tool and resource constraints.",
+    "approach": "Designed repeatable capability tests, runtime and compatibility boundaries, diagnostic artifacts and evaluation contracts.",
+    "outcome": "Public repository documenting and implementing a qualification approach; research and implementation are ongoing.",
+    "technologies": [
+      "TypeScript",
+      "WebGPU",
+      "AI Evaluation",
+      "Testing"
+    ],
+    "githubUrl": "https://github.com/jasonmcalpin/browser-model-lab",
+    "imageUrl": "",
     "featured": true
   },
   {
     "id": "5",
     "slug": "ibm-one-blog",
-    "title": "IBM-One Blog",
+    "title": "IBM: Global publishing platform integration",
     "description": "IBM Blog, IBM consolidated all of its blogs into one unified offering. I created python, and Bash scripted tools to import bytes from blog platforms that didn't work with WordPress. I built security plugins and worked with the front-end and back-end developers to understand how to get Kubernetes, Cloudflare, and Akamai to work smoothly with WordPress. The plugins and solutions were used in international versions of the site. Tools included: PHP, Python, SQL, Kubernetes, and Docker.",
     "imageUrl": "/assets/images/projects/IBM-Blog.png",
     "technologies": [
@@ -79,7 +104,70 @@
       "Cloudflare"
     ],
     "liveUrl": "https://www.ibm.com/blogs",
-    "featured": true
+    "featured": true,
+    "category": "Modernization",
+    "role": "Built migration tools and WordPress security integrations, collaborating with platform and application teams.",
+    "challenge": "Consolidating diverse legacy blog platforms required reliable content migration and compatibility across infrastructure layers.",
+    "approach": "Created Python and Bash migration utilities and WordPress plugins; coordinated Kubernetes, Cloudflare and Akamai integration.",
+    "outcome": "Supported unified publishing and reuse of integration tooling across international site implementations."
+  },
+  {
+    "id": "8",
+    "slug": "watson-sales-assistant",
+    "title": "IBM: AI-assisted sales discovery",
+    "description": "Watson based internal sales tool. I took internal data to train a Watson business model that could create an optimized list of services for clients. This involved building Python tools to import records, classifying the data and training the sales team in organizing the data so they could continue to update the model in the long term. I also built out an API so that the tool could be connected to other systems and a dedicated frontend that let users do searches or upload the latest data.",
+    "imageUrl": "/assets/images/projects/ibm.jpg",
+    "technologies": [
+      "Python",
+      "Next.js",
+      "SQL",
+      "REST-API",
+      "IBM Watson",
+      "JWT",
+      "Git"
+    ],
+    "featured": false,
+    "category": "AI & Automation",
+    "role": "Built data ingestion, classification, API and search/user-facing tooling.",
+    "challenge": "Sales teams needed to make internal service knowledge searchable and maintainable.",
+    "approach": "Prepared and classified internal data for Watson, developed update tooling and connected the model to an API and dedicated interface.",
+    "outcome": "Enabled teams to search service recommendations and refresh source records through the application."
+  },
+  {
+    "id": "3",
+    "slug": "us-open-watson-project",
+    "title": "US Open: Interactive Watson experience",
+    "description": "Developed AI-powered interactive web application using IBM Watson's tone analyzer to create personalized tennis portraits for fans. Built system that processed open-ended user responses to generate personality trait percentages and match users with professional tennis players based on data analysis. Implemented both on-site booth integration nodejs systems and remote microsite functionality, showcasing AI capabilities to mainstream audiences.",
+    "liveUrl": "https://vimeo.com/230087606",
+    "technologies": [
+      "IBM Watson",
+      "Python",
+      "MySQL",
+      "Angular",
+      "Machine Learning"
+    ],
+    "featured": false,
+    "category": "AI & Automation",
+    "role": "Developed interactive applications and integration for on-site and remote audiences.",
+    "challenge": "Translate AI analysis into an accessible, engaging experience for tennis fans.",
+    "approach": "Used IBM Watson tone analysis and response processing to generate personalized player comparisons for a booth experience and microsite.",
+    "outcome": "Delivered a public-facing demonstration of AI analysis through personalized fan interactions."
+  },
+  {
+    "id": "2",
+    "slug": "my-prostate-cancer-website",
+    "title": "My Prostate Cancer Website",
+    "description": "An informational website providing resources and support for those affected by prostate cancer.",
+    "imageUrl": "/assets/images/projects/my-prostate-cancer.png",
+    "technologies": [
+      "React",
+      "JavaScript",
+      "REST-API",
+      "Firebase"
+    ],
+    "liveUrl": "https://www.myprostatecancerroadmap.com/",
+    "featured": false,
+    "category": "Digital Experience"
   },
   {
     "id": "6",
@@ -93,45 +181,8 @@
       "SCSS",
       "Firebase"
     ],
-    "liveUrl": "https://www.fm.com",
-    "featured": false
-  },
-  {
-    "id": "7",
-    "slug": "ibm-research-tool",
-    "title": "IBM Research Tool",
-    "description": "IBM Research Tool. This project involved converting over a million records from an old obfuscated data collection into a modern SQL database. \n I scoped the database requirements, docker repos and built up the infrastructure then created a REST-API for other services to reach the database. I then created commandline tools using node.js to import all of the records from their proprietary javascript format to SQL. Once the data was available in SQL I created a frontend that the teams could use to access and verify the data and ultimately use it going forward with much more ease and speed than the previous locally run application.",
-    "imageUrl": "/assets/images/projects/ibm.jpg",
-    "technologies": [
-      "SQL",
-      "REST-API",
-      "Node.js (REST-API Backend)",
-      "Next.js (Frontend)",
-      "Python",
-      "Carbon Framework",
-      "Docker",
-      "Git"
-    ],
-    "liveUrl": "https://www.ibm.com/watson",
-    "featured": false
-  },
-  {
-    "id": "8",
-    "slug": "watson-sales-assistant",
-    "title": "Watson Based Sales Assistant for IBM",
-    "description": "Watson based internal sales tool. I took internal data to train a Watson business model that could create an optimized list of services for clients. This involved building Python tools to import records, classifying the data and training the sales team in organizing the data so they could continue to update the model in the long term. I also built out an API so that the tool could be connected to other systems and a dedicated frontend that let users do searches or upload the latest data.",
-    "imageUrl": "/assets/images/projects/ibm.jpg",
-    "technologies": [
-      "Python",
-      "Next.js",
-      "SQL",
-      "REST-API",
-      "IBM Watson",
-      "JWT",
-      "Git"
-    ],
-    "liveUrl": "https://www.ibm.com/watson",
-    "featured": false
+    "featured": false,
+    "category": "Digital Experience"
   },
   {
     "id": "9",
@@ -145,23 +196,102 @@
       "IBM Watson",
       "REST-API"
     ],
-    "liveUrl": "https://www.ogilvy.com",
+    "featured": false,
+    "category": "Enterprise Delivery"
+  },
+  {
+    "id": "13",
+    "slug": "taro",
+    "title": "Taro: Project knowledge and provenance",
+    "description": "A project-scoped knowledge and semantic-memory core for capturing decisions, reviewing proposed facts and retaining revision-safe provenance.",
+    "category": "AI Infrastructure",
+    "kind": "Ongoing engineering",
+    "role": "Architecture and development.",
+    "challenge": "Long-lived agent workflows lose context when decisions and constraints remain buried in conversational history.",
+    "approach": "Designed a repository-portable knowledge model with reviewable proposals, revisions, provenance and capability-scoped access.",
+    "outcome": "An evolving TypeScript CLI and programmatic core; not presented as a production client deployment.",
+    "technologies": [
+      "TypeScript",
+      "CLI",
+      "Knowledge Systems"
+    ],
+    "githubUrl": "https://github.com/jasonmcalpin/taro",
+    "imageUrl": "",
+    "featured": false
+  },
+  {
+    "id": "14",
+    "slug": "pantheon",
+    "title": "Pantheon: Human-directed agent coordination",
+    "description": "A coordination CLI for project state, task dependencies, edit scopes and context packets used with coding agents.",
+    "category": "AI Infrastructure",
+    "kind": "Ongoing engineering",
+    "role": "Architecture and development.",
+    "challenge": "Agent teams need durable scope, dependency and resource contracts to avoid conflicting or context-poor changes.",
+    "approach": "Built local coordination state for phases, tasks, locks, dependencies and structured prompts; the tool does not run autonomous agents.",
+    "outcome": "Public CLI project with documented workflows and explicit execution boundaries.",
+    "technologies": [
+      "TypeScript",
+      "Agent Coordination",
+      "CLI"
+    ],
+    "githubUrl": "https://github.com/jasonmcalpin/pantheon",
+    "imageUrl": "",
+    "featured": false
+  },
+  {
+    "id": "15",
+    "slug": "aether",
+    "title": "Aether: Agent execution harness architecture",
+    "description": "Execution-layer architecture for bounded agent runs, workspaces, tool policies and observable outcomes.",
+    "category": "AI Infrastructure",
+    "kind": "Architecture in progress",
+    "role": "Architecture and runtime exploration.",
+    "challenge": "Agent orchestrators need a dependable execution substrate without mixing runtime mechanics with task-selection policy.",
+    "approach": "Defined boundaries for workspace lifecycle, execution policies, provider adapters, tool exposure and structured results.",
+    "outcome": "Public architectural work in progress, distinct from a production-hardened execution service.",
+    "technologies": [
+      "Agent Runtime",
+      "TypeScript",
+      "Architecture"
+    ],
+    "githubUrl": "https://github.com/jasonmcalpin/aether",
+    "imageUrl": "",
     "featured": false
   },
   {
     "id": "10",
     "slug": "ibm-watson-chatbot",
-    "title": "IBM Watson - Chatbot",
-    "description": "Ford Site. I built out A/B tests on the main site along with coding new car releases and implementing Adobe Target for tracking. I customized the Brightcove video players to save Ford money by preventing excessive replays. This dramatically drop the cost of the service.",
+    "title": "IBM: Sales intelligence Slack assistant",
+    "description": "Contributed to a Watson-integrated Slack assistant designed to bring relevant sales intelligence into a familiar team workflow.",
     "imageUrl": "/assets/images/projects/ibm.jpg",
     "technologies": [
-      "React",
-      "JQuery",
-      "BrightCove",
-      "Adobe Experience Manager",
-      "Adobe Target"
+      "IBM Watson",
+      "Slack",
+      "API Integration",
+      "AI"
     ],
-    "liveUrl": "https://www.ibm.com/watson",
-    "featured": false
+    "featured": false,
+    "category": "AI & Automation",
+    "role": "Consulted with the implementation team on the Watson integration, required models and APIs used to return results to Slack.",
+    "challenge": "Sales teams needed to access useful service information without leaving their collaboration workflow.",
+    "approach": "Helped define the model and API integration contracts between IBM Watson and the Slack bot.",
+    "outcome": "The team's Sales Intelligence Slack bot received a 2023 Sammy Award from the Business Intelligence Group."
+  },
+  {
+    "id": "1",
+    "slug": "rustpunk-panic-66",
+    "title": "Rustpunk Panic 66 a survival game",
+    "description": "A React-based survival game where players must escape a post-apocalyptic world by making strategic decisions.",
+    "imageUrl": "/assets/games/images/woman.png",
+    "technologies": [
+      "React",
+      "TypeScript",
+      "Redux",
+      "SCSS"
+    ],
+    "liveUrl": "/projects/route-66",
+    "featured": false,
+    "category": "Interactive Systems"
   }
 ]

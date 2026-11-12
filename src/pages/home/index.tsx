@@ -1,18 +1,15 @@
 import { lazy, Suspense, useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import SEO from '../../components/global/SEO';
-import OptimizedImage from '../../components/global/OptimizedImage';
 import { getWebsiteSchema } from '../../utils/schema';
+import consulting from '../../../public/data/consulting.json';
 import './styles.css';
 
-// A real module boundary: cards, content fetching, and secondary page sections
-// do not enter the homepage's critical Vite chunk until they approach view.
 const HomeBelowFold = lazy(() => import('./HomeBelowFold'));
 
 function DeferredHomepageContent() {
   const sentinel = useRef<HTMLDivElement>(null);
   const [nearViewport, setNearViewport] = useState(false);
-
   useEffect(() => {
     const node = sentinel.current;
     if (!node) return;
@@ -20,101 +17,54 @@ function DeferredHomepageContent() {
       setNearViewport(true);
       return;
     }
-    const observer = new IntersectionObserver(
-      entries => {
-        if (entries.some(entry => entry.isIntersecting)) {
-          setNearViewport(true);
-          observer.disconnect();
-        }
-      },
-      { rootMargin: '900px 0px', threshold: 0 },
-    );
+    const observer = new IntersectionObserver(entries => {
+      if (entries.some(entry => entry.isIntersecting)) {
+        setNearViewport(true);
+        observer.disconnect();
+      }
+    }, { rootMargin: '900px 0px', threshold: 0 });
     observer.observe(node);
     return () => observer.disconnect();
   }, []);
-
   return (
     <div ref={sentinel} className="home-deferred-boundary">
       {nearViewport ? (
         <Suspense fallback={<div className="home-deferred-placeholder" aria-hidden="true" />}>
           <HomeBelowFold />
         </Suspense>
-      ) : (
-        <div className="home-deferred-placeholder" aria-hidden="true" />
-      )}
+      ) : <div className="home-deferred-placeholder" aria-hidden="true" />}
     </div>
   );
 }
 
-const Home = () => {
-
+export default function Home() {
   return (
-    <div className="home pt-16">
-      <SEO
-        title="Home"
-        description="Jason McAlpin is a Full Stack Developer specializing in React, TypeScript, and modern web technologies. Explore my portfolio of projects and bytes."
-        canonical="/"
-        schema={getWebsiteSchema()}
-      />
-      {/* Hero Section */}
-      <section 
-        className="hero min-h-screen flex flex-col md:flex-row items-center justify-center px-4 py-16"
-        
-        
-        
-        
-       data-reveal="viewport">
-        <div className="hero__content w-full md:w-1/2 mb-12 md:mb-0 md:pr-8 md:ml-auto md:max-w-[40rem]">
-          <h1 className="hero__title text-4xl sm:text-5xl md:text-6xl font-heading font-bold mb-6"  data-reveal="viewport">
-            <span className="hero__title-line block mb-2">Hi, I'm</span>
-            <span className="hero__title-line neon-text block mb-2">Jason McAlpin</span>
-            <span className="hero__title-line block mb-2">Full Stack Developer</span>
-          </h1>
-          
-          <p className="hero__subtitle text-xl text-gray-300 mb-8 max-w-lg"  data-reveal="viewport">
-            Building modern web experiences with cutting-edge technologies
-          </p>
-          
-          <div className="hero__cta flex flex-wrap gap-4"  data-reveal="viewport">
-            <Link to="/projects" className="btn btn-primary">
-              View My Work
-            </Link>
-            <Link to="/contact" className="btn btn-outline">
-              Get In Touch
-            </Link>
+    <div className="home consulting-page">
+      <SEO title="Independent Software Engineering & Consulting"
+        description={consulting.identity.summary} canonical="/" schema={getWebsiteSchema()} />
+      <section className="consulting-hero" aria-labelledby="home-title">
+        <div className="consulting-container consulting-hero__layout">
+          <div>
+            <p className="consulting-eyebrow">Independent software engineering · Atlanta / Remote</p>
+            <h1 id="home-title" className="consulting-hero__title">{consulting.identity.headline}</h1>
+            <p className="consulting-lead">{consulting.identity.summary}</p>
+            <div className="consulting-actions">
+              <Link to="/contact" className="consulting-button consulting-button--primary">Discuss your project</Link>
+              <Link to="/projects" className="consulting-button consulting-button--outline">See selected work</Link>
+            </div>
+            <p className="consulting-small">Direct access to the engineer doing the work · {consulting.identity.experience}</p>
           </div>
-        </div>
-        
-        <div 
-          className="hero__visual w-full md:w-1/2 flex justify-center items-center"
-          
-          
-         data-reveal="scale">
-          <div className="hero__grid grid grid-cols-2 gap-4 w-full max-w-md">
-            <div className="hero__grid-item h-32 rounded-lg relative overflow-hidden after:content-[''] after:absolute after:inset-0 after:bg-black/40 bg-primary">
-              <OptimizedImage src="/assets/images/code.jpg" alt="" sizes="(max-width: 767px) 45vw, 240px"
-                className="w-full h-full" aria-hidden="true" priority />
-            </div>
-            <div className="hero__grid-item h-32 rounded-lg relative overflow-hidden after:content-[''] after:absolute after:inset-0 after:bg-black/40 bg-primary">
-              <OptimizedImage src="/assets/images/design.jpg" alt="" sizes="(max-width: 767px) 45vw, 240px"
-                className="w-full h-full" aria-hidden="true" priority />
-            </div>
-            <div className="hero__grid-item h-32 rounded-lg relative overflow-hidden after:content-[''] after:absolute after:inset-0 after:bg-black/40 bg-primary">
-              <OptimizedImage src="/assets/images/mobile.jpg" alt="" sizes="(max-width: 767px) 45vw, 240px"
-                className="w-full h-full" aria-hidden="true" priority />
-            </div>
-            <div className="hero__grid-item h-32 rounded-lg relative overflow-hidden after:content-[''] after:absolute after:inset-0 after:bg-black/40 bg-primary">
-              <OptimizedImage src="/assets/images/web.jpg" alt="" sizes="(max-width: 767px) 45vw, 240px"
-                className="w-full h-full" aria-hidden="true" priority />
-            </div>
-          </div>
+          <aside className="consulting-hero__aside" aria-label="Practice focus">
+            <p className="consulting-eyebrow">The problems I work on</p>
+            <ol className="consulting-focus-list">
+              <li><span>01</span><strong>Legacy systems holding you back</strong><p>Migration, data access and maintainability.</p></li>
+              <li><span>02</span><strong>AI that needs to work in practice</strong><p>Integrations, tools, evaluations and execution contracts.</p></li>
+              <li><span>03</span><strong>Software that's expensive to operate</strong><p>Performance, reliability and technical modernization.</p></li>
+            </ol>
+          </aside>
         </div>
       </section>
-      
-
       <DeferredHomepageContent />
     </div>
   );
-};
-
-export default Home;
+}

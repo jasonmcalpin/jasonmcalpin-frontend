@@ -2,6 +2,7 @@ import { createHead, UnheadProvider } from '@unhead/react/client';
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import './styles/index.css';
+import './styles/consulting.css';
 import App from './App.tsx';
 import { initializeAnalytics } from './services/analytics';
 import { initializeReveals } from './services/reveals';

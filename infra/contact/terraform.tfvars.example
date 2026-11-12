@@ -1,0 +1,16 @@
+aws_region  = "us-east-1"
+environment = "production"
+ses_domain  = "example.com"
+
+# Provide your actual mailbox using the TF_VAR_recipient_email environment
+# variable, or an untracked local terraform.tfvars file.
+# recipient_email = "private@example.com"
+
+# Create a SecureString with this name outside Terraform.
+turnstile_secret_parameter_name = "/jasonmcalpin/contact/turnstile-secret"
+
+allowed_origins = [
+  "https://jasonmcalpin.com",
+  "https://www.jasonmcalpin.com",
+  "https://staged.jasonmcalpin.com"
+]

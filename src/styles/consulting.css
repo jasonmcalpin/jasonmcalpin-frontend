@@ -1,0 +1,247 @@
+/* Consulting design system: intentionally scoped away from games and lessons. */
+.consulting-page {
+  --consulting-ink: #172b35;
+  --consulting-muted: #536570;
+  --consulting-accent: #235e66;
+  --consulting-border: #dce3e3;
+  --consulting-surface: #fff;
+  --consulting-wash: #f2f5f3;
+  --consulting-title: 'Inter', system-ui, sans-serif;
+  background: #fafbf9;
+  color: var(--consulting-ink);
+  min-height: 100vh;
+  font-family: 'Inter', system-ui, sans-serif;
+}
+.consulting-page h1, .consulting-page h2, .consulting-page h3,
+.consulting-page h4 { font-family: var(--consulting-title); font-weight: 720; letter-spacing: -.035em; line-height: 1.16; }
+.consulting-page h1 { font-size: clamp(2.8rem, 5.2vw, 5rem); }
+.consulting-page h2 { font-size: clamp(2rem, 3.2vw, 3rem); }
+.consulting-page h3 { font-size: 1.35rem; }
+.consulting-page p { line-height: 1.7; }
+.consulting-container { max-width: 1160px; margin-inline: auto; padding-inline: clamp(1.25rem, 3.6vw, 3rem); }
+.consulting-inner-page { padding-top: 76px; }
+/* Bytes' legacy stylesheet is dynamically imported; this wins its generic pt-16 rule. */
+.consulting-page.consulting-inner-page { padding-top: 76px; }
+.consulting-hero { padding: clamp(7rem, 12vw, 11rem) 0 clamp(5rem, 9vw, 8rem); background: #f6f8f6; }
+.consulting-hero__layout { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(260px, .76fr); gap: clamp(3rem, 6vw, 6rem); align-items: center; }
+.consulting-hero__title { max-width: 13ch; margin: 1.25rem 0; }
+.consulting-page .consulting-lead { font-size: clamp(1.12rem, 1.6vw, 1.4rem); color: var(--consulting-muted); line-height: 1.65; max-width: 61ch; }
+.consulting-eyebrow { font-size: .77rem; font-weight: 750; text-transform: uppercase; letter-spacing: .13em; color: #2b6870; line-height: 1.4 !important; }
+.consulting-actions { display: flex; gap: .85rem; flex-wrap: wrap; margin: 2rem 0 1.5rem; }
+.consulting-button { display: inline-flex; justify-content: center; align-items: center; gap: .7rem; padding: .9rem 1.4rem; text-decoration: none; border-radius: 6px; font-weight: 720; cursor: pointer; border: 1px solid transparent; font-size: .98rem; transition: background-color .15s ease, border-color .15s ease, transform .15s ease; }
+.consulting-button:focus-visible, .consulting-nav a:focus-visible, .consulting-page a:focus-visible, .consulting-page button:focus-visible { outline: 3px solid #478a95; outline-offset: 3px; }
+.consulting-button--primary { background: #1b4a55; color: white; }
+.consulting-button--primary:hover { background: #123841; color: white; }
+.consulting-button--outline { background: transparent; border-color: #b7c8c8; color: #1b4a55; }
+.consulting-button--outline:hover { background: #eaf0ed; color: #1b4a55; }
+.consulting-page .consulting-small, .consulting-footer .consulting-small { font-size: .88rem; color: #687a82; line-height: 1.6; }
+.consulting-hero__aside { background: #eaf0ed; border: 1px solid #d3dfda; border-radius: 12px; padding: clamp(1.4rem, 3vw, 2.6rem); }
+.consulting-focus-list { list-style: none; padding: 0; margin: 1.5rem 0 0; }
+.consulting-focus-list li { padding: 1rem 0; border-top: 1px solid #ccd9d4; display: grid; grid-template-columns: 2rem 1fr; column-gap: .7rem; }
+.consulting-focus-list li span { grid-row: span 2; color: #3e7379; font-weight: 700; font-size: .8rem; padding-top: .2rem; }
+.consulting-focus-list li strong { font-size: 1.03rem; font-weight: 730; }
+.consulting-focus-list li p { margin: .5rem 0 0; color: #526972; font-size: .9rem; }
+.consulting-section { padding: clamp(4.2rem, 8vw, 7rem) 0; background: #fff; }
+.consulting-section--subtle { background: var(--consulting-wash, #f2f5f3); }
+.consulting-section-heading { margin-bottom: 2.5rem; max-width: 750px; }
+.consulting-section-heading h2 { margin: .6rem 0 1rem; }
+.consulting-section-heading p:not(.consulting-eyebrow) { color: #526570; font-size: 1.1rem; }
+.consulting-section-heading--split { display: flex; justify-content: space-between; gap: 2rem; align-items: end; max-width: none; }
+.consulting-section-heading--split > div { max-width: 720px; }
+.consulting-text-link { font-weight: 750; color: #215a63; text-decoration: none; display: inline-block; }
+.consulting-text-link:hover { color: #103d45; text-decoration: underline; text-underline-offset: 4px; }
+.consulting-service-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.1rem; }
+.consulting-service-tile { background: #fff; border: 1px solid #dce4e2; border-radius: 10px; padding: clamp(1.6rem, 3vw, 2.5rem); min-width: 0; display: flex; flex-direction: column; }
+.consulting-service-tile__number { color: #4e8186; font-size: .9rem; font-weight: 750; }
+.consulting-service-tile h3 { margin: .85rem 0; }
+.consulting-service-tile p { color: #566975; margin: 0 0 1.3rem; }
+.consulting-service-tile a { color: #215a63; font-weight: 720; text-decoration: none; margin-top: auto; }
+.consulting-service-tile a:hover { text-decoration: underline; }
+.consulting-service-tile--detailed { gap: .5rem; }
+.consulting-service-tile--detailed h4 { font-size: .85rem; letter-spacing: .08em; text-transform: uppercase; margin: 1rem 0 0; }
+.consulting-service-tile--detailed ul { padding-left: 1.3rem; color: #566975; line-height: 1.7; margin-bottom: 1.5rem; }
+.consulting-service-icon { color: #2a6970; }
+.consulting-project-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.3rem; }
+.consulting-project-card { border: 1px solid #dbe4e2; border-radius: 10px; overflow: hidden; background: #fff; display: flex; flex-direction: column; min-width: 0; box-shadow: none; }
+.consulting-project-card__image { height: 210px; overflow: hidden; background: #e4ecea; }
+.consulting-project-card__image .optimized-image { width: 100%; height: 100%; }
+.consulting-project-card__image img { width: 100%; height: 100%; object-fit: cover; }
+.consulting-project-card__graphic { background: linear-gradient(135deg, #dce9e5, #b9d1d0); height: 210px; padding: 1.8rem; color: #173f49; display: flex; flex-direction: column; justify-content: space-between; }
+.consulting-project-card__graphic span { font-size: .72rem; letter-spacing: .12em; font-weight: 750; text-transform: uppercase; }
+.consulting-project-card__graphic strong { font-size: clamp(1.7rem, 3vw, 2.5rem); font-family: 'Inter', sans-serif; font-weight: 770; letter-spacing: -.035em; }
+.consulting-project-card__body { padding: 1.7rem; display: flex; flex-direction: column; flex: 1; }
+.consulting-project-card__category { font-size: .75rem; text-transform: uppercase; letter-spacing: .08em; font-weight: 750; color: #3e7077; }
+.consulting-project-card__body h3 { margin: .65rem 0 .9rem; }
+.consulting-project-card__body h3 a { color: #1b313b; text-decoration: none; }
+.consulting-project-card__body h3 a:hover { color: #235e66; }
+.consulting-project-card__body > p:not(.consulting-project-card__category) { color: #566975; margin-bottom: 1.25rem; }
+.consulting-project-card__body > .consulting-text-link { margin-top: auto; }
+.consulting-two-column { display: grid; grid-template-columns: 1.1fr .9fr; gap: clamp(2rem, 6vw, 6rem); align-items: start; }
+.consulting-body { font-size: 1.06rem; color: #526570; margin: 1.4rem 0; }
+.consulting-proof-list { list-style: none; padding: 0; margin: 0; }
+.consulting-proof-list li { padding: 1.4rem 0; border-bottom: 1px solid #dce4e2; font-weight: 650; line-height: 1.5; }
+.consulting-proof-list li:first-child { border-top: 1px solid #dce4e2; }
+.consulting-cta { background: #e9f0ed; text-align: center; padding: clamp(4.8rem, 7vw, 7rem) 0; color: #172f38; }
+.consulting-cta h2 { max-width: 19ch; margin: 1rem auto; }
+.consulting-cta p:not(.consulting-eyebrow) { color: #536871; max-width: 57ch; margin: 1rem auto 2rem; }
+.consulting-page-intro { padding-top: clamp(4rem, 8vw, 7rem); padding-bottom: clamp(3.3rem, 6vw, 5rem); }
+.consulting-page-intro h1 { max-width: 17ch; margin: 1rem 0 1.2rem; }
+.consulting-page-intro .consulting-lead { margin-bottom: 1.4rem; }
+.consulting-three-column { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; }
+.consulting-simple-card { background: #fff; border: 1px solid #dce4e2; border-radius: 10px; padding: clamp(1.5rem, 3vw, 2.3rem); }
+.consulting-simple-card h3 { margin: 1rem 0; }
+.consulting-simple-card h2 { font-size: clamp(1.5rem, 2.4vw, 2rem); margin: 0 0 1rem; }
+.consulting-simple-card p { color: #526570; margin: .7rem 0 1.2rem; }
+.consulting-three-column + .consulting-small { margin-top: 1.5rem; }
+.consulting-filters { display: flex; flex-wrap: wrap; gap: .65rem; margin-bottom: 2.5rem; }
+.consulting-filters button { border: 1px solid #cbdad7; border-radius: 50px; padding: .65rem 1.15rem; font-weight: 650; color: #37545e; background: #fff; cursor: pointer; }
+.consulting-filters button:hover { border-color: #315c64; }
+.consulting-filters button.is-active { background: #20515c; color: #fff; border-color: #20515c; }
+.consulting-case-study { padding-bottom: 6rem; max-width: 930px; }
+.consulting-case-study > section { padding: 2.1rem 0; border-top: 1px solid #dce4e2; }
+.consulting-case-study > section h2 { margin: .7rem 0 1.2rem; font-size: clamp(1.7rem, 2.8vw, 2.5rem); }
+.consulting-case-study > section p:not(.consulting-eyebrow) { color: #4b5f69; font-size: 1.08rem; margin: 1rem 0; }
+.consulting-case-study__image { margin-bottom: 3rem; overflow: hidden; border-radius: 10px; }
+.consulting-case-study__image img { width: 100%; height: auto; }
+.consulting-tags { display: flex; flex-wrap: wrap; gap: .6rem; }
+.consulting-tags span { font-size: .86rem; background: #e8efec; color: #30545d; padding: .5rem .8rem; border-radius: 4px; }
+.consulting-client-logos { list-style: none; display: flex; flex-wrap: wrap; gap: 1.5rem; padding: 0; }
+.consulting-client-logos li {
+  box-sizing: border-box;
+  background: #fff;
+  border: 1px solid #dbe4e2;
+  border-radius: 8px;
+  width: 150px;
+  height: 105px;
+  padding: 1rem;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: minmax(0, 1fr);
+  place-items: center;
+  overflow: hidden;
+}
+.consulting-client-logos img {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  min-height: 0;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  object-position: center;
+}
+.consulting-contact-grid { display: grid; grid-template-columns: .85fr 1.15fr; gap: 2rem; align-items: start; }
+.consulting-contact-email { font-size: clamp(1.1rem, 2vw, 1.45rem); font-weight: 720; color: #1e5761; text-decoration: underline; overflow-wrap: anywhere; }
+.consulting-socials { display: flex; gap: 1.4rem; margin-top: 2rem; }
+.consulting-socials a { color: #235e66; font-weight: 720; }
+.consulting-inquiry-form { display: flex; flex-direction: column; gap: .7rem; }
+.consulting-inquiry-form label { color: #233a45; font-weight: 700; margin-top: .5rem; }
+.consulting-inquiry-form input, .consulting-inquiry-form textarea { background: #fff; color: #142e37; border: 1px solid #b9cbc9; border-radius: 5px; width: 100%; padding: .75rem .9rem; font: inherit; }
+.consulting-inquiry-form input:focus, .consulting-inquiry-form textarea:focus { outline: 3px solid #92c5c6; outline-offset: 1px; }
+.consulting-inquiry-form button { align-self: start; margin-top: 1rem; }
+.consulting-visually-hidden { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+.home-deferred-placeholder { min-height: 52vh; background: #fff; }
+.consulting-nav { position: fixed; inset: 0 0 auto; background: rgba(255,255,255,.96); border-bottom: 1px solid #dce4e2; backdrop-filter: blur(14px); z-index: 50; color: #19343e; }
+.consulting-nav--scrolled { box-shadow: 0 5px 20px rgba(18,48,57,.07); }
+.consulting-nav__inner { max-width: 1220px; margin: auto; padding: 0 clamp(1.2rem, 3vw, 2.5rem); min-height: 76px; display: flex; align-items: center; gap: 2rem; justify-content: space-between; }
+.consulting-nav__brand { text-decoration: none; color: #1b343e; font-weight: 790; font-size: 1.19rem; letter-spacing: -.035em; white-space: nowrap; }
+.consulting-nav__brand span { font-size: .75rem; color: #617780; font-weight: 600; letter-spacing: 0; }
+.consulting-nav__links { display: flex; gap: clamp(1rem, 2vw, 2rem); margin-left: auto; }
+.consulting-nav__links a { color: #425c65; font-weight: 650; text-decoration: none; font-size: .9rem; }
+.consulting-nav__links a:hover, .consulting-nav__links a[aria-current="page"] { color: #205762; }
+.consulting-nav__cta { background: #204f59; color: white; border-radius: 5px; padding: .65rem .95rem; text-decoration: none; font-size: .88rem; font-weight: 700; white-space: nowrap; }
+.consulting-nav__cta:hover { background: #153a42; }
+.consulting-nav__toggle { display: none; border: 0; background: transparent; font-size: 1.75rem; color: #1c3a45; }
+.consulting-nav__mobile { display: flex; flex-direction: column; gap: 0; border-top: 1px solid #dce4e2; background: #fff; }
+.consulting-nav__mobile a { padding: .9rem 1.5rem; color: #294c57; text-decoration: none; border-bottom: 1px solid #ecf0ef; font-weight: 650; }
+.consulting-footer { background: #172f39; color: #e7efed; padding: 4rem 0 1.5rem; margin: 0; }
+.consulting-footer__grid { display: grid; grid-template-columns: 1.4fr .8fr 1fr; gap: 3rem; }
+.consulting-footer__brand { font-size: 1.5rem; color: white; font-weight: 780; text-decoration: none; letter-spacing: -.035em; }
+.consulting-footer p { margin: .8rem 0; color: #c3d2d2; }
+.consulting-footer nav, .consulting-footer__grid > div:last-child { display: flex; flex-direction: column; align-items: flex-start; gap: .8rem; }
+.consulting-footer a { color: #d2e4e1; text-decoration: none; }
+.consulting-footer a:hover { text-decoration: underline; }
+.consulting-footer .consulting-text-link { color: #b9dedb; }
+.consulting-footer__bottom { border-top: 1px solid #37515a; margin-top: 3.5rem; padding-top: 1.5rem; display: flex; gap: 1.5rem; font-size: .81rem; color: #aac0c3; }
+.consulting-footer__bottom a { color: #b8ced0; }
+.consulting-page .home-bytes__grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.3rem; }
+@media (max-width: 850px) {
+ .consulting-hero__layout, .consulting-two-column, .consulting-contact-grid { grid-template-columns: 1fr; }
+ .consulting-hero { padding-top: 8rem; }
+ .consulting-three-column { grid-template-columns: 1fr; }
+ .consulting-nav__brand span { display: none; }
+ .consulting-nav__links, .consulting-nav__cta { display: none; }
+ .consulting-nav__toggle { display: block; margin-left: auto; }
+ .consulting-footer__grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 600px) {
+ .consulting-service-grid, .consulting-project-grid, .consulting-page .home-bytes__grid { grid-template-columns: 1fr; }
+ .consulting-section-heading--split { align-items: flex-start; flex-direction: column; }
+ .consulting-footer__grid { grid-template-columns: 1fr; }
+ .consulting-footer__bottom { flex-wrap: wrap; }
+ .consulting-hero__aside { padding: 1.3rem; }
+ .consulting-hero__title { font-size: clamp(2.6rem, 12vw, 3.6rem); }
+}
+@media (prefers-reduced-motion: reduce) {
+ .consulting-page *, .consulting-nav *, .consulting-footer * { scroll-behavior: auto; transition-duration: .01ms !important; animation-duration: .01ms !important; }
+}
+
+
+/* Technical writing uses the same restrained editorial surface. */
+.consulting-writing-controls { max-width: 720px; margin-bottom: 2.5rem; display: flex; flex-direction: column; gap: .7rem; }
+.consulting-writing-controls label { color: #28454c; font-size: .9rem; font-weight: 720; }
+.consulting-writing-controls input { background: #fff; border: 1px solid #b9cbc9; color: #16323d; border-radius: 6px; padding: .85rem 1rem; font: inherit; width: 100%; }
+.consulting-writing-controls input:focus-visible { outline: 3px solid #94bfc3; outline-offset: 2px; }
+.consulting-writing-controls .consulting-filters { margin: .8rem 0 0; }
+.consulting-writing-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 1.2rem; }
+.consulting-writing-card { display: flex; flex-direction: column; background: #fff; border-radius: 10px; border: 1px solid #dce4e2; overflow: hidden; }
+.consulting-writing-card__image { height: 210px; overflow: hidden; }
+.consulting-writing-card__image .optimized-image { width: 100%; height: 100%; }
+.consulting-writing-card__image img { width: 100%; height: 100%; object-fit: cover; }
+.consulting-writing-card__body { padding: 1.65rem; display: flex; flex-direction: column; flex: 1; }
+.consulting-writing-card__body h3 { margin: .55rem 0 .8rem; }
+.consulting-writing-card__body h3 a { color: #1b313b; text-decoration: none; }
+.consulting-writing-card__body h3 a:hover { color: #235e66; }
+.consulting-writing-card__body > p:not(.consulting-project-card__category) { color: #536871; margin-bottom: 1.2rem; }
+.consulting-writing-card__body > a.consulting-text-link { margin-top: auto; }
+.consulting-page.byte-page .byte-page__hero { background: #f2f5f3; padding: 5rem 0 3rem; }
+.consulting-page.byte-page .byte-page__hero-container { text-align: left; }
+.consulting-page.byte-page .byte-page__title { color: #183039; font-family: Inter,sans-serif; text-shadow: none; }
+.consulting-page.byte-page .byte-page__meta { color: #5a6e76; justify-content: flex-start; }
+.consulting-page.byte-page .byte-page__author { color: #2b6971; }
+.consulting-page.byte-page .byte-page__tags { justify-content: flex-start; }
+.consulting-page.byte-page .byte-page__tag { background: #dbe9e4; color: #21535d; }
+.consulting-page.byte-page .byte-page__reading-time { background: #e4ebea; color: #3d6069; }
+.consulting-page.byte-page .byte-page__body { color: #243a43; }
+.consulting-page.byte-page .markdown-content :is(h1,h2,h3,h4,h5,h6), .consulting-page.byte-page .markdown-content strong { color: #1c343e; font-family: Inter,sans-serif; }
+.consulting-page.byte-page .markdown-content :is(p,ul,ol,li,td,blockquote) { color: #3e535d; }
+.consulting-page.byte-page .markdown-content a { color: #1d646e; }
+.consulting-page.byte-page .markdown-content :is(pre,code,th) { background: #e6eceb; color: #1f3e48; }
+.consulting-page.byte-page .markdown-content pre code { background: transparent; }
+.consulting-page.byte-page .byte-page__footer { border-top: 1px solid #dce4e2; background: #f2f5f3; }
+.consulting-page.byte-page .byte-page__footer .btn { background: #204f59; color: #fff; }
+@media (max-width:600px) { .consulting-writing-grid { grid-template-columns: 1fr; } }
+
+/* Contact form accessibility and anti-spam UX */
+.consulting-inquiry-form button:disabled { cursor: not-allowed; opacity: .52; }
+.consulting-inquiry-form label:has(+ textarea) { margin-top: .75rem; }
+.consulting-honeypot { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
+.consulting-turnstile { min-height: 68px; margin: .85rem 0 .3rem; }
+.consulting-inquiry-error { color: #a42b35 !important; font-weight: 650; }
+.consulting-inquiry-success { border-left: 4px solid #286e55; padding: 1rem 1.3rem; background: #e9f4ee; }
+.consulting-page .consulting-inquiry-form a { color: #215a63; text-decoration: underline; }
+
+/* Delivery process: scannable without implying a rigid one-size-fits-all engagement. */
+.consulting-process { list-style: none; margin: 0 0 1.5rem; padding: 0; display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 1rem; counter-reset: steps; }
+.consulting-process__step { padding: 1.5rem; border-top: 2px solid #46767b; background: #fff; min-width: 0; }
+.consulting-process__step h3 { margin: .8rem 0; font-size: 1.2rem; }
+.consulting-process__step p { font-size: .94rem; color: #526570; }
+@media (max-width: 900px) { .consulting-process { grid-template-columns: repeat(2,minmax(0,1fr)); } }
+@media (max-width: 560px) { .consulting-process { grid-template-columns: 1fr; } }
+
+.consulting-skip-link { position: fixed; left: 1rem; top: -5rem; z-index: 100; background: #fff; color: #193c45; padding: .8rem 1.15rem; border: 2px solid #215a63; border-radius: 4px; font-weight: 750; }
+.consulting-skip-link:focus-visible { top: .75rem; outline: 3px solid #478a95; outline-offset: 2px; }
+.consulting-verification-error { border-left: 3px solid #a65353; padding: 1rem; background: #fff3f1; }
+.consulting-verification-error p { color: #822a30; margin-bottom: .7rem; }

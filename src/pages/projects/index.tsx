@@ -1,206 +1,48 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks/useAppStore';
 import { filterProjects, fetchProjects, selectFilteredProjects } from '../../store/slices/projectsSlice';
 import ProjectCard from '../../components/global/projectCard';
-import Hero from '../../components/global/Hero';
-import { CenterTitle } from '../../components/global/Titles';
-import './styles.css';
+import SEO from '../../components/global/SEO';
+import { Link } from 'react-router-dom';
 
-const Projects = () => {
+const orderedCategories = ['Modernization', 'AI & Automation', 'Open Source & AI', 'AI Infrastructure', 'Performance', 'Digital Experience', 'Enterprise Delivery', 'Interactive Systems'];
+
+export default function Projects() {
   const dispatch = useAppDispatch();
-  const { projects, activeFilter, isLoading, error } = useAppSelector((state) => state.projects);
+  const { projects, activeFilter, isLoading, error } = useAppSelector(state => state.projects);
   const filteredProjects = useAppSelector(selectFilteredProjects);
-  const [technologies, setTechnologies] = useState<string[]>([]);
-  
-  // Extract unique technologies from projects
-  useEffect(() => {
-    const techSet = new Set<string>();
-    projects.forEach(project => {
-      project.technologies.forEach(tech => techSet.add(tech));
-    });
-    setTechnologies(Array.from(techSet).sort());
-  }, [projects]);
-  
-  // Fetch projects and initialize with all projects
-  useEffect(() => {
-    dispatch(fetchProjects());
-  }, [dispatch]);
-  
-  // Handle filter change
-  const handleFilterChange = (filter: string | null) => {
-    dispatch(filterProjects(filter));
-  };
+  useEffect(() => { dispatch(fetchProjects()); }, [dispatch]);
+  const categories = orderedCategories.filter(category => projects.some(project => project.category === category));
 
   return (
-    <div className='projects'>
-      <Hero 
-        heroTitle='My Projects'
-        heroSubtitle='A collection of my work showcasing my skills and experience'
-        heroImage='/assets/images/projects-bg.jpg'
-      />
-
-      
-      <section className='projects-content'>
-        <div className='section-container'>
-          {/* Filters */}
-          <div 
-            className='projects-filters'
-            
-            
-            
-           data-reveal="viewport">
-            <h2 className='projects-filters__title'>Filter by:</h2>
-            <div className='projects-filters__buttons'>
-              <button 
-                className={`projects-filters__button ${activeFilter === null ? 'projects-filters__button--active' : ''}`}
-                onClick={() => handleFilterChange(null)}
-              >
-                All
-              </button>
-              
-              <button 
-                className={`projects-filters__button ${activeFilter === 'featured' ? 'projects-filters__button--active' : ''}`}
-                onClick={() => handleFilterChange('featured')}
-              >
-                Featured
-              </button>
-              
-              {technologies.map((tech) => (
-                <button 
-                  key={tech}
-                  className={`projects-filters__button ${activeFilter === tech ? 'projects-filters__button--active' : ''}`}
-                  onClick={() => handleFilterChange(tech)}
-                >
-                  {tech}
-                </button>
-              ))}
-            </div>
+    <div className="consulting-page consulting-inner-page projects">
+      <SEO title="Selected Engineering Work" canonical="/projects"
+        description="Case studies and public engineering projects: enterprise modernization, AI integrations, performance and open-source tools." />
+      <header className="consulting-page-intro consulting-container">
+        <p className="consulting-eyebrow">Selected work and open-source engineering</p>
+        <h1>What I built. Why it mattered.</h1>
+        <p className="consulting-lead">Enterprise work, published tools and ongoing systems research, presented with my responsibilities, outcomes and the maturity of each project.</p>
+      </header>
+      <section className="consulting-section consulting-section--subtle">
+        <div className="consulting-container">
+          <div className="consulting-filters" role="group" aria-label="Filter work by problem area">
+            <button type="button" aria-pressed={activeFilter === null} className={activeFilter === null ? 'is-active' : ''} onClick={() => dispatch(filterProjects(null))}>All work</button>
+            {categories.map(category => <button type="button" key={category} aria-pressed={activeFilter === category}
+              className={activeFilter === category ? 'is-active' : ''} onClick={() => dispatch(filterProjects(category))}>{category}</button>)}
           </div>
-          
-          <div 
-            className='projects-grid'
-            
-            
-            
-           data-reveal="viewport">
-            {isLoading && projects.length === 0 ? (
-              <p role='status'>Loading projects...</p>
-            ) : error ? (
-              <div role='alert'><p>Unable to load projects: {error}</p><button className='btn btn-primary' onClick={() => dispatch(fetchProjects())}>Retry</button></div>
-            ) : filteredProjects.length > 0 ? (
-              filteredProjects.map((project, index) => (
-                <ProjectCard key={project.slug} project={project} index={index} />
-              ))
-            ) : (
-              <div 
-                className='projects-empty'
-                
-               data-reveal="viewport">
-                <p className='projects-empty__message'>
-                  No projects found with the selected filter.
-                </p>
-                <button 
-                  className='btn btn-primary'
-                  onClick={() => handleFilterChange(null)}
-                >
-                  Show All Projects
-                </button>
-              </div>
-            )}
-          </div>
+          {isLoading && projects.length === 0 ? <p role="status">Loading work…</p> : error ?
+            <p role="alert">Unable to load work. Please refresh and try again.</p> :
+            <div className="consulting-project-grid">
+              {filteredProjects.map(project => <ProjectCard key={project.id} project={project} index={0} />)}
+            </div>}
+          {!isLoading && !error && filteredProjects.length === 0 && <p>No projects match this category.</p>}
         </div>
       </section>
-      
-      <section className='projects-process'>
-        <div className='section-container'>
-          <CenterTitle>
-            My Development Process
-          </CenterTitle>
-          
-          <div className='projects-process__steps'>
-            <div 
-              className='projects-process__step'
-              
-              
-              
-              
-             data-reveal="viewport">
-              <div className='projects-process__step-number'>01</div>
-              <h3 className='projects-process__step-title'>Discovery & Planning</h3>
-              <p className='projects-process__step-description'>
-                I start by understanding the project requirements, goals, and target audience. 
-                This phase includes research, wireframing, and creating a detailed project plan.
-              </p>
-            </div>
-            
-            <div 
-              className='projects-process__step'
-              
-              
-              
-              
-             data-reveal="viewport">
-              <div className='projects-process__step-number'>02</div>
-              <h3 className='projects-process__step-title'>Design & Prototyping</h3>
-              <p className='projects-process__step-description'>
-                Next, I create visual designs and interactive prototypes to establish the look and feel 
-                of the project. This ensures we have a clear vision before development begins.
-              </p>
-            </div>
-            
-            <div 
-              className='projects-process__step'
-              
-              
-              
-              
-             data-reveal="viewport">
-              <div className='projects-process__step-number'>03</div>
-              <h3 className='projects-process__step-title'>Development</h3>
-              <p className='projects-process__step-description'>
-                During development, I write clean, maintainable code following best practices. 
-                I use modern frameworks and tools to build scalable and performant applications.
-              </p>
-            </div>
-            
-            <div 
-              className='projects-process__step'
-              
-              
-              
-              
-             data-reveal="viewport">
-              <div className='projects-process__step-number'>04</div>
-              <h3 className='projects-process__step-title'>Testing & Deployment</h3>
-              <p className='projects-process__step-description'>
-                Finally, I thoroughly test the application to ensure it works flawlessly across all devices 
-                and browsers. After testing, I deploy the project and provide ongoing support.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-      
-      <section className='projects-cta'>
-        <div className='section-container'>
-          <div 
-            className='projects-cta__content'
-            
-            
-            
-           data-reveal="viewport">
-            <h2 className='projects-cta__title'>Have a project in mind?</h2>
-            <p className='projects-cta__text'>
-              I'm always looking for interesting projects to work on. Let's discuss how I can help bring your ideas to life.
-            </p>
-            <a href='/contact' className='btn btn-primary projects-cta__button'>
-              Start a Project
-            </a>
-          </div>
-        </div>
-      </section>
+      <section className="consulting-cta"><div className="consulting-container">
+        <p className="consulting-eyebrow">Have a similar challenge?</p><h2>Let's talk about your system.</h2>
+        <p>Share what isn't working, what you need to build, or what needs to become simpler.</p>
+        <Link to="/contact" className="consulting-button consulting-button--primary">Discuss a project</Link>
+      </div></section>
     </div>
   );
-};
-
-export default Projects;
+}
