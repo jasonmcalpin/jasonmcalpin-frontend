@@ -51,8 +51,13 @@ const Footer = () => {
         <div className='text-sm text-gray-400 mb-2 md:mb-0'>
           &copy; {currentYear} Jason McAlpin. All rights reserved.
         </div>
-        <div className='text-sm text-gray-400'>
-          Built with React, TypeScript, and Tailwind CSS
+        <div className='text-sm text-gray-400 text-center md:text-right'>
+          <div>Built with React, TypeScript, and Tailwind CSS</div>
+          <a href='https://www.svgrepo.com/collection/dazzle-line-icons/'
+             className='underline hover:text-white'
+             target='_blank' rel='noopener noreferrer'>
+            Interface icons by Dazzle UI
+          </a>
         </div>
       </div>
     </footer>
