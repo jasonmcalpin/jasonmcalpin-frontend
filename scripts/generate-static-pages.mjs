@@ -77,6 +77,7 @@ const personSchema = { '@context': 'https://schema.org', '@type': 'Person',
   '@id': site + '/about#person', name: consulting.identity.name,
   url: site + '/about', jobTitle: consulting.identity.role,
   description: consulting.identity.summary,
+  image: site + '/assets/images/about/jason-mcalpin-portrait.jpg',
   sameAs: [consulting.identity.linkedin, consulting.identity.github],
   knowsAbout: consulting.services.map(service => service.title) };
 const websiteSchema = { '@context': 'https://schema.org', '@type': 'WebSite',
@@ -113,6 +114,7 @@ register('/', 'Independent Software Engineering & Consulting', consulting.identi
 register('/about', 'About Jason McAlpin',
   'Independent software engineer with 15+ years of production experience across enterprise web, data, APIs and AI integration.',
   elem('h1', '15 years. Still breaking things. Then fixing them.') +
+  image('/assets/images/about/jason-mcalpin-portrait.jpg', 'Portrait of Jason McAlpin smiling, wearing glasses and a dark blazer') +
   paragraph('I am Jason McAlpin, an independent software engineer and consultant based near Atlanta. For more than 15 years I have helped teams build, modernize and improve applications they depend on.') +
   paragraph('My background spans digital experiences, data migration, APIs, enterprise publishing, performance work and applied AI, including contributions to projects for IBM and Ford.') +
   elem('h2', 'Selected recognition') +

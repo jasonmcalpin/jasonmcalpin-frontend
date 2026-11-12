@@ -19,6 +19,7 @@ export const getPersonSchema = () => ({
   url: 'https://jasonmcalpin.com/about',
   jobTitle: consulting.identity.role,
   description: consulting.identity.summary,
+  image: 'https://jasonmcalpin.com/assets/images/about/jason-mcalpin-portrait.jpg',
   sameAs: [consulting.identity.linkedin, consulting.identity.github],
   knowsAbout: consulting.services.map(service => service.title),
 });

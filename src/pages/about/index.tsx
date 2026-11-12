@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../hooks/useAppStore';
 import { fetchLogos } from '../../store/slices/logoSlice';
 import SEO from '../../components/global/SEO';
+import OptimizedImage from '../../components/global/OptimizedImage';
 import { getPersonSchema } from '../../utils/schema';
 
 export default function About() {
@@ -14,10 +15,18 @@ export default function About() {
       <SEO title="About Jason McAlpin" canonical="/about" type="profile"
         description="Independent software engineer with 15+ years of production experience across enterprise web, data, APIs and AI integration."
         schema={getPersonSchema()} />
-      <header className="consulting-page-intro consulting-container">
-        <p className="consulting-eyebrow">About</p>
-        <h1>15 years. Still breaking things. Then fixing them.</h1>
-        <p className="consulting-lead">I'm Jason McAlpin, an independent software engineer and consultant based near Atlanta. For more than 15 years I've helped teams build, modernize and improve applications that people depend on.</p>
+      <header className="consulting-page-intro consulting-container consulting-about-intro">
+        <div className="consulting-about-intro__copy">
+          <p className="consulting-eyebrow">About</p>
+          <h1>15 years. Still breaking things. Then fixing them.</h1>
+          <p className="consulting-lead">I'm Jason McAlpin, an independent software engineer and consultant based near Atlanta. For more than 15 years I've helped teams build, modernize and improve applications that people depend on.</p>
+        </div>
+        <figure className="consulting-about-intro__portrait">
+          <OptimizedImage src="/assets/images/about/jason-mcalpin-portrait.jpg"
+            alt="Portrait of Jason McAlpin smiling, wearing glasses and a dark blazer"
+            width={640} height={800} priority
+            sizes="(max-width: 760px) 80vw, 340px" />
+        </figure>
       </header>
       <section className="consulting-section consulting-section--subtle">
         <div className="consulting-container consulting-two-column">
