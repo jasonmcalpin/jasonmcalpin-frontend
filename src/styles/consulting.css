@@ -106,8 +106,32 @@
 .consulting-tags { display: flex; flex-wrap: wrap; gap: .6rem; }
 .consulting-tags span { font-size: .86rem; background: #e8efec; color: #30545d; padding: .5rem .8rem; border-radius: 4px; }
 .consulting-client-logos { list-style: none; display: flex; flex-wrap: wrap; gap: 1.5rem; padding: 0; }
-.consulting-client-logos li { background: #fff; border: 1px solid #dbe4e2; border-radius: 8px; width: 130px; height: 90px; display: grid; place-items: center; padding: 1rem; }
-.consulting-client-logos img { max-width: 100%; max-height: 100%; object-fit: contain; }
+.consulting-client-logos li {
+  box-sizing: border-box;
+  background: #fff;
+  border: 1px solid #dbe4e2;
+  border-radius: 8px;
+  width: 150px;
+  height: 105px;
+  padding: 1rem;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: minmax(0, 1fr);
+  place-items: center;
+  overflow: hidden;
+}
+.consulting-client-logos img {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  min-height: 0;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  object-position: center;
+}
 .consulting-contact-grid { display: grid; grid-template-columns: .85fr 1.15fr; gap: 2rem; align-items: start; }
 .consulting-contact-email { font-size: clamp(1.1rem, 2vw, 1.45rem); font-weight: 720; color: #1e5761; text-decoration: underline; overflow-wrap: anywhere; }
 .consulting-socials { display: flex; gap: 1.4rem; margin-top: 2rem; }

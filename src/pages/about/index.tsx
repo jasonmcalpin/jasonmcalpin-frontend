@@ -38,8 +38,8 @@ export default function About() {
       </section>
       {logos.length > 0 && <section className="consulting-section">
         <div className="consulting-container">
-          <div className="consulting-section-heading"><p className="consulting-eyebrow">Professional experience</p><h2>Organizations and teams I've worked with.</h2>
-            <p>Selected client and project relationships—not claims of independent ownership of those brands.</p></div>
+          <div className="consulting-section-heading"><p className="consulting-eyebrow">Professional experience</p><h2>Clients I've worked with.</h2>
+            </div>
           <ul className="consulting-client-logos">
             {logos.map(logo => <li key={logo.companyName}><img loading="lazy" src={logo.logoSrc} alt={logo.companyName} /></li>)}
           </ul>
