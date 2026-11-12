@@ -96,7 +96,7 @@ connected and displays a LinkedIn alternative instead of a broken Send button.
 
 Unit test the handler without AWS credentials:
 
-    node --test backend/contact/index.test.mjs
+    node --test backend/contact/index.node-test.mjs
 
 In staging, test the complete browser -> API -> Lambda -> SES -> inbox flow.
 Test invalid/expired Turnstile verification and delivery errors as well as the

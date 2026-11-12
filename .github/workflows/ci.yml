@@ -53,7 +53,7 @@ jobs:
         run: yarn test:run
 
       - name: Contact endpoint contract tests
-        run: node --test backend/contact/index.test.mjs
+        run: node --test backend/contact/index.node-test.mjs
 
       - name: Build project
         env:
@@ -92,7 +92,7 @@ jobs:
           corepack yarn lint
           corepack yarn type-check
           corepack yarn test:run
-          node --test backend/contact/index.test.mjs
+          node --test backend/contact/index.node-test.mjs
           corepack yarn build
       - name: Confirm Apache config was copied
         shell: pwsh
