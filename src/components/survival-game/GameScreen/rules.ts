@@ -27,21 +27,18 @@ export function cardEligible(card: Card, pacts: Pacts): boolean {
 /**
  * Uniform choice from the eligible cards is equivalent to rolling across the
  * full deck and rejecting ineligible cards, without unbounded reroll loops.
- * Avoid repeating the preceding card when another eligible event exists.
+ * Every eligible event remains equally likely, including the previous event.
  */
 export function selectEvent(
   cards: Card[],
   pacts: Pacts,
-  previousCardId: number | null = null,
   random: () => number = Math.random
 ): Card | null {
   const eligible = cards.filter(card => cardEligible(card, pacts));
   if (eligible.length === 0) return null;
-  const alternatives = eligible.filter(card => card.id !== previousCardId);
-  const pool = alternatives.length ? alternatives : eligible;
   const roll = random();
-  const index = Math.min(pool.length - 1, Math.max(0, Math.floor(roll * pool.length)));
-  return pool[index];
+  const index = Math.min(eligible.length - 1, Math.max(0, Math.floor(roll * eligible.length)));
+  return eligible[index];
 }
 
 /** Terminal outcomes are resolved before dealing the next event. */
