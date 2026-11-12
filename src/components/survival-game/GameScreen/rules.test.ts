@@ -10,7 +10,7 @@ const scores: Pacts = {
   survivorTrust: 5,
 };
 const card = (id: number, requirements?: Record<string, number>): Card => ({
-  id, text: `Event ${id}`,
+  id, faction: 'megacorporationInfluence', text: `Event ${id}`,
   leftChoice: { text: 'Left', effects: {} },
   rightChoice: { text: 'Right', effects: {} },
   requirements,
