@@ -157,7 +157,7 @@ describe('Route 66 authored three-stage deck contract', () => {
       expect(event.text, `card ${event.id} rival named in scenario`).toContain(names[event.faction]);
     }
     const allText = events.map(event => event.text + ' ' + event.leftChoice.text + ' ' + event.rightChoice.text).join(' ');
-    expect(allText).not.toMatch(/\\b(?:survivors?|rogue\\s+ai|wastelanders?)\\b/i);
+    expect(allText).not.toMatch(/\b(?:survivors?|rogue\s+ai|wastelanders?)\b/i);
   });
 
   it('provides a distinct, story-specific takeover for every faction', () => {
