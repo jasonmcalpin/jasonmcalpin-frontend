@@ -85,7 +85,7 @@ const GameScreen: React.FC = () => {
     if (resolveOutcome(nextPacts)) return;
     advanceTimer.current = setTimeout(() => {
       advanceTimer.current = null;
-      const next = selectEvent(gameData.cards, nextPacts, currentCard.id);
+      const next = selectEvent(gameData.cards, nextPacts);
       if (!next) {
         setEventError('No events match the current scores. The game cannot continue.');
         return;
