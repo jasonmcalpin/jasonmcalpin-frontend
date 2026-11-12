@@ -32,7 +32,12 @@ describe('native reveal coordinator', () => {
     expect(observe).toHaveBeenCalledWith(el);
     expect(el.classList.contains('is-visible')).toBe(false);
 
-    notify?.([{ isIntersecting: true, target: el } as IntersectionObserverEntry], {} as IntersectionObserver);
+    const rect = el.getBoundingClientRect();
+    const entry: IntersectionObserverEntry = {
+      target: el, isIntersecting: true, intersectionRatio: 1,
+      boundingClientRect: rect, intersectionRect: rect, rootBounds: rect, time: 0,
+    };
+    notify?.([entry], {} as IntersectionObserver);
     expect(el.classList.contains('is-visible')).toBe(true);
     expect(unobserve).toHaveBeenCalledWith(el);
 
