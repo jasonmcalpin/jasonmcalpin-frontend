@@ -21,4 +21,15 @@ describe('SVG icons', () => {
     expect(html).toContain('text-neon-blue');
     expect(html).toContain('currentColor');
   });
+  it('uses the selected Dazzle Line paths for link, calendar, and alarm clock', () => {
+    const link = renderToStaticMarkup(<InlineIcon iconName="link" />);
+    const calendar = renderToStaticMarkup(<InlineIcon iconName="calendar-days" />);
+    const clock = renderToStaticMarkup(<InlineIcon iconName="clock" />);
+    expect(link).toContain('M9.16488 17.6505');
+    expect(calendar).toContain('M3 9H21M7 3V5');
+    expect(clock).toContain('M3 5.5L5 3.5');
+    expect(link).toContain('stroke-width="2"');
+    expect(calendar).toContain('stroke-linejoin="round"');
+  });
+
 });
