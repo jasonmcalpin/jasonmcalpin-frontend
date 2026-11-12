@@ -66,7 +66,7 @@ describe('Route 66 win and loss conditions', () => {
     ['megacorporationInfluence', 'MegaCorp'],
     ['rogueAIProgress', 'Mecha'],
     ['survivorTrust', 'Scavs'],
-  ] as const)('ends game when %s reaches 20 (%s)', (key) => {
+  ] as const)('ends game when %s reaches 20 (%s)', (key, _label) => {
     expect(resolveOutcome({ ...scores, [key]: 19 })).toBeNull();
     expect(resolveOutcome({ ...scores, [key]: 20 })).toEqual({
       type: 'faction-victory', faction: key,
