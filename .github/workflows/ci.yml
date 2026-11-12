@@ -87,6 +87,21 @@ jobs:
           uploadArtifacts: true
           temporaryPublicStorage: false
 
+      - name: Summarize Lighthouse bottlenecks
+        if: always()
+        run: node scripts/report-lighthouse-diagnostics.mjs
+
+      - name: Upload machine-readable Lighthouse diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lighthouse-diagnostics
+          path: |
+            .lighthouseci/diagnostics.json
+            .lighthouseci/diagnostics.md
+          if-no-files-found: warn
+          retention-days: 90
+
   deploy-preview:
     if: github.event_name == 'pull_request' && github.event.action != 'closed' && github.event.pull_request.head.repo.full_name == github.repository
     needs: build
