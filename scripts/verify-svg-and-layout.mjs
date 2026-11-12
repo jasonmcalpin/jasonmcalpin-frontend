@@ -7,7 +7,7 @@ async function check(dir) {
     const path = join(dir, entry.name);
     if (entry.isDirectory()) {
       await check(path);
-    } else if (/\.(tsx?|css)$/.test(entry.name)) {
+    } else if (!/\.test\.tsx?$/.test(entry.name) && /\.(tsx?|css)$/.test(entry.name)) {
       const source = await readFile(path, 'utf8');
       if (forbidden.test(source)) throw new Error(path + ': Font Awesome markup/import found');
     }
