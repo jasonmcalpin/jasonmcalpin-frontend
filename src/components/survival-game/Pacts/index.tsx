@@ -18,8 +18,8 @@ interface PactsProps {
 
 const pactDisplayNames: { [key: string]: string } = {
   megacorporationInfluence: 'MegaCorp',
-  rogueAIProgress: 'Rogue AI',
-  survivorTrust: 'Wastelandlanders',
+  rogueAIProgress: 'Mecha',
+  survivorTrust: 'Scavs',
   resources: 'Supplies'
 };
 
