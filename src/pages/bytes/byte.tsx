@@ -224,7 +224,7 @@ const BytePage = () => {
                 )
               }}
             >
-              {Array.isArray(byte.content) ? byte.content.join('\n') : byte.content}
+              {byte.content}
             </ReactMarkdown>
           </div>
         </div>
