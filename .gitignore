@@ -25,3 +25,6 @@ dist-ssr
 .env
 .env.*
 package-lock.json
+
+# Lighthouse CI local reports
+.lighthouseci/
