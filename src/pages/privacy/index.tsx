@@ -1,118 +1,39 @@
-import Hero from '../../components/global/Hero';
-import './styles.css';
+import { Link } from 'react-router-dom';
+import SEO from '../../components/global/SEO';
 
-const Privacy = () => {
-  return (
-    <div className='privacy'>
-      <Hero 
-        heroTitle='Privacy Policy'
-        heroSubtitle='How we handle your data and respect your privacy'
-        heroImage='/assets/images/contact-bg.jpg'
-      />
-      
-      
-      <section className='privacy-content'>
-        <div className='section-container'>
-          <div 
-            className='privacy-content__wrapper'
-            
-            
-            
-           data-reveal="viewport">
-            <h2>Introduction</h2>
-            <p>
-              This Privacy Policy explains how Jason McAlpin collects, uses, and protects 
-              your personal information when you visit jasonmcalpin.com ('the Website').
-            </p>
-            
-            <h2>Information We Collect</h2>
-            <p>
-              We collect the following types of information:
-            </p>
-            <ul>
-              <li>
-                <strong>Local Storage Data:</strong> We use browser local storage to enhance your experience by 
-                remembering your preferences, saving game states in interactive features, and storing conversation 
-                history in AI-enabled pages (coming soon).
-              </li>
-            </ul>
-            
-            <h2>How We Use Your Information</h2>
-            <p>
-              We use the collected information for the following purposes:
-            </p>
-            <ul>
-              <li>To send you newsletters and updates if you've subscribed</li>
-              <li>To improve your browsing experience on our website</li>
-              <li>To remember your preferences</li>
-              <li>To save your progress in interactive games</li>
-              <li>To maintain conversation context in AI-enabled features (coming soon)</li>
-            </ul>
-            <p>
-              <strong>Important:</strong> All game states, preferences, and AI conversation data are stored 
-              exclusively in your browser's local storage. This data remains on your device and is not 
-              transmitted to or stored on our servers.
-            </p>
-            
-            <h2>Cookie Policy</h2>
-            <p>
-              This website uses local storage, which functions similarly to cookies, to enhance your experience. 
-              You can choose to accept or decline the use of non-essential storage when visiting the website.
-            </p>
-            <p>
-              Unlike traditional cookies, our localStorage implementation keeps your data entirely on your device:
-            </p>
-            <ul>
-              <li>Game progress is saved locally to allow you to continue where you left off</li>
-              <li>Site preferences are stored to maintain your customized experience</li>
-              <li>AI conversation history (coming soon) will be stored locally to provide context for ongoing interactions</li>
-            </ul>
-            <p>
-              This approach enhances your privacy by keeping your data under your control. You can clear this data 
-              at any time by clearing your browser's local storage or site data.
-            </p>
-            
-            <h2>Your Rights</h2>
-            <p>
-              Under the General Data Protection Regulation (GDPR), you have the following rights:
-            </p>
-            <ul>
-              <li>The right to access your personal data</li>
-              <li>The right to rectification of inaccurate personal data</li>
-              <li>The right to erasure of your personal data</li>
-              <li>The right to restrict processing of your personal data</li>
-              <li>The right to data portability</li>
-              <li>The right to object to processing of your personal data</li>
-            </ul>
-            
-            <h2>Data Retention</h2>
-            <p>
-              We retain your email address for newsletter subscriptions until you unsubscribe. 
-              Local storage data (including preferences, game states, and AI conversation history) 
-              is retained in your browser until you clear your browser data or revoke consent. 
-              This data is not backed up on our servers and will be lost if you clear your browser data.
-            </p>
-            
-            <h2>Contact Information</h2>
-            <p>
-              If you have any questions about this Privacy Policy, please contact me at:
-              contact@jasonmcalpin.com
-            </p>
-            
-            <h2>Changes to This Privacy Policy</h2>
-            <p>
-              We may update this Privacy Policy from time to time. The latest version will always be 
-              available on this page.
-            </p>
-            
-            <p className='privacy-content__last-updated'>
-              Last updated: May 20, 2025
-            </p>
-          </div>
-        </div>
-      </section>
-    </div>
-  );
-};
-
-export default Privacy;
+export default function Privacy() {
+  return <div className="consulting-page consulting-inner-page privacy">
+    <SEO title="Privacy Policy" canonical="/privacy"
+      description="How jasonmcalpin.com handles contact inquiries, analytics consent and local website storage." />
+    <header className="consulting-page-intro consulting-container">
+      <p className="consulting-eyebrow">Privacy</p>
+      <h1>Privacy policy.</h1>
+      <p className="consulting-lead">How information is handled when you use this website or send a project inquiry.</p>
+      <p className="consulting-small">Last updated: November 12, 2026</p>
+    </header>
+    <section className="consulting-section consulting-section--subtle">
+      <div className="consulting-container consulting-case-study">
+        <section><h2>Contact inquiries</h2>
+          <p>When you submit the contact form, you provide your name, email address, project description and optionally a timeline. This information is used to review your inquiry and reply to you. The contact endpoint verifies the anti-spam challenge and sends the message to a private business inbox through Amazon Web Services (AWS Lambda and Amazon SES).</p>
+          <p>The website does not publish your message. The form does not store drafts in browser local storage. Email providers may retain delivered messages in mailboxes, backups and delivery systems according to their retention practices. Inquiries are retained as necessary for correspondence and business records, then deleted when no longer needed.</p>
+        </section>
+        <section><h2>Spam prevention</h2>
+          <p>The form uses Cloudflare Turnstile to reduce automated submissions. The challenge communicates with Cloudflare, which may process browser and connection information to evaluate potential abuse. The server verifies the submitted token before attempting email delivery.</p>
+        </section>
+        <section><h2>Analytics and local storage</h2>
+          <p>Optional website analytics are loaded only if you consent to analytics. When enabled, Google Tag Manager and associated analytics services may receive information about site use. You can decline optional analytics using the website's consent controls.</p>
+          <p>Browser storage is also used for preferences and for progress in interactive features such as games. This local state can generally be cleared using your browser's site-data controls. Essential operational requests and hosting logs may include technical request metadata.</p>
+        </section>
+        <section><h2>Sharing and security</h2>
+          <p>Inquiry information is handled using AWS infrastructure and email delivery services, and Turnstile verification uses Cloudflare. Information is not sold to advertisers. Access to inquiry delivery is limited through infrastructure permissions, and the website does not publicly expose the destination mailbox.</p>
+        </section>
+        <section><h2>Your choices and requests</h2>
+          <p>You can clear browser-local site data, decline optional analytics, or ask about access, correction or deletion of information provided in an inquiry, subject to applicable legal and business retention obligations. Use the <Link to="/contact">contact page</Link> or its linked professional profile to make a request.</p>
+        </section>
+        <section><h2>Changes</h2>
+          <p>This policy may be updated when website features or processing practices change. The current version is published on this page.</p>
+        </section>
+      </div>
+    </section>
+  </div>;
+}
