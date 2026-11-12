@@ -1,4 +1,4 @@
-import { readFile, writeFile, mkdir } from 'node:fs/promises';
+import { readFile, writeFile, mkdir, copyFile } from 'node:fs/promises';
 import { dirname, join, resolve } from 'node:path';
 
 const site = 'https://jasonmcalpin.com';
@@ -251,4 +251,7 @@ await writeFile(join(dist, 'static-pages-manifest.json'), JSON.stringify(
   pages.map(page => ({ path: page.path, canonical: page.canonicalPath || page.path,
     title: page.title, description: page.description, excludeSitemap: !!page.excludeSitemap })),
   null, 2));
+// Published Apache configuration is part of the static output, not a shell
+// post-build copy. Node's file API works on Windows, macOS, and Linux.
+await copyFile(resolve('.htaccess'), join(dist, '.htaccess'));
 console.log('Generated ' + pages.length + ' static HTML pages and sitemap from published catalogs.');
