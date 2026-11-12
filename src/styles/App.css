@@ -8,6 +8,14 @@
 
 .main {
   flex: 1;
+  /*
+   * The navbar is position:fixed and does not participate in flow.
+   * Reserve a viewport for lazy-loaded route content so the footer never
+   * starts inside the first viewport then jumps as React resolves Suspense.
+   * Lighthouse attributed ~0.4 CLS across pages to that footer movement.
+   */
+  min-height: 100vh;
+  min-height: 100svh;
 }
 
 /* Loading spinner styles */
