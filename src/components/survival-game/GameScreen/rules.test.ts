@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import type { Card, Pacts } from '../../../types';
 import catalog from '../../../../public/data/gameData.json';
-import { cardEligible, resolveOutcome, selectEvent, TARGET } from './rules';
+import { cardEligible, factionEndings, resolveOutcome, selectEvent, TARGET } from './rules';
 
 const scores: Pacts = {
   resources: 5,
@@ -47,7 +47,92 @@ describe('Route 66 event eligibility', () => {
     const eligible = events.filter(event => cardEligible(event, scores));
     expect(eligible.length).toBeGreaterThan(0);
     expect(eligible.length).toBeLessThan(events.length);
-    expect(cardEligible(events.find(event => event.id === 2)!, scores)).toBe(false);
+    expect(cardEligible(events.find(event => event.id === 10)!, scores)).toBe(false);
+  });
+});
+
+describe('Route 66 authored three-stage deck contract', () => {
+  const events = catalog.cards as Card[];
+  const factions = ['megacorporationInfluence', 'rogueAIProgress', 'survivorTrust'] as const;
+  const meters = [...factions, 'resources'];
+
+  it('contains exactly three cards per faction per tier, with no requirements below 10', () => {
+    expect(events).toHaveLength(27);
+    for (const faction of factions) {
+      const factionEvents = events.filter(event => event.faction === faction);
+      expect(factionEvents).toHaveLength(9);
+      for (const tier of [0, 10, 15]) {
+        const tierEvents = factionEvents.filter(event => {
+          if (tier === 0) return event.requirements === undefined;
+          return event.requirements?.[faction] === tier;
+        });
+        expect(tierEvents, `${faction} tier ${tier}`).toHaveLength(3);
+        if (tier > 0) {
+          expect(tierEvents.every(event => Object.keys(event.requirements ?? {}).length === 1)).toBe(true);
+        }
+      }
+    }
+  });
+
+  it('unlocks exactly three extra events per faction at 10 and again at 15', () => {
+    expect(events.filter(event => cardEligible(event, scores))).toHaveLength(9);
+    for (const faction of factions) {
+      expect(events.filter(event => cardEligible(event, { ...scores, [faction]: 9 }))).toHaveLength(9);
+      expect(events.filter(event => cardEligible(event, { ...scores, [faction]: 10 }))).toHaveLength(12);
+      expect(events.filter(event => cardEligible(event, { ...scores, [faction]: 14 }))).toHaveLength(12);
+      expect(events.filter(event => cardEligible(event, { ...scores, [faction]: 15 }))).toHaveLength(15);
+    }
+    expect(events.filter(event => cardEligible(event, {
+      ...scores,
+      megacorporationInfluence: 15, rogueAIProgress: 15, survivorTrust: 15,
+    }))).toHaveLength(27);
+  });
+
+  it('gives every event distinct, meaningful choices and bounded effects', () => {
+    expect(new Set(events.map(event => event.id)).size).toBe(events.length);
+    for (const event of events) {
+      expect(event.text.trim().length, `card ${event.id} has no scenario`).toBeGreaterThan(40);
+      expect([event.leftChoice.text.trim(), event.rightChoice.text.trim()].every(Boolean)).toBe(true);
+      expect(event.leftChoice.text).not.toBe(event.rightChoice.text);
+      expect(event.leftChoice.effects).not.toEqual(event.rightChoice.effects);
+      const tier = event.requirements?.[event.faction] ?? 0;
+      const maxChange = tier === 0 ? 2 : 3;
+      for (const choice of [event.leftChoice, event.rightChoice]) {
+        expect(Object.keys(choice.effects).length).toBeGreaterThanOrEqual(2);
+        for (const [meter, amount] of Object.entries(choice.effects)) {
+          expect(meters).toContain(meter);
+          expect(Number.isInteger(amount)).toBe(true);
+          expect(amount).not.toBe(0);
+          expect(Math.abs(amount!)).toBeLessThanOrEqual(maxChange);
+        }
+        expect(Math.abs(choice.effects.resources ?? 0)).toBeLessThanOrEqual(2);
+      }
+      if (tier >= 10) {
+        expect(event.leftChoice.effects.resources).toBeDefined();
+        expect(event.rightChoice.effects.resources).toBeDefined();
+        expect(
+          [event.leftChoice, event.rightChoice].some(choice =>
+            Object.values(choice.effects).some(value => Math.abs(value ?? 0) === 3))
+        ).toBe(true);
+      }
+    }
+  });
+
+  it('uses consistent Mecha and Scavs names in player-facing authored events', () => {
+    const text = events.map(event =>
+      [event.text, event.leftChoice.text, event.rightChoice.text].join(' ')).join(' ');
+    expect(text).not.toMatch(/rogue AI|survivor(s)?|wastelander(s)?/i);
+    expect(text).toMatch(/Mecha/);
+    expect(text).toMatch(/Scavs/);
+    expect(text).toMatch(/MegaCorp/i);
+  });
+
+  it('provides a distinct, story-specific takeover for every faction', () => {
+    expect(Object.keys(factionEndings)).toEqual([...factions]);
+    expect(new Set(Object.values(factionEndings)).size).toBe(3);
+    expect(factionEndings.megacorporationInfluence).toMatch(/crushes Mecha/);
+    expect(factionEndings.rogueAIProgress).toMatch(/army of machines/);
+    expect(factionEndings.survivorTrust).toMatch(/caught in the battle/);
   });
 });
 
