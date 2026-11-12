@@ -5,6 +5,7 @@ import type { Card as CardType } from '../../../../types';
 
 const card: CardType = {
   id: 1,
+  faction: 'megacorporationInfluence',
   text: 'An abandoned relay starts transmitting. What will you do?',
   leftChoice: { text: 'Investigate', effects: { resources: -2 } },
   rightChoice: { text: 'Ignore', effects: { survivorTrust: 3 } },
