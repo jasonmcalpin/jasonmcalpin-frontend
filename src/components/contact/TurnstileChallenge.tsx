@@ -29,8 +29,10 @@ export default function TurnstileChallenge({ siteKey, onToken, onError, resetKey
   const container = useRef<HTMLDivElement>(null);
   const onTokenRef = useRef(onToken);
   const onErrorRef = useRef(onError);
-  onTokenRef.current = onToken;
-  onErrorRef.current = onError;
+  useEffect(() => {
+    onTokenRef.current = onToken;
+    onErrorRef.current = onError;
+  }, [onToken, onError]);
 
   useEffect(() => {
     let disposed = false;
