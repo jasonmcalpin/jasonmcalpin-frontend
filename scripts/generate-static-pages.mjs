@@ -215,11 +215,22 @@ function renderPage(page) {
       '<div data-static-loading role="status" aria-live="polite">Loading page...</div></div>');
 }
 
+// A route that is also a directory prefix (e.g. /projects/ containing project
+// detail HTML files) must have an index document. This works independently of
+// Apache rewrite support and prevents web servers from listing directory files.
+const routePaths = new Set(pages.map(page => page.path));
 for (const page of pages) {
   const target = page.path === '/' ? join(dist, 'index.html') :
     join(dist, page.path.slice(1) + '.html');
   await mkdir(dirname(target), { recursive: true });
-  await writeFile(target, renderPage(page));
+  const html = renderPage(page);
+  await writeFile(target, html);
+
+  if (page.path !== '/' && [...routePaths].some(path => path.startsWith(page.path + '/'))) {
+    const directoryIndex = join(dist, page.path.slice(1), 'index.html');
+    await mkdir(dirname(directoryIndex), { recursive: true });
+    await writeFile(directoryIndex, html);
+  }
 }
 
 const sitemapPaths = pages.filter(page => !page.excludeSitemap).map(page => ({
