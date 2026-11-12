@@ -10,8 +10,7 @@ export const getWebsiteSchema = () => {
     '@type': 'WebSite',
     name: 'Jason McAlpin',
     url: 'https://jasonmcalpin.com',
-    description: 'Full Stack Developer specializing in React, TypeScript, and modern web technologies',
-
+    description: 'Full Stack Developer specializing in React, TypeScript, and modern web technologies'
   };
 };
 
@@ -55,7 +54,7 @@ export const getByteSchema = (byte: {
     '@type': 'BlogPosting',
     headline: byte.title,
     description: byte.description,
-    image: `https://jasonmcalpin.com${byte.imageUrl}`,
+    ...(byte.imageUrl ? { image: `https://jasonmcalpin.com${byte.imageUrl}` } : {}),
     datePublished: byte.date,
     author: {
       '@type': 'Person',
@@ -65,11 +64,7 @@ export const getByteSchema = (byte: {
     publisher: {
       '@type': 'Person',
       name: 'Jason McAlpin',
-      url: 'https://jasonmcalpin.com',
-      logo: {
-        '@type': 'ImageObject',
-        url: 'https://jasonmcalpin.com/favicon.svg'
-      }
+      url: 'https://jasonmcalpin.com'
     },
     mainEntityOfPage: {
       '@type': 'WebPage',
@@ -91,7 +86,7 @@ export const getProjectSchema = (project: {
     '@type': 'CreativeWork',
     name: project.title,
     description: project.description,
-    image: `https://jasonmcalpin.com${project.imageUrl}`,
+    ...(project.imageUrl ? { image: `https://jasonmcalpin.com${project.imageUrl}` } : {}),
     creator: {
       '@type': 'Person',
       name: 'Jason McAlpin'
