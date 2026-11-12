@@ -344,3 +344,30 @@ All published content catalogs are JSON. Byte articles live in `public/data/byte
 Fenced code snippets remain Markdown inside the JSON string (for example, a `typescript` fence). When editing an article, serialize Markdown with `JSON.stringify` or a JSON-aware editor rather than manually escaping quotes/newlines. The existing React Markdown/GFM and Prism renderer is unchanged by this migration.
 
 `yarn verify:content` validates the article catalog and balanced Markdown code fences, and runs before every production build. The static publisher and browser fetch both read `bytes.json`; no TOML parser is required.
+
+## Responsive image pipeline
+
+`yarn optimize-images` uses Sharp to inspect source JPEG/PNG dimensions and
+generate **non-upscaled WebP variants** for 320/640/960/1280/1600px widths. Original
+files stay untouched. The job updates `src/generated/image-manifest.json` with
+actual intrinsic width/height and only variants that exist on disk; it writes
+derivatives to the ignored `public/assets/responsive/` directory for Vite to
+copy into `dist`. Full-resolution pre-existing WebP assets remain the largest
+source candidate, preserving fallback to original JPEG/PNG where necessary.
+
+`OptimizedImage` uses `picture/source srcSet` and the caller's `sizes`
+attribute so the browser selects a suitable downloaded width (rather than
+always requesting a full-size WebP). It retains native lazy loading, default
+aspect-ratio reservation, and an original-format fallback. Card and detail
+views use different sizes policies. The common hero uses a responsive `picture`
+behind its existing overlay; homepage grid tiles use responsive thumbnails.
+
+`yarn dev` and `yarn build` regenerate the manifest before Vite starts.
+`yarn verify:images` fails if a published article/project image is missing
+or a declared variant was not generated. Image animation sources (GIF) and
+SVG files are deliberately left unchanged.
+
+**Authoring contract:** add or replace source assets, never edit generated
+variants or the derived manifest directly. Regenerate via `yarn optimize-images`.
+Image aliases and sizes are presentation decisions; source paths remain data
+in JSON catalogs. Do not generate images on each user request.
