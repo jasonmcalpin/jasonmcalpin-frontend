@@ -398,3 +398,28 @@ and commit new assets deliberately.
 
 `yarn verify:fonts` validates real WOFF2 signatures, size budgets,
 `font-display: swap`, preloads, no Google Fonts dependencies, and OFL licenses.
+
+## Build-time Byte Markdown renderer
+
+Authored Markdown remains in `public/data/bytes.json`; each article's `content`
+is a Markdown string. `yarn render:bytes` compiles Markdown with GFM and
+the existing Prism Night Owl syntax highlighting at development/build startup
+into isolated, inert `public/data/byte-html/<slug>.html` fragments.
+
+The browser article route fetches **only that article's compiled fragment**
+and injects it into the article body. It does not download or execute the
+Markdown/GFM parser, Prism engine, or tokenization grammar. The existing
+`/bytes` list and JSON contracts remain unchanged. The static HTML publisher
+uses the **same fragment**, so no-JavaScript content and SPA content share
+one rendering implementation.
+
+Security boundary: compilation uses `react-markdown` defaults (raw HTML is
+not interpreted and unsafe links are transformed), rejects active/unsafe
+markup, and publishes fragments exclusively from the version-controlled
+JSON catalog. Client HTML injection is permitted **only for this
+build-generated endpoint**; never use it for user-submitted HTML.
+
+`yarn verify:rendered-bytes` validates all generated articles, Markdown code
+blocks, unique slugs, absence of stale fragments, and forbidden HTML. Build
+and dev regenerate before Vite runs. The generated HTML directory is ignored
+in Git and copied into the release bundle by Vite.
