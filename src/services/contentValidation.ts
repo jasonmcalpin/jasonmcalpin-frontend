@@ -34,10 +34,9 @@ function uniqueSlugs<T extends { slug?: string }>(items: T[], path: string): T[]
   return items;
 }
 
-/** Validate content at the untrusted fetch/TOML boundary, before it enters Redux. */
+/** Validate JSON content at the untrusted fetch boundary, before it enters Redux. */
 export function parseBytes(value: unknown): Byte[] {
-  const root = record(value, 'bytes');
-  return uniqueSlugs(array(root.articles, 'bytes.articles', (value, path): Byte => {
+  return uniqueSlugs(array(value, 'bytes', (value, path): Byte => {
     const a = record(value, path);
     if (typeof a.readingTime !== 'number' || !Number.isFinite(a.readingTime) || a.readingTime < 0)
       throw new Error(`${path}.readingTime: expected non-negative number`);

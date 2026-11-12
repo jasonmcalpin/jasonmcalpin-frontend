@@ -10,7 +10,7 @@ export interface Byte {
   slug: string;
   title: string;
   excerpt: string;
-  content: string | string[];
+  content: string;
   imageUrl: string;
   author: string;
   date: string;
@@ -36,7 +36,7 @@ const initialState: BytesState = {
 
 export const fetchBytes = createAsyncThunk('bytes/fetchBytes', async (_, { rejectWithValue }) => {
   try {
-    return await dataService.fetchToml('/data/bytes.toml', parseBytes);
+    return await dataService.fetchJson('/data/bytes.json', parseBytes);
   } catch (error) {
     return rejectWithValue(error instanceof Error ? error.message : String(error));
   }

@@ -29,7 +29,7 @@ This is the source code for Jason McAlpin's personal website, built with React, 
 - **Build Tools**: Vite, ESLint, TypeScript
 - **Deployment**: GitHub Actions CI/CD pipeline
 - **Content**: Markdown with React Markdown for blog posts
-- **Data Storage**: JSON and TOML for structured data
+- **Data Storage**: JSON for all published structured content
 
 ## Development
 
@@ -223,7 +223,7 @@ Project-specific instructions live in [AGENTS.md](AGENTS.md) and reusable skills
 
 ## Static HTML publishing and SEO
 
-The website remains a **React 19 / Vite client application**. The build now also generates contentful HTML for the primary public routes from the existing `public/data/bytes.toml`, `projects.json`, `experience.json`, and `social.json` files.
+The website remains a **React 19 / Vite client application**. The build now also generates contentful HTML for the primary public routes from the existing `public/data/bytes.json`, `projects.json`, `experience.json`, and `social.json` files.
 
 - `yarn build` creates `dist/index.html` plus extension-suffixed static HTML documents (for example `dist/bytes/champion-your-team.html`). `.htaccess` maps public extensionless routes to the appropriate document before the SPA fallback. Routes with nested pages, currently `/projects/` and `/bytes/`, also get a physical `index.html` inside their corresponding directories. This prevents directory listings when the origin does not apply Apache rewrite rules.
 - A generated `dist/sitemap.xml` covers published pages and catalog entries; there is no manually maintained sitemap. `dist/static-pages-manifest.json` makes the build's route contract inspectable.
@@ -328,3 +328,11 @@ Content, personal information, images, and design are Copyright © 2025 Jason Mc
 - LinkedIn: [Jason Dennis McAlpin](https://linkedin.com/in/jasondennismcalpin)
 - Website: [jasonmcalpin.com](https://jasonmcalpin.com)
 - Email: hi@jasonmcalpin.com
+
+## Authoring Byte Articles
+
+All published content catalogs are JSON. Byte articles live in `public/data/bytes.json` as an array of records containing an ID, slug, title, excerpt, date, author, tags, image URL, reading time, and a **Markdown string** in `content`.
+
+Fenced code snippets remain Markdown inside the JSON string (for example, a `typescript` fence). When editing an article, serialize Markdown with `JSON.stringify` or a JSON-aware editor rather than manually escaping quotes/newlines. The existing React Markdown/GFM and Prism renderer is unchanged by this migration.
+
+`yarn verify:content` validates the article catalog and balanced Markdown code fences, and runs before every production build. The static publisher and browser fetch both read `bytes.json`; no TOML parser is required.
