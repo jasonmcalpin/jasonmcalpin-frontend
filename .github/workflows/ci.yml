@@ -3,62 +3,87 @@ name: CI/CD Pipeline
 on:
   push:
     branches: [main]
-    tags: ['v*.*.*']  # Only deploy production on version tags
+    tags: ['v*.*.*']
   pull_request:
     branches: [main]
     types: [opened, synchronize, reopened, closed]
 
-# Add permissions for the GITHUB_TOKEN
 permissions:
   contents: read
-  pull-requests: write
 
 jobs:
   build:
+    # A closed PR only needs the staging reset job, not a build of the closed branch.
+    if: github.event_name != 'pull_request' || github.event.action != 'closed'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Ensure production tag refers to a main-branch commit
+        if: startsWith(github.ref, 'refs/tags/')
+        shell: bash
+        run: |
+          set -euo pipefail
+          [[ "$GITHUB_REF_NAME" =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]] || {
+            echo "::error::Production tags must use vMAJOR.MINOR.PATCH"; exit 1;
+          }
+          git merge-base --is-ancestor "$GITHUB_SHA" origin/main || {
+            echo "::error::Tagged commit is not on main"; exit 1;
+          }
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
+          cache: yarn
 
-      - name: Clean install to fix Rollup native bindings
-        run: |
-          rm -rf node_modules package-lock.json
-          npm install --force
+      - name: Install locked dependencies
+        run: yarn install --frozen-lockfile --non-interactive
+
+      - name: Lint
+        run: yarn lint
+
+      - name: Typecheck
+        run: yarn type-check
+
+      - name: Unit tests
+        run: yarn test:run
 
       - name: Build project
         env:
-          # Only set GTM_ID for production builds (when triggered by a version tag)
           VITE_GTM_ID: ${{ startsWith(github.ref, 'refs/tags/v') && secrets.GTM_ID || '' }}
-        run: npm run build
-        
+        run: yarn build
+
       - name: Upload build artifacts
         uses: actions/upload-artifact@v4
         with:
           name: build-artifacts
           path: dist/
+          if-no-files-found: error
           retention-days: 1
 
   deploy-preview:
-    if: github.event_name == 'pull_request'
+    if: github.event_name == 'pull_request' && github.event.action != 'closed' && github.event.pull_request.head.repo.full_name == github.repository
     needs: build
     runs-on: ubuntu-latest
+    concurrency:
+      group: website-staging
+      cancel-in-progress: false
+    permissions:
+      contents: read
+      pull-requests: write
+    environment: staging
     steps:
-      - name: Download build artifacts
-        uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@v4
         with:
           name: build-artifacts
           path: dist/
-      
-      - name: Create PR identifier file
-        run: |
-          echo "PR #${{ github.event.number }} deployed at $(date)" > dist/PR_INFO.txt
-          
-      - name: Deploy to staging site
+      - name: Identify PR preview
+        run: echo "PR #${{ github.event.number }} deployed at $(date -u)" > dist/PR_INFO.txt
+      - name: Deploy to shared staging site
         uses: appleboy/scp-action@v0.1.7
         with:
           host: ${{ secrets.FTP_HOST }}
@@ -68,34 +93,31 @@ jobs:
           source: "dist/"
           target: "${{ secrets.FTP_TARGET_PREVIEW }}"
           strip_components: 1
-           
       - name: Comment on PR with staging URL
-        uses: actions/github-script@v6
+        uses: actions/github-script@v7
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            const stagingUrl = 'https://${{ secrets.FTP_HOST }}';
-            github.rest.issues.createComment({
+            await github.rest.issues.createComment({
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              body: `Deployed to staging! \n\n[View on Staging](${stagingUrl})`
+              body: 'Deployed to shared staging: https://staged.jasonmcalpin.com (subsequent previews may replace this build).'
             });
 
   deploy-production:
     if: startsWith(github.ref, 'refs/tags/v')
     needs: build
     runs-on: ubuntu-latest
+    concurrency:
+      group: website-production
+      cancel-in-progress: false
+    environment: production
     steps:
-      - name: Download build artifacts
-        uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@v4
         with:
           name: build-artifacts
           path: dist/
-      
-      # GTM ID is now injected during build via environment variables
-          
-      - name: Deploy to production
+      - name: Deploy tagged release to production
         uses: appleboy/scp-action@v0.1.7
         with:
           host: ${{ secrets.FTP_HOST }}
@@ -105,24 +127,23 @@ jobs:
           source: "dist/"
           target: ${{ secrets.FTP_TARGET }}
           strip_components: 1
-          
-  # Deploy main branch to staging after PR is merged or when main is pushed
+
   deploy-staging-after-merge:
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     needs: build
     runs-on: ubuntu-latest
+    concurrency:
+      group: website-staging
+      cancel-in-progress: false
+    environment: staging
     steps:
-      - name: Download build artifacts
-        uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@v4
         with:
           name: build-artifacts
-          path: dist
-      
-      - name: Create main branch identifier file
-        run: |
-          echo "Main branch deployed at $(date)" > dist/BRANCH_INFO.txt
-          
-      - name: Deploy main branch to staging
+          path: dist/
+      - name: Identify main branch deployment
+        run: echo "Main branch deployed at $(date -u)" > dist/BRANCH_INFO.txt
+      - name: Deploy main to staging
         uses: appleboy/scp-action@v0.1.7
         with:
           host: ${{ secrets.FTP_HOST }}
@@ -132,36 +153,35 @@ jobs:
           source: "dist/"
           target: "${{ secrets.FTP_TARGET_PREVIEW }}"
           strip_components: 1
-          
-  # Reset staging to main branch when PR is closed without merging
+
   reset-staging-on-pr-close:
-    if: github.event_name == 'pull_request' && github.event.action == 'closed' && github.event.pull_request.merged == false
+    if: github.event_name == 'pull_request' && github.event.action == 'closed' && github.event.pull_request.merged == false && github.event.pull_request.head.repo.full_name == github.repository
     runs-on: ubuntu-latest
+    concurrency:
+      group: website-staging
+      cancel-in-progress: false
+    environment: staging
     steps:
-      - name: Checkout main branch
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
         with:
           ref: main
-          
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
+      - uses: actions/setup-node@v4
         with:
-          node-version: 20
-
-      - name: Install dependencies
-        run: npm install --force
-        
-      - name: Build project
-        env:
-          # No GTM ID for staging builds
-          VITE_GTM_ID: ''
-        run: npm run build
-      
-      - name: Create reset identifier file
+          node-version: 22
+          cache: yarn
+      - run: yarn install --frozen-lockfile --non-interactive
+      - name: Verify main before staging reset
         run: |
-          echo "Reset to main branch after PR #${{ github.event.number }} was closed without merging at $(date)" > dist/RESET_INFO.txt
-          
-      - name: Deploy main branch to staging
+          yarn lint
+          yarn type-check
+          yarn test:run
+      - name: Build main for staging
+        env:
+          VITE_GTM_ID: ''
+        run: yarn build
+      - name: Identify staging reset
+        run: echo "Reset to main after PR #${{ github.event.number }} closed at $(date -u)" > dist/RESET_INFO.txt
+      - name: Deploy main to staging
         uses: appleboy/scp-action@v0.1.7
         with:
           host: ${{ secrets.FTP_HOST }}
@@ -171,4 +191,3 @@ jobs:
           source: "dist/"
           target: "${{ secrets.FTP_TARGET_PREVIEW }}"
           strip_components: 1
-
