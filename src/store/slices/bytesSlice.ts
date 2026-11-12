@@ -22,6 +22,7 @@ interface BytesState {
   bytes: Byte[];
   activeTag: string | null;
   isLoading: boolean;
+  hasLoaded: boolean;
   error: string | null;
 }
 
@@ -29,6 +30,7 @@ const initialState: BytesState = {
   bytes: [],
   activeTag: null,
   isLoading: false,
+  hasLoaded: false,
   error: null,
 };
 
@@ -58,10 +60,12 @@ export const bytesSlice = createSlice({
       })
       .addCase(fetchBytes.fulfilled, (state, action) => {
         state.isLoading = false;
+        state.hasLoaded = true;
         state.bytes = action.payload ?? [];
       })
       .addCase(fetchBytes.rejected, (state, action) => {
         state.isLoading = false;
+        state.hasLoaded = true;
         state.error = action.payload as string;
       });
   },
