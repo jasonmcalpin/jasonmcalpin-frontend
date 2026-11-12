@@ -127,6 +127,39 @@ describe('Route 66 authored three-stage deck contract', () => {
     expect(text).toMatch(/MegaCorp/i);
   });
 
+  it('enforces a primary rivalry cycle in each authored decision', () => {
+    // Internal meter names are stable for compatibility; targets encode the
+    // faction strategy, rather than presenting every opponent as interchangeable.
+    const rivals = {
+      megacorporationInfluence: 'rogueAIProgress',
+      rogueAIProgress: 'survivorTrust',
+      survivorTrust: 'megacorporationInfluence',
+    } as const;
+    for (const event of events) {
+      const enemy = rivals[event.faction];
+      const other = factions.find(faction => faction !== event.faction && faction !== enemy)!;
+      expect(event.leftChoice.effects[event.faction], `card ${event.id} refusing employer`).toBeLessThan(0);
+      expect(event.rightChoice.effects[event.faction], `card ${event.id} helping employer`).toBeGreaterThan(0);
+      expect(event.leftChoice.effects[enemy], `card ${event.id} protecting rival`).toBeGreaterThan(0);
+      expect(event.rightChoice.effects[enemy], `card ${event.id} attacking rival`).toBeLessThan(0);
+      expect(event.leftChoice.effects[other], `card ${event.id} unrelated faction`).toBeUndefined();
+      expect(event.rightChoice.effects[other], `card ${event.id} unrelated faction`).toBeUndefined();
+    }
+  });
+
+  it('expresses faction motivations in the authored event situations', () => {
+    const names = {
+      megacorporationInfluence: 'Mecha',
+      rogueAIProgress: 'Scav',
+      survivorTrust: 'MegaCorp',
+    } as const;
+    for (const event of events) {
+      expect(event.text, `card ${event.id} rival named in scenario`).toContain(names[event.faction]);
+    }
+    const allText = events.map(event => event.text + ' ' + event.leftChoice.text + ' ' + event.rightChoice.text).join(' ');
+    expect(allText).not.toMatch(/\\b(?:survivors?|rogue\\s+ai|wastelanders?)\\b/i);
+  });
+
   it('provides a distinct, story-specific takeover for every faction', () => {
     expect(Object.keys(factionEndings)).toEqual([...factions]);
     expect(new Set(Object.values(factionEndings)).size).toBe(3);
