@@ -82,7 +82,9 @@ jobs:
           name: build-artifacts
           path: dist/
       - name: Identify PR preview
-        run: echo "PR #${{ github.event.number }} deployed at $(date -u)" > dist/PR_INFO.txt
+        shell: bash
+        run: |
+          echo "PR ${{ github.event.number }} deployed at $(date -u)" > dist/PR_INFO.txt
       - name: Deploy to shared staging site
         uses: appleboy/scp-action@v0.1.7
         with:
@@ -180,7 +182,9 @@ jobs:
           VITE_GTM_ID: ''
         run: yarn build
       - name: Identify staging reset
-        run: echo "Reset to main after PR #${{ github.event.number }} closed at $(date -u)" > dist/RESET_INFO.txt
+        shell: bash
+        run: |
+          echo "Reset to main after PR ${{ github.event.number }} closed at $(date -u)" > dist/RESET_INFO.txt
       - name: Deploy main to staging
         uses: appleboy/scp-action@v0.1.7
         with:
