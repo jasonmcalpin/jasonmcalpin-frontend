@@ -261,23 +261,22 @@
   },
   {
     "id": "10",
-    "slug": "ford-video-optimization",
-    "title": "Ford — Video delivery optimization",
-    "description": "Ford Site. I built out A/B tests on the main site along with coding new car releases and implementing Adobe Target for tracking. I customized the Brightcove video players to save Ford money by preventing excessive replays. This dramatically drop the cost of the service.",
+    "slug": "ibm-watson-chatbot",
+    "title": "IBM — Sales intelligence Slack assistant",
+    "description": "Contributed to a Watson-integrated Slack assistant designed to bring relevant sales intelligence into a familiar team workflow.",
     "imageUrl": "/assets/images/projects/ibm.jpg",
     "technologies": [
-      "React",
-      "JQuery",
-      "BrightCove",
-      "Adobe Experience Manager",
-      "Adobe Target"
+      "IBM Watson",
+      "Slack",
+      "API Integration",
+      "AI"
     ],
     "featured": false,
-    "category": "Performance",
-    "role": "Customized Brightcove players as part of the Ford digital experience.",
-    "challenge": "Repeated video playback could cause unnecessary use of paid media services.",
-    "approach": "Implemented playback controls to prevent unnecessary replays while retaining the intended experience.",
-    "outcome": "Reduced excess media playback and related service cost exposure; a numeric result has not been disclosed."
+    "category": "AI & Automation",
+    "role": "Consulted with the implementation team on the Watson integration, required models and APIs used to return results to Slack.",
+    "challenge": "Sales teams needed to access useful service information without leaving their collaboration workflow.",
+    "approach": "Helped define the model and API integration contracts between IBM Watson and the Slack bot.",
+    "outcome": "The team's Sales Intelligence Slack bot received a 2023 Sammy Award from the Business Intelligence Group."
   },
   {
     "id": "1",
