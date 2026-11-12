@@ -1,4 +1,3 @@
-import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 
 const Footer = () => {
@@ -27,23 +26,23 @@ const Footer = () => {
   };
 
   return (
-    <motion.footer
+    <footer
       className='bg-background-dark text-white py-4 mt-4'
-      initial='hidden'
-      whileInView='visible'
-      viewport={{ once: true }}
-      variants={footerVariants}
-    >
+      
+      
+      
+      
+     data-reveal="viewport">
       <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-3 gap-8'>
-        <motion.div className='flex flex-col' variants={itemVariants}>
+        <div className='flex flex-col'  data-reveal="viewport">
           <Link to='/' className='inline-flex no-underline mb-4'>
             <div className='text-2xl font-heading font-bold'>
               <span className='neon-text mr-1'>Jason McAlpin</span>
             </div>
           </Link>
-        </motion.div>
+        </div>
 
-        <motion.div className='flex flex-col' variants={itemVariants}>
+        <div className='flex flex-col'  data-reveal="viewport">
           <h2
             className='text-lg font-heading font-semibold mb-4 text-neonBlue'
             style={{
@@ -63,21 +62,21 @@ const Footer = () => {
               </Link>
             </li>
           </ul>
-        </motion.div>
+        </div>
       </div>
 
-      <motion.div
+      <div
         className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 mt-4 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center'
-        variants={itemVariants}
-      >
+        
+       data-reveal="viewport">
         <div className='text-sm text-gray-400 mb-2 md:mb-0'>
           &copy; {currentYear} Jason McAlpin. All rights reserved.
         </div>
         <div className='text-sm text-gray-400'>
           Built with React, TypeScript, and Tailwind CSS
         </div>
-      </motion.div>
-    </motion.footer>
+      </div>
+    </footer>
   );
 };
 
