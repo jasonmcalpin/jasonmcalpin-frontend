@@ -4,13 +4,12 @@ import SEO from '../../components/global/SEO';
 import TurnstileChallenge from '../../components/contact/TurnstileChallenge';
 import consulting from '../../../public/data/consulting.json';
 
-const apiUrl = import.meta.env.VITE_CONTACT_API_URL?.trim() || '';
-const siteKey = import.meta.env.VITE_TURNSTILE_SITE_KEY?.trim() || '';
-const ready = Boolean(apiUrl && siteKey && /^https:\/\//.test(apiUrl));
-
 type SubmitStatus = 'idle' | 'sending' | 'accepted' | 'error';
 
 export default function Contact() {
+  const apiUrl = import.meta.env.VITE_CONTACT_API_URL?.trim() || '';
+  const siteKey = import.meta.env.VITE_TURNSTILE_SITE_KEY?.trim() || '';
+  const ready = Boolean(apiUrl && siteKey && /^https:\/\//.test(apiUrl));
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
