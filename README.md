@@ -226,6 +226,14 @@ The website remains a **React 19 / Vite client application**. The build now also
 
 **SEO measurement:** The Lighthouse audit now serves the built output through `scripts/serve-built-site.mjs`, which resolves extensionless public routes to their generated HTML rather than falling back to the generic SPA index. Compare its reports with the prior baseline while noting that the local serving strategy changed. Lighthouse scores still do not prove crawler visibility or source-HTML completeness. The static HTML contract is independently verified by the build. The long-term upgrade to fully hydrated static React markup requires making React/Redux/router rendering deterministic on both server and client.
 
+## Initial rendering and performance contracts
+
+The homepage uses two distinct code paths: the **critical route chunk** renders navigation, the hero and its CTAs, while `HomeBelowFold.tsx` is a separate dynamic-import chunk containing the About, Featured Projects, Recent Bytes and contact sections. An IntersectionObserver near the fold requests this code when it is likely to be needed; card data loading starts only once the deferred component mounts. `yarn verify:chunks` checks the emitted bundle boundary at build time. This differs from image lazy loading, which does not defer JavaScript module evaluation.
+
+The Lighthouse CI server negotiates gzip/Brotli for textual responses using the browser's `Accept-Encoding` header. The previous static preview delivered uncompressed JS/CSS, so prior Lighthouse transfer sizes are not comparable with a properly compressed origin. Its compression behavior is an approximate benchmark transport, not a substitute for measuring actual Cloudflare/staging responses.
+
+Accessibility corrections include footer heading order, high-contrast controls and allowing local embedded font data under `font-src` without broadening `script-src`.
+
 ## Lighthouse baseline
 
 Pull requests and pushes to `main` run a separate, informational **mobile** Lighthouse CI audit against the production build artifact. The audit does not change the release/tag deployment path or block staging/production on score thresholds. Each representative route is collected three times:
