@@ -19,7 +19,7 @@ jobs:
         with:
           python-version: '3.12'
       - name: Install font subsetter
-        run: python -m pip install "fonttools[woff]==4.60.0" brotli
+        run: python -m pip install "fonttools[woff]==4.63.0" brotli
       - name: Generate and inspect pinned local WOFF2
         run: python scripts/vendor-fonts.py
       - name: Commit binary assets and original licenses
