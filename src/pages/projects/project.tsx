@@ -1,9 +1,7 @@
 import { useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { motion } from 'framer-motion';
 import { useAppSelector, useAppDispatch } from '../../hooks/useAppStore';
 import { fetchProjects } from '../../store/slices/projectsSlice';
-import { fadeInUp } from '../../utils/animations';
 import './styles.css';
 
 const ProjectPage = () => {
@@ -60,27 +58,27 @@ const ProjectPage = () => {
       {/* Project Hero */}
       <section className='project-page__hero'>
         <div className='project-page__hero-container'>
-          <motion.h1 
+          <h1 
             className='project-page__title'
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-          >
+            
+            
+            
+           data-reveal="viewport">
             {project.title}
-          </motion.h1>
+          </h1>
           
-          <motion.div 
+          <div 
             className='project-page__technologies'
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-          >
+            
+            
+            
+           data-reveal="viewport">
             {project.technologies.map((tech, i) => (
               <span key={i} className='project-page__tech-tag'>
                 {tech}
               </span>
             ))}
-          </motion.div>
+          </div>
         </div>
       </section>
       
@@ -88,12 +86,12 @@ const ProjectPage = () => {
       <section className='project-page__content'>
         <div className='section-container'>
           {project.imageUrl && (
-            <motion.div 
+            <div 
               className='project-page__image-container'
-              variants={fadeInUp}
-              initial='hidden'
-              animate='visible'
-            >
+              
+              
+              
+             data-reveal="viewport">
               <img 
                 src={project.imageUrl} 
                 alt={project.title} 
@@ -103,27 +101,27 @@ const ProjectPage = () => {
                   target.style.display = 'none';
                 }}
               />
-            </motion.div>
+            </div>
           )}
           
-          <motion.div 
+          <div 
             className='project-page__description'
-            variants={fadeInUp}
-            initial='hidden'
-            animate='visible'
-            transition={{ delay: 0.2 }}
-          >
+            
+            
+            
+            
+           data-reveal="viewport">
             <h2>Project Overview</h2>
             <p>{project.description}</p>
-          </motion.div>
+          </div>
           
-          <motion.div 
+          <div 
             className='project-page__links'
-            variants={fadeInUp}
-            initial='hidden'
-            animate='visible'
-            transition={{ delay: 0.3 }}
-          >
+            
+            
+            
+            
+           data-reveal="viewport">
             {project.githubUrl && (
               <a 
                 href={project.githubUrl} 
@@ -145,26 +143,26 @@ const ProjectPage = () => {
                 Visit Live Site
               </a>
             )}
-          </motion.div>
+          </div>
         </div>
       </section>
       
       {/* Back to Projects Button */}
       <section className='project-page__footer'>
         <div className='section-container'>
-          <motion.div 
+          <div 
             className='project-page__navigation'
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-          >
+            
+            
+            
+           data-reveal="viewport">
             <button 
               className='btn btn-primary'
               onClick={() => navigate('/projects')}
             >
               Back to Projects
             </button>
-          </motion.div>
+          </div>
         </div>
       </section>
     </div>
