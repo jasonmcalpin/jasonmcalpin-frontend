@@ -1,6 +1,9 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { dataService } from '../../services/dataService';
+import { parseProjects } from '../../services/contentValidation';
+import { createSelector } from '@reduxjs/toolkit';
+import type { RootState } from '../index';
 
 export interface Project {
   id: string;
@@ -16,7 +19,6 @@ export interface Project {
 
 interface ProjectsState {
   projects: Project[];
-  filteredProjects: Project[];
   activeFilter: string | null;
   isLoading: boolean;
   error: string | null;
@@ -24,7 +26,6 @@ interface ProjectsState {
 
 const initialState: ProjectsState = {
   projects: [],
-  filteredProjects: [],
   activeFilter: null,
   isLoading: false,
   error: null,
@@ -34,7 +35,7 @@ export const fetchProjects = createAsyncThunk(
   'projects/fetchProjects',
   async (_, { rejectWithValue }) => {
     try {
-      const data = await dataService.fetchJson<Project[]>('/data/projects.json');
+      const data = await dataService.fetchJson('/data/projects.json', parseProjects);
       console.log('Fetched projects:', data);
       return data;
     } catch (error) {
@@ -52,15 +53,7 @@ export const projectsSlice = createSlice({
     filterProjects: (state, action: PayloadAction<string | null>) => {
       state.activeFilter = action.payload;
       
-      if (action.payload === null) {
-        state.filteredProjects = state.projects;
-      } else if (action.payload === 'featured') {
-        state.filteredProjects = state.projects.filter(project => project.featured);
-      } else {
-        state.filteredProjects = state.projects.filter(project => 
-          project.technologies.includes(action.payload as string)
-        );
-      }
+
     },
   },
   extraReducers: (builder) => {
@@ -72,7 +65,6 @@ export const projectsSlice = createSlice({
       .addCase(fetchProjects.fulfilled, (state, action) => {
         state.isLoading = false;
         state.projects = action.payload;
-        state.filteredProjects = action.payload;
       })
       .addCase(fetchProjects.rejected, (state, action) => {
         state.isLoading = false;
@@ -84,3 +76,10 @@ export const projectsSlice = createSlice({
 export const { filterProjects } = projectsSlice.actions;
 
 export default projectsSlice.reducer;
+
+export const selectFilteredProjects = createSelector(
+  [(state: RootState) => state.projects.projects, (state: RootState) => state.projects.activeFilter],
+  (projects, filter) => filter === null ? projects : filter === 'featured'
+    ? projects.filter(project => project.featured)
+    : projects.filter(project => project.technologies.includes(filter)),
+);
