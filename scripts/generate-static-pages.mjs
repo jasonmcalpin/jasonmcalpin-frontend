@@ -141,7 +141,7 @@ register('/contact', 'Discuss a Software Project',
   'Contact Jason McAlpin for application modernization, AI integration, performance or technical consulting.',
   elem('h1', escapeHtml(consulting.contact.heading)) +
   paragraph(consulting.contact.description) +
-  elem('p', 'Use the project inquiry form on this page, or connect through LinkedIn.') +
+  elem('p', 'Use the project inquiry form on this page, protected by Cloudflare Turnstile, or connect through LinkedIn.') +
   paragraph(consulting.identity.location) +
   elem('p', link(consulting.identity.linkedin, 'LinkedIn') + ' · ' +
     link(consulting.identity.github, 'GitHub')));
