@@ -11,11 +11,7 @@ export const getWebsiteSchema = () => {
     name: 'Jason McAlpin',
     url: 'https://jasonmcalpin.com',
     description: 'Full Stack Developer specializing in React, TypeScript, and modern web technologies',
-    potentialAction: {
-      '@type': 'SearchAction',
-      target: 'https://jasonmcalpin.com/search?q={search_term_string}',
-      'query-input': 'required name=search_term_string'
-    }
+
   };
 };
 
@@ -26,16 +22,11 @@ export const getPersonSchema = () => {
     '@type': 'Person',
     name: 'Jason McAlpin',
     url: 'https://jasonmcalpin.com',
-    image: 'https://jasonmcalpin.com/assets/images/jason-mcalpin.jpg',
     jobTitle: 'Full Stack Developer',
-    worksFor: {
-      '@type': 'Organization',
-      name: 'IBM'
-    },
     sameAs: [
-      'http://www.linkedin.com/in/jasondennismcalpin',
-      'http://www.github.com/jasonmcalpin',
-      'http://www.twitter.com/jasonmcalpin'
+      'https://www.linkedin.com/in/jasondennismcalpin',
+      'https://github.com/jasonmcalpin',
+      'https://twitter.com/jasonmcalpin'
     ],
     description: 'Full Stack Developer with expertise in React, TypeScript, and modern web technologies',
     knowsAbout: [
@@ -61,7 +52,7 @@ export const getByteSchema = (byte: {
 }) => {
   return {
     '@context': 'https://schema.org',
-    '@type': 'Byte',
+    '@type': 'BlogPosting',
     headline: byte.title,
     description: byte.description,
     image: `https://jasonmcalpin.com${byte.imageUrl}`,
