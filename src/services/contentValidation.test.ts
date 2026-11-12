@@ -3,6 +3,9 @@ import { configureStore } from '@reduxjs/toolkit';
 import { parseBytes, parseProjects, parseExperiences, parseLogos } from './contentValidation';
 import bytesReducer, { filterBytes, fetchBytes, selectFilteredBytes } from '../store/slices/bytesSlice';
 import projectsReducer, { filterProjects, fetchProjects, selectFilteredProjects } from '../store/slices/projectsSlice';
+import experienceReducer from '../store/slices/experienceSlice';
+import logoReducer from '../store/slices/logoSlice';
+import uiReducer from '../store/slices/uiSlice';
 
 const byte = { id: '1', slug: 'example', title: 'Example', excerpt: 'Summary', content: 'Body',
   imageUrl: '/a.png', author: 'Author', date: '2026-01-01', tags: ['React'], readingTime: 3 };
@@ -28,7 +31,7 @@ describe('content contracts', () => {
 });
 
 describe('derived catalog filtering', () => {
-  const store = configureStore({ reducer: { bytes: bytesReducer, projects: projectsReducer } });
+  const store = configureStore({ reducer: { bytes: bytesReducer, projects: projectsReducer, experience: experienceReducer, logos: logoReducer, ui: uiReducer } });
   it('retains filters when records are reloaded', () => {
     store.dispatch(filterBytes('React'));
     store.dispatch(fetchBytes.fulfilled([byte, { ...byte, id: '2', slug: 'second', tags: ['Other'] }], 'req', undefined));
