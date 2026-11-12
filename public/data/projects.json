@@ -1,119 +1,5 @@
 [
   {
-    "id": "1",
-    "slug": "rustpunk-panic-66",
-    "title": "Rustpunk Panic 66 a survival game",
-    "description": "A React-based survival game where players must escape a post-apocalyptic world by making strategic decisions.",
-    "imageUrl": "/assets/games/images/woman.png",
-    "technologies": [
-      "React",
-      "TypeScript",
-      "Redux",
-      "SCSS"
-    ],
-    "liveUrl": "/projects/route-66",
-    "featured": true,
-    "category": "Interactive Systems"
-  },
-  {
-    "id": "2",
-    "slug": "my-prostate-cancer-website",
-    "title": "My Prostate Cancer Website",
-    "description": "An informational website providing resources and support for those affected by prostate cancer.",
-    "imageUrl": "/assets/images/projects/my-prostate-cancer.png",
-    "technologies": [
-      "React",
-      "JavaScript",
-      "REST-API",
-      "Firebase"
-    ],
-    "liveUrl": "https://www.myprostatecancerroadmap.com/",
-    "featured": false,
-    "category": "Digital Experience"
-  },
-  {
-    "id": "3",
-    "slug": "us-open-watson-project",
-    "title": "US Open — Interactive Watson experience",
-    "description": "Developed AI-powered interactive web application using IBM Watson's tone analyzer to create personalized tennis portraits for fans. Built system that processed open-ended user responses to generate personality trait percentages and match users with professional tennis players based on data analysis. Implemented both on-site booth integration nodejs systems and remote microsite functionality, showcasing AI capabilities to mainstream audiences.",
-    "liveUrl": "https://vimeo.com/230087606",
-    "technologies": [
-      "IBM Watson",
-      "Python",
-      "MySQL",
-      "Angular",
-      "Machine Learning"
-    ],
-    "featured": false,
-    "category": "AI & Automation",
-    "role": "Developed interactive applications and integration for on-site and remote audiences.",
-    "challenge": "Translate AI analysis into an accessible, engaging experience for tennis fans.",
-    "approach": "Used IBM Watson tone analysis and response processing to generate personalized player comparisons for a booth experience and microsite.",
-    "outcome": "Delivered a public-facing demonstration of AI analysis through personalized fan interactions."
-  },
-  {
-    "id": "4",
-    "slug": "ford-website",
-    "title": "Ford — Customer experience and optimization",
-    "description": "A redesigned website for Ford showcasing their vehicles and services with modern UI/UX principles.",
-    "imageUrl": "/assets/images/projects/ford-home.png",
-    "technologies": [
-      "React",
-      "JQuery",
-      "BrightCove",
-      "Express",
-      "Node.js",
-      "Adobe Target"
-    ],
-    "featured": true,
-    "category": "Performance",
-    "role": "Contributed to production website releases, experiments and video integration.",
-    "challenge": "A high-traffic automotive experience needed reliable releases, meaningful experiments and more efficient media usage.",
-    "approach": "Implemented launch-related UI and Adobe Target experiments, and customized Brightcove playback behavior.",
-    "outcome": "Reduced unnecessary video replays and associated service consumption. Exact savings are not publicly quantified."
-  },
-  {
-    "id": "5",
-    "slug": "ibm-one-blog",
-    "title": "IBM — Global publishing platform integration",
-    "description": "IBM Blog, IBM consolidated all of its blogs into one unified offering. I created python, and Bash scripted tools to import bytes from blog platforms that didn't work with WordPress. I built security plugins and worked with the front-end and back-end developers to understand how to get Kubernetes, Cloudflare, and Akamai to work smoothly with WordPress. The plugins and solutions were used in international versions of the site. Tools included: PHP, Python, SQL, Kubernetes, and Docker.",
-    "imageUrl": "/assets/images/projects/IBM-Blog.png",
-    "technologies": [
-      "WordPress",
-      "PHP",
-      "SQL",
-      "JWT",
-      "SSO",
-      "Docker",
-      "Git",
-      "SASS",
-      "Cloudflare"
-    ],
-    "liveUrl": "https://www.ibm.com/blogs",
-    "featured": true,
-    "category": "Modernization",
-    "role": "Built migration tools and WordPress security integrations, collaborating with platform and application teams.",
-    "challenge": "Consolidating diverse legacy blog platforms required reliable content migration and compatibility across infrastructure layers.",
-    "approach": "Created Python and Bash migration utilities and WordPress plugins; coordinated Kubernetes, Cloudflare and Akamai integration.",
-    "outcome": "Supported unified publishing and reuse of integration tooling across international site implementations."
-  },
-  {
-    "id": "6",
-    "slug": "fm-global-resilience",
-    "title": "FM Global - Resilience is a choice",
-    "description": "A campaign website for FM Global focusing on business resilience and risk management.",
-    "imageUrl": "/assets/images/projects/fm-global.png",
-    "technologies": [
-      "Vue.js",
-      "Vuex",
-      "SCSS",
-      "Firebase"
-    ],
-    "liveUrl": "https://www.fm.com",
-    "featured": false,
-    "category": "Digital Experience"
-  },
-  {
     "id": "7",
     "slug": "ibm-research-tool",
     "title": "IBM Research — Legacy data modernization",
@@ -137,62 +23,25 @@
     "outcome": "Moved more than one million records into a queryable SQL system, giving teams a shared path to access and verify information."
   },
   {
-    "id": "8",
-    "slug": "watson-sales-assistant",
-    "title": "IBM — AI-assisted sales discovery",
-    "description": "Watson based internal sales tool. I took internal data to train a Watson business model that could create an optimized list of services for clients. This involved building Python tools to import records, classifying the data and training the sales team in organizing the data so they could continue to update the model in the long term. I also built out an API so that the tool could be connected to other systems and a dedicated frontend that let users do searches or upload the latest data.",
-    "imageUrl": "/assets/images/projects/ibm.jpg",
-    "technologies": [
-      "Python",
-      "Next.js",
-      "SQL",
-      "REST-API",
-      "IBM Watson",
-      "JWT",
-      "Git"
-    ],
-    "featured": false,
-    "category": "AI & Automation",
-    "role": "Built data ingestion, classification, API and search/user-facing tooling.",
-    "challenge": "Sales teams needed to make internal service knowledge searchable and maintainable.",
-    "approach": "Prepared and classified internal data for Watson, developed update tooling and connected the model to an API and dedicated interface.",
-    "outcome": "Enabled teams to search service recommendations and refresh source records through the application."
-  },
-  {
-    "id": "9",
-    "slug": "ogilvy",
-    "title": "Ogilvy",
-    "description": "I was the senior developer on various websites, tools, databases, and apps for our clients. The Clients included IBM, Ford, AMEX, The Weather Channel, US Open, Corteva, Janssen, MPCR, among others. The Projects are listed above under each client. AMEX, I build multinational promotional sites.",
-    "imageUrl": "/assets/images/projects/ogilvy.jpg",
-    "technologies": [
-      "Python",
-      "SQL",
-      "IBM Watson",
-      "REST-API"
-    ],
-    "liveUrl": "https://www.ogilvy.com",
-    "featured": false,
-    "category": "Enterprise Delivery"
-  },
-  {
-    "id": "10",
-    "slug": "ford-video-optimization",
-    "title": "Ford — Video delivery optimization",
-    "description": "Ford Site. I built out A/B tests on the main site along with coding new car releases and implementing Adobe Target for tracking. I customized the Brightcove video players to save Ford money by preventing excessive replays. This dramatically drop the cost of the service.",
-    "imageUrl": "/assets/images/projects/ibm.jpg",
+    "id": "4",
+    "slug": "ford-website",
+    "title": "Ford — Customer experience and optimization",
+    "description": "A redesigned website for Ford showcasing their vehicles and services with modern UI/UX principles.",
+    "imageUrl": "/assets/images/projects/ford-home.png",
     "technologies": [
       "React",
       "JQuery",
       "BrightCove",
-      "Adobe Experience Manager",
+      "Express",
+      "Node.js",
       "Adobe Target"
     ],
-    "featured": false,
+    "featured": true,
     "category": "Performance",
-    "role": "Customized Brightcove players as part of the Ford digital experience.",
-    "challenge": "Repeated video playback could cause unnecessary use of paid media services.",
-    "approach": "Implemented playback controls to prevent unnecessary replays while retaining the intended experience.",
-    "outcome": "Reduced excess media playback and related service cost exposure; a numeric result has not been disclosed."
+    "role": "Contributed to production website releases, experiments and video integration.",
+    "challenge": "A high-traffic automotive experience needed reliable releases, meaningful experiments and more efficient media usage.",
+    "approach": "Implemented launch-related UI and Adobe Target experiments, and customized Brightcove playback behavior.",
+    "outcome": "Reduced unnecessary video replays and associated service consumption. Exact savings are not publicly quantified."
   },
   {
     "id": "11",
@@ -236,6 +85,119 @@
     "githubUrl": "https://github.com/jasonmcalpin/browser-model-lab",
     "imageUrl": "",
     "featured": true
+  },
+  {
+    "id": "5",
+    "slug": "ibm-one-blog",
+    "title": "IBM — Global publishing platform integration",
+    "description": "IBM Blog, IBM consolidated all of its blogs into one unified offering. I created python, and Bash scripted tools to import bytes from blog platforms that didn't work with WordPress. I built security plugins and worked with the front-end and back-end developers to understand how to get Kubernetes, Cloudflare, and Akamai to work smoothly with WordPress. The plugins and solutions were used in international versions of the site. Tools included: PHP, Python, SQL, Kubernetes, and Docker.",
+    "imageUrl": "/assets/images/projects/IBM-Blog.png",
+    "technologies": [
+      "WordPress",
+      "PHP",
+      "SQL",
+      "JWT",
+      "SSO",
+      "Docker",
+      "Git",
+      "SASS",
+      "Cloudflare"
+    ],
+    "liveUrl": "https://www.ibm.com/blogs",
+    "featured": true,
+    "category": "Modernization",
+    "role": "Built migration tools and WordPress security integrations, collaborating with platform and application teams.",
+    "challenge": "Consolidating diverse legacy blog platforms required reliable content migration and compatibility across infrastructure layers.",
+    "approach": "Created Python and Bash migration utilities and WordPress plugins; coordinated Kubernetes, Cloudflare and Akamai integration.",
+    "outcome": "Supported unified publishing and reuse of integration tooling across international site implementations."
+  },
+  {
+    "id": "8",
+    "slug": "watson-sales-assistant",
+    "title": "IBM — AI-assisted sales discovery",
+    "description": "Watson based internal sales tool. I took internal data to train a Watson business model that could create an optimized list of services for clients. This involved building Python tools to import records, classifying the data and training the sales team in organizing the data so they could continue to update the model in the long term. I also built out an API so that the tool could be connected to other systems and a dedicated frontend that let users do searches or upload the latest data.",
+    "imageUrl": "/assets/images/projects/ibm.jpg",
+    "technologies": [
+      "Python",
+      "Next.js",
+      "SQL",
+      "REST-API",
+      "IBM Watson",
+      "JWT",
+      "Git"
+    ],
+    "featured": false,
+    "category": "AI & Automation",
+    "role": "Built data ingestion, classification, API and search/user-facing tooling.",
+    "challenge": "Sales teams needed to make internal service knowledge searchable and maintainable.",
+    "approach": "Prepared and classified internal data for Watson, developed update tooling and connected the model to an API and dedicated interface.",
+    "outcome": "Enabled teams to search service recommendations and refresh source records through the application."
+  },
+  {
+    "id": "3",
+    "slug": "us-open-watson-project",
+    "title": "US Open — Interactive Watson experience",
+    "description": "Developed AI-powered interactive web application using IBM Watson's tone analyzer to create personalized tennis portraits for fans. Built system that processed open-ended user responses to generate personality trait percentages and match users with professional tennis players based on data analysis. Implemented both on-site booth integration nodejs systems and remote microsite functionality, showcasing AI capabilities to mainstream audiences.",
+    "liveUrl": "https://vimeo.com/230087606",
+    "technologies": [
+      "IBM Watson",
+      "Python",
+      "MySQL",
+      "Angular",
+      "Machine Learning"
+    ],
+    "featured": false,
+    "category": "AI & Automation",
+    "role": "Developed interactive applications and integration for on-site and remote audiences.",
+    "challenge": "Translate AI analysis into an accessible, engaging experience for tennis fans.",
+    "approach": "Used IBM Watson tone analysis and response processing to generate personalized player comparisons for a booth experience and microsite.",
+    "outcome": "Delivered a public-facing demonstration of AI analysis through personalized fan interactions."
+  },
+  {
+    "id": "2",
+    "slug": "my-prostate-cancer-website",
+    "title": "My Prostate Cancer Website",
+    "description": "An informational website providing resources and support for those affected by prostate cancer.",
+    "imageUrl": "/assets/images/projects/my-prostate-cancer.png",
+    "technologies": [
+      "React",
+      "JavaScript",
+      "REST-API",
+      "Firebase"
+    ],
+    "liveUrl": "https://www.myprostatecancerroadmap.com/",
+    "featured": false,
+    "category": "Digital Experience"
+  },
+  {
+    "id": "6",
+    "slug": "fm-global-resilience",
+    "title": "FM Global - Resilience is a choice",
+    "description": "A campaign website for FM Global focusing on business resilience and risk management.",
+    "imageUrl": "/assets/images/projects/fm-global.png",
+    "technologies": [
+      "Vue.js",
+      "Vuex",
+      "SCSS",
+      "Firebase"
+    ],
+    "featured": false,
+    "category": "Digital Experience"
+  },
+  {
+    "id": "9",
+    "slug": "ogilvy",
+    "title": "Ogilvy",
+    "description": "I was the senior developer on various websites, tools, databases, and apps for our clients. The Clients included IBM, Ford, AMEX, The Weather Channel, US Open, Corteva, Janssen, MPCR, among others. The Projects are listed above under each client. AMEX, I build multinational promotional sites.",
+    "imageUrl": "/assets/images/projects/ogilvy.jpg",
+    "technologies": [
+      "Python",
+      "SQL",
+      "IBM Watson",
+      "REST-API"
+    ],
+    "featured": false,
+    "category": "Enterprise Delivery"
   },
   {
     "id": "13",
@@ -296,5 +258,41 @@
     "githubUrl": "https://github.com/jasonmcalpin/aether",
     "imageUrl": "",
     "featured": false
+  },
+  {
+    "id": "10",
+    "slug": "ford-video-optimization",
+    "title": "Ford — Video delivery optimization",
+    "description": "Ford Site. I built out A/B tests on the main site along with coding new car releases and implementing Adobe Target for tracking. I customized the Brightcove video players to save Ford money by preventing excessive replays. This dramatically drop the cost of the service.",
+    "imageUrl": "/assets/images/projects/ibm.jpg",
+    "technologies": [
+      "React",
+      "JQuery",
+      "BrightCove",
+      "Adobe Experience Manager",
+      "Adobe Target"
+    ],
+    "featured": false,
+    "category": "Performance",
+    "role": "Customized Brightcove players as part of the Ford digital experience.",
+    "challenge": "Repeated video playback could cause unnecessary use of paid media services.",
+    "approach": "Implemented playback controls to prevent unnecessary replays while retaining the intended experience.",
+    "outcome": "Reduced excess media playback and related service cost exposure; a numeric result has not been disclosed."
+  },
+  {
+    "id": "1",
+    "slug": "rustpunk-panic-66",
+    "title": "Rustpunk Panic 66 a survival game",
+    "description": "A React-based survival game where players must escape a post-apocalyptic world by making strategic decisions.",
+    "imageUrl": "/assets/games/images/woman.png",
+    "technologies": [
+      "React",
+      "TypeScript",
+      "Redux",
+      "SCSS"
+    ],
+    "liveUrl": "/projects/route-66",
+    "featured": false,
+    "category": "Interactive Systems"
   }
 ]
