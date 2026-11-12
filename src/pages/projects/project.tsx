@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useAppSelector, useAppDispatch } from '../../hooks/useAppStore';
 import { fetchProjects } from '../../store/slices/projectsSlice';
+import OptimizedImage from '../../components/global/OptimizedImage';
 import './styles.css';
 
 const ProjectPage = () => {
@@ -92,15 +93,8 @@ const ProjectPage = () => {
               
               
              data-reveal="viewport">
-              <img 
-                src={project.imageUrl} 
-                alt={project.title} 
-                className='project-page__image'
-                onError={(e) => {
-                  const target = e.target as HTMLImageElement;
-                  target.style.display = 'none';
-                }}
-              />
+              <OptimizedImage src={project.imageUrl} alt={project.title}
+                  className="project-page__image w-full" sizes="(max-width: 768px) 100vw, 1000px" />
             </div>
           )}
           

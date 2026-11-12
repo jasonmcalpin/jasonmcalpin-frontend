@@ -1,113 +1,83 @@
-import fs from 'fs';
-import path from 'path';
+import { mkdir, readdir, writeFile, stat, access } from 'node:fs/promises';
+import { join, resolve, extname, relative, dirname, basename, posix } from 'node:path';
 import sharp from 'sharp';
-import { fileURLToPath } from 'url';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+/**
+ * Publish responsive WebP derivatives without changing checked-in image sources.
+ * Manifest is generated before TypeScript/Vite so consumers know exactly which
+ * widths exist (no 404s and no upscaled/duplicate derivatives).
+ */
+const publicDir = resolve('public');
+const assetsDir = join(publicDir, 'assets');
+const outputDir = join(assetsDir, 'responsive');
+const manifestPath = resolve('src/generated/image-manifest.json');
+const widths = [320, 640, 960, 1280, 1600];
+const formats = new Set(['.jpg', '.jpeg', '.png']);
+const quality = 74;
 
-const publicDir = path.join(__dirname, '../public');
-const assetsDir = path.join(publicDir, 'assets');
-
-const imageExtensions = ['.jpg', '.jpeg', '.png', '.gif'];
-
-const jpegQuality = 70;
-const pngQuality = 70;
-const webpQuality = 70;
-
-const maxWidth = 1200;
-
-async function processImage(filePath) {
-  const ext = path.extname(filePath).toLowerCase();
-  
-  if (!imageExtensions.includes(ext)) {
-    return;
+async function walk(directory) {
+  const result = [];
+  for (const entry of await readdir(directory, { withFileTypes: true })) {
+    if (entry.name === 'responsive') continue;
+    const file = join(directory, entry.name);
+    if (entry.isDirectory()) result.push(...await walk(file));
+    else if (entry.isFile() && formats.has(extname(file).toLowerCase())) result.push(file);
   }
-  
-  const dir = path.dirname(filePath);
-  const baseName = path.basename(filePath, ext);
-  const optimizedPath = path.join(dir, `${baseName}${ext}`);
-  const webpPath = path.join(dir, `${baseName}.webp`);
-  
-  console.log(`Processing: ${filePath}`);
-  
-  try {
-    let image = sharp(filePath);
-    const metadata = await image.metadata();
-    
-    if (metadata.width > maxWidth) {
-      image = image.resize(maxWidth);
-    }
-    
-    if (ext === '.jpg' || ext === '.jpeg') {
-      await image
-        .jpeg({ quality: jpegQuality, progressive: true })
-        .toFile(optimizedPath + '.tmp');
-    } else if (ext === '.png') {
-      await image
-        .png({ quality: pngQuality, progressive: true })
-        .toFile(optimizedPath + '.tmp');
-    } else if (ext === '.gif') {
-      await fs.promises.copyFile(filePath, optimizedPath + '.tmp');
-    }
-    
-    await image
-      .webp({ quality: webpQuality })
-      .toFile(webpPath);
-    
-    const originalSize = (await fs.promises.stat(filePath)).size;
-    const optimizedSize = (await fs.promises.stat(optimizedPath + '.tmp')).size;
-    
-    if (optimizedSize < originalSize) {
-      await fs.promises.rename(optimizedPath + '.tmp', filePath);
-      console.log(`  Reduced from ${formatBytes(originalSize)} to ${formatBytes(optimizedSize)} (${Math.round((1 - optimizedSize / originalSize) * 100)}% smaller)`);
-    } else {
-      await fs.promises.unlink(optimizedPath + '.tmp');
-      console.log(`  Original is already optimized (${formatBytes(originalSize)})`);
-    }
-    
-    console.log(`  Created WebP version: ${webpPath} (${formatBytes((await fs.promises.stat(webpPath)).size)})`);
-  } catch (error) {
-    console.error(`  Error processing ${filePath}:`, error);
-  }
+  return result;
 }
 
-function formatBytes(bytes, decimals = 2) {
-  if (bytes === 0) return '0 Bytes';
-  
-  const k = 1024;
-  const dm = decimals < 0 ? 0 : decimals;
-  const sizes = ['Bytes', 'KB', 'MB', 'GB'];
-  
-  const i = Math.floor(Math.log(bytes) / Math.log(k));
-  
-  return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
+async function exists(file) {
+  try { await access(file); return true; } catch { return false; }
 }
 
-async function processDirectory(directory) {
-  const entries = await fs.promises.readdir(directory, { withFileTypes: true });
-  
-  for (const entry of entries) {
-    const fullPath = path.join(directory, entry.name);
-    
-    if (entry.isDirectory()) {
-      await processDirectory(fullPath);
-    } else if (entry.isFile()) {
-      await processImage(fullPath);
-    }
+const catalog = {};
+let generated = 0, skipped = 0, originalBytes = 0, variantBytes = 0;
+await mkdir(outputDir, { recursive: true });
+
+for (const file of (await walk(assetsDir)).sort()) {
+  const source = '/' + posix.join('assets', relative(assetsDir, file).split('\\').join('/'));
+  const meta = await sharp(file).metadata();
+  if (!meta.width || !meta.height) throw new Error('Image lacks intrinsic dimensions: ' + source);
+  originalBytes += (await stat(file)).size;
+
+  const ext = extname(file);
+  const stem = basename(file, ext);
+  const folder = relative(assetsDir, dirname(file)).split('\\').join('/');
+  // Include original extension: prevents same-stem PNG/JPEG collisions.
+  const variantBase = posix.join('assets/responsive', folder, stem + ext.toLowerCase());
+  const variants = [];
+
+  for (const width of widths) {
+    if (width >= meta.width) continue; // Never upscale.
+    const outRelative = variantBase + '-' + width + '.webp';
+    const out = join(publicDir, outRelative);
+    await mkdir(dirname(out), { recursive: true });
+    if (!await exists(out) || (await stat(out)).mtimeMs < (await stat(file)).mtimeMs) {
+      await sharp(file).rotate().resize({ width, withoutEnlargement: true })
+        .webp({ quality, effort: 4 }).toFile(out);
+      generated++;
+    } else skipped++;
+    variantBytes += (await stat(out)).size;
+    variants.push({ width, src: '/' + outRelative });
   }
-}
 
-async function main() {
-  console.log('Starting image optimization...');
-  
-  try {
-    await processDirectory(assetsDir);
-    console.log('Image optimization completed successfully!');
-  } catch (error) {
-    console.error('Error during image optimization:', error);
-    process.exit(1);
+  const fullWebp = join(dirname(file), stem + '.webp');
+  // The existing build already has full-size WebP copies; create only when missing.
+  if (!await exists(fullWebp)) {
+    await sharp(file).rotate().webp({ quality, effort: 4 }).toFile(fullWebp);
+    generated++;
   }
+  variants.push({ width: meta.width, src: '/' + posix.join('assets', folder, stem + '.webp') });
+  catalog[source] = {
+    width: meta.width, height: meta.height,
+    variants: variants.sort((a,b) => a.width-b.width),
+  };
 }
 
-main();
+// Keep the manifest deliberately small and completely data-driven.
+await mkdir(dirname(manifestPath), { recursive: true });
+await writeFile(manifestPath, JSON.stringify(catalog, null, 2) + '\n');
+console.log('Image catalog: ' + Object.keys(catalog).length +
+  ' sources, ' + generated + ' derivatives written, ' + skipped + ' reused');
+console.log('Source bytes scanned: ' + originalBytes +
+  ', responsive derivative bytes (generated set): ' + variantBytes);

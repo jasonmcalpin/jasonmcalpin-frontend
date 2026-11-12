@@ -1,6 +1,7 @@
 import { lazy, Suspense, useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import SEO from '../../components/global/SEO';
+import OptimizedImage from '../../components/global/OptimizedImage';
 import { getWebsiteSchema } from '../../utils/schema';
 import './styles.css';
 
@@ -90,10 +91,22 @@ const Home = () => {
           
          data-reveal="scale">
           <div className="hero__grid grid grid-cols-2 gap-4 w-full max-w-md">
-            <div className="hero__grid-item h-32 rounded-lg relative overflow-hidden after:content-[''] after:absolute after:inset-0 after:bg-black/40 bg-primary bg-cover bg-center hero__grid-item--1"></div>
-            <div className="hero__grid-item h-32 rounded-lg relative overflow-hidden after:content-[''] after:absolute after:inset-0 after:bg-black/40 bg-primary bg-cover bg-center hero__grid-item--2"></div>
-            <div className="hero__grid-item h-32 rounded-lg relative overflow-hidden after:content-[''] after:absolute after:inset-0 after:bg-black/40 bg-primary bg-cover bg-center hero__grid-item--3"></div>
-            <div className="hero__grid-item h-32 rounded-lg relative overflow-hidden after:content-[''] after:absolute after:inset-0 after:bg-black/40 bg-primary bg-cover bg-center hero__grid-item--4"></div>
+            <div className="hero__grid-item h-32 rounded-lg relative overflow-hidden after:content-[''] after:absolute after:inset-0 after:bg-black/40 bg-primary">
+              <OptimizedImage src="/assets/images/code.jpg" alt="" sizes="(max-width: 767px) 45vw, 240px"
+                className="w-full h-full" aria-hidden="true" priority />
+            </div>
+            <div className="hero__grid-item h-32 rounded-lg relative overflow-hidden after:content-[''] after:absolute after:inset-0 after:bg-black/40 bg-primary">
+              <OptimizedImage src="/assets/images/design.jpg" alt="" sizes="(max-width: 767px) 45vw, 240px"
+                className="w-full h-full" aria-hidden="true" priority />
+            </div>
+            <div className="hero__grid-item h-32 rounded-lg relative overflow-hidden after:content-[''] after:absolute after:inset-0 after:bg-black/40 bg-primary">
+              <OptimizedImage src="/assets/images/mobile.jpg" alt="" sizes="(max-width: 767px) 45vw, 240px"
+                className="w-full h-full" aria-hidden="true" priority />
+            </div>
+            <div className="hero__grid-item h-32 rounded-lg relative overflow-hidden after:content-[''] after:absolute after:inset-0 after:bg-black/40 bg-primary">
+              <OptimizedImage src="/assets/images/web.jpg" alt="" sizes="(max-width: 767px) 45vw, 240px"
+                className="w-full h-full" aria-hidden="true" priority />
+            </div>
           </div>
         </div>
       </section>

@@ -7,6 +7,7 @@ import { useAppSelector, useAppDispatch } from '../../hooks/useAppStore';
 import { fetchBytes } from '../../store/slices/bytesSlice';
 import SEO from '../../components/global/SEO';
 import { getByteSchema } from '../../utils/schema';
+import OptimizedImage from '../../components/global/OptimizedImage';
 import './styles.css';
 
 const BytePage = () => {
@@ -145,24 +146,8 @@ const BytePage = () => {
               
               
              data-reveal="viewport">
-              <img 
-                src={byte.imageUrl} 
-                alt={`Featured image for article: ${byte.title}`} 
-                className='byte-page__image'
-                onError={(e) => {
-                  const target = e.target as HTMLImageElement;
-                  target.style.display = 'none';
-                  // Add an aria-hidden element to indicate the image failed to load
-                  const parent = target.parentElement;
-                  if (parent) {
-                    const errorMessage = document.createElement('p');
-                    errorMessage.textContent = 'Image failed to load';
-                    errorMessage.className = 'image-error';
-                    errorMessage.setAttribute('aria-live', 'polite');
-                    parent.appendChild(errorMessage);
-                  }
-                }}
-              />
+              <OptimizedImage src={byte.imageUrl} alt={`Featured image for article: ${byte.title}`}
+                  className="byte-page__image w-full" sizes="(max-width: 768px) 100vw, 1000px" />
             </div>
           )}
           
