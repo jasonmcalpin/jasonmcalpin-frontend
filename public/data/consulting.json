@@ -83,5 +83,23 @@
     "description": "Share what you are building, what is not working and what outcome matters. I'll respond directly to discuss fit and next steps.",
     "subject": "Project inquiry",
     "body": "Hi Jason,\\n\\nWe're looking for help with:\\n\\nThe system or project is:\\n\\nWhat success would look like:\\n\\nTimeline or constraints:\\n\\nThanks,"
-  }
+  },
+  "process": [
+    {
+      "title": "Discuss the problem",
+      "description": "We review the business objective, affected systems, constraints and what a useful result would look like."
+    },
+    {
+      "title": "Agree on scope",
+      "description": "I outline the technical approach, deliverables, responsibilities, acceptance criteria and commercial terms for review before work begins."
+    },
+    {
+      "title": "Build and verify",
+      "description": "Implementation proceeds against the agreed scope, with visible progress and checks aligned to the work."
+    },
+    {
+      "title": "Deliver and hand off",
+      "description": "The engagement closes with the agreed source, documentation and knowledge transfer, plus any separately agreed support."
+    }
+  ]
 }

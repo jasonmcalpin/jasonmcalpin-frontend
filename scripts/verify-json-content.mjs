@@ -42,8 +42,14 @@ const consulting = JSON.parse(await readFile(resolve('public/data/consulting.jso
 const projects = JSON.parse(await readFile(resolve('public/data/projects.json'), 'utf8'));
 if (!consulting.identity?.headline || !consulting.identity?.summary ||
     'email' in consulting.identity || !Array.isArray(consulting.services) ||
-    !Array.isArray(consulting.engagements) || !Array.isArray(projects))
+    !Array.isArray(consulting.engagements) || !Array.isArray(consulting.process) ||
+    consulting.process.length !== 4 || !Array.isArray(projects))
   throw new Error('Invalid consulting site content');
+for (const [index, step] of consulting.process.entries()) {
+  if (typeof step.title !== 'string' || !step.title.trim() ||
+      typeof step.description !== 'string' || !step.description.trim())
+    throw new Error('Invalid engagement process step ' + index);
+}
 const projectSlugs = new Set(projects.map(project => project.slug));
 if (projectSlugs.size !== projects.length) throw new Error('Duplicate project slugs');
 for (const service of consulting.services) {

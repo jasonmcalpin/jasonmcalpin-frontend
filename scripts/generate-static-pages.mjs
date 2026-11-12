@@ -157,6 +157,10 @@ register('/services', 'Software Engineering Services',
   elem('h2', 'Ways to work together') +
   elem('ul', consulting.engagements.map(item => elem('li',
     elem('h3', escapeHtml(item.name)) + paragraph(item.description))).join('')) +
+  elem('h2', 'How an engagement works') +
+  elem('ol', consulting.process.map(step => elem('li',
+    elem('h3', escapeHtml(step.title)) + paragraph(step.description))).join('')) +
+  paragraph('Confidentiality, intellectual-property ownership and payment terms are agreed in writing when appropriate.') +
   link('/contact', 'Discuss your project'),
   { schema: serviceSchema });
 

@@ -49,6 +49,25 @@ export default function Services() {
           <p className="consulting-small">Scope, timing and fees are agreed directly based on the work, not guessed from a generic price list.</p>
         </div>
       </section>
+      <section className="consulting-section consulting-section--subtle" aria-labelledby="process-heading">
+        <div className="consulting-container">
+          <div className="consulting-section-heading">
+            <p className="consulting-eyebrow">What happens next</p>
+            <h2 id="process-heading">A clear path from inquiry to delivery.</h2>
+            <p>No obligation to arrive with a finished specification. The first step is understanding whether the work is a good fit.</p>
+          </div>
+          <ol className="consulting-process">
+            {consulting.process.map((step, index) => (
+              <li key={step.title} className="consulting-process__step">
+                <span className="consulting-service-tile__number" aria-hidden="true">0{index + 1}</span>
+                <h3>{step.title}</h3>
+                <p>{step.description}</p>
+              </li>
+            ))}
+          </ol>
+          <p className="consulting-small">Confidentiality, intellectual-property ownership, milestones and payment terms are agreed as appropriate in the written engagement terms.</p>
+        </div>
+      </section>
       <section className="consulting-cta"><div className="consulting-container">
         <p className="consulting-eyebrow">Tell me what needs to change</p><h2>{consulting.contact.heading}</h2>
         <p>{consulting.contact.description}</p>

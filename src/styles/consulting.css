@@ -232,3 +232,11 @@
 .consulting-inquiry-error { color: #a42b35 !important; font-weight: 650; }
 .consulting-inquiry-success { border-left: 4px solid #286e55; padding: 1rem 1.3rem; background: #e9f4ee; }
 .consulting-page .consulting-inquiry-form a { color: #215a63; text-decoration: underline; }
+
+/* Delivery process: scannable without implying a rigid one-size-fits-all engagement. */
+.consulting-process { list-style: none; margin: 0 0 1.5rem; padding: 0; display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 1rem; counter-reset: steps; }
+.consulting-process__step { padding: 1.5rem; border-top: 2px solid #46767b; background: #fff; min-width: 0; }
+.consulting-process__step h3 { margin: .8rem 0; font-size: 1.2rem; }
+.consulting-process__step p { font-size: .94rem; color: #526570; }
+@media (max-width: 900px) { .consulting-process { grid-template-columns: repeat(2,minmax(0,1fr)); } }
+@media (max-width: 560px) { .consulting-process { grid-template-columns: 1fr; } }
