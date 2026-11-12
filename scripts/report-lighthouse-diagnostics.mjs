@@ -23,7 +23,13 @@ export function summarizeLhr(lhr) {
         Object.values(item).filter(v => v && typeof v === 'object' && v.selector)
           .map(v => v.selector)).slice(0, 5),
     }));
-  const lcpNode = audit('largest-contentful-paint-element')?.details?.items?.[0]?.node;
+  // Lighthouse nests the LCP element and phase timings in separate table rows.
+  const lcpTables = audit('largest-contentful-paint-element')?.details?.items || [];
+  const lcpNode = lcpTables.flatMap(table => table.items || [])
+    .find(item => item.node)?.node;
+  const lcpPhases = Object.fromEntries(lcpTables.flatMap(table => table.items || [])
+    .filter(item => typeof item.phase === 'string' && typeof item.timing === 'number')
+    .map(item => [item.phase, item.timing]));
   return {
     route: url.pathname.replace(/\/$/, '') || '/',
     scores: Object.fromEntries(['performance', 'accessibility', 'best-practices', 'seo']
@@ -33,6 +39,7 @@ export function summarizeLhr(lhr) {
       ['tbt', 'total-blocking-time'], ['cls', 'cumulative-layout-shift'],
     ].map(([key, id]) => [key, audit(id)?.numericValue ?? null])),
     lcpElement: lcpNode?.snippet || lcpNode?.selector || null,
+    lcpPhases,
     renderBlocking: (audit('render-blocking-resources')?.details?.items || []).slice(0, 8)
       .map(x => ({ url: x.url, wastedMs: x.wastedMs })),
     accessibilityFindings,
@@ -56,6 +63,7 @@ export function aggregate(reports) {
       timings: Object.fromEntries(Object.keys(representative.timings).map(key =>
         [key, median(runs.map(r => r.timings[key]))])),
       lcpElement: representative.lcpElement,
+      lcpPhases: representative.lcpPhases,
       renderBlocking: representative.renderBlocking,
       accessibilityFindings: representative.accessibilityFindings,
     };
@@ -76,6 +84,9 @@ export function markdown(rows) {
   }
   for (const r of rows) {
     lines.push('', '### ' + r.route, 'LCP element: ' + (r.lcpElement || 'not reported'));
+    if (Object.keys(r.lcpPhases).length)
+      lines.push('LCP phases: ' + Object.entries(r.lcpPhases)
+        .map(([name, time]) => name + ' ' + millis(time) + ' ms').join(', '));
     for (const item of r.renderBlocking)
       lines.push('- Render blocking: ' + (item.url || 'unknown') +
         ' (' + millis(item.wastedMs) + ' ms estimated savings)');
