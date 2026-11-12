@@ -1,0 +1,88 @@
+{
+  "identity": {
+    "name": "Jason McAlpin",
+    "role": "Independent Software Engineer & Consultant",
+    "headline": "Solve the hard software problems. Build what comes next.",
+    "summary": "I help organizations modernize applications, unlock difficult data, integrate practical AI and improve the systems their teams depend on.",
+    "experience": "15+ years building and improving production software",
+    "location": "Atlanta, Georgia · Remote engagements",
+    "email": "hi@jasonmcalpin.com",
+    "github": "https://github.com/jasonmcalpin",
+    "linkedin": "https://www.linkedin.com/in/jasondennismcalpin"
+  },
+  "services": [
+    {
+      "id": "modernization",
+      "title": "Modernize applications and data",
+      "icon": "layers",
+      "description": "Turn fragile legacy platforms and isolated data into maintainable services and tools that teams can actually use.",
+      "deliverables": [
+        "Migration strategy and data pipelines",
+        "API and system integration",
+        "Application rebuilds and modernization"
+      ],
+      "evidence": "ibm-research-tool"
+    },
+    {
+      "id": "ai",
+      "title": "Integrate AI into real workflows",
+      "icon": "workflow",
+      "description": "Connect LLMs and agent tooling to existing applications with attention to contracts, reliability and operational constraints.",
+      "deliverables": [
+        "LLM and tool integration",
+        "MCP and developer automation",
+        "Model evaluation and runtime architecture"
+      ],
+      "evidence": "mcp-stitch"
+    },
+    {
+      "id": "performance",
+      "title": "Improve speed, reliability and cost",
+      "icon": "gauge",
+      "description": "Find expensive or brittle behavior, improve critical paths and make delivery more dependable.",
+      "deliverables": [
+        "Frontend and API performance reviews",
+        "Cloud and deployment improvements",
+        "Targeted optimization and technical rescue"
+      ],
+      "evidence": "ford-website"
+    },
+    {
+      "id": "consulting",
+      "title": "Get experienced engineering judgment",
+      "icon": "compass",
+      "description": "Clarify architecture, delivery risks and implementation trade-offs with a hands-on senior engineer.",
+      "deliverables": [
+        "Architecture and codebase assessment",
+        "Technical direction and planning",
+        "Implementation and team collaboration"
+      ],
+      "evidence": "ibm-one-blog"
+    }
+  ],
+  "engagements": [
+    {
+      "name": "Focused assessment",
+      "description": "A bounded review of an existing system, technical obstacle or proposed direction, with actionable findings."
+    },
+    {
+      "name": "Scoped implementation",
+      "description": "A defined project or milestone with agreed deliverables, ownership boundaries and acceptance criteria."
+    },
+    {
+      "name": "Ongoing engineering",
+      "description": "Hands-on technical collaboration for modernization, integration or evolving applications."
+    }
+  ],
+  "proof": [
+    "Production work with enterprise teams including IBM and Ford",
+    "Published npm developer tooling and open engineering projects",
+    "Hands-on delivery across frontend, APIs, data and infrastructure"
+  ],
+  "contact": {
+    "heading": "Tell me about the problem you're solving.",
+    "description": "Share what you are building, what is not working and what outcome matters. I'll respond directly to discuss fit and next steps.",
+    "subject": "Project inquiry",
+    "body": "Hi Jason,\\n\\nWe're looking for help with:\\n\\nThe system or project is:\\n\\nWhat success would look like:\\n\\nTimeline or constraints:\\n\\nThanks,"
+  }
+}
