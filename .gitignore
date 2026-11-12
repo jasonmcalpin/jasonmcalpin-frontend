@@ -28,3 +28,6 @@ package-lock.json
 
 # Lighthouse CI local reports
 .lighthouseci/
+
+# Generated responsive WebP derivatives (created before dev/build)
+public/assets/responsive/
