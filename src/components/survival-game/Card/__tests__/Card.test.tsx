@@ -57,6 +57,18 @@ describe('Route 66 decision card', () => {
     expect(onSwipe).toHaveBeenCalledWith('right', card.rightChoice.effects);
   });
 
+  it('maps a touch swipe to the left decision', () => {
+    const onSwipe = vi.fn();
+    render(<Card card={card} onSwipe={onSwipe} />);
+    const surface = screen.getByTestId('route66-decision-card');
+    const start = { identifier: 0, clientX: 250, clientY: 110 };
+    const finish = { identifier: 0, clientX: 120, clientY: 112 };
+    fireEvent.touchStart(surface, { touches: [start], changedTouches: [start] });
+    fireEvent.touchMove(surface, { touches: [finish], changedTouches: [finish] });
+    fireEvent.touchEnd(surface, { touches: [], changedTouches: [finish] });
+    expect(onSwipe).toHaveBeenCalledWith('left', card.leftChoice.effects);
+  });
+
   it('ignores vertical movement as a choice', () => {
     const onSwipe = vi.fn();
     render(<Card card={card} onSwipe={onSwipe} />);
