@@ -1,7 +1,6 @@
 {
   "ignoreUnresolved": [],
   "ignoreUnused": [
-    "@iarna/toml",
     "@tailwindcss/vite",
     "tailwindcss"
   ],
