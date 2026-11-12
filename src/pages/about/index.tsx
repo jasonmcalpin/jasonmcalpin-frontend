@@ -228,17 +228,14 @@ const About = () => {
           
           <div>
             <ul className='flex flex-wrap gap-6 justify-center items-center'>
-            {logos.map((logo, index) => (
-              <div 
-                key={index} 
-                className="about-experience__item"
-                
-                
-               data-reveal="viewport">
-                <li className="w-24 h-24 flex items-center justify-center bg-white rounded-lg shadow-sm border border-gray-100 p-1">
-                  <img src={logo.logoSrc} alt={logo.companyName} className='max-w-full max-h-full object-contain' />
-                </li>
-              </div>
+            {logos.map((logo) => (
+              <li
+                key={logo.companyName}
+                className="about-experience__item w-24 h-24 flex items-center justify-center bg-white rounded-lg shadow-sm border border-gray-100 p-1"
+                data-reveal="viewport"
+              >
+                <img src={logo.logoSrc} alt={logo.companyName} className='max-w-full max-h-full object-contain' />
+              </li>
             ))}
             </ul>
           </div>
