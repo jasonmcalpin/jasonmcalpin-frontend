@@ -428,3 +428,7 @@ build-generated endpoint**; never use it for user-submitted HTML.
 blocks, unique slugs, absence of stale fragments, and forbidden HTML. Build
 and dev regenerate before Vite runs. The generated HTML directory is ignored
 in Git and copied into the release bundle by Vite.
+
+## Project inquiries
+
+The contact form is backed by separately deployed Terraform-managed AWS infrastructure. See [infra/contact/README.md](infra/contact/README.md) for SES domain verification, Turnstile secret configuration, deployment and testing. Until the API URL and public Turnstile site key are supplied at build time, the form displays a LinkedIn alternative rather than exposing a mailbox or showing a nonfunctional Send button. The GitHub Actions pipeline validates the Lambda contract and Terraform without deploying AWS resources.
