@@ -1,3 +1,11 @@
+## Stable first viewport and SVG icons
+
+The site uses a fixed-position header and lazy-loaded React routes. The `.main` region reserves a minimum of **one small viewport height** (`100svh`) so that the footer does not first appear inside the viewport while route chunks are loading and then jump below the loaded content. This follows the existing Lighthouse layout-shift attribution to the footer across Home, About, Projects and Bytes. It is not a claim that every CLS source (such as image sizing or font swaps) is solved.
+
+All ordinary link, contact, category and GitHub icons use the small in-repo SVG vocabulary at `src/components/global/Icons`. Icons inherit `currentColor` and are decorative (`aria-hidden`); interactive links retain their own readable labels. Font Awesome and its globally imported CSS/fonts have been removed. Add new SVG shapes intentionally rather than reinstalling an icon-font dependency.
+
+`yarn verify:svg-layout` is part of the production build and checks the dependency and main viewport contracts. No ad-hoc Lighthouse repeat run is required for this change; existing CI quality measurements remain informational.
+
 ## Native UI animation (no runtime dependency)
 
 Decorative UI reveals, entrance effects, hover feedback, and skill-progress bars use **CSS transitions** activated by a single browser-native `IntersectionObserver` in `src/services/reveals.ts`. A `MutationObserver` registers lazy-loaded/route content. There is no Framer Motion, Motion DOM, or third-party intersection-observer package.
