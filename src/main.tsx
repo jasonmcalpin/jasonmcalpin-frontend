@@ -4,9 +4,11 @@ import { createRoot } from 'react-dom/client';
 import './styles/index.css';
 import App from './App.tsx';
 import { initializeAnalytics } from './services/analytics';
+import { initializeReveals } from './services/reveals';
 
 // Initialize only for an existing, explicit analytics opt-in. New consent is handled by App.
 initializeAnalytics();
+initializeReveals();
 
 const head = createHead();
 createRoot(document.getElementById('root')!).render(
