@@ -93,5 +93,11 @@ for (const byte of articles) {
   characters += html.length;
   await writeFile(join(output, byte.slug + '.html'), html + '\n');
 }
+// Runtime views only require metadata. Publish a lean index instead of
+// transferring every Markdown body just to render cards or find one slug.
+const index = articles.map(article =>
+  Object.fromEntries(Object.entries(article).filter(([key]) => key !== 'content'))
+);
+await writeFile(resolve('public/data/bytes-index.json'), JSON.stringify(index, null, 2) + '\n');
 console.log('Precompiled ' + seen.size + ' article fragments (' + characters +
   ' HTML characters, ' + highlighted + ' highlighted code blocks).');
