@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom';
-import consulting from '../../../public/data/consulting.json';
 
 export default function Footer() {
   return <footer className="consulting-footer">
@@ -16,7 +15,6 @@ export default function Footer() {
       <div>
         <strong>Have a difficult problem to solve?</strong>
         <Link to="/contact" className="consulting-text-link">Discuss a project →</Link>
-        <a href={'mailto:' + consulting.identity.email}>{consulting.identity.email}</a>
       </div>
     </div>
     <div className="consulting-container consulting-footer__bottom">

@@ -141,7 +141,7 @@ register('/contact', 'Discuss a Software Project',
   'Contact Jason McAlpin for application modernization, AI integration, performance or technical consulting.',
   elem('h1', escapeHtml(consulting.contact.heading)) +
   paragraph(consulting.contact.description) +
-  elem('p', link('mailto:' + consulting.identity.email, consulting.identity.email)) +
+  elem('p', 'Use the project inquiry form on this page, or connect through LinkedIn.') +
   paragraph(consulting.identity.location) +
   elem('p', link(consulting.identity.linkedin, 'LinkedIn') + ' · ' +
     link(consulting.identity.github, 'GitHub')));
@@ -162,7 +162,7 @@ register('/services', 'Software Engineering Services',
 
 register('/privacy', 'Privacy Policy', 'Privacy information for jasonmcalpin.com',
   elem('h1', 'Privacy Policy') +
-  paragraph('Privacy settings can be managed using the controls on this website.'));
+  paragraph('Project inquiries are protected by Cloudflare Turnstile and delivered through AWS Lambda and Amazon SES. Optional analytics require consent; game preferences are stored locally. Use the contact page for privacy requests.'));
 register('/privacy-policy', 'Privacy Policy', 'Privacy information for jasonmcalpin.com',
   elem('h1', 'Privacy Policy') +
   paragraph('Privacy settings can be managed using the controls on this website.'),
@@ -301,7 +301,6 @@ const aiIndex = [
   '- ' + consulting.identity.experience,
   '- Location: ' + consulting.identity.location,
   '- Project inquiries: ' + site + '/contact',
-  '- Email: ' + consulting.identity.email,
   '',
   '## Services',
   ...consulting.services.map(service =>
