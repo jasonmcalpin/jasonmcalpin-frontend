@@ -10,7 +10,7 @@ export interface Byte {
   slug: string;
   title: string;
   excerpt: string;
-  content: string | string[];
+  content: string;
   imageUrl: string;
   author: string;
   date: string;
