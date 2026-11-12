@@ -1,67 +1,28 @@
 import { Link } from 'react-router-dom';
+import consulting from '../../../public/data/consulting.json';
 
-const Footer = () => {
-  const currentYear = new Date().getFullYear();
-
-
-  return (
-    <footer
-      className='bg-background-dark text-white py-4 mt-4'
-      
-      
-      
-      
-     data-reveal="viewport">
-      <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-3 gap-8'>
-        <div className='flex flex-col'  data-reveal="viewport">
-          <Link to='/' className='inline-flex no-underline mb-4'>
-            <div className='text-2xl font-heading font-bold'>
-              <span className='neon-text mr-1'>Jason McAlpin</span>
-            </div>
-          </Link>
-        </div>
-
-        <div className='flex flex-col'  data-reveal="viewport">
-          <h2
-            className='text-lg font-heading font-semibold mb-4 text-neonBlue'
-            style={{
-              textShadow: '0 0 5px var(--color-neonBlue)',
-            }}
-          >
-            Links
-          </h2>
-          <ul className='list-none p-0 m-0 space-y-3'>
-            <li className='flex items-center'>
-              <Link
-                to='/privacy'
-                className='text-white hover:text-neonBlue transition-colors duration-300'
-              >
-                <span className='mr-2 text-secondary'>{'>'}</span>
-                Privacy Policy
-              </Link>
-            </li>
-          </ul>
-        </div>
+export default function Footer() {
+  return <footer className="consulting-footer">
+    <div className="consulting-container consulting-footer__grid">
+      <div>
+        <Link to="/" className="consulting-footer__brand">Jason McAlpin</Link>
+        <p>Independent software engineering & consulting.</p>
+        <p className="consulting-small">Modernization · AI integration · Performance · Architecture</p>
       </div>
-
-      <div
-        className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 mt-4 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center'
-        
-       data-reveal="viewport">
-        <div className='text-sm text-gray-400 mb-2 md:mb-0'>
-          &copy; {currentYear} Jason McAlpin. All rights reserved.
-        </div>
-        <div className='text-sm text-gray-400 text-center md:text-right'>
-          <div>Built with React, TypeScript, and Tailwind CSS</div>
-          <a href='https://www.svgrepo.com/collection/dazzle-line-icons/'
-             className='underline hover:text-white'
-             target='_blank' rel='noopener noreferrer'>
-            Interface icons by Dazzle UI
-          </a>
-        </div>
+      <nav aria-label="Footer navigation">
+        <Link to="/services">Services</Link><Link to="/projects">Selected work</Link>
+        <Link to="/about">About</Link><Link to="/bytes">Writing</Link>
+      </nav>
+      <div>
+        <strong>Have a difficult problem to solve?</strong>
+        <Link to="/contact" className="consulting-text-link">Discuss a project →</Link>
+        <a href={'mailto:' + consulting.identity.email}>{consulting.identity.email}</a>
       </div>
-    </footer>
-  );
-};
-
-export default Footer;
+    </div>
+    <div className="consulting-container consulting-footer__bottom">
+      <span>© {new Date().getFullYear()} Jason McAlpin</span>
+      <Link to="/privacy">Privacy</Link>
+      <a href="https://www.svgrepo.com/collection/dazzle-line-icons/" target="_blank" rel="noopener noreferrer">Dazzle interface icon credits</a>
+    </div>
+  </footer>;
+}

@@ -63,6 +63,12 @@ export function parseProjects(value: unknown): Project[] {
       technologies: strings(p.technologies, `${path}.technologies`),
       githubUrl: optionalString(p.githubUrl, `${path}.githubUrl`),
       liveUrl: optionalString(p.liveUrl, `${path}.liveUrl`), featured: p.featured,
+      category: optionalString(p.category, `${path}.category`),
+      kind: optionalString(p.kind, `${path}.kind`),
+      role: optionalString(p.role, `${path}.role`),
+      challenge: optionalString(p.challenge, `${path}.challenge`),
+      approach: optionalString(p.approach, `${path}.approach`),
+      outcome: optionalString(p.outcome, `${path}.outcome`),
     };
   }), 'projects');
 }
