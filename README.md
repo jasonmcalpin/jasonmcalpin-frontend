@@ -211,6 +211,20 @@ This reverts commit abc1234.
 
 Project-specific instructions live in [AGENTS.md](AGENTS.md) and reusable skills are installed in [`.agents/skills/`](.agents/skills/). These originate from [codex-engineering-guidelines](https://github.com/jasonmcalpin/codex-engineering-guidelines), with website-specific deployment, content, and consent contracts added locally. Review upstream improvements explicitly; these are versioned copies, not automatically synchronized.
 
+## Lighthouse baseline
+
+Pull requests and pushes to `main` run a separate, informational **mobile** Lighthouse CI audit against the production build artifact. The audit does not change the release/tag deployment path or block staging/production on score thresholds. Each representative route is collected three times:
+
+- `/`
+- `/about`
+- `/projects`
+- `/bytes`
+- `/bytes/champion-your-team`
+
+The configuration lives in [`.lighthouserc.cjs`](.lighthouserc.cjs). See the **Lighthouse baseline (informational)** job's uploaded report artifacts in GitHub Actions. Reports remain in GitHub; they are not uploaded to third-party temporary public storage. The scores are measurements of a locally served built SPA, not of Cloudflare or production network conditions.
+
+Targets of 85 (performance) and 95 (accessibility, best practices, SEO) are **warnings only** while the baseline is established. Treat an audit failure as an audit-infrastructure/runtime issue to diagnose, not as evidence the site violates a score budget. Compare the same device settings and URLs before and after static HTML generation. Lighthouse SEO scores alone do not validate server-delivered page content; prerendering requires separate HTML contract checks.
+
 ## CI verification and release safety
 
 CI uses the committed `yarn.lock` and runs `yarn lint`, `yarn type-check`, `yarn test:run`, and `yarn build` before uploading deployment artifacts. Pushes to main update staging; same-repository pull requests preview on the **shared** staging site. A closed, unmerged PR resets shared staging to main.
