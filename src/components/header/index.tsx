@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../hooks/useAppStore';
 import { toggleMobileMenu, closeMobileMenu, setIsScrolled } from '../../store/slices/uiSlice';
@@ -19,7 +19,6 @@ const Header = () => {
   const dispatch = useAppDispatch();
   const location = useLocation();
   const { isMobileMenuOpen, isScrolled } = useAppSelector(state => state.ui);
-  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     dispatch(closeMobileMenu());
@@ -35,77 +34,10 @@ const Header = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [dispatch]);
 
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
   const handleMenuToggle = () => {
     dispatch(toggleMobileMenu());
   };
 
-  const logoVariants = {
-    hidden: { opacity: 0, x: -20 },
-    visible: {
-      opacity: 1,
-      x: 0,
-      transition: {
-        duration: 0.5,
-        ease: easeInOut,
-      },
-    },
-  };
-
-  const navVariants = {
-    hidden: { opacity: 0, y: -20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.5,
-        ease: easeInOut,
-        staggerChildren: 0.1,
-        delayChildren: 0.2,
-      },
-    },
-  };
-
-  const linkVariants = {
-    hidden: { opacity: 0, y: -20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.3,
-        ease: easeInOut,
-      },
-    },
-  };
-
-  const mobileMenuVariants = {
-    hidden: {
-      opacity: 0,
-      y: -20,
-      height: 0,
-    },
-    visible: {
-      opacity: 1,
-      y: 0,
-      height: 'auto',
-      transition: {
-        duration: 0.3,
-        ease: easeInOut,
-      },
-    },
-    exit: {
-      opacity: 0,
-      y: -20,
-      height: 0,
-      transition: {
-        duration: 0.2,
-        ease: easeInOut,
-      },
-    },
-  };
 
   return (
     <header
