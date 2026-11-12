@@ -24,6 +24,11 @@ export default tseslint.config([
       ...js.configs.recommended.rules,
       ...tseslint.configs.recommended[1].rules,
       ...reactHooks.configs.recommended.rules,
+      // React Hooks v7 expands the recommended compiler checks. Keep the
+      // pre-existing Hooks safety rules as errors; surface the newly reported
+      // render-state/closure refactor work as warnings until tested separately.
+      'react-hooks/set-state-in-effect': 'warn',
+      'react-hooks/immutability': 'warn',
       // TypeScript owns unused-variable checks; underscore-prefixed callback parameters are intentional.
       'no-unused-vars': 'off',
       '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_', varsIgnorePattern: '^_' }],
