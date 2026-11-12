@@ -5,7 +5,7 @@ import { fetchProjects } from '../../store/slices/projectsSlice';
 import { fetchBytes } from '../../store/slices/bytesSlice';
 import ProjectCard from '../../components/global/projectCard';
 import ByteCard from '../../components/global/byteCard';
-import { MotionTitle, LinkTitle } from '../../components/global/Titles';
+import { RevealTitle, LinkTitle } from '../../components/global/Titles';
 
 // Loaded only when the below-the-fold boundary approaches the viewport.
 // Keep the page's existing sections and animations in this separate Vite chunk.
@@ -38,7 +38,7 @@ const HomeBelowFold = () => {
         
        data-reveal="viewport">
         <div className="section-container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-          <MotionTitle>About Me</MotionTitle>
+          <RevealTitle>About Me</RevealTitle>
           
           <div className="home-about__content grid grid-cols-1 md:grid-cols-2 gap-8"  data-reveal="viewport">
             <div className="home-about__text flex flex-col">
