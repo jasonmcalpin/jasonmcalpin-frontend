@@ -50,7 +50,7 @@ const BytePage = () => {
 
   if (!hasLoaded && !error) {
     return (
-      <div className='byte-page' role='region' aria-label='Loading byte content'>
+      <div className='byte-page consulting-page consulting-inner-page' role='region' aria-label='Loading byte content'>
         <div className='section-container'>
           <div className='byte-page__loading'>
             <p aria-live='polite'>Loading byte...</p>
@@ -62,7 +62,7 @@ const BytePage = () => {
   }
 
   if (error) {
-    return <div className='byte-page'><div className='section-container' role='alert'>
+    return <div className='byte-page consulting-page consulting-inner-page'><div className='section-container' role='alert'>
       <h1>Unable to load bytes</h1><p>{error}</p>
       <button className='btn btn-primary' onClick={() => dispatch(fetchBytes())}>Retry</button>
     </div></div>;
@@ -70,7 +70,7 @@ const BytePage = () => {
 
   if (!byte) {
     return (
-      <div className='byte-page' role='region' aria-label='Byte not found'>
+      <div className='byte-page consulting-page consulting-inner-page' role='region' aria-label='Byte not found'>
         <div className='section-container'>
           <div className='byte-page__not-found'>
             <h1>Byte Not Found</h1>
@@ -98,7 +98,7 @@ const BytePage = () => {
   });
 
   return (
-    <div className='byte-page'>
+    <div className='byte-page consulting-page consulting-inner-page'>
       <SEO 
         title={byte.title}
         description={byte.excerpt || `${byte.title} - Read this byte by ${byte.author}`}
@@ -174,7 +174,7 @@ const BytePage = () => {
           )}
           
           <div 
-            className='byte-page__body markdown-content prose prose-invert max-w-none'
+            className='byte-page__body markdown-content prose max-w-none'
             
             
             

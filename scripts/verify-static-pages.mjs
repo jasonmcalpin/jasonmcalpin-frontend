@@ -53,7 +53,7 @@ for (const page of manifest) {
     page.path + ': alias should be excluded from sitemap');
   // The three hero-image LCP routes must expose a matching responsive preload
   // before React/route JS executes. Other routes should not inherit the hint.
-  const heroSource = page.path === '/bytes' ? '/assets/images/projects-bg.jpg' : null;
+  const heroSource = null; // editorial section headers are text-only; no unnecessary hero-image preloads
   const manifest = JSON.parse(await readFile('src/generated/image-manifest.json', 'utf8'));
   const preloads = [...html.matchAll(/<link rel="preload" as="image"[^>]+>/g)].map(m => m[0]);
   if (heroSource) {

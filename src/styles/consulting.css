@@ -161,3 +161,39 @@
 @media (prefers-reduced-motion: reduce) {
  .consulting-page *, .consulting-nav *, .consulting-footer * { scroll-behavior: auto; transition-duration: .01ms !important; animation-duration: .01ms !important; }
 }
+
+
+/* Technical writing uses the same restrained editorial surface. */
+.consulting-writing-controls { max-width: 720px; margin-bottom: 2.5rem; display: flex; flex-direction: column; gap: .7rem; }
+.consulting-writing-controls label { color: #28454c; font-size: .9rem; font-weight: 720; }
+.consulting-writing-controls input { background: #fff; border: 1px solid #b9cbc9; color: #16323d; border-radius: 6px; padding: .85rem 1rem; font: inherit; width: 100%; }
+.consulting-writing-controls input:focus-visible { outline: 3px solid #94bfc3; outline-offset: 2px; }
+.consulting-writing-controls .consulting-filters { margin: .8rem 0 0; }
+.consulting-writing-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 1.2rem; }
+.consulting-writing-card { display: flex; flex-direction: column; background: #fff; border-radius: 10px; border: 1px solid #dce4e2; overflow: hidden; }
+.consulting-writing-card__image { height: 210px; overflow: hidden; }
+.consulting-writing-card__image .optimized-image { width: 100%; height: 100%; }
+.consulting-writing-card__image img { width: 100%; height: 100%; object-fit: cover; }
+.consulting-writing-card__body { padding: 1.65rem; display: flex; flex-direction: column; flex: 1; }
+.consulting-writing-card__body h3 { margin: .55rem 0 .8rem; }
+.consulting-writing-card__body h3 a { color: #1b313b; text-decoration: none; }
+.consulting-writing-card__body h3 a:hover { color: #235e66; }
+.consulting-writing-card__body > p:not(.consulting-project-card__category) { color: #536871; margin-bottom: 1.2rem; }
+.consulting-writing-card__body > a.consulting-text-link { margin-top: auto; }
+.consulting-page.byte-page .byte-page__hero { background: #f2f5f3; padding: 5rem 0 3rem; }
+.consulting-page.byte-page .byte-page__hero-container { text-align: left; }
+.consulting-page.byte-page .byte-page__title { color: #183039; font-family: Inter,sans-serif; text-shadow: none; }
+.consulting-page.byte-page .byte-page__meta { color: #5a6e76; justify-content: flex-start; }
+.consulting-page.byte-page .byte-page__author { color: #2b6971; }
+.consulting-page.byte-page .byte-page__tags { justify-content: flex-start; }
+.consulting-page.byte-page .byte-page__tag { background: #dbe9e4; color: #21535d; }
+.consulting-page.byte-page .byte-page__reading-time { background: #e4ebea; color: #3d6069; }
+.consulting-page.byte-page .byte-page__body { color: #243a43; }
+.consulting-page.byte-page .markdown-content :is(h1,h2,h3,h4,h5,h6), .consulting-page.byte-page .markdown-content strong { color: #1c343e; font-family: Inter,sans-serif; }
+.consulting-page.byte-page .markdown-content :is(p,ul,ol,li,td,blockquote) { color: #3e535d; }
+.consulting-page.byte-page .markdown-content a { color: #1d646e; }
+.consulting-page.byte-page .markdown-content :is(pre,code,th) { background: #e6eceb; color: #1f3e48; }
+.consulting-page.byte-page .markdown-content pre code { background: transparent; }
+.consulting-page.byte-page .byte-page__footer { border-top: 1px solid #dce4e2; background: #f2f5f3; }
+.consulting-page.byte-page .byte-page__footer .btn { background: #204f59; color: #fff; }
+@media (max-width:600px) { .consulting-writing-grid { grid-template-columns: 1fr; } }

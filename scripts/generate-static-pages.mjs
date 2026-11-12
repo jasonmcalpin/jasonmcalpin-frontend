@@ -135,7 +135,7 @@ register('/bytes', 'Bytes', 'Technical articles, tutorials, and thoughts on soft
   elem('h1', 'Bytes') +
   elem('ul', [...bytes].sort((a, b) => b.date.localeCompare(a.date)).map(byte => elem('li',
     elem('h2', link('/bytes/' + byte.slug, byte.title)) + paragraph(byte.excerpt))).join('')),
-  { heroImage: '/assets/images/projects-bg.jpg' });
+  {});
 
 register('/contact', 'Discuss a Software Project',
   'Contact Jason McAlpin for application modernization, AI integration, performance or technical consulting.',

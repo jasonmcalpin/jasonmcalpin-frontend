@@ -1,264 +1,58 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useMemo, useState } from 'react';
+import type { ChangeEvent } from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks/useAppStore';
 import { filterBytes, fetchBytes, selectFilteredBytes } from '../../store/slices/bytesSlice';
 import ByteCard from '../../components/global/byteCard';
+import SEO from '../../components/global/SEO';
 import './styles.css';
-import Hero from '../../components/global/Hero';
-import { CenterTitle } from '../../components/global/Titles';
-import { InlineIcon } from '../../components/global/Icons';
 
-const Bytes = () => {
+export default function Bytes() {
   const dispatch = useAppDispatch();
   const { bytes, activeTag, isLoading, error } = useAppSelector(state => state.bytes);
   const filteredBytes = useAppSelector(selectFilteredBytes);
-  const [tags, setTags] = useState<string[]>([]);
   const [searchTerm, setSearchTerm] = useState('');
-
-  useEffect(() => {
-    const tagSet = new Set<string>();
-    bytes.forEach(byte => {
-      // byte.tags.forEach(tag => tagSet.add(tag)); // this gets all tags
-
-      if (byte.tags.length > 0) {
-        tagSet.add(byte.tags[0]); // Use the first tag to keep list shorter because i dont want a huge list
-      }
-    });
-    setTags(Array.from(tagSet).sort());
-  }, [bytes]);
-
-  useEffect(() => {
-    dispatch(fetchBytes());
-  }, [dispatch]);
-
+  useEffect(() => { dispatch(fetchBytes()); }, [dispatch]);
+  const tags = useMemo(() => [...new Set(bytes.flatMap(byte => byte.tags.slice(0, 1)))].sort(), [bytes]);
   const handleTagFilter = (tag: string | null) => {
     dispatch(filterBytes(tag));
     setSearchTerm('');
   };
-
-  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchTerm(e.target.value);
-    if (activeTag) {
-      dispatch(filterBytes(null));
-    }
+  const handleSearch = (event: ChangeEvent<HTMLInputElement>) => {
+    setSearchTerm(event.target.value);
+    if (activeTag) dispatch(filterBytes(null));
   };
-
-  const searchFilteredBytes = searchTerm
-    ? filteredBytes.filter(
-        byte =>
-          byte.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          byte.excerpt.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          byte.tags.some(tag => tag.toLowerCase().includes(searchTerm.toLowerCase()))
-      )
-    : filteredBytes;
+  const query = searchTerm.trim().toLowerCase();
+  const visible = query ? filteredBytes.filter(byte =>
+    byte.title.toLowerCase().includes(query) ||
+    byte.excerpt.toLowerCase().includes(query) ||
+    byte.tags.some(tag => tag.toLowerCase().includes(query))) : filteredBytes;
 
   return (
-    <div className='bytes' role='main' aria-labelledby='bytes-heading'>
-      <Hero 
-        heroTitle='Bytes'
-        heroSubtitle='Insights, tutorials, and thoughts on web development'
-        heroImage='/assets/images/projects-bg.jpg'
-      />
-
-      <section className='bytes-content'>
-        <div className='section-container'>
-          {/* Search and Filters */}
-          <div
-            className='bytes-filters'
-            
-            
-            
-            role='search'
-            aria-label='Search and filter bytes'
-           data-reveal="viewport">
-            <div className='bytes-filters__search'>
-              <label htmlFor='bytes-search' className='sr-only'>
-                Search bytes
-              </label>
-              <input
-                id='bytes-search'
-                type='text'
-                placeholder='Search bytes...'
-                className='bytes-filters__search-input'
-                value={searchTerm}
-                onChange={handleSearch}
-                aria-label='Search bytes by title, excerpt, or tag'
-              />
-            </div>
-
-            <div className='bytes-filters__tags' role='navigation' aria-label='Filter bytes by tag'>
-              <h2 id='filter-heading' className='bytes-filters__title'>
-                Filter by tag:
-              </h2>
-              <div className='bytes-filters__buttons' role='group' aria-labelledby='filter-heading'>
-                <button
-                  className={`bytes-filters__button ${activeTag === null ? 'bytes-filters__button--active' : ''}`}
-                  onClick={() => handleTagFilter(null)}
-                  aria-pressed={activeTag === null}
-                  aria-label='Show all bytes'
-                >
-                  All
-                </button>
-
-                {tags.map(tag => (
-                  <button
-                    key={tag}
-                    className={`bytes-filters__button ${activeTag === tag ? 'bytes-filters__button--active' : ''}`}
-                    onClick={() => handleTagFilter(tag)}
-                    aria-pressed={activeTag === tag}
-                    aria-label={`Filter by ${tag} tag`}
-                  >
-                    {tag}
-                  </button>
-                ))}
-              </div>
+    <div className="consulting-page consulting-inner-page bytes" aria-labelledby="bytes-heading">
+      <SEO title="Engineering Notes and Writing" description="Thoughts on software engineering, architecture, practical AI, performance and technology delivery." canonical="/bytes" />
+      <header className="consulting-page-intro consulting-container">
+        <p className="consulting-eyebrow">Engineering notes</p>
+        <h1 id="bytes-heading">Ideas from the workbench.</h1>
+        <p className="consulting-lead">Writing about the problems, patterns and trade-offs that come up when building and maintaining real software.</p>
+      </header>
+      <section className="consulting-section consulting-section--subtle" aria-label="Articles">
+        <div className="consulting-container">
+          <div className="consulting-writing-controls">
+            <label htmlFor="bytes-search">Search articles</label>
+            <input id="bytes-search" type="search" placeholder="Search by title, topic or keyword" value={searchTerm}
+              onChange={handleSearch} aria-label="Search articles by title, excerpt or tag" />
+            <div className="consulting-filters" role="group" aria-label="Filter articles by topic">
+              <button type="button" aria-pressed={activeTag === null} className={activeTag === null ? 'is-active' : ''} onClick={() => handleTagFilter(null)}>All topics</button>
+              {tags.map(tag => <button type="button" key={tag} aria-pressed={activeTag === tag}
+                className={activeTag === tag ? 'is-active' : ''} onClick={() => handleTagFilter(tag)}>{tag}</button>)}
             </div>
           </div>
-
-          {/* Bytes Grid */}
-          <div
-            className='bytes-grid'
-            
-            
-            
-           data-reveal="viewport">
-            {isLoading && bytes.length === 0 ? (
-              <p role='status'>Loading bytes...</p>
-            ) : error ? (
-              <div role='alert'><p>Unable to load bytes: {error}</p><button className='btn btn-primary' onClick={() => dispatch(fetchBytes())}>Retry</button></div>
-            ) : searchFilteredBytes.length > 0 ? (
-              searchFilteredBytes.map((byte, index) => (
-                <ByteCard key={byte.id} byte={byte} index={index} />
-              ))
-            ) : (
-              <div
-                className='bytes-empty'
-                
-                role='status'
-                aria-live='polite'
-               data-reveal="viewport">
-                <p className='bytes-empty__message'>
-                  {searchTerm
-                    ? `No bytes found matching '${searchTerm}'`
-                    : 'No bytes found with the selected tag.'}
-                </p>
-                <button
-                  className='btn btn-primary'
-                  onClick={() => {
-                    handleTagFilter(null);
-                    setSearchTerm('');
-                  }}
-                  aria-label='Reset filters and show all bytes'
-                >
-                  Show All Bytes
-                </button>
-              </div>
-            )}
-          </div>
-        </div>
-      </section>
-
-      {/* Topics Section */}
-      <section className='bytes-topics' aria-labelledby='topics-heading'>
-        <div className='section-container'>
-          <CenterTitle>
-            Topics I Write About
-          </CenterTitle>
-
-          <div className='bytes-topics__grid' role='list' aria-label='Topic categories'>
-            <div
-              className='bytes-topics__item'
-              
-              
-              
-              
-              role='listitem'
-              aria-labelledby='topic-react'
-             data-reveal="viewport">
-              <div
-                className='bytes-topics__icon bytes-topics__icon--react'
-                aria-hidden='true'
-              ></div>
-              <h3 id='topic-react' className='bytes-topics__title'>
-                Languages & Frontend
-              </h3>
-              <p className='bytes-topics__description'>
-                Modern React, Next and Python development, and frontend best practices.
-              </p>
-            </div>
-
-            <div
-              className='bytes-topics__item'
-              
-              
-              
-              
-              role='listitem'
-              aria-labelledby='topic-typescript'
-             data-reveal="viewport">
-              <div
-                className='bytes-topics__icon bytes-topics__icon--typescript'
-                aria-hidden='true'
-              ></div>
-              <h3 id='topic-typescript' className='bytes-topics__title'>
-                Leadership
-              </h3>
-              <p className='bytes-topics__description'>
-                Leader tips, advanced techniques to keeping your team fresh and up on training.
-              </p>
-            </div>
-
-            <div
-              className='bytes-topics__item'
-              
-              
-              
-              
-              role='listitem'
-              aria-labelledby='topic-performance'
-             data-reveal="viewport">
-              <div
-                className='bytes-topics__icon bytes-topics__icon--performance'
-                aria-hidden='true'
-              >
-                <InlineIcon iconName='gauge-high' />
-              </div>
-              <h3 id='topic-performance' className='bytes-topics__title'>
-                Web Performance
-              </h3>
-              <p className='bytes-topics__description'>
-                Optimization techniques, performance metrics, and tools to make your web apps
-                faster.
-              </p>
-            </div>
-
-            <div
-              className='bytes-topics__item'
-              
-              
-              
-              
-              role='listitem'
-              aria-labelledby='topic-architecture'
-             data-reveal="viewport">
-              <div
-                className='bytes-topics__icon bytes-topics__icon--architecture'
-                aria-hidden='true'
-              >
-                <InlineIcon iconName='building' />
-              </div>
-              <h3 id='topic-architecture' className='bytes-topics__title'>
-                Architecture
-              </h3>
-              <p className='bytes-topics__description'>
-                Application architecture, design patterns, and structuring scalable web
-                applications.
-              </p>
-            </div>
-          </div>
+          {isLoading && bytes.length === 0 ? <p role="status">Loading articles…</p> : error ?
+            <div role="alert"><p>Unable to load articles.</p><button type="button" className="consulting-button consulting-button--outline" onClick={() => dispatch(fetchBytes())}>Retry</button></div> :
+            visible.length > 0 ? <div className="consulting-writing-grid">{visible.map(byte => <ByteCard key={byte.id} byte={byte} index={0} />)}</div> :
+            <div role="status"><p>No articles match that search.</p><button type="button" className="consulting-button consulting-button--outline" onClick={() => { setSearchTerm(''); handleTagFilter(null); }}>Clear filters</button></div>}
         </div>
       </section>
     </div>
   );
-};
-
-export default Bytes;
+}
