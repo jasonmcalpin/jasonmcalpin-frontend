@@ -31,3 +31,6 @@ package-lock.json
 
 # Generated responsive WebP derivatives (created before dev/build)
 public/assets/responsive/
+
+# Build-generated, reviewed HTML fragments for Byte articles
+public/data/byte-html/
