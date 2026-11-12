@@ -4,7 +4,6 @@ import { useAppDispatch, useAppSelector } from '../../hooks/useAppStore';
 import { fetchLogos } from '../../store/slices/logoSlice';
 import SEO from '../../components/global/SEO';
 import { getPersonSchema } from '../../utils/schema';
-import consulting from '../../../public/data/consulting.json';
 
 export default function About() {
   const dispatch = useAppDispatch();
