@@ -224,7 +224,7 @@ The website remains a **React 19 / Vite client application**. The build now also
 
 **Deployment prerequisite:** The existing Apache `.htaccess` with `mod_rewrite` must be honored by the origin. If hosting changes to a static server without Apache rewrites, configure clean-URL fallback for generated `.html` files at the new host. SCP deployment currently copies files but does not remove pages deleted from a catalog; after removing/renaming a published slug, clear obsolete generated HTML at the server as part of the release.
 
-**SEO measurement:** Compare Lighthouse quality reports with the previous baseline, but Lighthouse scores do not prove crawler visibility or source-HTML completeness. The static HTML contract is independently verified by the build. The long-term upgrade to fully hydrated static React markup requires making React/Redux/router rendering deterministic on both server and client.
+**SEO measurement:** The Lighthouse audit now serves the built output through `scripts/serve-built-site.mjs`, which resolves extensionless public routes to their generated HTML rather than falling back to the generic SPA index. Compare its reports with the prior baseline while noting that the local serving strategy changed. Lighthouse scores still do not prove crawler visibility or source-HTML completeness. The static HTML contract is independently verified by the build. The long-term upgrade to fully hydrated static React markup requires making React/Redux/router rendering deterministic on both server and client.
 
 ## Lighthouse baseline
 
