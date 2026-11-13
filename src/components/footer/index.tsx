@@ -5,7 +5,7 @@ export default function Footer() {
     <div className="consulting-container consulting-footer__grid">
       <div>
         <Link to="/" className="consulting-footer__brand">Jason McAlpin</Link>
-        <p>Independent software engineering & consulting.</p>
+        <p>Software engineering & consulting.</p>
         <p className="consulting-small">Modernization · AI integration · Performance · Architecture</p>
       </div>
       <nav aria-label="Footer navigation">

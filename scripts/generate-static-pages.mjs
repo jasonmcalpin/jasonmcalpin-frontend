@@ -77,10 +77,11 @@ const personSchema = { '@context': 'https://schema.org', '@type': 'Person',
   '@id': site + '/about#person', name: consulting.identity.name,
   url: site + '/about', jobTitle: consulting.identity.role,
   description: consulting.identity.summary,
+  image: site + '/assets/images/about/jason-mcalpin-portrait.jpg',
   sameAs: [consulting.identity.linkedin, consulting.identity.github],
   knowsAbout: consulting.services.map(service => service.title) };
 const websiteSchema = { '@context': 'https://schema.org', '@type': 'WebSite',
-  '@id': site + '/#website', name: 'Jason McAlpin: Independent Software Engineering',
+  '@id': site + '/#website', name: 'Jason McAlpin: Software Engineering & Consulting',
   url: site, description: consulting.identity.summary,
   about: { '@id': personSchema['@id'] } };
 const serviceSchema = {
@@ -92,7 +93,7 @@ const serviceSchema = {
 const featuredSlugs = ['ibm-research-tool', 'ford-website', 'mcp-stitch', 'browser-model-lab'];
 const featuredProjects = featuredSlugs.map(slug => projects.find(project => project.slug === slug))
   .filter(Boolean);
-register('/', 'Independent Software Engineering & Consulting', consulting.identity.summary,
+register('/', 'Software Engineering & Consulting', consulting.identity.summary,
   elem('h1', escapeHtml(consulting.identity.headline)) +
   paragraph(consulting.identity.summary) +
   elem('p', link('/contact', 'Discuss a project') + ' · ' + link('/projects', 'See selected work')) +
@@ -111,9 +112,10 @@ register('/', 'Independent Software Engineering & Consulting', consulting.identi
   { schema: websiteSchema });
 
 register('/about', 'About Jason McAlpin',
-  'Independent software engineer with 15+ years of production experience across enterprise web, data, APIs and AI integration.',
+  'Senior software engineer with 15+ years of production experience across enterprise web, data, APIs and AI integration.',
   elem('h1', '15 years. Still breaking things. Then fixing them.') +
-  paragraph('I am Jason McAlpin, an independent software engineer and consultant based near Atlanta. For more than 15 years I have helped teams build, modernize and improve applications they depend on.') +
+  image('/assets/images/about/jason-mcalpin-portrait.jpg', 'Portrait of Jason McAlpin smiling, wearing glasses and a dark blazer') +
+  paragraph('I am Jason McAlpin, a Solutions Engineer based near Atlanta. For more than 15 years I have helped teams build, modernize and improve applications they depend on.') +
   paragraph('My background spans digital experiences, data migration, APIs, enterprise publishing, performance work and applied AI, including contributions to projects for IBM and Ford.') +
   elem('h2', 'Selected recognition') +
   paragraph('The IBM Sales Intelligence Slack bot received a 2023 Sammy Award. I consulted on the Watson AI model and API integration; recognition belongs to the wider team.') +
@@ -147,7 +149,7 @@ register('/contact', 'Discuss a Software Project',
     link(consulting.identity.github, 'GitHub')));
 
 register('/services', 'Software Engineering Services',
-  'Independent engineering for application modernization, AI integration, performance and technical consulting.',
+  'Software engineering for application modernization, AI integration, performance and technical consulting.',
   elem('h1', 'Big problems. Better code.') +
   paragraph(consulting.identity.summary) +
   elem('ul', consulting.services.map(service => elem('li',
@@ -296,7 +298,7 @@ await writeFile(join(dist, 'sitemap.xml'), sitemap);
 // Optional LLM-oriented navigation index: derived from the same published
 // business and project records as React and crawler-readable HTML.
 const aiIndex = [
-  '# Jason McAlpin: Independent Software Engineering',
+  '# Jason McAlpin: Software Engineering & Consulting',
   '',
   '> ' + consulting.identity.summary,
   '',

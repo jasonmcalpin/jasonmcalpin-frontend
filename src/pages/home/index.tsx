@@ -40,12 +40,12 @@ function DeferredHomepageContent() {
 export default function Home() {
   return (
     <div className="home consulting-page">
-      <SEO title="Independent Software Engineering & Consulting"
+      <SEO title="Software Engineering & Consulting"
         description={consulting.identity.summary} canonical="/" schema={getWebsiteSchema()} />
       <section className="consulting-hero" aria-labelledby="home-title">
         <div className="consulting-container consulting-hero__layout">
           <div>
-            <p className="consulting-eyebrow">Independent software engineering · Atlanta / Remote</p>
+            <p className="consulting-eyebrow">Software engineering & consulting · Atlanta / Remote</p>
             <h1 id="home-title" className="consulting-hero__title">{consulting.identity.headline}</h1>
             <p className="consulting-lead">{consulting.identity.summary}</p>
             <div className="consulting-actions">
