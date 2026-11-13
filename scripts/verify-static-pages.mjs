@@ -88,7 +88,7 @@ function escaped(input) {
 }
 
 const index = await readFile(join(dist, 'index.html'), 'utf8');
-assert(index.includes('Solve the hard software problems'), 'Consulting homepage body is not present in initial HTML');
+assert(index.includes('Big problems. Meet your match.'), 'Consulting homepage body is not present in initial HTML');
 const contactPage = await readFile(join(dist, 'contact.html'), 'utf8');
 assert(!contactPage.includes('mailto:'), 'Contact must not expose destination mailbox');
 assert(contactPage.includes('Cloudflare Turnstile'), 'Contact static fallback must disclose spam verification');
