@@ -115,7 +115,7 @@ register('/about', 'About Jason McAlpin',
   'Senior software engineer with 15+ years of production experience across enterprise web, data, APIs and AI integration.',
   elem('h1', '15 years. Still breaking things. Then fixing them.') +
   image('/assets/images/about/jason-mcalpin-portrait.jpg', 'Portrait of Jason McAlpin smiling, wearing glasses and a dark blazer') +
-  paragraph('I am Jason McAlpin, a software engineer and consultant based near Atlanta. For more than 15 years I have helped teams build, modernize and improve applications they depend on.') +
+  paragraph('I am Jason McAlpin, a Solutions Engineer based near Atlanta. For more than 15 years I have helped teams build, modernize and improve applications they depend on.') +
   paragraph('My background spans digital experiences, data migration, APIs, enterprise publishing, performance work and applied AI, including contributions to projects for IBM and Ford.') +
   elem('h2', 'Selected recognition') +
   paragraph('The IBM Sales Intelligence Slack bot received a 2023 Sammy Award. I consulted on the Watson AI model and API integration; recognition belongs to the wider team.') +
