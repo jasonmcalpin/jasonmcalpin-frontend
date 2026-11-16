@@ -73,7 +73,7 @@ export default function Contact() {
       <section className="consulting-section consulting-section--subtle">
         <div className="consulting-container consulting-contact-grid">
           <div className="consulting-simple-card">
-            <h2>Tell me about your project.</h2>
+            <h2>Tell me about your project</h2>
             <p>Describe the system, the problem and what a successful engagement would look like. You don't need a complete specification to start.</p>
             <p className="consulting-small">Based near Atlanta, Georgia · Remote collaboration available</p>
             <p>Your message goes directly to my private business inbox. I don't publish that address or pass your inquiry to a public discussion feed.</p>
@@ -83,7 +83,7 @@ export default function Contact() {
             </div>
           </div>
           <div className="consulting-simple-card">
-            <h2>Send a project inquiry.</h2>
+            <h2>Send a project inquiry</h2>
             {!ready ? (
               <div role="status">
                 <p>The secure inquiry form is being connected. In the meantime, please reach out through LinkedIn.</p>

@@ -2,7 +2,7 @@
   "identity": {
     "name": "Jason McAlpin",
     "role": "Solutions Engineer",
-    "headline": "Big problems. Meet your match.",
+    "headline": "Big problems. Meet your match",
     "summary": "I help organizations modernize applications, unlock difficult data, integrate practical AI and improve the systems their teams depend on.",
     "experience": "15+ years building and improving production software",
     "location": "Atlanta, Georgia · Remote engagements",
@@ -12,7 +12,7 @@
   "services": [
     {
       "id": "modernization",
-      "title": "Old systems. New tricks.",
+      "title": "Old systems. New tricks",
       "icon": "layers",
       "description": "Turn fragile legacy platforms and isolated data into maintainable services and tools that teams can actually use.",
       "deliverables": [
@@ -24,7 +24,7 @@
     },
     {
       "id": "ai",
-      "title": "Teaching machines new tricks.",
+      "title": "Teaching machines new tricks",
       "icon": "workflow",
       "description": "Connect LLMs and agent tooling to existing applications with attention to contracts, reliability and operational constraints.",
       "deliverables": [
@@ -36,7 +36,7 @@
     },
     {
       "id": "performance",
-      "title": "Faster. Leaner. Better.",
+      "title": "Faster. Leaner. Better",
       "icon": "gauge",
       "description": "Find expensive or brittle behavior, improve critical paths and make delivery more dependable.",
       "deliverables": [
@@ -48,7 +48,7 @@
     },
     {
       "id": "consulting",
-      "title": "Experience beats guesswork.",
+      "title": "Experience beats guesswork",
       "icon": "compass",
       "description": "Clarify architecture, delivery risks and implementation trade-offs with a hands-on senior engineer.",
       "deliverables": [
@@ -79,7 +79,7 @@
     "Hands-on delivery across frontend, APIs, data and infrastructure"
   ],
   "contact": {
-    "heading": "You bring the problem. I'll bring the solution.",
+    "heading": "You bring the problem. I'll bring the solution",
     "description": "Share what you are building, what is not working and what outcome matters. I'll respond directly to discuss fit and next steps.",
     "subject": "Project inquiry",
     "body": "Hi Jason,\\n\\nWe're looking for help with:\\n\\nThe system or project is:\\n\\nWhat success would look like:\\n\\nTimeline or constraints:\\n\\nThanks,"

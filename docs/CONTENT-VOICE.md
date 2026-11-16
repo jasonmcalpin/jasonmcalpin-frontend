@@ -4,7 +4,7 @@ This is an independent senior-engineering consultancy with a distinctive voice, 
 
 ## Headlines
 
-- Lead with attitude and economy. Think an 80s action-film one-liner: brief, confident, occasionally humorous.
+- Lead with attitude and economy. Think an 80s action-film one-liner: brief, confident, occasionally humorous. Never end a display heading with a period; internal periods are fine for rhythm.
 - Prefer short, specific sentences, contrast, and a memorable rhythm. No buzzword chains.
 - Avoid em dashes. Use periods, commas, or colons.
 - Do not turn every label into a joke. Functional labels for navigation, forms, privacy and technical case studies should remain literal and accessible.
@@ -13,7 +13,7 @@ This is an independent senior-engineering consultancy with a distinctive voice, 
 
 ## Example pattern
 
-Headline: **Old systems. New tricks.**
+Headline: **Old systems. New tricks**
 
 Supporting description: Turn fragile legacy platforms and isolated data into maintainable services and tools that teams can actually use.
 

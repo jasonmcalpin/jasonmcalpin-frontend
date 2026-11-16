@@ -18,7 +18,7 @@ export default function About() {
       <header className="consulting-page-intro consulting-container consulting-about-intro">
         <div className="consulting-about-intro__copy">
           <p className="consulting-eyebrow">About</p>
-          <h1>15 years. Still breaking things. Then fixing them.</h1>
+          <h1>15 years. Still breaking things. Then fixing them</h1>
           <p className="consulting-lead">I'm Jason McAlpin, a Solutions Engineer based near Atlanta. For more than 15 years I've helped teams build, modernize and improve applications that people depend on.</p>
         </div>
         <figure className="consulting-about-intro__portrait">
@@ -32,7 +32,7 @@ export default function About() {
         <div className="consulting-container consulting-two-column">
           <div>
             <p className="consulting-eyebrow">Experience and approach</p>
-            <h2>Complex problems. Simple answers.</h2>
+            <h2>Complex problems. Simple answers</h2>
             <p className="consulting-body">My background spans customer-facing digital experiences, complex data migrations, APIs, enterprise publishing, performance work and applied AI. I've contributed to projects for IBM, Ford and teams working across several industries.</p>
             <p className="consulting-body">I work across architectural decisions and implementation, with attention to what the organization needs to maintain after delivery, not just the code needed for a demonstration.</p>
             <Link to="/projects" className="consulting-text-link">See the work behind the claims →</Link>
@@ -47,7 +47,7 @@ export default function About() {
       </section>
       {logos.length > 0 && <section className="consulting-section">
         <div className="consulting-container">
-          <div className="consulting-section-heading"><p className="consulting-eyebrow">Professional experience</p><h2>Clients I've worked with.</h2>
+          <div className="consulting-section-heading"><p className="consulting-eyebrow">Professional experience</p><h2>Clients I've worked with</h2>
             </div>
           <ul className="consulting-client-logos">
             {logos.map(logo => <li key={logo.companyName}><img loading="lazy" src={logo.logoSrc} alt={logo.companyName} /></li>)}
@@ -56,13 +56,13 @@ export default function About() {
       </section>}
       <section className="consulting-section consulting-section--subtle">
         <div className="consulting-container consulting-two-column">
-          <div><p className="consulting-eyebrow">Current engineering</p><h2>Teaching machines new tricks.</h2></div>
+          <div><p className="consulting-eyebrow">Current engineering</p><h2>Teaching machines new tricks</h2></div>
           <div><p className="consulting-body">Alongside client and enterprise work, I build tools for model evaluation, agent coordination and durable project knowledge. Some are published for anyone to install; others remain active engineering projects with their maturity documented openly.</p>
             <Link className="consulting-text-link" to="/projects">Explore AI and open-source projects →</Link></div>
         </div>
       </section>
       <section className="consulting-cta"><div className="consulting-container">
-        <p className="consulting-eyebrow">Work together</p><h2>Big problems. Better code.</h2>
+        <p className="consulting-eyebrow">Work together</p><h2>Big problems. Better code</h2>
         <p>Let's discuss the outcome you're after and whether I'm the right person to help.</p>
         <Link to="/contact" className="consulting-button consulting-button--primary">Start a conversation</Link>
       </div></section>
