@@ -32,7 +32,7 @@ export default function Bytes() {
       <SEO title="Bytes: Engineering Notes" description="Thoughts on software engineering, architecture, practical AI, performance and technology delivery." canonical="/bytes" />
       <header className="consulting-page-intro consulting-container">
         <p className="consulting-eyebrow">Engineering / Ideas / Experiments</p>
-        <h1 id="bytes-heading">Bytes.</h1>
+        <h1 id="bytes-heading">Bytes</h1>
         <p className="consulting-lead">Writing about the problems, patterns and trade-offs that come up when building and maintaining real software.</p>
       </header>
       <section className="consulting-section consulting-section--subtle" aria-label="Articles">
